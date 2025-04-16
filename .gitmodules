@@ -1,0 +1,3 @@
+[submodule "smart-ui"]
+	path = smart-ui
+	url = https://gitlab.xitaso.com/jonas.buehler/smart-ui.git
