@@ -1,6 +1,8 @@
 "use client"
-import {SmartButton, SmartComponent, SmartInput, SmartSelect, useSmartAgent} from "smart-ui"
+import {SmartComponent, SmartInput, SmartSelect, useSmartAgent} from "smart-ui"
 import {useState} from "react";
+import SmartTextField from "@/app/ui/components/SmartTextField";
+import SmartButton from "./components/SmartButton";
 
 export default function Content() {
     const {sendPrompt} = useSmartAgent();
@@ -21,11 +23,8 @@ export default function Content() {
     return (
         <>
             <SmartComponent>
-                <label htmlFor="name">Name</label>
-                <SmartInput id="name" smartSemantic="Name" value={name} onChange={(e) => setName(e.target.value)} />
-
-                <label htmlFor="age">Age</label>
-                <SmartInput type="number" id="age" smartSemantic="Age" value={age} onChange={(e) => setAge(e.target.value)} />
+                <SmartTextField label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <SmartTextField type="number" id="age" label="Age" value={age} onChange={(e) => setAge(e.target.value)} />
 
                 <SmartComponent id="gender">
                     <div>
@@ -54,7 +53,7 @@ export default function Content() {
                         <SmartInput onClick={() => console.log("reading clicked")} type="checkbox" id="interests-reading" checked={interests.reading} onChange={(e) => setInterests((prevInterests) => ({ ...prevInterests, reading: e.target.checked }))} />
 
                         <label htmlFor="interests-other">Other</label>
-                        <SmartInput type="textarea" id="interests-other" value={interests.other} onChange={(e) => setInterests((prevInterests) => ({ ...prevInterests, other: e.target.value }))} />
+                        <SmartTextField label="Other" id="interests-other" value={interests.other} onChange={(e) => setInterests((prevInterests) => ({ ...prevInterests, other: e.target.value }))} />
                     </div>
                 </SmartComponent>
             </SmartComponent>
