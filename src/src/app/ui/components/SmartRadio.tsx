@@ -20,6 +20,7 @@ export default function SmartRadio(props: SmartRadioProps) {
     return (
         <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked} smartOnChange={updateValue}>
             <Radio
+                id={id}
                 slotProps={{
                     input:{ref:inputRef}
                 }}

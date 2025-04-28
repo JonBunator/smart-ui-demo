@@ -1,5 +1,5 @@
 "use server"
-import {ValueUpdate} from "smart-ui/src/components/types/types";
+import {ValueUpdate} from "smart-ui";
 import {AzureOpenAI} from "openai";
 import { callAgent } from "smart-ui/src/components/SmartAgentProvider/openAI";
 

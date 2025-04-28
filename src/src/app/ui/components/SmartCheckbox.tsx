@@ -20,6 +20,7 @@ export default function SmartCheckbox(props: SmartCheckboxProps) {
     return (
         <SmartComponent type="checkbox" id={id} semantic={smartSemantic} value={checked} smartOnChange={updateValue}>
             <Checkbox
+                id={id}
                 slotProps={{
                     input:{ref:inputRef}
                 }}
