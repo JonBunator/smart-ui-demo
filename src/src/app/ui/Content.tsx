@@ -3,9 +3,8 @@ import {SmartComponent, useSmartAgent, useSmartComponentManager} from "smart-ui"
 import {useEffect, useState} from "react";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartButton from "./components/SmartButton";
-import SmartSelect from "./components/SmartSelect";
 import SmartAutocomplete from "./components/SmartAutocomplete";
-import {Autocomplete, FormControlLabel, Grid, MenuItem, RadioGroup, TextField, Typography} from "@mui/material";
+import {FormControlLabel, Grid, RadioGroup, TextField, Typography} from "@mui/material";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/SmartRadio";
 

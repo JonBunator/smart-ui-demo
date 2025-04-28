@@ -16,8 +16,7 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
         if(getOptionLabel) {
             return getOptionLabel(option);
         }
-        // @ts-expect-error label property can't be inferred from generic type. label prop is optional, if not present an empty string is used.
-        return option?.label ?? '';
+        return (option as {label?: string})?.label ?? '';
     }, [getOptionLabel]);
 
     const updateValue = useCallback((newValue: ValueType) => {
