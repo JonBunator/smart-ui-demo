@@ -5,7 +5,7 @@ import {SmartComponent, SmartComponentElementProps, ValueType} from "smart-ui";
 export type SmartAutocompleteProps<Value> = AutocompleteProps<Value, undefined, undefined, undefined> & SmartComponentElementProps;
 
 export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>) {
-    const {id, smartSemantic, value, options, getOptionLabel, ...otherProps} = props;
+    const {id, smartSemantic, value, options, getOptionLabel, className, ...otherProps} = props;
     const [optionValue, setOptionValue] = useState(value);
 
     useEffect(() => {
@@ -19,7 +19,11 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
         return (option as {label?: string})?.label ?? '';
     }, [getOptionLabel]);
 
-    const updateValue = useCallback((newValue: ValueType) => {
+    const updateValue = useCallback(async (newValue: ValueType) => {
+        if(newValue === '') {
+            setOptionValue(newValue as Value);
+            return;
+        }
         const newOption = options.filter((option) => getLabel(option) === newValue)[0];
         if(newOption) {
             setOptionValue(newOption);
@@ -29,19 +33,16 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
     const smartOptions = useMemo(() => {
         return options.map((option) => ({ value: getLabel(option) }));
     }, [getLabel, options]);
-
-
-
+    
     return (
         <SmartComponent type="select" id={id} semantic={smartSemantic} options={smartOptions} value={getLabel(value as Value)} smartOnChange={updateValue}>
             <Autocomplete id={id}
+                          className={`${className} smart-component`}
                           value={optionValue}
                           options={options}
                           getOptionLabel={getOptionLabel}
                           {...otherProps}>
             </Autocomplete>
-
-            <button onClick={() => updateValue("Dog")}>test</button>
         </SmartComponent>
 
     );

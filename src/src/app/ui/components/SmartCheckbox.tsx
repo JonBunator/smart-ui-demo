@@ -6,10 +6,10 @@ import {ValueType} from "smart-ui/src/utils/types";
 export type SmartCheckboxProps = CheckboxProps & SmartComponentElementProps;
 
 export default function SmartCheckbox(props: SmartCheckboxProps) {
-    const {id, smartSemantic, checked, ...otherProps} = props;
+    const {id, smartSemantic, checked, className, ...otherProps} = props;
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const updateValue = useCallback((newValue: ValueType) => {
+    const updateValue = useCallback(async (newValue: ValueType) => {
         if (inputRef.current) {
             if(checked !== newValue) {
                 inputRef.current.click();
@@ -21,6 +21,7 @@ export default function SmartCheckbox(props: SmartCheckboxProps) {
         <SmartComponent type="checkbox" id={id} semantic={smartSemantic} value={checked} smartOnChange={updateValue}>
             <Checkbox
                 id={id}
+                className={`${className} smart-component`}
                 slotProps={{
                     input:{ref:inputRef}
                 }}

@@ -7,6 +7,8 @@ import SmartAutocomplete from "./components/SmartAutocomplete";
 import {FormControlLabel, Grid, RadioGroup, TextField, Typography} from "@mui/material";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/SmartRadio";
+import {SmartGroup} from "smart-ui";
+import Agent from "./Agent";
 
 type Animal = {
     label: string;
@@ -18,10 +20,6 @@ const favouriteAnimals: Animal[] = [
 ]
 
 export default function Content() {
-    const {sendPrompt} = useSmartAgent();
-    const {getHierarchy} = useSmartComponentManager();
-    const [updateValue, setUpdateValue] = useState("I am Jonas and 24 years old. I am male and like sports and Rubik's Cubes.");
-
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
@@ -32,13 +30,15 @@ export default function Content() {
         other: ""
     });
     const [animal, setAnimal] = useState<Animal|null>(null);
+
     useEffect(() => {
-        console.log(animal)
+        console.log("anima", animal)
     }, [animal]);
+
     return (
         <div style={{padding: "32px"}}>
             <Grid container spacing={2}>
-                <SmartComponent>
+                <SmartGroup>
                     <Grid size={2}>
                         <SmartTextField fullWidth label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </Grid>
@@ -64,7 +64,7 @@ export default function Content() {
                             <SmartTextField label="Other" id="interests-other" value={interests.other} onChange={(e) => setInterests((prevInterests) => ({ ...prevInterests, other: e.target.value }))} />
                         </SmartComponent>
                     </Grid>
-                </SmartComponent>
+                </SmartGroup>
                 <Grid size={2}>
                     <SmartAutocomplete
                         id="favourite-animal"
@@ -72,20 +72,17 @@ export default function Content() {
                         options={favouriteAnimals}
                         value={animal}
                         onChange={(event: React.SyntheticEvent, newValue) => {
-                            setAnimal(newValue);
+                            console.log("new",newValue);
+                            setAnimal(newValue)
                         }}
-                        renderInput={(params) => <TextField {...params} label="Favourite animals" />}
+                        renderInput={(params) => <TextField {...params} label="Favourite animal" />}
                     />
                 </Grid>
                 <Grid size={6}>
                     <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
                 </Grid>
             </Grid>
-            <br />
-            <br />
-            <textarea style={{ height: "400px", width: "100%", lineHeight: "12px" }} value={updateValue} onChange={(event) => setUpdateValue(event.target.value)} />
-            <button onClick={() => sendPrompt(updateValue)}>Send</button>
-            <button onClick={() => console.log(getHierarchy())}>Get hierarchy</button>
+            <Agent/>
         </div>
     );
 }

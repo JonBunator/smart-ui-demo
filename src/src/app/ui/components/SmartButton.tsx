@@ -5,7 +5,10 @@ import {SmartButton as SmartButtonBase, SmartComponentElementProps} from "smart-
 export type SmartButtonProps = ButtonProps & SmartComponentElementProps;
 
 export default function SmartButton(props: SmartButtonProps) {
+    const {...otherProps} = props;
     return (
-        <Button {...props} component={SmartButtonBase}/>
+        <Button
+            {...otherProps}
+            component={SmartButtonBase}/>
     );
 }
