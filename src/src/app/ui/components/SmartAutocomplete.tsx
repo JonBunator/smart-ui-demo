@@ -1,16 +1,12 @@
 import {Autocomplete, AutocompleteProps, } from "@mui/material";
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useCallback, useMemo, useRef} from "react";
 import {SmartComponent, SmartComponentElementProps, ValueType} from "smart-ui";
 
 export type SmartAutocompleteProps<Value> = AutocompleteProps<Value, undefined, undefined, undefined> & SmartComponentElementProps;
 
 export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>) {
     const {id, smartSemantic, value, options, getOptionLabel, className, ...otherProps} = props;
-    const [optionValue, setOptionValue] = useState(value);
-
-    useEffect(() => {
-        setOptionValue(value);
-    }, [value]);
+    const autocompleteRef = useRef<HTMLDivElement>(null);
 
     const getLabel = useCallback((option: Value): string => {
         if(getOptionLabel) {
@@ -20,13 +16,35 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
     }, [getOptionLabel]);
 
     const updateValue = useCallback(async (newValue: ValueType) => {
-        if(newValue === '') {
-            setOptionValue(newValue as Value);
+        //Check if label exists
+        const newOption = options.some((option) => getLabel(option) === newValue);
+        if(!newOption && newValue !== '') {
+            console.warn(`Option "${newValue}" does not exist in autocomplete.`)
             return;
         }
-        const newOption = options.filter((option) => getLabel(option) === newValue)[0];
-        if(newOption) {
-            setOptionValue(newOption);
+
+        if(autocompleteRef.current) {
+            autocompleteRef.current.click();
+            const inputElement = autocompleteRef.current.querySelector('input');
+            if(!inputElement) {
+                return;
+            }
+            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                window.HTMLInputElement.prototype,
+                "value")?.set;
+            nativeInputValueSetter?.call(inputElement, newValue);
+
+            const event = new Event('input', { bubbles: true });
+            inputElement.dispatchEvent(event);
+
+            const inputID = inputElement.getAttribute('id');
+            const listElement = document.querySelectorAll(`ul[id="${inputID}-listbox"]`)[0];
+            const optionElement: HTMLDivElement | null = listElement?.querySelector('li[data-option-index="0"]');
+
+            if(optionElement) {
+                optionElement.click();
+            }
+            inputElement.blur();
         }
     }, [getLabel, options]);
 
@@ -37,10 +55,11 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
     return (
         <SmartComponent type="select" id={id} semantic={smartSemantic} options={smartOptions} value={getLabel(value as Value)} smartOnChange={updateValue}>
             <Autocomplete id={id}
+                          disablePortal
                           className={`${className} smart-component`}
-                          value={optionValue}
                           options={options}
                           getOptionLabel={getOptionLabel}
+                          ref={autocompleteRef}
                           {...otherProps}>
             </Autocomplete>
         </SmartComponent>

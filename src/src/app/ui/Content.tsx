@@ -1,6 +1,6 @@
 "use client"
-import {SmartComponent, useSmartAgent, useSmartComponentManager} from "smart-ui"
-import {useEffect, useState} from "react";
+import {SmartComponent} from "smart-ui"
+import {useState} from "react";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartButton from "./components/SmartButton";
 import SmartAutocomplete from "./components/SmartAutocomplete";
@@ -30,10 +30,6 @@ export default function Content() {
         other: ""
     });
     const [animal, setAnimal] = useState<Animal|null>(null);
-
-    useEffect(() => {
-        console.log("anima", animal)
-    }, [animal]);
 
     return (
         <div style={{padding: "32px"}}>
