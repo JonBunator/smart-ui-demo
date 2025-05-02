@@ -1,6 +1,6 @@
 import {Autocomplete, AutocompleteProps, } from "@mui/material";
 import React, {useCallback, useMemo, useRef} from "react";
-import {SmartComponent, SmartComponentElementProps, ValueType} from "smart-ui";
+import {SmartComponent, SmartComponentElementProps, ValueType, sleep} from "smart-ui";
 
 export type SmartAutocompleteProps<Value> = AutocompleteProps<Value, undefined, undefined, undefined> & SmartComponentElementProps;
 
@@ -36,7 +36,7 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
 
             const event = new Event('input', { bubbles: true });
             inputElement.dispatchEvent(event);
-
+            await sleep(10);
             const inputID = inputElement.getAttribute('id');
             const listElement = document.querySelectorAll(`ul[id="${inputID}-listbox"]`)[0];
             const optionElement: HTMLDivElement | null = listElement?.querySelector('li[data-option-index="0"]');
