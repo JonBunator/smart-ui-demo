@@ -32,7 +32,7 @@ export default function Content() {
     const [animal, setAnimal] = useState<Animal|null>(null);
 
     return (
-        <div style={{padding: "32px"}}>
+        <div className="content">
             <Grid container spacing={2}>
                 <SmartGroup>
                     <Grid size={2}>

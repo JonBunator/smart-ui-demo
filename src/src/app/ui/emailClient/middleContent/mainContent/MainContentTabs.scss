@@ -1,0 +1,10 @@
+.main-content-tabs {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 6px 16px 0;
+    .fui-Tab {
+        padding-bottom: 6px;
+        padding-top: 0;
+    }
+}

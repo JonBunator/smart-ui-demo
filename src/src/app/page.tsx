@@ -1,9 +1,12 @@
-import Providers from "@/app/ui/Providers";
 import Content from "@/app/ui/Content";
-import Content2 from "@/app/ui/Content2";
+import EmailClient from "@/app/ui/emailClient/EmailClient";
+import "./page.scss"
 
 export default function Home() {
   return (
-      <Content/>
+      <div className="layout">
+        <Content/>
+        <EmailClient/>
+      </div>
   );
 }

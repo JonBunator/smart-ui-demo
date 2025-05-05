@@ -6,7 +6,6 @@ import theme from '../theme';
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v15-appRouter";
 import Providers from "@/app/ui/Providers";
 
-
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],

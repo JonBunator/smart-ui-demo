@@ -1,0 +1,29 @@
+.main-content {
+    display: grid;
+    flex: 1;
+    gap: 8px;
+    grid-template-areas:
+    "tabs tabs tabs"
+    "toolbar toolbar toolbar"
+    "email-list email-preview email-preview";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto 1fr;
+    background: var(--colorNeutralBackground3);
+
+
+    .main-content-tabs {
+        grid-area: tabs;
+    }
+
+    .toolbar {
+        grid-area: toolbar;
+    }
+
+    .email-list {
+        grid-area: email-list;
+    }
+
+    .email-preview {
+        grid-area: email-preview;
+    }
+}

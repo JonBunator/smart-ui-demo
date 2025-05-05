@@ -1,0 +1,43 @@
+.top-bar {
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--colorBrandBackground);
+    color: var(--colorNeutralStrokeOnBrand);
+
+    .left-part {
+        display: flex;
+        align-items: center;
+        .title {
+            font-weight: 600;
+            margin-left: 8px;
+            font-size: 16px;
+        }
+    }
+
+
+    .fui-Button {
+        width: 48px;
+        height: 48px;
+        max-width: unset;
+        border-radius: 0;
+        color: var(--colorNeutralStrokeOnBrand);
+        &:hover {
+            background: var(--colorBrandBackgroundHover);
+            .fui-Button__icon {
+                color: var(--colorNeutralStrokeOnBrand);
+            }
+        }
+
+    }
+    .fui-SearchBox {
+        max-width: 350px;
+        flex: 1;
+    }
+
+    .fui-Avatar {
+        margin: 8px;
+    }
+}
