@@ -2,11 +2,8 @@
 import {
     Toolbar,
     Card,
-    AccordionItem,
-    Accordion,
     TabList, Tab, ToolbarButton,
     Text,
-    AccordionHeader,
 } from "@fluentui/react-components";
 import {
     ArchiveRegular,
@@ -14,14 +11,22 @@ import {
     FilterRegular,
     ChevronDownRegular
 } from "@fluentui/react-icons";
+import EmailListItem from "@/app/ui/emailClient/middleContent/mainContent/emailList/EmailListItem";
 import './EmailList.scss'
+import {EmailItem} from "@/app/ui/emailClient/logic/EmailItem";
 
-export default function EmailList() {
+export interface EmailListItemProps {
+    emails: EmailItem[];
+    selectedEmail?: EmailItem;
+    onSelectedEmailChange: (selectedEmail: EmailItem) => void;
+}
+export default function EmailList(props: EmailListItemProps) {
+    const {emails, selectedEmail, onSelectedEmailChange} = props;
     return (
         <Card className="email-list">
             <div className="header">
                 <Toolbar>
-                    <TabList defaultSelectedValue="tab1">
+                    <TabList selectedValue="tab1">
                         <Tab value="tab1">Relevant</Tab>
                         <Tab value="tab2">Sonstige</Tab>
                     </TabList>
@@ -37,6 +42,9 @@ export default function EmailList() {
                     <ChevronDownRegular/>
                     <Text>Heute</Text>
                 </div>
+                {emails.map((email, index) => (
+                    <EmailListItem key={index} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
+                ))}
             </div>
         </Card>
     );

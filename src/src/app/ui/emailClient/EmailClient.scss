@@ -2,4 +2,9 @@
     display: flex;
     flex-direction: column;
     border-left: 1px solid black;
+    max-height: 100vh;
+
+    *:not(.email-list-item):not(.email-list-item *) {
+        cursor: default !important;
+    }
 }

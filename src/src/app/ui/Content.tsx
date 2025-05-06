@@ -9,6 +9,7 @@ import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/SmartRadio";
 import {SmartGroup} from "smart-ui";
 import Agent from "./Agent";
+import "./Content.scss"
 
 type Animal = {
     label: string;
@@ -61,7 +62,7 @@ export default function Content() {
                         </SmartComponent>
                     </Grid>
                 </SmartGroup>
-                <Grid size={2}>
+                <Grid size={3}>
                     <SmartAutocomplete
                         id="favourite-animal"
                         fullWidth

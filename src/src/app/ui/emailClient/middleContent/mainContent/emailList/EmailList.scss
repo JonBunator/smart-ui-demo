@@ -3,11 +3,12 @@
     flex-direction: column;
     padding: 0;
     gap: 0;
+    width: 300px;
     .header {
         display: flex;
         justify-content: flex-end;
         height: 45px;
-        border-bottom: 1px solid var(--neutralTertiaryAlt);
+        border-bottom: 1px solid var(--colorNeutralStroke2);
         .fui-TabList {
             margin-right: 8px;
             .fui-Tab {
@@ -18,14 +19,14 @@
     }
     .emails {
         flex: 1;
+        background: var(--colorNeutralBackground3);
         .email-group {
             display: flex;
             gap: 16px;
             align-items: center;
-            background: red;
             height: 37px;
             padding: 0 40px;
-            background: var(--colorNeutralBackground3);
+            border-bottom: 1px solid var(--colorNeutralStroke2);
             svg {
                 color: var(--colorNeutralForeground1);
             }

@@ -1,3 +1,41 @@
 .email-preview {
     margin-right: 8px;
+    height: fit-content;
+
+    .header {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+
+        .header-content {
+            flex: 1;
+            .first-line, .second-line {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .first-line {
+                .fui-Toolbar {
+                    padding: 0;
+                }
+                .blue-icon {
+                    color: var(--colorPaletteBlueBorderActive);
+                }
+                .purple-icon {
+                    color: var(--colorPaletteGrapeBorderActive);
+                }
+            }
+
+            .second-line {
+                .date {
+                    margin-right: 6px;
+                    color: var(--colorNeutralForeground2);
+                }
+            }
+        }
+    }
+    .email-content {
+        padding: 16px;
+    }
 }

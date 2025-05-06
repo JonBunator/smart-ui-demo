@@ -1,0 +1,52 @@
+.dark .emailList {
+    &.selected, &.selected:hover {
+        background: var(--colorBrandStroke2Pressed);
+    }
+}
+
+.email-list-item {
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid var(--colorNeutralStroke2);
+    cursor: pointer;
+
+    &.unread {
+        border-left: 4px solid var(--colorNeutralForeground2BrandSelected);
+
+        .second-line {
+            color: var(--colorNeutralForeground2BrandSelected);
+        }
+    }
+    &.selected, &.selected:hover {
+        background: var(--colorBrandStroke2Pressed);
+        &:hover {
+            cursor: default;
+        }
+    }
+    background: var(--colorNeutralBackground1);
+    padding: 12px 20px;
+    &:hover {
+        background: var(--colorNeutralBackground3);
+    }
+
+    .second-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        width: 200px;
+        font-size: 12px;
+    }
+
+    .third-line {
+        display: flex;
+        color: var(--colorNeutralForeground3);
+        width: 200px;
+    }
+
+    .ellipsis-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+    }
+}

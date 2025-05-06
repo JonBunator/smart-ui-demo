@@ -8,7 +8,7 @@ export default function MainContentTabs() {
     return (
         <div className="main-content-tabs">
             <Button appearance="subtle" icon={<NavigationRegular />}></Button>
-            <TabList defaultSelectedValue="tab1">
+            <TabList selectedValue="tab1">
                 <Tab value="tab1">Startseite</Tab>
                 <Tab value="tab2">Ansicht</Tab>
                 <Tab value="tab3">Hilfe</Tab>

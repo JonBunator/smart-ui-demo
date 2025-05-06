@@ -6,7 +6,7 @@ export default function Home() {
   return (
       <div className="layout">
         <Content/>
-        <EmailClient/>
+        <EmailClient darkTheme={true}/>
       </div>
   );
 }
