@@ -13,7 +13,8 @@ import {
 } from "@fluentui/react-icons";
 import EmailListItem from "@/app/ui/emailClient/middleContent/mainContent/emailList/EmailListItem";
 import './EmailList.scss'
-import {EmailItem} from "@/app/ui/emailClient/logic/EmailItem";
+import NoEmails from "../noDataDisplays/NoEmails";
+import {EmailItem} from "@/app/ui/emailClient/utils/types";
 
 export interface EmailListItemProps {
     emails: EmailItem[];
@@ -37,15 +38,19 @@ export default function EmailList(props: EmailListItemProps) {
 
 
             </div>
-            <div className="emails">
-                <div className="email-group">
-                    <ChevronDownRegular/>
-                    <Text>Heute</Text>
+            {emails.length > 0 ?
+                <div className="emails">
+                    <div className="email-group">
+                        <ChevronDownRegular/>
+                        <Text>Heute</Text>
+                    </div>
+                    {emails.map((email, index) => (
+                        <EmailListItem key={index} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
+                    ))}
                 </div>
-                {emails.map((email, index) => (
-                    <EmailListItem key={index} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
-                ))}
-            </div>
+                :
+                <NoEmails/>
+            }
         </Card>
     );
 }

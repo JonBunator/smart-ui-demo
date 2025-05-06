@@ -19,13 +19,15 @@
     }
     .emails {
         flex: 1;
+        overflow: auto;
         background: var(--colorNeutralBackground3);
+
         .email-group {
             display: flex;
             gap: 16px;
             align-items: center;
             height: 37px;
-            padding: 0 40px;
+            padding: 0 30px;
             border-bottom: 1px solid var(--colorNeutralStroke2);
             svg {
                 color: var(--colorNeutralForeground1);

@@ -5,23 +5,14 @@ import {
 } from "@fluentui/react-components";
 
 import './EmailListItem.scss'
-import {EmailItem} from "@/app/ui/emailClient/logic/EmailItem";
 import {useState} from "react";
+import {EmailItem} from "@/app/ui/emailClient/utils/types";
+import {toLocaleTimeNoSeconds} from "@/app/ui/emailClient/utils/utils";
 
 export interface EmailListItemProps {
     email: EmailItem;
     selected: boolean;
     onClick: () => void;
-}
-
-function formatTimeToHHMM(date: Date): string {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-
-    const formattedHours = hours.toString().padStart(2, '0');
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-
-    return `${formattedHours}:${formattedMinutes}`;
 }
 
 export default function EmailListItem(props: EmailListItemProps) {
@@ -40,7 +31,7 @@ export default function EmailListItem(props: EmailListItemProps) {
                 <Text>{email.author}</Text>
                 <div className="second-line">
                     <Text className="ellipsis-text">{email.subject}</Text>
-                    <Text>{formatTimeToHHMM(email.sentTime)}</Text>
+                    <Text>{toLocaleTimeNoSeconds(email.sentTime)}</Text>
                 </div>
                 <div className="third-line">
                     <Text className="ellipsis-text">{email.content}</Text>

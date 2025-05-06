@@ -1,6 +1,17 @@
 .email-preview {
     margin-right: 8px;
-    height: fit-content;
+    overflow: auto;
+
+    .email-preview-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .subject {
+        font-size: 16px;
+        font-weight: 600;
+    }
 
     .header {
         display: flex;
@@ -19,15 +30,14 @@
                 .fui-Toolbar {
                     padding: 0;
                 }
-                .blue-icon {
-                    color: var(--colorPaletteBlueBorderActive);
-                }
-                .purple-icon {
-                    color: var(--colorPaletteGrapeBorderActive);
-                }
+
             }
 
             .second-line {
+                .recipient {
+                    font-weight: 600;
+                }
+
                 .date {
                     margin-right: 6px;
                     color: var(--colorNeutralForeground2);
@@ -35,7 +45,21 @@
             }
         }
     }
+    .blue-icon {
+        color: var(--colorPaletteBlueBorderActive);
+    }
+    .purple-icon {
+        color: var(--colorPaletteGrapeBorderActive);
+    }
+
     .email-content {
+        white-space: pre-wrap;
         padding: 16px;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 8px;
+        margin-left: 16px;
     }
 }
