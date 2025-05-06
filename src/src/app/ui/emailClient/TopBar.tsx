@@ -1,4 +1,3 @@
-"use client"
 import {Text, SearchBox, Button, Avatar} from "@fluentui/react-components";
 import './TopBar.scss'
 import {GridDotsFilled, CalendarCheckmarkRegular, AlertRegular, SettingsRegular} from "@fluentui/react-icons";

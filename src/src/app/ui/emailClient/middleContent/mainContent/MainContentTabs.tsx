@@ -1,4 +1,3 @@
-"use client"
 import "./MainContentTabs.scss"
 import {TabList, Tab} from "@fluentui/react-tabs";
 import {Button} from "@fluentui/react-components";

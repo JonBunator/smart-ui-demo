@@ -1,4 +1,3 @@
-"use client"
 import {Text} from "@fluentui/react-components";
 import Image from "next/image";
 import "./NoData.scss"
