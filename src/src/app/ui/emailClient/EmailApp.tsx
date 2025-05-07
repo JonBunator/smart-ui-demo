@@ -10,7 +10,7 @@ export default function EmailApp(props: EmailAppProps) {
     const {darkTheme = true} = props;
 
     return (
-        <FluentProvider theme={darkTheme ? webDarkTheme : webLightTheme} className={`${darkTheme} ? "dark" : "light"`}>
+        <FluentProvider theme={darkTheme ? webDarkTheme : webLightTheme} className={`${darkTheme ? "dark" : "light"}`}>
             <EmailClient/>
         </FluentProvider>
     );

@@ -4,12 +4,13 @@ import {useState} from "react";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartButton from "./components/SmartButton";
 import SmartAutocomplete from "./components/SmartAutocomplete";
-import {FormControlLabel, Grid, RadioGroup, TextField, Typography} from "@mui/material";
+import {FormControlLabel, Grid, TextField, Typography} from "@mui/material";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/SmartRadio";
 import {SmartGroup} from "smart-ui";
 import Agent from "./Agent";
 import "./Content.scss"
+import SmartRadioGroup from "@/app/ui/components/SmartRadioGroup";
 
 type Animal = {
     label: string;
@@ -43,14 +44,12 @@ export default function Content() {
                         <SmartTextField fullWidth type="number" id="age" label="Age" value={age} onChange={(e) => setAge(e.target.value)} />
                     </Grid>
                     <Grid size={12}>
-                        <SmartComponent id="gender">
-                            <Typography>Gender:</Typography>
-                            <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}>
-                                <FormControlLabel value="male" control={<SmartRadio id="gender-male" />} label="Male" />
-                                <FormControlLabel value="female" control={<SmartRadio id="gender-female" />} label="Female" />
-                                <FormControlLabel value="other" control={<SmartRadio id="gender-other" />} label="Other" />
-                            </RadioGroup>
-                        </SmartComponent>
+                        <Typography>Gender:</Typography>
+                        <SmartRadioGroup id="gender" row value={gender} onChange={(e) => setGender(e.target.value)}>
+                            <FormControlLabel value="male" control={<SmartRadio id="gender-male" />} label="Male" />
+                            <FormControlLabel value="female" control={<SmartRadio id="gender-female" />} label="Female" />
+                            <FormControlLabel value="other" control={<SmartRadio id="gender-other" />} label="Other" />
+                        </SmartRadioGroup>
                     </Grid>
                     <Grid size={12}>
                         <SmartComponent id="interests">
@@ -69,7 +68,6 @@ export default function Content() {
                         options={favouriteAnimals}
                         value={animal}
                         onChange={(event: React.SyntheticEvent, newValue) => {
-                            console.log("new",newValue);
                             setAnimal(newValue)
                         }}
                         renderInput={(params) => <TextField {...params} label="Favourite animal" />}
