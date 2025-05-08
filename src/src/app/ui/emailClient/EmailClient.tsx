@@ -1,3 +1,4 @@
+"use client"
 import TopBar from "@/app/ui/emailClient/TopBar";
 import MiddleContent from "@/app/ui/emailClient/middleContent/MiddleContent";
 import "./EmailClient.scss"

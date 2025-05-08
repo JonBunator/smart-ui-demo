@@ -4,7 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SendIcon from '@mui/icons-material/Send';
 import {useSmartAgent, useSmartComponentManager} from "smart-ui"
 import {useEffect, useState} from "react";
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import './Agent.scss'
 
 export default function Agent() {
@@ -15,7 +15,7 @@ export default function Agent() {
 
     return (
         <div className="agent">
-            <textarea style={{ height: "400px", width: "100%", lineHeight: "12px" }} value={value} onChange={(event) => setValue(event.target.value)} />
+            <TextField multiline fullWidth rows={10} value={value} onChange={(event) => setValue(event.target.value)} />
             <div className="button-container">
                 <Button onClick={() => console.log(getHierarchy())}>Print structure</Button>
                 {
