@@ -1,19 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
+import { getClassList, sleep } from '../test_utils/test_utils';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
 });
-
-const sleep = (ms: number) => new Promise(
-    resolve => setTimeout(resolve, ms)
-);
-
-async function getClassList(page: Page, selector: string) {
-  return await page.evaluate((sel) => {
-    const element = document.querySelector(sel);
-    return element ? Array.from(element.classList) : [];
-  }, selector);
-}
 
 test('Basic agent form fill', async ({ page }) => {
   // Arrange
@@ -27,9 +17,11 @@ test('Basic agent form fill', async ({ page }) => {
   expect(name).toBe('Luke');
 
   const genderMale = await page.isChecked('#gender-male');
+  const genderMaleFake = await page.isChecked('#gender-male-fake');
   const genderFemale = await page.isChecked('#gender-female');
   const genderOther = await page.isChecked('#gender-other');
   expect(genderMale).toBe(false);
+  expect(genderMaleFake).toBe(true);
   expect(genderFemale).toBe(false);
   expect(genderOther).toBe(false);
 

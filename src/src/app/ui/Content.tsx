@@ -6,11 +6,11 @@ import SmartButton from "./components/SmartButton";
 import SmartAutocomplete from "./components/SmartAutocomplete";
 import {FormControlLabel, Grid, TextField, Typography} from "@mui/material";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
-import SmartRadio from "@/app/ui/components/SmartRadio";
+import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup} from "smart-ui";
 import Agent from "./Agent";
 import "./Content.scss"
-import SmartRadioGroup from "@/app/ui/components/SmartRadioGroup";
+import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 
 type Animal = {
     label: string;

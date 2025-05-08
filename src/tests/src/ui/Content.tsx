@@ -1,9 +1,9 @@
 import SmartTextField from "../../../src/app/ui/components/SmartTextField.tsx";
 import {useState} from "react";
 import {FormControlLabel, TextField} from "@mui/material";
-import SmartRadio from "../../../src/app/ui/components/SmartRadio.tsx";
+import SmartRadio from "../../../src/app/ui/components/radio/SmartRadio.tsx";
 import SmartCheckbox from "../../../src/app/ui/components/SmartCheckbox.tsx";
-import SmartRadioGroup from "../../../src/app/ui/components/SmartRadioGroup.tsx";
+import SmartRadioGroup from "../../../src/app/ui/components/radio/SmartRadioGroup.tsx";
 import SmartAutocomplete from "../../../src/app/ui/components/SmartAutocomplete.tsx";
 import SmartButton from "../../../src/app/ui/components/SmartButton.tsx";
 import Agent from "./Agent.tsx";

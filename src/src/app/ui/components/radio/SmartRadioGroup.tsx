@@ -1,28 +1,47 @@
 import {RadioGroup, RadioGroupProps} from "@mui/material";
-import React, {createContext, useContext, useEffect, useMemo} from "react";
+import React, {createContext, useCallback, useContext, useMemo, useState} from "react";
 import {SmartComponent, SmartComponentElementProps} from "smart-ui";
 
 export type SmartRadioProps = RadioGroupProps & SmartComponentElementProps;
 
 interface SmartRadioGroupContextType {
     /**
-     * Value of the RadioGroup.
+     * Fake radio value. Used in suggested changes state.
      */
-    radioGroupValue: any
+    fakeValue: any
+    /**
+     * Change fake value.
+     * @param value The newly set fake value.
+     */
+    changeFakeValue: (value: any) => void
+    /**
+     * Set value after suggested changes were approved.
+     */
+    approvedValue: any
+    /**
+     * Handles approved value change.
+     */
+    changeApproved: (value: any) => void
 }
 
 const SmartRadioGroupContext = createContext<SmartRadioGroupContextType | undefined>(undefined);
 
 export default function SmartRadioGroup(props: SmartRadioProps) {
     const {id, smartSemantic, value, children, ...otherProps} = props;
+    const [fakeValue, setFakeValue] = useState(undefined);
+    const [approvedValue, setApprovedValue] = useState(undefined);
 
-    useEffect(() => {
-       console.log("value CHANGES")
-    }, [value]);
+    const handleApprove = useCallback((value: any) => {
+        setApprovedValue(value);
+        setFakeValue(undefined);
+    }, []);
 
     const contextValue = useMemo(() => ({
-        radioGroupValue: value
-    }), [value]);
+        fakeValue,
+        changeFakeValue: setFakeValue,
+        approvedValue,
+        changeApproved: handleApprove,
+    }), [fakeValue, approvedValue, handleApprove]);
 
 
     return (
