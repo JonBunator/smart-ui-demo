@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import Providers from "@/app/ui/providers/Providers";
 import "./globals.css";
 import App from "@/app/ui/App";
+import {InitColorSchemeScript} from "@mui/material";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -22,8 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.variable}>
+    <html lang="en" className={roboto.variable} suppressHydrationWarning>
       <body>
+        <InitColorSchemeScript />
           <Providers>
               <App>
                 {children}

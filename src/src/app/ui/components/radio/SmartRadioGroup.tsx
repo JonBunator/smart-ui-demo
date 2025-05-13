@@ -8,40 +8,44 @@ interface SmartRadioGroupContextType {
     /**
      * Fake radio value. Used in suggested changes state.
      */
-    fakeValue: any
+    fakeValue: unknown
     /**
      * Change fake value.
      * @param value The newly set fake value.
      */
-    changeFakeValue: (value: any) => void
+    changeFakeValue: (value: unknown) => void
     /**
      * Set value after suggested changes were approved.
      */
-    approvedValue: any
+    approvedValue: unknown
     /**
      * Handles approved value change.
      */
-    changeApproved: (value: any) => void
+    changeApproved: (value: unknown) => void
 }
 
 const SmartRadioGroupContext = createContext<SmartRadioGroupContextType | undefined>(undefined);
 
 export default function SmartRadioGroup(props: SmartRadioProps) {
     const {id, smartSemantic, value, children, ...otherProps} = props;
-    const [fakeValue, setFakeValue] = useState(undefined);
-    const [approvedValue, setApprovedValue] = useState(undefined);
+    const [fakeValue, setFakeValue] = useState<unknown>(undefined);
+    const [approvedValue, setApprovedValue] = useState<unknown>(undefined);
 
-    const handleApprove = useCallback((value: any) => {
+    const handleApprove = useCallback((value: unknown) => {
         setApprovedValue(value);
         setFakeValue(undefined);
     }, []);
 
+    const handleFakeValueSet = useCallback((value: unknown) => {
+        setFakeValue(value);
+    }, []);
+
     const contextValue = useMemo(() => ({
         fakeValue,
-        changeFakeValue: setFakeValue,
+        changeFakeValue: handleFakeValueSet,
         approvedValue,
         changeApproved: handleApprove,
-    }), [fakeValue, approvedValue, handleApprove]);
+    }), [fakeValue, handleFakeValueSet, approvedValue, handleApprove]);
 
 
     return (

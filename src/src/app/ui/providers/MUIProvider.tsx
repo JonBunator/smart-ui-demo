@@ -8,8 +8,8 @@ import {theme} from "@/theme";
 export default function MUIProvider({children}: {children: ReactNode}) {
     return (
         <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-                    {children}
+            <ThemeProvider defaultMode="dark" theme={theme}>
+                {children}
             </ThemeProvider>
         </AppRouterCacheProvider>
     );

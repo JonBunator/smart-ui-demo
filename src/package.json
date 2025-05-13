@@ -14,16 +14,16 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.14.0",
     "@fluentui/react-components": "^9.63.0",
-    "@fluentui/react-icons": "^2.0.298",
-    "@mui/icons-material": "^7.0.2",
-    "@mui/material": "^7.0.2",
-    "@mui/material-nextjs": "^7.0.2",
+    "@fluentui/react-icons": "^2.0.300",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "@mui/material-nextjs": "^7.1.0",
     "fluentui-next-appdir-directive": "^0.2.0",
-    "next": "15.3.1",
-    "openai": "^4.95.1",
+    "next": "15.3.2",
+    "openai": "^4.98.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.87.0"
+    "sass": "^1.88.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -31,7 +31,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^9",
-    "eslint-config-next": "15.3.1",
+    "eslint-config-next": "15.3.2",
     "typescript": "^5"
   }
 }
