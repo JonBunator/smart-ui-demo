@@ -41,7 +41,6 @@ export default function FluentUIProvider({children}: {children: ReactNode}) {
             <SSRProvider>
                 <FluentProvider theme={darkTheme ? webDarkTheme : webLightTheme} className={`${darkTheme ? "dark" : "light"}`}>
                     {children}
-                    <button onClick={() => setDarkTheme(!darkTheme)}>asdf</button>
                 </FluentProvider>
             </SSRProvider>
         </RendererProvider>

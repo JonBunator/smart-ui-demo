@@ -1,0 +1,30 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+
+  .email-client, .content {
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+
+  .email-client {
+    width: 45vw;
+  }
+
+  .property-management {
+    width: 55vw;
+  }
+
+  &.email-client-minimized {
+    .email-client {
+      width: 20vw;
+    }
+    .property-management {
+      width: 80vw;
+    }
+  }
+
+  .email-client {
+    max-height: 100vh;
+  }
+}

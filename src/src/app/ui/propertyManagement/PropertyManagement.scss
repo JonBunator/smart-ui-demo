@@ -1,0 +1,27 @@
+.property-management {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "navigation-bar navigation-bar"
+    "container agent";
+  gap: 16px;
+  background: var(--mui-palette-background-default);
+
+  .navigation-bar {
+    grid-area: navigation-bar
+  }
+
+  .property-management-content-container {
+    padding: 16px;
+    grid-area: container;
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+
+  .agent-container {
+    grid-area: agent;
+    margin-right: 16px;
+  }
+}

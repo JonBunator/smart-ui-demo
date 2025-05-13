@@ -13,15 +13,17 @@ const MuiSmartInput = forwardRef<HTMLInputElement, SmartTextFieldProps>(
 )
 
 export default function SmartTextField(props: SmartTextFieldProps) {
-    const {smartSemantic, ...other} = props;
+    const {smartSemantic, label, ...other} = props;
     return (
         <TextField
             {...other}
+            label={label}
             slotProps={{
                 input: {
                     inputComponent: MuiSmartInput as ElementType<InputBaseComponentProps>,
                     inputProps: {
-                        smartSemantic: smartSemantic
+                        smartSemantic: smartSemantic,
+                        label: label,
                     }
                 },
             }}
