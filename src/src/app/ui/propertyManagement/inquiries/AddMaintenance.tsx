@@ -136,6 +136,8 @@ export default function AddMaintenance() {
                         label="Beschreibung"
                         fullWidth
                         value={description}
+                        multiline
+                        rows={5}
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />

@@ -59,7 +59,7 @@ export default function AddProperty() {
           <SmartTextField variant="filled" label="Titel der Immobilie" fullWidth />
         </Grid>
         <Grid size={{ xs: 12 }}>
-          <SmartTextField variant="filled" label="Beschreibung" fullWidth />
+          <SmartTextField variant="filled" label="Beschreibung" fullWidth multiline rows={3} />
         </Grid>
       </Grid>
       {/* Address Information Section */}

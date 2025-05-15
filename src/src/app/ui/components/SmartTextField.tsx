@@ -1,6 +1,6 @@
 import {InputBaseComponentProps, TextField, TextFieldProps} from "@mui/material";
 import React, {ElementType, forwardRef} from "react";
-import {SmartInput, SmartComponentElementProps} from "smart-ui";
+import {SmartInput, SmartComponentElementProps, SmartTextarea} from "smart-ui";
 
 export type SmartTextFieldProps = TextFieldProps & SmartComponentElementProps;
 
@@ -12,15 +12,24 @@ const MuiSmartInput = forwardRef<HTMLInputElement, SmartTextFieldProps>(
     },
 )
 
+const MuiSmartTextarea = forwardRef<HTMLTextAreaElement, SmartTextFieldProps>(
+    (props, ref) => {
+        return (
+            <SmartTextarea ref={ref} {...props} />
+        )
+    },
+)
+
 export default function SmartTextField(props: SmartTextFieldProps) {
-    const {smartSemantic, label, ...other} = props;
+    const {smartSemantic, multiline, label, ...other} = props;
     return (
         <TextField
             {...other}
             label={label}
+            multiline={multiline}
             slotProps={{
                 input: {
-                    inputComponent: MuiSmartInput as ElementType<InputBaseComponentProps>,
+                    inputComponent: (multiline ? MuiSmartTextarea : MuiSmartInput) as ElementType<InputBaseComponentProps>,
                     inputProps: {
                         smartSemantic: smartSemantic,
                         label: label,

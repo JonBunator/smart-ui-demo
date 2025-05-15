@@ -1,0 +1,55 @@
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+@mixin smart-changes-basic {
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3) !important;
+  transition: box-shadow 0.1s ease-in;
+  &:hover {
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3) !important;
+  }
+}
+
+
+// Textfield
+input.MuiInputBase-input.smart-changes {
+  @include smart-changes-basic();
+  border-radius: 8px;
+
+  &.MuiFilledInput-input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+// Autocomplete
+.MuiAutocomplete-root.smart-changes .MuiInputBase-root  {
+  @include smart-changes-basic();
+  border-radius: 8px;
+
+  &.MuiFilledInput-root {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+// Textarea
+.MuiInputBase-root:has(textarea.smart-changes) {
+  @include smart-changes-basic();
+}
+
+// Radio and Checkbox
+.MuiRadio-root, .MuiCheckbox-root {
+  &.smart-changes {
+    @include smart-changes-basic();
+  }
+}

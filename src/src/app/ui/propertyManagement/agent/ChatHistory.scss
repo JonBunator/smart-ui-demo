@@ -1,0 +1,38 @@
+.chat-history {
+    padding: 16px 8px 8px;
+    gap: 8px;
+    display: grid;
+
+    .chat-history-element {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+
+        .ai-avatar {
+            width: 20px;
+            height: 20px;
+            color: var(--mui-palette-text);
+        }
+
+        &.agent-message {
+            justify-self: flex-start;
+            .chat-history-message {
+                border-bottom-left-radius: 0;
+                background-color: var(--mui-palette-FilledInput-bg);
+            }
+        }
+        &.user-message {
+            justify-self: flex-end;
+            .chat-history-message {
+                border-bottom-right-radius: 0;
+                background-color: var(--mui-palette-primary-main);
+                color: var(--mui-palette-primary-contrastText);
+            }
+        }
+
+        .chat-history-message {
+            padding: 6px 8px;
+            border-radius: 8px;
+        }
+    }
+}

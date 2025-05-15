@@ -1,6 +1,6 @@
 "use client"
 import {Paper} from "@mui/material";
-import Agent from "@/app/ui/propertyManagement/Agent";
+import Agent from "@/app/ui/propertyManagement/agent/Agent";
 import NavigationBar from "@/app/ui/propertyManagement/navigationBar/NavigationBar";
 import "./PropertyManagement.scss"
 

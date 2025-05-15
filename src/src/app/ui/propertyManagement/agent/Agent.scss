@@ -1,0 +1,28 @@
+.agent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .prompt-field {
+        position: relative;
+        .prompt-textfield .MuiInputBase-root {
+            padding-bottom: 52px;
+
+            textarea {
+                max-height: 300px;
+                overflow: auto !important;
+            }
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin: 0 8px 8px;
+        }
+    }
+}
