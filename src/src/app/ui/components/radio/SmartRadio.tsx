@@ -17,6 +17,7 @@ export default function SmartRadio(props: SmartRadioProps) {
         if(newValue === true) {
             changeFakeValue(value);
         }
+        return true;
     }, [changeFakeValue, value]);
 
     const handleApprove = useCallback(async (accept: boolean) => {

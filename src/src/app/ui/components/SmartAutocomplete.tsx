@@ -20,14 +20,14 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
         const newOption = options.some((option) => getLabel(option) === newValue);
         if(!newOption && newValue !== '') {
             console.warn(`Option "${newValue}" does not exist in autocomplete.`)
-            return;
+            return false;
         }
 
         if(autocompleteRef.current) {
             autocompleteRef.current.click();
             const inputElement = autocompleteRef.current.querySelector('input');
             if(!inputElement) {
-                return;
+                return false;
             }
             const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
                 window.HTMLInputElement.prototype,
@@ -45,7 +45,9 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
                 optionElement.click();
             }
             inputElement.blur();
+            return true;
         }
+        return false;
     }, [getLabel, options]);
 
     const smartOptions = useMemo(() => {

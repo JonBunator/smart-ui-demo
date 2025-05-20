@@ -13,8 +13,10 @@ export default function SmartCheckbox(props: SmartCheckboxProps) {
         if (inputRef.current) {
             if(checked !== newValue) {
                 inputRef.current.click();
+                return true;
             }
         }
+        return false;
     }, [checked]);
 
     return (
