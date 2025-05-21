@@ -1,7 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/', {waitUntil: "commit"});
 });
 
 async function checkVisible(page: Page) {

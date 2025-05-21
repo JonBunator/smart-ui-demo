@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { getClassList } from '../test_utils/test_utils';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/', {waitUntil: "commit"});
 });
 
 test('Basic agent form fill', async ({ page }) => {
@@ -197,4 +197,21 @@ test('Suggested changes reverted to initial value should not show suggestion', a
   // Assert
   const interestsSportsClasses = await getClassList(page,".interests-sports-label .MuiCheckbox-root");
   expect(interestsSportsClasses).not.toContain('smart-changes');
+});
+
+test('No state changes should not display deny or approve button', async ({ page }) => {
+  // Arrange
+  await page.fill('#prompt', 'prompt4');
+
+  // Act
+  await page.click('#send');
+
+  // Assert
+  const acceptButton = page.locator('button', { hasText: 'Approve' });
+  const isAcceptButtonVisible = await acceptButton.isVisible();
+  expect(isAcceptButtonVisible).toBe(false);
+
+  const denyButton = page.locator('button', { hasText: 'Deny' });
+  const isDenyButtonVisible = await denyButton.isVisible();
+  expect(isDenyButtonVisible).toBe(false);
 });
