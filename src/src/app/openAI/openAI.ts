@@ -1,7 +1,7 @@
 "use server"
-import {ValueUpdate} from "smart-ui";
 import {AzureOpenAI} from "openai";
-import { callAgent } from "smart-ui/src/components/SmartAgentProvider/openAI";
+import {AgentResponse, callAgent} from "smart-ui/src/components/SmartAgentProvider/openAI";
+import {ChatCompletionMessageParam} from "openai/resources/chat/completions/completions";
 
 const endpoint = process.env.OPENAI_ENDPOINT;
 const apiKey = process.env.OPENAI_API_KEY;
@@ -10,6 +10,7 @@ const apiVersion = process.env.OPENAI_API_VERSION;
 const options = { endpoint, apiKey, deployment, apiVersion};
 const azureOpenAIClient = new AzureOpenAI(options);
 
-export async  function callAgentEndpoint(systemPrompt: string, prompt: string): Promise<ValueUpdate[]> {
-    return callAgent(azureOpenAIClient, systemPrompt, prompt);
+export async  function callAgentEndpoint(messages: ChatCompletionMessageParam[]): Promise<AgentResponse> {
+    console.log(messages)
+    return callAgent(azureOpenAIClient, messages);
 }

@@ -33,7 +33,6 @@ export default function FluentUIProvider({children}: {children: ReactNode}) {
         } else {
             setDarkTheme(mode === "light");
         }
-        console.log("changes", mode)
     }, [mode, prefersDarkMode]);
 
     return (

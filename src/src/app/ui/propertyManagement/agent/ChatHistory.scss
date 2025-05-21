@@ -2,6 +2,8 @@
     padding: 16px 8px 8px;
     gap: 8px;
     display: grid;
+    max-height: 400px;
+    overflow: auto;
 
     .chat-history-element {
         display: flex;
@@ -19,20 +21,37 @@
             .chat-history-message {
                 border-bottom-left-radius: 0;
                 background-color: var(--mui-palette-FilledInput-bg);
+
+                .time {
+                    color: var(--mui-palette-text-secondary);
+                }
             }
         }
         &.user-message {
             justify-self: flex-end;
             .chat-history-message {
+                align-items: flex-end;
                 border-bottom-right-radius: 0;
-                background-color: var(--mui-palette-primary-main);
-                color: var(--mui-palette-primary-contrastText);
+                background-color: var(--primary-container-bg);
+
+                .message {
+                    color: var(--primary-container-color);
+                }
+
+                .time {
+                    color: var(--primary-container-secondary-color);
+                }
             }
         }
 
         .chat-history-message {
+            display: flex;
+            flex-direction: column;
             padding: 6px 8px;
             border-radius: 8px;
+            .time {
+                font-size: 12px;
+            }
         }
     }
 }

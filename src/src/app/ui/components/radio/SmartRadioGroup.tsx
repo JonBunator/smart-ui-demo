@@ -6,6 +6,10 @@ export type SmartRadioProps = RadioGroupProps & SmartComponentElementProps;
 
 interface SmartRadioGroupContextType {
     /**
+     * Value of the radio group.
+     */
+    radioGroupValue: unknown
+    /**
      * Fake radio value. Used in suggested changes state.
      */
     fakeValue: unknown
@@ -41,15 +45,16 @@ export default function SmartRadioGroup(props: SmartRadioProps) {
     }, []);
 
     const contextValue = useMemo(() => ({
+        radioGroupValue: value,
         fakeValue,
         changeFakeValue: handleFakeValueSet,
         approvedValue,
         changeApproved: handleApprove,
-    }), [fakeValue, handleFakeValueSet, approvedValue, handleApprove]);
+    }), [value, fakeValue, handleFakeValueSet, approvedValue, handleApprove]);
 
 
     return (
-        <SmartComponent type="radio-group" id={id} semantic={smartSemantic}>
+        <SmartComponent type="radio-group" id={id} semantic={smartSemantic} value={value}>
             <SmartRadioGroupContext.Provider value={contextValue}>
                 <RadioGroup id={id} {...otherProps} value={value}>
                     {children}

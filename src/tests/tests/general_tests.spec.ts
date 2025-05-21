@@ -1,5 +1,5 @@
-import { test, expect, Page } from '@playwright/test';
-import { getClassList, sleep } from '../test_utils/test_utils';
+import { test, expect } from '@playwright/test';
+import { getClassList } from '../test_utils/test_utils';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -31,7 +31,6 @@ test('Basic agent form fill', async ({ page }) => {
   const favouriteAnimal = await page.inputValue('#favourite-animal');
   expect(favouriteAnimal).toBe('Cat');
 
-  await sleep(1010);
   const toggleState = page.locator('#toggle-state');
   const toggleStateText = await toggleState.textContent();
   expect(toggleStateText).toBe('Off');
@@ -71,10 +70,40 @@ test('Check suggested changes state', async ({ page }) => {
   expect(isAcceptButtonVisible).toBe(true);
 });
 
+test('Check no suggested changes when same value', async ({ page }) => {
+  // Arrange
+  await page.fill('#prompt', 'prompt1');
+  await page.click('#send');
+  await page.click('#approve');
+
+  // Act
+  await page.click('#send');
+
+  // Assert
+  const nameClasses = await getClassList(page, "#name");
+  expect(nameClasses).not.toContain('smart-changes');
+
+  const genderMaleClasses = await getClassList(page, ".gender-male-label .MuiRadio-root");
+  expect(genderMaleClasses).not.toContain('smart-changes');
+  const genderFemaleClasses = await getClassList(page, ".gender-female-label .MuiRadio-root");
+  expect(genderFemaleClasses).not.toContain('smart-changes');
+
+  const interestsSportsClasses = await getClassList(page, ".interests-sports-label .MuiCheckbox-root");
+  expect(interestsSportsClasses).not.toContain('smart-changes');
+
+  const favouriteAnimalClasses = await getClassList(page, ".favourite-animal");
+  expect(favouriteAnimalClasses).not.toContain('smart-changes');
+
+  // Smart button should always show suggested changes
+  const smartButtonClasses = await getClassList(page, "#toggle-button");
+  expect(smartButtonClasses).toContain('smart-changes');
+});
 
 
 test('Accept suggested changes', async ({ page }) => {
   // Arrange
+  await page.fill('#prompt', 'prompt2');
+  await page.click('#send');
   await page.fill('#prompt', 'prompt1');
 
   // Act
@@ -116,7 +145,6 @@ test('Accept suggested changes', async ({ page }) => {
   const favouriteAnimal = await page.inputValue('#favourite-animal');
   expect(favouriteAnimal).toBe('Cat');
 
-  await sleep(1010);
   const toggleState = page.locator('#toggle-state');
   const toggleStateText = await toggleState.textContent();
   expect(toggleStateText).toBe('On');
@@ -124,6 +152,8 @@ test('Accept suggested changes', async ({ page }) => {
 
 test('Deny suggested changes', async ({ page }) => {
   // Arrange
+  await page.fill('#prompt', 'prompt2');
+  await page.click('#send');
   await page.fill('#prompt', 'prompt1');
   await page.click('#send');
   await page.click('#approve');
@@ -150,8 +180,21 @@ test('Deny suggested changes', async ({ page }) => {
   const favouriteAnimal = await page.inputValue('#favourite-animal');
   expect(favouriteAnimal).toBe('Cat');
 
-  await sleep(1010);
   const toggleState = page.locator('#toggle-state');
   const toggleStateText = await toggleState.textContent();
   expect(toggleStateText).toBe('On');
+});
+
+test('Suggested changes reverted to initial value should not show suggestion', async ({ page }) => {
+  // Arrange
+  await page.fill('#prompt', 'prompt3');
+  await page.click('#send');
+  await page.fill('#prompt', 'prompt4');
+
+  // Act
+  await page.click('#send');
+
+  // Assert
+  const interestsSportsClasses = await getClassList(page,".interests-sports-label .MuiCheckbox-root");
+  expect(interestsSportsClasses).not.toContain('smart-changes');
 });

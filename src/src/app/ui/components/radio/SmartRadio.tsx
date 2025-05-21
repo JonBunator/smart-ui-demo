@@ -11,7 +11,7 @@ export default function SmartRadio(props: SmartRadioProps) {
     const {id, smartSemantic, checked, value, className, ...otherProps} = props;
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const {fakeValue, approvedValue, changeApproved, changeFakeValue} = useSmartRadioGroup();
+    const {radioGroupValue, fakeValue, approvedValue, changeApproved, changeFakeValue} = useSmartRadioGroup();
 
     const updateValue = useCallback(async (newValue: ValueType) => {
         if(newValue === true) {
@@ -41,7 +41,7 @@ export default function SmartRadio(props: SmartRadioProps) {
     }
 
     return (
-        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked} smartOnChange={updateValue} onApprove={handleApprove} noResetAfterDeny>
+        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? value === radioGroupValue} smartOnChange={updateValue} onApprove={handleApprove} noResetAfterDeny>
             {fakeValue !== undefined &&
                 <Radio
                     className={`${className} smart-component`}
