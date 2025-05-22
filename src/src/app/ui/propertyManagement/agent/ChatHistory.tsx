@@ -2,7 +2,18 @@ import { BotFilled } from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
 import { Avatar } from "@mui/material";
-import {useEffect, useRef} from "react";
+import {ReactNode, useEffect, useRef} from "react";
+
+function AgentMessage({children}: {children: ReactNode}) {
+    return (
+        <div className="chat-history-element agent-message">
+            <Avatar className="ai-avatar"><BotFilled /></Avatar>
+            <div  className="chat-history-message">
+                {children}
+            </div>
+        </div>
+    )
+}
 
 export interface ChatHistoryProps {
     history: ChatMessage[];
@@ -22,6 +33,9 @@ export default function ChatHistory(props: ChatHistoryProps) {
 
     return (
         <div className="chat-history" ref={chatContainerRef}>
+            <AgentMessage>
+                Ich kann dir helfen mit der Benutzeroberfläche zu interagieren. Frag etwas.
+            </AgentMessage>
             {history
                 .filter((item) => item.creator !== ChatMessageCreator.SYSTEM)
                 .map((item, index) => (
@@ -31,12 +45,17 @@ export default function ChatHistory(props: ChatHistoryProps) {
                         <div className="message">
                             {item.creator === ChatMessageCreator.AGENT ? JSON.parse(item.message).naturalLanguageInteraction : item.message}
                         </div>
-                        <div className="time">
-                            {item.sentTime.toLocaleTimeString().split(":").slice(0, 2).join(":")}
-                        </div>
+                        {item.sentTime !== "" && <div className="time">
+                            {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}
+                        </div>}
                     </div>
                 </div>
                 ))}
+            {loading && (
+                <AgentMessage>
+                    <div className="loader"/>
+                </AgentMessage>
+            )}
         </div>
 
     );
