@@ -41,7 +41,7 @@ export default function SmartRadio(props: SmartRadioProps) {
     }
 
     return (
-        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? value === radioGroupValue} smartOnChange={updateValue} onApprove={handleApprove} noResetAfterDeny>
+        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? (fakeValue ? value === fakeValue : value === radioGroupValue)} smartOnChange={updateValue} onApprove={handleApprove} noResetAfterDeny>
             {fakeValue !== undefined &&
                 <Radio
                     className={`${className} smart-component`}

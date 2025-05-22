@@ -54,7 +54,7 @@ export default function SmartRadioGroup(props: SmartRadioProps) {
 
 
     return (
-        <SmartComponent type="radio-group" id={id} semantic={smartSemantic} value={value}>
+        <SmartComponent type="radio-group" id={id} semantic={smartSemantic} value={fakeValue ?? value}>
             <SmartRadioGroupContext.Provider value={contextValue}>
                 <RadioGroup id={id} {...otherProps} value={value}>
                     {children}
