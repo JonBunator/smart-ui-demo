@@ -6,6 +6,7 @@ const promptResponses : Map<string, AgentResponse> = new Map<string, AgentRespon
     ["prompt2", {uiInteractions: [{id: "name", value: "Lea"}, {id: "gender-female", value: true}, {id: "interests-sports", value: false}, {id: "favourite-animal", value: "Dog"}], naturalLanguageInteraction: "prompt2_response"}],
     ["prompt3", {uiInteractions: [{id: "interests-sports", value: true}], naturalLanguageInteraction: "prompt3_response"}],
     ["prompt4", {uiInteractions: [{id: "interests-sports", value: false}], naturalLanguageInteraction: "prompt4_response"}],
+    ["prompt5", {uiInteractions: [{id: "interests-reading", value: true}], naturalLanguageInteraction: "prompt5_response"}],
     ["promptRadio", {uiInteractions: [{id: "gender-male", value: true}], naturalLanguageInteraction: "promptRadio_response"}],
 ]);
 

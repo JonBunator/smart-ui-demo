@@ -102,8 +102,6 @@ test('Check no suggested changes when same value', async ({ page }) => {
 
 test('Accept suggested changes', async ({ page }) => {
   // Arrange
-  await page.fill('#prompt', 'prompt2');
-  await page.click('#send');
   await page.fill('#prompt', 'prompt1');
 
   // Act
@@ -152,8 +150,6 @@ test('Accept suggested changes', async ({ page }) => {
 
 test('Deny suggested changes', async ({ page }) => {
   // Arrange
-  await page.fill('#prompt', 'prompt2');
-  await page.click('#send');
   await page.fill('#prompt', 'prompt1');
   await page.click('#send');
   await page.click('#approve');
@@ -214,4 +210,20 @@ test('No state changes should not display deny or approve button', async ({ page
   const denyButton = page.locator('button', { hasText: 'Deny' });
   const isDenyButtonVisible = await denyButton.isVisible();
   expect(isDenyButtonVisible).toBe(false);
+});
+
+test('Append suggested changes', async ({ page }) => {
+  // Arrange
+  await page.fill('#prompt', 'prompt3');
+  await page.click('#send');
+  await page.fill('#prompt', 'prompt5');
+
+  // Act
+  await page.click('#send');
+
+  // Assert
+  const interestsSports = await page.isChecked('#interests-sports');
+  expect(interestsSports).toBe(true);
+  const interestsReading = await page.isChecked('#interests-reading');
+  expect(interestsReading).toBe(true);
 });

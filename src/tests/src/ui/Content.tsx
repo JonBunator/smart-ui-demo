@@ -33,6 +33,7 @@ export default function Content() {
             <FormControlLabel className="gender-other-label" value="other" control={<SmartRadio id="gender-other" />} label="Other" />
         </SmartRadioGroup>
         <FormControlLabel className="interests-sports-label" control={<SmartCheckbox id="interests-sports" checked={sport} onChange={(e) => setSport(e.target.checked)} />} label="Sports"/>
+        <FormControlLabel className="interests-reading-label" control={<SmartCheckbox id="interests-reading" checked={sport} onChange={(e) => setSport(e.target.checked)} />} label="Reading"/>
         <SmartAutocomplete
             id="favourite-animal"
             className="favourite-animal"
