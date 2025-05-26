@@ -1,7 +1,7 @@
 import {RadioProps, Radio} from "@mui/material";
 import React, {useCallback, useEffect, useRef} from "react";
-import {SmartComponent, SmartComponentElementProps} from "smart-ui";
-import {ValueType} from "smart-ui";
+import {SmartComponent} from "smart-ui";
+import {ValueType, SmartComponentElementProps} from "smart-ui/types";
 import { useSmartRadioGroup } from "./SmartRadioGroup";
 import "./SmartRadio.scss"
 
