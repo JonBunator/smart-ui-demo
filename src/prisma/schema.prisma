@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Survey {
+  id             Int    @id @default(autoincrement())
+  active         Boolean
+  invitationCode String
+  useCaseId      Int
+  UseCases       UseCase[]
+  Participations Participation[]
+}
+
+model UseCase {
+  id        Int    @id @default(autoincrement())
+  url       String
+  emails    EMail[]
+  surveyId  Int
+  Survey    Survey @relation(fields: [surveyId], references: [id])
+  UseCaseParticipations UseCaseParticipation[]
+}
+
+model EMail {
+  id           Int    @id @default(autoincrement())
+  subjectName  String
+  subjectEmail String
+  content      String
+  useCaseId    Int
+  UseCase      UseCase @relation(fields: [useCaseId], references: [id])
+}
+
+model Participation {
+  id                    Int    @id @default(autoincrement())
+  state                 String
+  useCaseOrder          String
+  promptHistory         String
+  surveyId              Int
+  Survey                Survey @relation(fields: [surveyId], references: [id])
+  userId                Int
+  User                  User @relation(fields: [userId], references: [id])
+  useCaseParticipations UseCaseParticipation[]
+}
+
+
+
+model UseCaseParticipation {
+  id                Int    @id @default(autoincrement())
+  promptHistory     String
+  participationId   Int
+  Participation     Participation @relation(fields: [participationId], references: [id])
+  ParticipationData ParticipationData[]
+  useCaseId         Int
+  UseCase           UseCase @relation(fields: [useCaseId], references: [id])
+}
+
+model ParticipationData {
+  id                      Int    @id @default(autoincrement())
+  data                    String
+  timestamp               DateTime
+  useCaseParticipationId  Int
+  UseCaseParticipation    UseCaseParticipation @relation(fields: [useCaseParticipationId], references: [id])
+}
+
+model User {
+  id              Int    @id @default(autoincrement())
+  Participations  Participation[]
+}
