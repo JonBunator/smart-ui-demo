@@ -1,7 +1,6 @@
 import {Autocomplete, AutocompleteProps, } from "@mui/material";
 import React, {useCallback, useMemo, useRef} from "react";
-import {SmartComponent, sleep} from "smart-ui";
-import {SmartComponentElementProps, ValueType} from "smart-ui/types";
+import {SmartComponent, sleep, SmartComponentElementProps, ValueType} from "smart-ui";
 
 export type SmartAutocompleteProps<Value> = AutocompleteProps<Value, undefined, undefined, undefined> & SmartComponentElementProps;
 

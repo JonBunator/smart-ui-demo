@@ -1,7 +1,6 @@
 import {CheckboxProps, Checkbox} from "@mui/material";
 import React, {useCallback, useRef} from "react";
-import {SmartComponent} from "smart-ui";
-import {ValueType, SmartComponentElementProps} from "smart-ui/types";
+import {SmartComponent, ValueType, SmartComponentElementProps} from "smart-ui";
 
 export type SmartCheckboxProps = CheckboxProps & SmartComponentElementProps;
 

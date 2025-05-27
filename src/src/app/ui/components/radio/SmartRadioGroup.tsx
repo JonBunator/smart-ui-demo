@@ -1,7 +1,6 @@
 import {RadioGroup, RadioGroupProps} from "@mui/material";
 import React, {createContext, useCallback, useContext, useMemo, useState} from "react";
-import {SmartComponent} from "smart-ui";
-import {SmartComponentElementProps} from "smart-ui/types";
+import {SmartComponent, SmartComponentElementProps} from "smart-ui";
 
 export type SmartRadioProps = RadioGroupProps & SmartComponentElementProps;
 

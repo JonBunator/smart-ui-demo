@@ -1,7 +1,6 @@
 "use server"
 import {AzureOpenAI} from "openai";
-import {callAgent} from "smart-ui/server";
-import {AgentResponse} from "smart-ui/types";
+import {callAgent, AgentResponse} from "smart-ui/server";
 import {ChatCompletionMessageParam} from "openai/resources/chat/completions/completions";
 
 const endpoint = process.env.OPENAI_ENDPOINT;

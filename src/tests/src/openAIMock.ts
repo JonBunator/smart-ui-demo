@@ -1,4 +1,4 @@
-import {AgentResponse} from "smart-ui";
+import {AgentResponse} from "smart-ui/server";
 import {ChatCompletionMessageParam} from "openai/resources/chat/completions/completions";
 
 const promptResponses : Map<string, AgentResponse> = new Map<string, AgentResponse>([

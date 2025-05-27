@@ -1,7 +1,6 @@
 import {InputBaseComponentProps, TextField, TextFieldProps} from "@mui/material";
 import React, {ElementType, forwardRef} from "react";
-import {SmartInput, SmartTextarea} from "smart-ui";
-import {SmartComponentElementProps} from "smart-ui/types";
+import {SmartInput, SmartTextarea, SmartComponentElementProps} from "smart-ui";
 
 export type SmartTextFieldProps = TextFieldProps & SmartComponentElementProps;
 
