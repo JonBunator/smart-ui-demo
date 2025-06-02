@@ -2,20 +2,22 @@
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SendIcon from '@mui/icons-material/Send';
-import LayersIcon from '@mui/icons-material/Layers';
-import {useSmartAgent, useSmartComponentManager} from "smart-ui"
-import {useState} from "react";
+import {useSmartAgent} from "smart-ui"
+import {useEffect, useState} from "react";
 import {Button, TextField, Paper, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
+import {getAISupportForUseCase} from "@/lib/db/database";
 
 export default function Agent() {
     const [value, setValue] = useState("I am Jonas and 24 years old. I am male and like sports and Rubik's Cubes.");
-
     const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory} = useSmartAgent();
-    const {getHierarchy} = useSmartComponentManager();
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        getAISupportForUseCase(0).then(ses => console.log(ses))
+    }, []);
 
     async function send() {
         setLoading(true);
@@ -43,9 +45,6 @@ export default function Agent() {
 
             </div>
             <div className="bottom-buttons">
-                <IconButton onClick={() => console.log(getHierarchy())}>
-                    <LayersIcon/>
-                </IconButton>
                 <IconButton onClick={() => deleteChatHistory()}>
                     <DeleteIcon/>
                 </IconButton>

@@ -11,66 +11,87 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/*
+AISupportOrder
+  0: NONE -> AGENT -> PROACTIVE_AGENT (0, 1, 2)
+  1: AGENT -> NONE -> PROACTIVE_AGENT (1, 0, 2)
+  2: PROACTIVE_AGENT -> NONE -> AGENT (2, 0, 1)
+  3: NONE -> PROACTIVE_AGENT -> AGENT (0, 2, 1)
+  4: AGENT -> PROACTIVE_AGENT -> NONE (1, 2, 0)
+  5: PROACTIVE_AGENT -> AGENT -> NONE (2, 1, 0)
+ */
+
 model Survey {
-  id             Int    @id @default(autoincrement())
-  active         Boolean
-  invitationCode String
-  useCaseId      Int
-  UseCases       UseCase[]
-  Participations Participation[]
+  id                  Int    @id @default(autoincrement())
+  active              Boolean
+  invitationCode      String @unique
+  nextAISupportOrder  Int    @default(0)
+  UseCases            UseCase[]
+  Participations      Participation[]
 }
 
 model UseCase {
-  id        Int    @id @default(autoincrement())
-  url       String
+  id        Int     @id @default(autoincrement())
+  url       String  @unique
+  order     Int     @unique
   emails    EMail[]
   surveyId  Int
-  Survey    Survey @relation(fields: [surveyId], references: [id])
+  Survey    Survey  @relation(fields: [surveyId], references: [id])
   UseCaseParticipations UseCaseParticipation[]
 }
 
 model EMail {
-  id           Int    @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   subjectName  String
   subjectEmail String
   content      String
   useCaseId    Int
-  UseCase      UseCase @relation(fields: [useCaseId], references: [id])
+  UseCase      UseCase  @relation(fields: [useCaseId], references: [id])
+}
+
+enum SurveyState {
+  NOT_STARTED
+  STARTED
+  USE_CASE_1
+  USE_CASE_1_QUESTIONS
+  USE_CASE_2
+  USE_CASE_2_QUESTIONS
+  USE_CASE_3
+  USE_CASE_3_QUESTIONS
+  FINISHED
 }
 
 model Participation {
-  id                    Int    @id @default(autoincrement())
-  state                 String
-  useCaseOrder          String
-  promptHistory         String
+  id                    String      @id @default(uuid())
+  timestamp             DateTime    @default(now())
+  state                 SurveyState @default(NOT_STARTED)
+  aiSupportOrder        Int
+  promptHistory         String?
   surveyId              Int
-  Survey                Survey @relation(fields: [surveyId], references: [id])
-  userId                Int
-  User                  User @relation(fields: [userId], references: [id])
+  Survey                Survey      @relation(fields: [surveyId], references: [id])
   useCaseParticipations UseCaseParticipation[]
 }
 
-
+enum AISupport {
+  NONE
+  AGENT
+  PROACTIVE_AGENT
+}
 
 model UseCaseParticipation {
-  id                Int    @id @default(autoincrement())
-  promptHistory     String
-  participationId   Int
+  id                Int           @id @default(autoincrement())
+  aiSupport         AISupport
+  participationId   String
   Participation     Participation @relation(fields: [participationId], references: [id])
   ParticipationData ParticipationData[]
   useCaseId         Int
-  UseCase           UseCase @relation(fields: [useCaseId], references: [id])
+  UseCase           UseCase       @relation(fields: [useCaseId], references: [id])
 }
 
 model ParticipationData {
-  id                      Int    @id @default(autoincrement())
-  data                    String
-  timestamp               DateTime
+  id                      Int                   @id @default(autoincrement())
+  timestamp               DateTime              @default(now())
+  data                    String?
   useCaseParticipationId  Int
-  UseCaseParticipation    UseCaseParticipation @relation(fields: [useCaseParticipationId], references: [id])
-}
-
-model User {
-  id              Int    @id @default(autoincrement())
-  Participations  Participation[]
+  UseCaseParticipation    UseCaseParticipation  @relation(fields: [useCaseParticipationId], references: [id])
 }

@@ -13,10 +13,10 @@ import { usePathname } from "next/navigation";
 import "./NavigationBar.scss";
 
 const links = [
-    { name: 'Home', href: '/', icon: HomeOutlinedIcon, selectedIcon: HomeIcon },
-    { name: 'Buchungen', href: '/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon },
-    { name: 'Immobilien', href: '/properties', icon: HolidayVillageOutlinedIcon, selectedIcon: HolidayVillageIcon },
-    { name: 'Instandhaltung', href: '/maintenance', icon: HandymanOutlinedIcon, selectedIcon: HandymanIcon },
+    { name: 'Home', href: '/survey', icon: HomeOutlinedIcon, selectedIcon: HomeIcon },
+    { name: 'Buchungen', href: '/survey/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon },
+    { name: 'Immobilien', href: '/survey/properties', icon: HolidayVillageOutlinedIcon, selectedIcon: HolidayVillageIcon },
+    { name: 'Instandhaltung', href: '/survey/maintenance', icon: HandymanOutlinedIcon, selectedIcon: HandymanIcon },
 ];
 
 export default function NavLinks() {

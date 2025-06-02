@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from 'next/font/google';
 import Providers from "@/app/ui/providers/Providers";
-import "./globals.scss";
-import App from "@/app/ui/App";
 import {InitColorSchemeScript} from "@mui/material";
+import "./globals.scss";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -27,9 +26,7 @@ export default function RootLayout({
       <body>
         <InitColorSchemeScript />
           <Providers>
-              <App>
-                {children}
-              </App>
+            {children}
           </Providers>
       </body>
     </html>

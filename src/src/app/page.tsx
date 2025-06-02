@@ -1,7 +1,3 @@
-import Content from "./ui/propertyManagement/Content";
-
 export default function Home() {
-  return (
-      <Content/>
-  );
+    return <div>You can only take part in the survey with a valid invite code.</div>
 }

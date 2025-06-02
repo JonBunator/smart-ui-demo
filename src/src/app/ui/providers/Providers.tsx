@@ -1,7 +1,7 @@
 "use client"
 import {SmartComponentManager} from "smart-ui";
 import {SmartAgentProvider} from "smart-ui";
-import {callAgentEndpoint} from "@/app/openAI/openAI";
+import {callAgentEndpoint} from "@/lib/openAI/openAI";
 import {ReactNode} from "react";
 import FluentUIProvider from "./FluentUIProvider";
 import MUIProvider from "@/app/ui/providers/MUIProvider";
