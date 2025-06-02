@@ -25,7 +25,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY src .
 
 ENV NEXT_TELEMETRY_DISABLED=1
-
+RUN npx prisma generate
 RUN npm run build
 
 # Production image, copy all the files and run next
@@ -43,6 +43,8 @@ COPY --from=builder /app/public ./public
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/generated ./generated
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 USER nextjs
 
