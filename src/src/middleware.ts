@@ -13,6 +13,10 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
 
+    if(path === '/' && sessionId) {
+        return NextResponse.redirect(new URL('/survey', req.nextUrl));
+    }
+
     return NextResponse.next();
 }
 
