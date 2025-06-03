@@ -9,6 +9,7 @@ import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup} from "smart-ui";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
+import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
 
 type Animal = {
     label: string;
@@ -73,6 +74,7 @@ export default function Content() {
             <Grid size={6}>
                 <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
             </Grid>
+            <SmartPasteButton>Intelligentes Einfügen</SmartPasteButton>
         </Grid>
     );
 }

@@ -1,0 +1,29 @@
+import {Button, ButtonProps} from "@mui/material";
+import React, {useState} from "react";
+import { useSmartAgent } from "smart-ui";
+
+export default function SmartPasteButton(props: ButtonProps) {
+    const {onClick, loading, ...otherProps} = props;
+    const [isLoading, setIsLoading] = useState(false);
+    const {sendPrompt} = useSmartAgent();
+
+    async function handleClick(event:  React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        onClick?.(event);
+        setIsLoading(true);
+        let clipboardText = '';
+        try {
+            clipboardText = await navigator.clipboard.readText();
+        } catch (error) {
+            console.error('Failed to read clipboard contents: ', error);
+            setIsLoading(false);
+            return;
+        }
+        if(clipboardText !== ''){
+            await sendPrompt(clipboardText);
+        }
+        setIsLoading(false);
+    }
+    return (
+        <Button {...otherProps} onClick={handleClick} loading={loading ?? isLoading}/>
+    );
+}
