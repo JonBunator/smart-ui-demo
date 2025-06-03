@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "dotenv -e .env.development -- next dev",
     "prisma-studio": "dotenv -e .env.development -- npx prisma studio",
+    "prisma-init": "dotenv -e .env.development -- npx prisma generate",
+    "init-db": "dotenv -e .env.development -- npx prisma migrate dev --name init",
     "seed": "dotenv -e .env.development -- npx prisma db seed",
     "build": "next build",
     "start": "next start",

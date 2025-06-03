@@ -11,42 +11,121 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/*
-AISupportOrder
-  0: NONE -> AGENT -> PROACTIVE_AGENT (0, 1, 2)
-  1: AGENT -> NONE -> PROACTIVE_AGENT (1, 0, 2)
-  2: PROACTIVE_AGENT -> NONE -> AGENT (2, 0, 1)
-  3: NONE -> PROACTIVE_AGENT -> AGENT (0, 2, 1)
-  4: AGENT -> PROACTIVE_AGENT -> NONE (1, 2, 0)
-  5: PROACTIVE_AGENT -> AGENT -> NONE (2, 1, 0)
+/**
+ * AISupportOrder
+ * 0: NONE -> AGENT -> PROACTIVE_AGENT (0, 1, 2)
+ * 1: AGENT -> NONE -> PROACTIVE_AGENT (1, 0, 2)
+ * 2: PROACTIVE_AGENT -> NONE -> AGENT (2, 0, 1)
+ * 3: NONE -> PROACTIVE_AGENT -> AGENT (0, 2, 1)
+ * 4: AGENT -> PROACTIVE_AGENT -> NONE (1, 2, 0)
+ * 5: PROACTIVE_AGENT -> AGENT -> NONE (2, 1, 0)
  */
 
 model Survey {
-  id                  Int    @id @default(autoincrement())
-  active              Boolean
-  invitationCode      String @unique
-  nextAISupportOrder  Int    @default(0)
-  UseCases            UseCase[]
-  Participations      Participation[]
+  id                 Int             @id @default(autoincrement())
+  active             Boolean
+  invitationCode     String          @unique
+  nextAISupportOrder Int             @default(0)
+  Participations     Participation[]
 }
 
-model UseCase {
-  id        Int     @id @default(autoincrement())
-  url       String  @unique
-  order     Int     @unique
-  emails    EMail[]
-  surveyId  Int
-  Survey    Survey  @relation(fields: [surveyId], references: [id])
-  UseCaseParticipations UseCaseParticipation[]
+enum DataType {
+  Booking
+  Property
+  Maintenance
+}
+
+enum DataCategory {
+  /**
+   * Initially added data.
+   */
+  Initial
+  /**
+   * Data that is used in survey as use cases.
+   */
+  GroundTruth
+  /**
+   * Data was added by user.
+   */
+  UserAdded
+}
+
+model Data {
+  id                           Int                 @id @default(autoincrement())
+  order                        Int? // should be set when category = GroundTruth
+  category                     DataCategory
+  type                         DataType
+  EMail                        EMail?
+  userDataParticipationData    ParticipationData[] @relation("UserDataToParticipationData")
+  groundTruthParticipationData ParticipationData[] @relation("GroundTruthToParticipationData")
+  // Different data types
+  Booking                      Booking?
+  Property                     Property?
+  Maintenance                  Maintenance?
+}
+
+model Booking {
+  id           Int      @id @default(autoincrement())
+  dataId       Int      @unique
+  data         Data     @relation(fields: [dataId], references: [id])
+  name         String
+  surname      String
+  phoneNumber  String
+  eMail        String
+  street       String
+  houseNumber  String
+  city         String
+  postalCode   String
+  country      String
+  bookingStart DateTime
+  bookingEnd   DateTime
+  numAdults    Int
+  numChildren  Int
+  property     String
+}
+
+model Property {
+  id               Int      @id @default(autoincrement())
+  dataId           Int      @unique
+  data             Data     @relation(fields: [dataId], references: [id])
+  name             String
+  description      String
+  street           String
+  houseNumber      String
+  city             String
+  postalCode       String
+  country          String
+  type             String
+  numBedrooms      Int
+  numBathrooms     Int
+  numMaximumGuests Int
+  area             Float
+  pricePerNight    Float
+  deposit          Float
+  additionalInfo   String[]
+}
+
+model Maintenance {
+  id          Int    @id @default(autoincrement())
+  dataId      Int    @unique
+  data        Data   @relation(fields: [dataId], references: [id])
+  name        String
+  surname     String
+  property    String
+  category    String
+  eMail       String
+  urgency     String
+  description String
+  location    String
 }
 
 model EMail {
-  id           Int      @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   subjectName  String
   subjectEmail String
   content      String
-  useCaseId    Int
-  UseCase      UseCase  @relation(fields: [useCaseId], references: [id])
+  dataId       Int    @unique
+  Data         Data   @relation(fields: [dataId], references: [id])
 }
 
 enum SurveyState {
@@ -62,13 +141,13 @@ enum SurveyState {
 }
 
 model Participation {
-  id                    String      @id @default(uuid())
-  timestamp             DateTime    @default(now())
-  state                 SurveyState @default(NOT_STARTED)
+  id                    String                 @id @default(uuid())
+  timestamp             DateTime               @default(now())
+  state                 SurveyState            @default(NOT_STARTED)
   aiSupportOrder        Int
   promptHistory         String?
   surveyId              Int
-  Survey                Survey      @relation(fields: [surveyId], references: [id])
+  Survey                Survey                 @relation(fields: [surveyId], references: [id])
   useCaseParticipations UseCaseParticipation[]
 }
 
@@ -79,19 +158,21 @@ enum AISupport {
 }
 
 model UseCaseParticipation {
-  id                Int           @id @default(autoincrement())
+  id                Int                 @id @default(autoincrement())
   aiSupport         AISupport
   participationId   String
-  Participation     Participation @relation(fields: [participationId], references: [id])
+  Participation     Participation       @relation(fields: [participationId], references: [id])
   ParticipationData ParticipationData[]
-  useCaseId         Int
-  UseCase           UseCase       @relation(fields: [useCaseId], references: [id])
+  dataId            Int
 }
 
 model ParticipationData {
-  id                      Int                   @id @default(autoincrement())
-  timestamp               DateTime              @default(now())
-  data                    String?
-  useCaseParticipationId  Int
-  UseCaseParticipation    UseCaseParticipation  @relation(fields: [useCaseParticipationId], references: [id])
+  id                     Int                  @id @default(autoincrement())
+  timestamp              DateTime             @default(now())
+  useCaseParticipationId Int
+  UseCaseParticipation   UseCaseParticipation @relation(fields: [useCaseParticipationId], references: [id])
+  dataId                 Int
+  userData               Data                 @relation("UserDataToParticipationData", fields: [dataId], references: [id])
+  groundTruthId          Int
+  groundTruth            Data                 @relation("GroundTruthToParticipationData", fields: [groundTruthId], references: [id])
 }
