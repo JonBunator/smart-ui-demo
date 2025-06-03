@@ -67,7 +67,7 @@ model Data {
 model Booking {
   id           Int      @id @default(autoincrement())
   dataId       Int      @unique
-  data         Data     @relation(fields: [dataId], references: [id])
+  data         Data     @relation(fields: [dataId], references: [id], onDelete: Cascade)
   name         String
   surname      String
   phoneNumber  String
@@ -87,7 +87,7 @@ model Booking {
 model Property {
   id               Int      @id @default(autoincrement())
   dataId           Int      @unique
-  data             Data     @relation(fields: [dataId], references: [id])
+  data             Data     @relation(fields: [dataId], references: [id], onDelete: Cascade)
   name             String
   description      String
   street           String
@@ -108,7 +108,7 @@ model Property {
 model Maintenance {
   id          Int    @id @default(autoincrement())
   dataId      Int    @unique
-  data        Data   @relation(fields: [dataId], references: [id])
+  data        Data   @relation(fields: [dataId], references: [id], onDelete: Cascade)
   name        String
   surname     String
   property    String
@@ -125,7 +125,7 @@ model EMail {
   subjectEmail String
   content      String
   dataId       Int    @unique
-  Data         Data   @relation(fields: [dataId], references: [id])
+  Data         Data   @relation(fields: [dataId], references: [id], onDelete: Cascade)
 }
 
 enum SurveyState {
@@ -147,7 +147,7 @@ model Participation {
   aiSupportOrder        Int
   promptHistory         String?
   surveyId              Int
-  Survey                Survey                 @relation(fields: [surveyId], references: [id])
+  Survey                Survey                 @relation(fields: [surveyId], references: [id], onDelete: Cascade)
   useCaseParticipations UseCaseParticipation[]
 }
 
@@ -161,7 +161,7 @@ model UseCaseParticipation {
   id                Int                 @id @default(autoincrement())
   aiSupport         AISupport
   participationId   String
-  Participation     Participation       @relation(fields: [participationId], references: [id])
+  Participation     Participation       @relation(fields: [participationId], references: [id], onDelete: Cascade)
   ParticipationData ParticipationData[]
   dataId            Int
 }
