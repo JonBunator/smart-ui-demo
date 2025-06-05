@@ -128,22 +128,10 @@ model EMail {
   Data         Data   @relation(fields: [dataId], references: [id], onDelete: Cascade)
 }
 
-enum SurveyState {
-  NOT_STARTED
-  STARTED
-  USE_CASE_1
-  USE_CASE_1_QUESTIONS
-  USE_CASE_2
-  USE_CASE_2_QUESTIONS
-  USE_CASE_3
-  USE_CASE_3_QUESTIONS
-  FINISHED
-}
-
 model Participation {
   id                    String                 @id @default(uuid())
   timestamp             DateTime               @default(now())
-  state                 SurveyState            @default(NOT_STARTED)
+  state                 String?
   aiSupportOrder        Int
   promptHistory         String?
   surveyId              Int

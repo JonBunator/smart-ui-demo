@@ -18,8 +18,8 @@ export default function SmartPasteButton(props: ButtonProps) {
             setIsLoading(false);
             return;
         }
-        if(clipboardText !== ''){
-            await sendPrompt(clipboardText);
+        if(clipboardText.trim() !== ''){
+            await sendPrompt(clipboardText, 1);
         }
         setIsLoading(false);
     }

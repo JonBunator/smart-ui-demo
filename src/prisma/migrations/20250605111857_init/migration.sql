@@ -5,9 +5,6 @@ CREATE TYPE "DataType" AS ENUM ('Booking', 'Property', 'Maintenance');
 CREATE TYPE "DataCategory" AS ENUM ('Initial', 'GroundTruth', 'UserAdded');
 
 -- CreateEnum
-CREATE TYPE "SurveyState" AS ENUM ('NOT_STARTED', 'STARTED', 'USE_CASE_1', 'USE_CASE_1_QUESTIONS', 'USE_CASE_2', 'USE_CASE_2_QUESTIONS', 'USE_CASE_3', 'USE_CASE_3_QUESTIONS', 'FINISHED');
-
--- CreateEnum
 CREATE TYPE "AISupport" AS ENUM ('NONE', 'AGENT', 'PROACTIVE_AGENT');
 
 -- CreateTable
@@ -106,7 +103,7 @@ CREATE TABLE "EMail" (
 CREATE TABLE "Participation" (
     "id" TEXT NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "state" "SurveyState" NOT NULL DEFAULT 'NOT_STARTED',
+    "state" TEXT,
     "aiSupportOrder" INTEGER NOT NULL,
     "promptHistory" TEXT,
     "surveyId" INTEGER NOT NULL,

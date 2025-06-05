@@ -2,6 +2,8 @@
 
 import prisma from "./prisma";
 import {getSession, setSession} from "@/lib/security/session";
+import { AISupport } from '../../../generated/prisma'
+import {Snapshot} from "xstate";
 
 /**
  * Checks if the invite code is valid. False when not, true when valid.
@@ -67,7 +69,7 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
     }
 }
 
-export async function getAISupportForUseCase(index: number) {
+export async function getAISupportForUseCase(index: number): Promise<AISupport | null> {
     const sessionId = await getSession();
     if (!sessionId) {
         console.error('Session is invalid');
@@ -85,12 +87,12 @@ export async function getAISupportForUseCase(index: number) {
             },
         });
 
-        const aiSupportOrder = [[0, 1, 2],
-            [1, 0, 2],
-            [2, 0, 1],
-            [0, 2, 1],
-            [1, 2, 0],
-            [2, 1, 0]]
+        const aiSupportOrder = [[AISupport.NONE, AISupport.AGENT, AISupport.PROACTIVE_AGENT],
+            [AISupport.AGENT, AISupport.NONE, AISupport.PROACTIVE_AGENT],
+            [AISupport.PROACTIVE_AGENT, AISupport.NONE, AISupport.AGENT],
+            [AISupport.NONE, AISupport.PROACTIVE_AGENT, AISupport.AGENT],
+            [AISupport.AGENT, AISupport.PROACTIVE_AGENT, AISupport.NONE],
+            [AISupport.PROACTIVE_AGENT, AISupport.AGENT, AISupport.NONE]]
 
         if(!participation) {
             console.error('Participation not found');
@@ -101,7 +103,64 @@ export async function getAISupportForUseCase(index: number) {
 
 
     } catch {
-        console.error('Error finding survey');
-        return false;
+        console.error('Error finding participation');
+        return null;
+    }
+}
+
+/**
+ * Sets the current state of the survey state machine.
+ * @param state Stringified JSON state.
+ */
+export async function setParticipationState(state: string) {
+    const sessionId = await getSession();
+    if (!sessionId) {
+        console.error('Session is invalid');
+        return;
+    }
+
+    try {
+        await prisma.participation.update({
+            where: {
+                id: sessionId,
+            },
+            data: {
+                state: state
+            }
+        });
+
+
+    } catch {
+        console.error('Error updating state');
+        return;
+    }
+}
+
+/**
+ * Gets the saved survey state machine state as stringified JSON object.
+ */
+export async function getParticipationState(): Promise<string | null> {
+    const sessionId = await getSession();
+    if (!sessionId) {
+        console.error('Session is invalid');
+        return null;
+    }
+
+    try {
+        const participation = await prisma.participation.findUnique({
+            where: {
+                id: sessionId,
+            },
+        });
+
+        if (!participation) {
+            console.error('Error getting participation');
+            return null;
+        }
+        return participation.state;
+
+    } catch {
+        console.error('Error getting state');
+        return null;
     }
 }

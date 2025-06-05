@@ -1,15 +1,16 @@
 "use client"
 import {SmartComponent} from "smart-ui"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartButton from "@/app/ui/components/SmartButton";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
-import {FormControlLabel, Grid, TextField, Typography} from "@mui/material";
+import {Button, FormControlLabel, Grid, TextField, Typography} from "@mui/material";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup} from "smart-ui";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
+import { useSurveyManager } from "./surveyManager/SurveyManagerProvider";
 
 type Animal = {
     label: string;
@@ -31,6 +32,31 @@ export default function Content() {
         other: ""
     });
     const [animal, setAnimal] = useState<Animal|null>(null);
+
+    const {startSurvey, startUseCase, addData, completeUseCase, state, context, stateMachine} = useSurveyManager();
+
+    useEffect(() => {
+        console.log(state);
+    }, [state]);
+
+    useEffect(() => {
+        console.log(context);
+    }, [context]);
+
+    useEffect(() => {
+        const subscription = stateMachine?.on('sendEmail', (event) => {
+            console.log('Notification received!');
+        });
+        return () => subscription?.unsubscribe();
+    }, [stateMachine]);
+
+    useEffect(() => {
+        const subscription = stateMachine?.on('clockTick', (event) => {
+            console.log('Notification received!', event.timeDifference);
+        });
+        return () => subscription?.unsubscribe();
+
+    }, [stateMachine]);
 
     return (
         <Grid container spacing={2}>
@@ -75,6 +101,10 @@ export default function Content() {
                 <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
             </Grid>
             <SmartPasteButton>Intelligentes Einfügen</SmartPasteButton>
+            <Button onClick={startSurvey}>Start survey</Button>
+            <Button onClick={startUseCase}>Start use case</Button>
+            <Button onClick={addData}>add data</Button>
+            <Button onClick={completeUseCase}>completeUseCase</Button>
         </Grid>
     );
 }
