@@ -5,7 +5,7 @@ import surveyFlowMachine, {
     SurveyFlowMachineState
 } from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
-import { createActor, Actor } from 'xstate';
+import {createActor, Actor, SnapshotFrom} from 'xstate';
 
 interface SurveyManagerContextType {
     /**
@@ -25,13 +25,9 @@ interface SurveyManagerContextType {
      */
     completeUseCase: () => void
     /**
-     * Context of the state machine.
+     * Snapshot of the state machine.
      */
-    context: SurveyFlowMachineContext | undefined
-    /**
-     * Current state of the state machine.
-     */
-    state: SurveyFlowMachineState | undefined
+    snapshot:  SnapshotFrom<typeof surveyFlowMachine> | undefined
     /**
      * State machine.
      */
@@ -43,12 +39,8 @@ const SurveyManagerContext = createContext<SurveyManagerContextType | undefined>
 
 export default function SurveyManagerProvider({children}: { children: React.ReactNode; }) {
     const [machine, setMachine] = useState<Actor<typeof surveyFlowMachine> | undefined>(undefined);
-    const [context, setContext] = useState<SurveyFlowMachineContext | undefined>(undefined);
-    const [state, setState] = useState<SurveyFlowMachineState | undefined>(undefined);
-
-    useEffect(() => {
-        console.log(machine?.getSnapshot())
-    }, [machine]);
+    const [snapshot, setSnapshot] = useState<SnapshotFrom<typeof surveyFlowMachine> | undefined>(undefined);
+    const [stringyifiedSnapshot, setStringyfiedSnapshot] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         getParticipationState()
@@ -66,15 +58,22 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
             })
     }, []);
 
+    useEffect(() => {
+        const updateParticipationState = async () => {
+            if (stringyifiedSnapshot) {
+                await setParticipationState(stringyifiedSnapshot);
+            }
+        };
+
+        updateParticipationState();
+    }, [stringyifiedSnapshot]);
+    
 
     useEffect(() => {
         const subscription = machine?.subscribe(async () => {
             if(machine) {
-                const snapshot = machine.getSnapshot();
-                setContext(snapshot.context);
-                setState(snapshot.value);
-                const state = machine.getPersistedSnapshot();
-                await setParticipationState(JSON.stringify(state));
+                setSnapshot(machine.getSnapshot());
+                setStringyfiedSnapshot(JSON.stringify(machine.getPersistedSnapshot()));
             }
         })
         return () => subscription?.unsubscribe();
@@ -85,10 +84,9 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         startUseCase: () => machine?.send({type: "startUseCase"}),
         addData: () => machine?.send({type: "addData"}),
         completeUseCase: () => machine?.send({type: "completeUseCase"}),
-        context: context,
-        state: state,
+        snapshot: snapshot,
         stateMachine: machine
-    }), [machine, context, state]);
+    }), [machine, snapshot]);
     
     return (
         <SurveyManagerContext.Provider value={value}>

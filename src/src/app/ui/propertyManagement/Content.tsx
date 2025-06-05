@@ -33,15 +33,11 @@ export default function Content() {
     });
     const [animal, setAnimal] = useState<Animal|null>(null);
 
-    const {startSurvey, startUseCase, addData, completeUseCase, state, context, stateMachine} = useSurveyManager();
+    const {startSurvey, startUseCase, addData, completeUseCase, snapshot, stateMachine} = useSurveyManager();
 
     useEffect(() => {
-        console.log(state);
-    }, [state]);
-
-    useEffect(() => {
-        console.log(context);
-    }, [context]);
+        console.log(snapshot);
+    }, [snapshot]);
 
     useEffect(() => {
         const subscription = stateMachine?.on('sendEmail', (event) => {

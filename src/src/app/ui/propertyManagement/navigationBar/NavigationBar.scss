@@ -1,28 +1,35 @@
 .navigation-bar {
     display: flex;
     height: 56px;
-    padding-left: 32px;
     align-items: center;
+    justify-content: space-between;
     background: var(--mui-palette-AppBar-defaultBg);
-    gap: 16px;
+    padding-left: 32px;
+    padding-right: 16px;
 
-    .MuiButtonBase-root {
-        text-transform: none;
-        border-radius: 16px;
-        padding: 6px 16px;
-        font-size: 14px;
-        color: var(--primary-container-color);
+    .nav-items {
+        display: flex;
+        gap: 16px;
+
+        .MuiButtonBase-root {
+            text-transform: none;
+            border-radius: 16px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: var(--primary-container-color);
 
 
-        &.nav-element-selected {
-            background: var(--primary-container-bg);
-            &:hover {
-                background: var(--primary-container-hover);
+            &.nav-element-selected {
+                background: var(--primary-container-bg);
+
+                &:hover {
+                    background: var(--primary-container-hover);
+                }
             }
-        }
 
-        .nav-icon.MuiSvgIcon-root {
-            font-size: 24px;
+            .nav-icon.MuiSvgIcon-root {
+                font-size: 24px;
+            }
         }
     }
 }
