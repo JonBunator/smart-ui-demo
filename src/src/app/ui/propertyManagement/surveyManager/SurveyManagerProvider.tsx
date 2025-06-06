@@ -1,9 +1,6 @@
 "use client"
 import {createContext, useContext, useEffect, useMemo, useState} from 'react';
-import surveyFlowMachine, {
-    SurveyFlowMachineContext,
-    SurveyFlowMachineState
-} from "@/app/ui/propertyManagement/surveyManager/stateMachine";
+import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
 import {createActor, Actor, SnapshotFrom} from 'xstate';
 
@@ -50,11 +47,13 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
                     stateObject = JSON.parse(state);
                 }
                 const actor = createActor(surveyFlowMachine, {
-                    input: {numUseCases: 3, useCaseLengthSeconds: 60},
+                    input: {numUseCases: 3, useCaseLengthSeconds: 5},
                     snapshot: stateObject
                 })
+                console.log("actor", actor)
                 actor.start();
                 setMachine(actor);
+                setSnapshot(actor.getSnapshot());
             })
     }, []);
 
