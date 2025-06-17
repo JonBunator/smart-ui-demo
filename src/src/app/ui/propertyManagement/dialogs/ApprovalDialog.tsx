@@ -14,7 +14,7 @@ interface ApprovalDialogProps {
     /**
      * Invoked when the dialog is approved.
      */
-    onApprove?: () => void
+    onApprove?: () => Promise<void>
     /**
      * Title of the approval button.
      */

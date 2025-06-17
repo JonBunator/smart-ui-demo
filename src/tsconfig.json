@@ -20,8 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@prisma": ["./generated/prisma"],
       "smart-ui": ["../smart-ui/src/dist/main"],
-      "smart-ui/server": ["../smart-ui/src/dist/server"],
+      "smart-ui/server": ["../smart-ui/src/dist/server"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

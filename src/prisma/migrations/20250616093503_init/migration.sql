@@ -91,8 +91,9 @@ CREATE TABLE "Maintenance" (
 -- CreateTable
 CREATE TABLE "EMail" (
     "id" SERIAL NOT NULL,
-    "subjectName" TEXT NOT NULL,
-    "subjectEmail" TEXT NOT NULL,
+    "author" TEXT NOT NULL,
+    "authorEmail" TEXT NOT NULL,
+    "subject" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "dataId" INTEGER NOT NULL,
 

@@ -5,8 +5,8 @@ import ApprovalDialog from "@/app/ui/propertyManagement/dialogs/ApprovalDialog";
 export default function StartSurveyDialog() {
     const { snapshot, startSurvey } = useSurveyManager();
 
-    function approve() {
-        startSurvey();
+    async function approve() {
+        await startSurvey();
     }
 
     return (

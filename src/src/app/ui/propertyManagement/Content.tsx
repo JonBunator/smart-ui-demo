@@ -46,14 +46,6 @@ export default function Content() {
         return () => subscription?.unsubscribe();
     }, [stateMachine]);
 
-    useEffect(() => {
-        const subscription = stateMachine?.on('clockTick', (event) => {
-            console.log('Notification received!', event.timeDifference);
-        });
-        return () => subscription?.unsubscribe();
-
-    }, [stateMachine]);
-
     return (
         <Grid container spacing={2}>
             <SmartGroup>

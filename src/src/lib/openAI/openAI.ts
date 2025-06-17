@@ -12,8 +12,8 @@ const options = { endpoint, apiKey, deployment, apiVersion};
 const azureOpenAIClient = new AzureOpenAI(options);
 
 export async  function callAgentEndpoint(messages: ChatCompletionMessageParam[]): Promise<AgentResponse> {
-    const sessionId = await getSession();
-    if (!sessionId) {
+    const sessionData = await getSession();
+    if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "NotStarted" || sessionData.surveyState["UseCase"] !== "Running") {
         return {uiInteractions: [], naturalLanguageInteraction: "An error occurred"};
     }
     console.log(messages)

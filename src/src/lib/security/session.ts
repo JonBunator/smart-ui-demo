@@ -1,12 +1,13 @@
 "use server"
-import {jwtVerify, SignJWT} from 'jose';
+import {JWTPayload, jwtVerify, SignJWT} from 'jose';
 import {cookies} from "next/headers";
+import {SurveyFlowMachineState} from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 
-async function _generateJWTToken(userId: string) {
+async function _generateJWTToken(sessionData: SessionDataWithUserID) {
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     const alg = 'HS256';
 
-    return await new SignJWT({id: userId})
+    return await new SignJWT(sessionData as unknown as JWTPayload)
         .setProtectedHeader({alg})
         .setIssuedAt()
         .setIssuer('urn:ai_agent_survey:issuer')
@@ -26,13 +27,32 @@ async function _verifyJWTToken(jwtToken: string) {
     return payload;
 }
 
-export async function setSession(userId: string) {
-    const token = await _generateJWTToken(userId);
+export interface SessionDataWithUserID extends SessionData {
+    userId: string;
+}
+
+export interface SessionData {
+    surveyState: SurveyFlowMachineState
+}
+
+export async function setSession(sessionDataWithUserID: SessionDataWithUserID) {
+    const token = await _generateJWTToken(sessionDataWithUserID);
     const cookieStore = await cookies();
     cookieStore.set('session', token, {httpOnly: true});
 }
 
-export async function getSession(): Promise<string | null> {
+export async function updateSession(sessionData: SessionData) {
+    const session = await getSession();
+    if(!session) {
+        throw new Error("Session is invalid");
+    }
+
+    const token = await _generateJWTToken({userId: session.userId, ...sessionData});
+    const cookieStore = await cookies();
+    cookieStore.set('session', token, {httpOnly: true});
+}
+
+export async function getSession(): Promise<SessionDataWithUserID | null> {
     try {
         const cookieStore = await cookies();
         const session = cookieStore.get('session')?.value;
@@ -40,7 +60,7 @@ export async function getSession(): Promise<string | null> {
             return null;
         }
         const payload = await _verifyJWTToken(session);
-        return payload.id as string ?? null;
+        return payload as unknown as SessionDataWithUserID ?? null;
     } catch {
         console.error('Invalid token');
         return null;

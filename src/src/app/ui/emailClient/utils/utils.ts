@@ -4,5 +4,5 @@ export function toLocaleTimeNoSeconds(date: Date): string {
         minute: '2-digit',
     };
 
-    return date.toLocaleTimeString(undefined, options);;
+    return date.toLocaleTimeString(undefined, options);
 }

@@ -43,8 +43,8 @@ export default function EmailList(props: EmailListItemProps) {
                         <ChevronDownRegular/>
                         <Text>Heute</Text>
                     </div>
-                    {emails.map((email, index) => (
-                        <EmailListItem key={index} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
+                    {emails.map((email) => (
+                        <EmailListItem key={email.author} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
                     ))}
                 </div>
                 :

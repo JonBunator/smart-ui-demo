@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import {useParams, useRouter} from 'next/navigation'
 import {Button} from "@mui/material";
 import {isInviteCodeValid, startNewSurvey} from "@/lib/db/database";
-import {setSession} from "@/lib/security/jwt";
 
 export default function StartPage() {
     const params = useParams<{ inviteCode: string }>()

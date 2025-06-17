@@ -36,7 +36,10 @@ export default function EmailPreview(props: EmailPreviewProps) {
                             <Avatar color="colorful" size={40} name={email.author}/>
                             <div className="header-content">
                                 <div className="first-line">
-                                    <Text>{email.author}</Text>
+                                    <div className="author">
+                                        <Text>{email.author}</Text>
+                                        <Text className="author-email">&lt;{email.authorEmail}&gt;</Text>
+                                    </div>
                                     <Toolbar>
                                         <ToolbarButton icon={<WeatherSunnyRegular className="blue-icon"/>}></ToolbarButton>
                                         <ToolbarButton icon={<EmojiRegular className="blue-icon"/>}></ToolbarButton>

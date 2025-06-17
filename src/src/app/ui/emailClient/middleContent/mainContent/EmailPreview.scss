@@ -24,13 +24,20 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
             }
 
             .first-line {
                 .fui-Toolbar {
                     padding: 0;
                 }
-
+                .author {
+                    display: flex;
+                    flex-direction: column;
+                    .author-email {
+                        color: var(--colorNeutralForeground3);
+                    }
+                }
             }
 
             .second-line {

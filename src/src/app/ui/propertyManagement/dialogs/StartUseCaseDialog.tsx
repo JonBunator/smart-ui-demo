@@ -20,8 +20,8 @@ const useCasesContent = [
 export default function StartUseCaseDialog() {
     const { snapshot, startUseCase } = useSurveyManager();
 
-    function approve() {
-        startUseCase();
+    async function approve() {
+        await startUseCase();
     }
 
     const useCaseIndex = snapshot?.context.useCaseIndex ?? 0;

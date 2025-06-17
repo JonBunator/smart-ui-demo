@@ -2,7 +2,7 @@ import {AnyEventObject, assign, emit, fromCallback, setup} from "xstate";
 
 export type SurveyFlowMachineContext = {
     numUseCases: number;
-    useCaseLengthSeconds: number;
+    useCaseDuration: number;
     useCaseIndex: number;
     dataIndex: number;
     timeout: number | null;
@@ -20,7 +20,7 @@ const surveyFlowMachine = setup({
             | { type: "startUseCase" }
             | { type: "addData" }
             | { type: "completeUseCase" },
-        input: {} as { numUseCases: number, useCaseLengthSeconds: number },
+        input: {} as { numUseCases: number, useCaseDuration: number },
         emitted: {} as
             | { type: "sendEmail"; useCaseIndex: number; dataIndex: number }
             | { type: "clockTick", timeDifference: number },
@@ -46,7 +46,7 @@ const surveyFlowMachine = setup({
     initial: "NotStarted",
     context: ({input}) => ({
         numUseCases: input.numUseCases,
-        useCaseLengthSeconds: input.useCaseLengthSeconds,
+        useCaseDuration: input.useCaseDuration,
         useCaseIndex: 0,
         dataIndex: 0,
         timeout: null,
@@ -66,11 +66,19 @@ const surveyFlowMachine = setup({
                     },
                 },
                 Running: {
-                    entry: assign({
+                    entry: [assign({
                         timeout: ({context}) => {
-                            return (new Date()).valueOf() + context.useCaseLengthSeconds * 1000;
-                        }
-                    }),
+                            return (new Date()).valueOf() + context.useCaseDuration * 1000;
+                            }
+                        }),
+                        emit(({context}) => {
+                            return {
+                                type: "sendEmail",
+                                useCaseIndex: context.useCaseIndex,
+                                dataIndex: context.dataIndex,
+                            };
+                        }),
+                    ],
                     invoke: {
                         id: "timerInterval",
                         src: "timerInterval",

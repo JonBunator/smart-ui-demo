@@ -120,12 +120,13 @@ model Maintenance {
 }
 
 model EMail {
-  id           Int    @id @default(autoincrement())
-  subjectName  String
-  subjectEmail String
-  content      String
-  dataId       Int    @unique
-  Data         Data   @relation(fields: [dataId], references: [id], onDelete: Cascade)
+  id          Int    @id @default(autoincrement())
+  author      String
+  authorEmail String
+  subject     String
+  content     String
+  dataId      Int    @unique
+  Data        Data   @relation(fields: [dataId], references: [id], onDelete: Cascade)
 }
 
 model Participation {

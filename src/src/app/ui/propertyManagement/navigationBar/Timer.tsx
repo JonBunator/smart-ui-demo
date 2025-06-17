@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 
 export default function Timer() {
     const { snapshot, stateMachine } = useSurveyManager();
-    const [timer, setTimer] = useState("");
+    const [timer, setTimer] = useState("1:00");
 
     useEffect(() => {
         const subscription = stateMachine?.on('clockTick', (event) => {
