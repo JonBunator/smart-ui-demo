@@ -3,21 +3,16 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SendIcon from '@mui/icons-material/Send';
 import {useSmartAgent} from "smart-ui"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button, TextField, Paper, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
-import {getAISupportForUseCase} from "@/lib/db/database";
 
 export default function Agent() {
     const [value, setValue] = useState("I am Jonas and 24 years old. I am male and like sports and Rubik's Cubes.");
     const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory} = useSmartAgent();
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        getAISupportForUseCase(0).then(ses => console.log(ses))
-    }, []);
 
     async function send() {
         setLoading(true);
@@ -26,6 +21,8 @@ export default function Agent() {
         await sendPrompt(sendValue);
         setLoading(false);
     }
+
+
 
     return (
         <Paper className="agent">

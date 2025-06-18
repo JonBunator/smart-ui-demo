@@ -1,4 +1,5 @@
 import App from "@/app/ui/App";
+import AgentContainer from "@/app/ui/propertyManagement/agent/AgentContainer";
 
 export default function SurveyLayout({
   children,
@@ -6,7 +7,7 @@ export default function SurveyLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <App>
+      <App agent={<AgentContainer/>}>
         {children}
       </App>
   );

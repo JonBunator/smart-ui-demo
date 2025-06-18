@@ -30,8 +30,9 @@ export default async function middleware(req: NextRequest) {
 
     function redirectWhenAuthenticated(redirectPath: string) {
         if(!path.startsWith(redirectPath)) {
-            return NextResponse.redirect(new URL(path, req.nextUrl));
+            return NextResponse.redirect(new URL(redirectPath, req.nextUrl));
         }
+        return NextResponse.next();
     }
 }
 

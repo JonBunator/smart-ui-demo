@@ -7,15 +7,19 @@ import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import "./App.scss";
 
-export default function App({ children }: { children: React.ReactNode; }) {
+interface AppProps {
+    children: React.ReactNode;
+    agent?: React.ReactNode;
+}
+
+export default function App(props: AppProps) {
+    const {children, agent} = props;
     const {subscribe } = useSurveyManager();
     const router = useRouter();
 
     useEffect(() => {
         const unsubscribe = subscribe((snapshot) => {
-            console.log("NOWENRSADLFKASDLFKJ")
             if(snapshot.matches({UseCase: "Questions"})) {
-                console.log("NOWWWW")
                 router.push('/questions')
             }
         })
@@ -24,7 +28,7 @@ export default function App({ children }: { children: React.ReactNode; }) {
 
     return (
         <div className="app-layout">
-            <PropertyManagement>
+            <PropertyManagement agent={agent}>
                 {children}
             </PropertyManagement>
             <EmailClient />

@@ -19,7 +19,8 @@ const surveyFlowMachine = setup({
             | { type: "startSurvey" }
             | { type: "startUseCase" }
             | { type: "addData" }
-            | { type: "completeUseCase" },
+            | { type: "completeUseCase" }
+            | { type: "timerOut" }, // TimerOut is only for debugging purposes
         input: {} as { numUseCases: number, useCaseDuration: number },
         emitted: {} as
             | { type: "sendEmail"; useCaseIndex: number; dataIndex: number }

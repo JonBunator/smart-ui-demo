@@ -35,17 +35,6 @@ export default function Content() {
 
     const {startSurvey, startUseCase, addData, completeUseCase, snapshot, stateMachine} = useSurveyManager();
 
-    useEffect(() => {
-        console.log(snapshot);
-    }, [snapshot]);
-
-    useEffect(() => {
-        const subscription = stateMachine?.on('sendEmail', (event) => {
-            console.log('Notification received!');
-        });
-        return () => subscription?.unsubscribe();
-    }, [stateMachine]);
-
     return (
         <Grid container spacing={2}>
             <SmartGroup>

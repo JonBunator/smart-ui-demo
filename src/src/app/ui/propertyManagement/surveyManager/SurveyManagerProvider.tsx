@@ -9,19 +9,19 @@ interface SurveyManagerContextType {
     /**
      * Starts the survey.
      */
-    startSurvey: () => Promise<void>
+    startSurvey: () => void
     /**
      * Starts the next use case.
      */
-    startUseCase: () => Promise<void>
+    startUseCase: () => void
     /**
      * Adds data to the use case.
      */
-    addData: () => Promise<void>
+    addData: () => void
     /**
      * Completes the questionnaire of the use case.
      */
-    completeUseCase: () => Promise<void>
+    completeUseCase: () => void
     /**
      * Snapshot of the state machine.
      */

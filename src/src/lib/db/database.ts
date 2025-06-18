@@ -71,11 +71,16 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
     }
 }
 
-export async function getAISupportForUseCase(useCaseIndex: number): Promise<AISupport | null> {
+export async function getAISupportForCurrentUseCase(): Promise<AISupport | null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('Session is invalid');
+        console.error('getAISupportForUseCase: Session is invalid');
         return null;
+    }
+
+    const useCaseIndex = await getUseCaseIndex();
+    if(useCaseIndex === null) {
+        throw new Error(`UseCaseIndex is invalid`);
     }
 
     if(useCaseIndex >= NUM_USE_CASES) {
@@ -112,7 +117,7 @@ export async function getAISupportForUseCase(useCaseIndex: number): Promise<AISu
 export async function setParticipationState(state: string) {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('Session is invalid');
+        console.error('setParticipationState: Session is invalid');
         return;
     }
 
@@ -142,7 +147,7 @@ export async function setParticipationState(state: string) {
 export async function getParticipationState(): Promise<SnapshotFrom<typeof surveyFlowMachine> | null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('Session is invalid');
+        console.error('getParticipationState: Session is invalid');
         return null;
     }
 
@@ -171,11 +176,11 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
 export async function getAllEMails(): Promise<EMail[]|null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('Session is invalid');
+        console.error('getAllEMails: Session is invalid');
         return null;
     }
 
-    const useCaseData = await getUseCaseData();
+    const useCaseData = await _getUseCaseData();
     if(!useCaseData) {
         return [];
     }
@@ -227,7 +232,7 @@ export async function getAllEMails(): Promise<EMail[]|null> {
 export async function getEMail(useCaseIndex: number, dataIndex: number): Promise<EMail|null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('Session is invalid');
+        console.error('getEMail: Session is invalid');
         return null;
     }
 
@@ -265,12 +270,28 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
     }
 }
 
+/**
+ * Returns index of current use case.
+ */
+export async function getUseCaseIndex(): Promise<number|null> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('getUseCaseIndex: Session is invalid');
+        return null;
+    }
+    const useCaseData = await _getUseCaseData();
+    if (useCaseData === null) {
+        return 0;
+    }
+    return useCaseData.useCaseIndex;
+}
+
 interface UseCaseData {
     useCaseIndex: number;
     dataIndex: number;
 }
 
-export async function getUseCaseData(): Promise<UseCaseData|null> {
+export async function _getUseCaseData(): Promise<UseCaseData|null> {
     const surveyState = await getParticipationState();
     if(!surveyState) {
         return null;

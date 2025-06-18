@@ -1,28 +1,27 @@
 .property-management {
   flex: 1;
   display: grid;
-  grid-template-columns: 5fr 2fr;
+  grid-template-columns: auto;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "navigation-bar navigation-bar"
-    "container agent";
-  gap: 16px;
+    "navigation-bar"
+    "content";
   background: var(--mui-palette-background-default);
 
   .navigation-bar {
     grid-area: navigation-bar
   }
 
-  .property-management-content-container {
-    overflow: auto;
+  .property-management-content {
+    grid-area: content;
+    display: flex;
+    gap: 16px;
     padding: 16px;
-    grid-area: container;
-    margin-left: 16px;
-    margin-bottom: 16px;
-  }
+    overflow: auto;
 
-  .agent-container {
-    grid-area: agent;
-    margin-right: 16px;
+    .property-management-content-container {
+      overflow: auto;
+      padding: 16px;
+    }
   }
 }
