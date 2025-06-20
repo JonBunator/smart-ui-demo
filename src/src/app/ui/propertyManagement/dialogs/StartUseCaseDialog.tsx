@@ -1,6 +1,9 @@
 "use client"
 import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import ApprovalDialog from "@/app/ui/propertyManagement/dialogs/ApprovalDialog";
+import {useEffect, useState} from "react";
+import {AISupport} from "@prisma";
+import {getAISupportForCurrentUseCase} from "@/lib/db/database";
 
 const useCasesContent = [
     {
@@ -19,19 +22,38 @@ const useCasesContent = [
 
 export default function StartUseCaseDialog() {
     const { snapshot, startUseCase } = useSurveyManager();
+    const [aiSupport, setAiSupport] = useState<AISupport | undefined>(undefined);
+    const useCaseIndex = snapshot?.context.useCaseIndex ?? 0;
 
     function approve() {
         startUseCase();
     }
 
-    const useCaseIndex = snapshot?.context.useCaseIndex ?? 0;
+    function getAISupportDescription() {
+        switch (aiSupport) {
+            case AISupport.NONE:
+                return "(ohne AI Unterstützung)";
+            case AISupport.AGENT:
+                return "(mit AI Unterstützung durch Chatbot)";
+            case AISupport.PROACTIVE_AGENT:
+                return "(mit AI Unterstützung durch proaktiven Chatbot)";
+            default:
+                return "";
+        }
+    }
+
+
+    useEffect(() => {
+        getAISupportForCurrentUseCase()
+            .then(aiSupport => setAiSupport(aiSupport ?? undefined));
+    }, []);
 
     return (
         <ApprovalDialog open={snapshot?.matches({UseCase: "NotStarted"}) ?? false}
                         closable={false}
                         onApprove={approve}
                         title={useCasesContent[useCaseIndex].title}
-                        content={useCasesContent[useCaseIndex].content}
+                        content={`${useCasesContent[useCaseIndex].content} ${getAISupportDescription()}`}
         />
     );
 }
