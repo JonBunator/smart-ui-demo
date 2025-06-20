@@ -1,3 +1,5 @@
+import LoadingPage from "@/app/ui/LoadingPage";
+
 export default function Loading() {
-    return <div>Loading...</div>;
+    return <LoadingPage/>;
 }
