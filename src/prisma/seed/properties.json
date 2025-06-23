@@ -1,0 +1,312 @@
+[
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 0,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Sonnenblick Villa",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Sonnenblick Villa\nBeschreibung: Eine luxuriöse Villa mit atemberaubendem Blick auf die Sonne und die Umgebung.\nStraße: Kirchweg\nHausnummer: 55c\nStadt: Grenchen\nPostleitzahl: 2715\nLand: Schweiz\nTyp: Villa\nAnzahl der Schlafzimmer: 4\nAnzahl der Badezimmer: 3\nMaximale Gästeanzahl: 8\nFläche: 250 Quadratmeter\nPreis pro Nacht: 300 Euro\nKaution: 500 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Sonnenblick Villa",
+        "description": "Eine luxuriöse Villa mit atemberaubendem Blick auf die Sonne und die Umgebung.",
+        "street": "Kirchweg",
+        "houseNumber": "55c",
+        "city": "Grenchen",
+        "postalCode": "2715",
+        "country": "Schweiz",
+        "type": "villa",
+        "numBedrooms": 4,
+        "numBathrooms": 3,
+        "numMaximumGuests": 8,
+        "area": 250,
+        "pricePerNight": 300,
+        "deposit": 500,
+        "additionalInfo": ["wifi", "pool", "airConditioning", "parking"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 1,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Meeresrauschen Cottage",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Meeresrauschen Cottage\nBeschreibung: Ein gemütliches Cottage direkt am Meer, ideal für Entspannung und Erholung.\nStraße: Explanada Caridad\nHausnummer: 3\nStadt: Fuengirola\nPostleitzahl: 19557\nLand: Spanien\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 80 Quadratmeter\nPreis pro Nacht: 150 Euro\nKaution: 200 Euro\nZusätzliche Informationen: WLAN, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Meeresrauschen Cottage",
+        "description": "Ein gemütliches Cottage direkt am Meer, ideal für Entspannung und Erholung.",
+        "street": "Explanada Caridad",
+        "houseNumber": "3",
+        "city": "Fuengirola",
+        "postalCode": "19557",
+        "country": "Spanien",
+        "type": "beachHouse",
+        "numBedrooms": 2,
+        "numBathrooms": 1,
+        "numMaximumGuests": 4,
+        "area": 80,
+        "pricePerNight": 150,
+        "deposit": 200,
+        "additionalInfo": ["wifi", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 2,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Waldzauber Lodge",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Waldzauber Lodge\nBeschreibung: Eine charmante Lodge im Herzen des Waldes, perfekt für Naturliebhaber.\nStraße: Allensteiner Str.\nHausnummer: 2\nStadt: Neu Mia\nPostleitzahl: 55923\nLand: Deutschland\nTyp: Hütte\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 120 Quadratmeter\nPreis pro Nacht: 180 Euro\nKaution: 300 Euro\nZusätzliche Informationen: WLAN, Parkplatz, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Waldzauber Lodge",
+        "description": "Eine charmante Lodge im Herzen des Waldes, perfekt für Naturliebhaber.",
+        "street": "Allensteiner Str.",
+        "houseNumber": "2",
+        "city": "Neu Mia",
+        "postalCode": "55923",
+        "country": "Deutschland",
+        "type": "cabin",
+        "numBedrooms": 3,
+        "numBathrooms": 2,
+        "numMaximumGuests": 6,
+        "area": 120,
+        "pricePerNight": 180,
+        "deposit": 300,
+        "additionalInfo": ["wifi", "parking", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 3,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Bergpanorama Chalet",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Bergpanorama Chalet\nBeschreibung: Ein Chalet mit spektakulärem Blick auf die Berge, ideal für Wintersportler.\nStraße: Strada Aleardo\nHausnummer: 59\nStadt: Calogero umbro\nPostleitzahl: 64450\nLand: Italien\nTyp: Hütte\nAnzahl der Schlafzimmer: 5\nAnzahl der Badezimmer: 4\nMaximale Gästeanzahl: 10\nFläche: 300 Quadratmeter\nPreis pro Nacht: 400 Euro\nKaution: 600 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Bergpanorama Chalet",
+        "description": "Ein Chalet mit spektakulärem Blick auf die Berge, ideal für Wintersportler.",
+        "street": "Strada Aleardo",
+        "houseNumber": "59",
+        "city": "Calogero umbro",
+        "postalCode": "64450",
+        "country": "Italien",
+        "type": "cabin",
+        "numBedrooms": 5,
+        "numBathrooms": 4,
+        "numMaximumGuests": 10,
+        "area": 300,
+        "pricePerNight": 400,
+        "deposit": 600,
+        "additionalInfo": ["wifi", "pool", "airConditioning", "parking", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 4,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Küstenparadies Bungalow",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Küstenparadies Bungalow\nBeschreibung: Ein Bungalow direkt an der Küste, ideal für Strandliebhaber.\nStraße: Peetersplantsoen\nHausnummer: 267c\nStadt: Half\nPostleitzahl: 4503 YR\nLand: Niederlande\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 90 Quadratmeter\nPreis pro Nacht: 160 Euro\nKaution: 250 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Küstenparadies Bungalow",
+        "description": "Ein Bungalow direkt an der Küste, ideal für Strandliebhaber.",
+        "street": "Peetersplantsoen",
+        "houseNumber": "267c",
+        "city": "Half",
+        "postalCode": "4503 YR",
+        "country": "Niederlande",
+        "type": "beachHouse",
+        "numBedrooms": 2,
+        "numBathrooms": 1,
+        "numMaximumGuests": 4,
+        "area": 90,
+        "pricePerNight": 160,
+        "deposit": 250,
+        "additionalInfo": ["wifi", "airConditioning", "parking"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 5,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Landlust Haus",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Landlust Haus\nBeschreibung: Ein traditionelles Haus auf dem Land, ideal für Familien.\nStraße: Idrottsgärdet\nHausnummer: 8\nStadt: Nyby\nPostleitzahl: 55533\nLand: Schweden\nTyp: Villa\nAnzahl der Schlafzimmer: 4\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 8\nFläche: 200 Quadratmeter\nPreis pro Nacht: 220 Euro\nKaution: 350 Euro\nZusätzliche Informationen: WLAN, Parkplatz, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Landlust Haus",
+        "description": "Ein traditionelles Haus auf dem Land, ideal für Familien.",
+        "street": "Idrottsgärdet",
+        "houseNumber": "8",
+        "city": "Nyby",
+        "postalCode": "55533",
+        "country": "Schweden",
+        "type": "villa",
+        "numBedrooms": 4,
+        "numBathrooms": 2,
+        "numMaximumGuests": 8,
+        "area": 200,
+        "pricePerNight": 220,
+        "deposit": 350,
+        "additionalInfo": ["wifi", "parking", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 6,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Seewind Residenz",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Seewind Residenz\nBeschreibung: Eine moderne Residenz mit Blick auf den See, ideal für Erholung.\nStraße: Lindenhofweg\nHausnummer: 16c\nStadt: Biel/Bienne\nPostleitzahl: 7250\nLand: Schweiz\nTyp: Apartment\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 150 Quadratmeter\nPreis pro Nacht: 250 Euro\nKaution: 400 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Seewind Residenz",
+        "description": "Eine moderne Residenz mit Blick auf den See, ideal für Erholung.",
+        "street": "Lindenhofweg",
+        "houseNumber": "16c",
+        "city": "Biel/Bienne",
+        "postalCode": "7250",
+        "country": "Schweiz",
+        "type": "apartment",
+        "numBedrooms": 3,
+        "numBathrooms": 2,
+        "numMaximumGuests": 6,
+        "area": 150,
+        "pricePerNight": 250,
+        "deposit": 400,
+        "additionalInfo": ["wifi", "airConditioning", "parking"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 7,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Naturidyll Hütte",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Naturidyll Hütte\nBeschreibung: Eine rustikale Hütte inmitten der Natur, ideal für Abenteuer.\nStraße: Quinta Margarita Viera\nHausnummer: 9\nStadt: El Prat de LLobregat\nPostleitzahl: 35238\nLand: Spanien\nTyp: Hütte\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 70 Quadratmeter\nPreis pro Nacht: 140 Euro\nKaution: 200 Euro\nZusätzliche Informationen: WLAN, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Naturidyll Hütte",
+        "description": "Eine rustikale Hütte inmitten der Natur, ideal für Abenteuer.",
+        "street": "Quinta Margarita Viera",
+        "houseNumber": "9",
+        "city": "El Prat de LLobregat",
+        "postalCode": "35238",
+        "country": "Spanien",
+        "type": "cabin",
+        "numBedrooms": 2,
+        "numBathrooms": 1,
+        "numMaximumGuests": 4,
+        "area": 70,
+        "pricePerNight": 140,
+        "deposit": 200,
+        "additionalInfo": ["wifi", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 8,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Himmelreich Retreat",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Himmelreich Retreat\nBeschreibung: Ein exklusives Retreat mit himmlischem Ambiente, ideal für Entspannung.\nStraße: Gierener Weg\nHausnummer: 90c\nStadt: Achkinadzeburg\nPostleitzahl: 13401\nLand: Deutschland\nTyp: Villa\nAnzahl der Schlafzimmer: 5\nAnzahl der Badezimmer: 3\nMaximale Gästeanzahl: 10\nFläche: 280 Quadratmeter\nPreis pro Nacht: 350 Euro\nKaution: 500 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Himmelreich Retreat",
+        "description": "Ein exklusives Retreat mit himmlischem Ambiente, ideal für Entspannung.",
+        "street": "Gierener Weg",
+        "houseNumber": "90c",
+        "city": "Achkinadzeburg",
+        "postalCode": "13401",
+        "country": "Deutschland",
+        "type": "villa",
+        "numBedrooms": 5,
+        "numBathrooms": 3,
+        "numMaximumGuests": 10,
+        "area": 280,
+        "pricePerNight": 350,
+        "deposit": 500,
+        "additionalInfo": ["wifi", "pool", "airConditioning", "parking", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 9,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "subject": "Neues Ferienhaus hinzufügen: Strandjuwel Domizil",
+        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Strandjuwel Domizil\nBeschreibung: Ein Juwel am Strand, ideal für luxuriöse Aufenthalte.\nStraße: Incrocio Zappalà\nHausnummer: 971\nStadt: Sesto Callisto sardo\nPostleitzahl: 24476\nLand: Italien\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 160 Quadratmeter\nPreis pro Nacht: 280 Euro\nKaution: 400 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz, Haustierfreundlich"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Strandjuwel Domizil",
+        "description": "Ein Juwel am Strand, ideal für luxuriöse Aufenthalte.",
+        "street": "Incrocio Zappalà",
+        "houseNumber": "971",
+        "city": "Sesto Callisto sardo",
+        "postalCode": "24476",
+        "country": "Italien",
+        "type": "beachHouse",
+        "numBedrooms": 3,
+        "numBathrooms": 2,
+        "numMaximumGuests": 6,
+        "area": 160,
+        "pricePerNight": 280,
+        "deposit": 400,
+        "additionalInfo": ["wifi", "airConditioning", "parking", "petFriendly"]
+      }
+    }
+  }
+]

@@ -1,0 +1,312 @@
+[
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 0,
+    "EMail": {
+      "create": {
+        "author": "Ali Wiegelmann",
+        "authorEmail": "Ali.Wiegelmann52@yahoo.com",
+        "subject": "Buchungsanfrage für Ali Wiegelmann",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Nordseeparadies' anfragen. Hier sind meine Details:\n\nName: Ali Wiegelmann\nTelefonnummer: +490320177758\nAdresse: Theodor-Storm-Str. 64c, 67826 Bremerhaven, Deutschland\nBuchungszeitraum: 01.09.2025 bis 05.09.2025\nAnzahl Erwachsene: 2\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nAli Wiegelmann"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Ali",
+        "surname": "Wiegelmann",
+        "phoneNumber": "+490320177758",
+        "eMail": "Ali.Wiegelmann52@yahoo.com",
+        "street": "Theodor-Storm-Str.",
+        "houseNumber": "64c",
+        "city": "Bremerhaven",
+        "postalCode": "67826",
+        "country": "Deutschland",
+        "bookingStart": "2025-09-01T20:38:13.516Z",
+        "bookingEnd": "2025-09-05T20:38:13.516Z",
+        "numAdults": 2,
+        "numChildren": 0,
+        "property": "Nordseeparadies"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 1,
+    "EMail": {
+      "create": {
+        "author": "Mohamed Barylla",
+        "authorEmail": "Mohamed.Barylla89@gmail.com",
+        "subject": "Buchungsanfrage für Mohamed Barylla",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Alpenblick' anfragen. Hier sind meine Details:\n\nName: Mohamed Barylla\nTelefonnummer: +4988290513187\nAdresse: Domblick 8, 81958 Flensburg, Deutschland\nBuchungszeitraum: 01.09.2025 bis 14.09.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMohamed Barylla"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mohamed",
+        "surname": "Barylla",
+        "phoneNumber": "+4988290513187",
+        "eMail": "Mohamed.Barylla89@gmail.com",
+        "street": "Domblick",
+        "houseNumber": "8",
+        "city": "Flensburg",
+        "postalCode": "81958",
+        "country": "Deutschland",
+        "bookingStart": "2025-09-01T01:48:24.307Z",
+        "bookingEnd": "2025-09-14T01:48:24.307Z",
+        "numAdults": 5,
+        "numChildren": 2,
+        "property": "Alpenblick"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 2,
+    "EMail": {
+      "create": {
+        "author": "Patrice Kempe",
+        "authorEmail": "Patrice_Kempe7@gmail.com",
+        "subject": "Buchungsanfrage für Patrice Kempe",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Seeblick' anfragen. Hier sind meine Details:\n\nName: Patrice Kempe\nTelefonnummer: +491227920916\nAdresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\nBuchungszeitraum: 26.10.2025 bis 08.11.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nPatrice Kempe"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Patrice",
+        "surname": "Kempe",
+        "phoneNumber": "+491227920916",
+        "eMail": "Patrice_Kempe7@gmail.com",
+        "street": "Hafenstr.",
+        "houseNumber": "658",
+        "city": "Bad Josef",
+        "postalCode": "72913",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-26T13:19:35.441Z",
+        "bookingEnd": "2025-11-08T13:19:35.441Z",
+        "numAdults": 4,
+        "numChildren": 0,
+        "property": "Seeblick"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 3,
+    "EMail": {
+      "create": {
+        "author": "Silja Schroder",
+        "authorEmail": "Silja_Schroder93@hotmail.com",
+        "subject": "Buchungsanfrage für Silja Schroder",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Bergpanorama' anfragen. Hier sind meine Details:\n\nName: Silja Schroder\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Lanaland, Deutschland\nBuchungszeitraum: 21.10.2025 bis 02.11.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nSilja Schroder"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Silja",
+        "surname": "Schroder",
+        "phoneNumber": "+49102823903101",
+        "eMail": "Silja_Schroder93@hotmail.com",
+        "street": "Oststr.",
+        "houseNumber": "11",
+        "city": "Lanaland",
+        "postalCode": "12279",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-21T13:20:18.219Z",
+        "bookingEnd": "2025-11-02T14:20:18.219Z",
+        "numAdults": 3,
+        "numChildren": 2,
+        "property": "Bergpanorama"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 4,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "Kira.Bartels65@yahoo.com",
+        "subject": "Buchungsanfrage für Kira Bartels",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Waldblick' anfragen. Hier sind meine Details:\n\nName: Kira Bartels\nTelefonnummer: +4981600153822\nAdresse: Gregor-Mendel-Str. 9, 21015 West Leifstadt, Deutschland\nBuchungszeitraum: 16.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nKira Bartels"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Kira",
+        "surname": "Bartels",
+        "phoneNumber": "+4981600153822",
+        "eMail": "Kira.Bartels65@yahoo.com",
+        "street": "Gregor-Mendel-Str.",
+        "houseNumber": "9",
+        "city": "West Leifstadt",
+        "postalCode": "21015",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-16T02:10:01.936Z",
+        "bookingEnd": "2025-10-27T03:10:01.936Z",
+        "numAdults": 4,
+        "numChildren": 2,
+        "property": "Waldblick"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 5,
+    "EMail": {
+      "create": {
+        "author": "Burak Broening",
+        "authorEmail": "Burak.Broening19@gmail.com",
+        "subject": "Buchungsanfrage für Burak Broening",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Stadtvilla' anfragen. Hier sind meine Details:\n\nName: Burak Broening\nTelefonnummer: +490291004898\nAdresse: Gutenbergstr. 44, 54200 Gießen, Deutschland\nBuchungszeitraum: 20.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 3\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nBurak Broening"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Burak",
+        "surname": "Broening",
+        "phoneNumber": "+490291004898",
+        "eMail": "Burak.Broening19@gmail.com",
+        "street": "Gutenbergstr.",
+        "houseNumber": "44",
+        "city": "Gießen",
+        "postalCode": "54200",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-20T17:10:27.135Z",
+        "bookingEnd": "2025-10-27T18:10:27.135Z",
+        "numAdults": 5,
+        "numChildren": 3,
+        "property": "Stadtvilla"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 6,
+    "EMail": {
+      "create": {
+        "author": "Mina Jungton",
+        "authorEmail": "Mina_Jungton@hotmail.com",
+        "subject": "Buchungsanfrage für Mina Jungton",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Landhaus' anfragen. Hier sind meine Details:\n\nName: Mina Jungton\nTelefonnummer: +49780353778376\nAdresse: Vincent-van-Gogh-Str. 3, 51812 Alt Luisland, Deutschland\nBuchungszeitraum: 31.10.2025 bis 09.11.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMina Jungton"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mina",
+        "surname": "Jungton",
+        "phoneNumber": "+49780353778376",
+        "eMail": "Mina_Jungton@hotmail.com",
+        "street": "Vincent-van-Gogh-Str.",
+        "houseNumber": "3",
+        "city": "Alt Luisland",
+        "postalCode": "51812",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-31T03:04:18.475Z",
+        "bookingEnd": "2025-11-09T03:04:18.475Z",
+        "numAdults": 4,
+        "numChildren": 0,
+        "property": "Landhaus"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 7,
+    "EMail": {
+      "create": {
+        "author": "Mailin Heinemann",
+        "authorEmail": "Mailin.Heinemann@yahoo.com",
+        "subject": "Buchungsanfrage für Mailin Heinemann",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Strandresort' anfragen. Hier sind meine Details:\n\nName: Mailin Heinemann\nTelefonnummer: +491688295385\nAdresse: Diepenthaler Str. 7, 09663 Bad Adriano, Deutschland\nBuchungszeitraum: 25.09.2025 bis 30.09.2025\nAnzahl Erwachsene: 1\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMailin Heinemann"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mailin",
+        "surname": "Heinemann",
+        "phoneNumber": "+491688295385",
+        "eMail": "Mailin.Heinemann@yahoo.com",
+        "street": "Diepenthaler Str.",
+        "houseNumber": "7",
+        "city": "Bad Adriano",
+        "postalCode": "09663",
+        "country": "Deutschland",
+        "bookingStart": "2025-09-25T06:03:10.370Z",
+        "bookingEnd": "2025-09-30T06:03:10.370Z",
+        "numAdults": 1,
+        "numChildren": 0,
+        "property": "Strandresort"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 8,
+    "EMail": {
+      "create": {
+        "author": "Dorian Vogelgsang",
+        "authorEmail": "Dorian.Vogelgsang@yahoo.com",
+        "subject": "Buchungsanfrage für Dorian Vogelgsang",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Bergchalet' anfragen. Hier sind meine Details:\n\nName: Dorian Vogelgsang\nTelefonnummer: +49656026536268\nAdresse: Am Gesundheitspark 791, 13544 Neu Piusburg, Deutschland\nBuchungszeitraum: 16.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nDorian Vogelgsang"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Dorian",
+        "surname": "Vogelgsang",
+        "phoneNumber": "+49656026536268",
+        "eMail": "Dorian.Vogelgsang@yahoo.com",
+        "street": "Am Gesundheitspark",
+        "houseNumber": "791",
+        "city": "Neu Piusburg",
+        "postalCode": "13544",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-16T05:28:47.484Z",
+        "bookingEnd": "2025-10-27T06:28:47.484Z",
+        "numAdults": 5,
+        "numChildren": 0,
+        "property": "Bergchalet"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 9,
+    "EMail": {
+      "create": {
+        "author": "Timm Da",
+        "authorEmail": "Timm.Da@gmail.com",
+        "subject": "Buchungsanfrage für Timm Da",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Ferienoase' anfragen. Hier sind meine Details:\n\nName: Timm Da\nTelefonnummer: +491502961373\nAdresse: Buchenweg 5, 44498 Greschnerland, Deutschland\nBuchungszeitraum: 02.09.2025 bis 15.09.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 3\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nTimm Da"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Timm",
+        "surname": "Da",
+        "phoneNumber": "+491502961373",
+        "eMail": "Timm.Da@gmail.com",
+        "street": "Buchenweg",
+        "houseNumber": "5",
+        "city": "Greschnerland",
+        "postalCode": "44498",
+        "country": "Deutschland",
+        "bookingStart": "2025-09-02T07:24:11.522Z",
+        "bookingEnd": "2025-09-15T07:24:11.522Z",
+        "numAdults": 3,
+        "numChildren": 3,
+        "property": "Ferienoase"
+      }
+    }
+  }
+]

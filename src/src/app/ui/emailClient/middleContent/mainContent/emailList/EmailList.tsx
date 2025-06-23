@@ -44,7 +44,7 @@ export default function EmailList(props: EmailListItemProps) {
                         <Text>Heute</Text>
                     </div>
                     {emails.map((email) => (
-                        <EmailListItem key={email.author} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
+                        <EmailListItem key={email.id} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
                     ))}
                 </div>
                 :

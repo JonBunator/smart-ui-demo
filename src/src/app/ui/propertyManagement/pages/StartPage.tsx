@@ -25,7 +25,7 @@ export default function StartPage() {
         <div>
             {inviteCodeValid === true && <Button disabled={!inviteCodeValid} onClick={startSurvey}>Neue Umfrage starten</Button>}
             {inviteCodeValid === false && <div>Invite code is not valid or survey is already closed!</div>}
-            {inviteCodeValid === undefined && <div>Loading</div>}
+            {inviteCodeValid === undefined && <div>Lädt...</div>}
         </div>
     );
 }

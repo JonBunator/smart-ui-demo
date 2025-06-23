@@ -17,6 +17,7 @@ export default function MainContent() {
 
     function createEmailItem(email: EMail): EmailItem {
         return {
+            id: email.id,
             author: email.author,
             authorEmail: email.authorEmail,
             subject: email.subject,
@@ -45,8 +46,14 @@ export default function MainContent() {
             getEMail(event.useCaseIndex, event.dataIndex)
                 .then(email => {
                     if(email) {
-                        setEmails((prevState) => [createEmailItem(email), ...prevState]
-                        );
+                        setEmails((prevState) => {
+                            const emailExists = prevState.some(existingEmail => existingEmail.id === email.id);
+
+                            if (!emailExists) {
+                                return [createEmailItem(email), ...prevState];
+                            }
+                            return prevState;
+                        });
                     }
                 });
         });
