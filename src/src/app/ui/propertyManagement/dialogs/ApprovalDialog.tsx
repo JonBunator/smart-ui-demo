@@ -5,6 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 interface ApprovalDialogProps {
     /**
@@ -44,7 +45,7 @@ export default function ApprovalDialog(props: ApprovalDialogProps) {
         <Dialog open={open} onClose={closable ? onClose : undefined}>
             {title && <DialogTitle>{title}</DialogTitle>}
             <DialogContent>
-                {content}
+                <Typography>{content}</Typography>
             </DialogContent>
             <DialogActions>
                 {closable && <Button onClick={onClose}>Abbrechen</Button>}

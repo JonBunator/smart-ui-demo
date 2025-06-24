@@ -3,7 +3,7 @@ import {createContext, useCallback, useContext, useEffect, useMemo, useRef, useS
 import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
 import {createActor, Actor, SnapshotFrom} from 'xstate';
-import {NUM_USE_CASES, USE_CASE_DURATION} from "@/lib/config";
+import {NUM_DATA_PER_USE_CASE, NUM_USE_CASES, USE_CASE_DURATION} from "@/lib/config";
 
 interface SurveyManagerContextType {
     /**
@@ -22,6 +22,10 @@ interface SurveyManagerContextType {
      * Completes the questionnaire of the use case.
      */
     completeUseCase: () => void
+    /**
+     * Completes data adding and proceeds to questionnaire due to no more data.
+     */
+    completeNoMoreData: () => void
     /**
      * Snapshot of the state machine.
      */
@@ -57,7 +61,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         getParticipationState()
             .then(state => {
                 const actor = createActor(surveyFlowMachine, {
-                    input: {numUseCases: NUM_USE_CASES, useCaseDuration: USE_CASE_DURATION},
+                    input: {numUseCases: NUM_USE_CASES, useCaseDuration: USE_CASE_DURATION, numDataPerUseCase: NUM_DATA_PER_USE_CASE},
                     snapshot: state !== null ? state : undefined,
                 })
                 actor.start();
@@ -88,7 +92,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         return () => subscription?.unsubscribe();
     }, [machine, updateState]);
 
-    const sendEvent = useCallback(async (type: "startSurvey" | "startUseCase" | "addData" | "completeUseCase") => {
+    const sendEvent = useCallback(async (type: "startSurvey" | "startUseCase" | "addData" | "completeUseCase" | "completeNoMoreData") => {
         machine?.send({type: type});
     }, [machine]);
 
@@ -103,6 +107,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         startUseCase: () => sendEvent("startUseCase"),
         addData: () => sendEvent("addData"),
         completeUseCase: () => sendEvent("completeUseCase"),
+        completeNoMoreData: () => sendEvent("completeNoMoreData"),
         snapshot: snapshot,
         useCaseIndex: snapshot?.context.useCaseIndex,
         dataIndex: snapshot?.context.dataIndex,

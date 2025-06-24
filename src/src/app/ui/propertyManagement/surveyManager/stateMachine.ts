@@ -1,15 +1,16 @@
-import {AnyEventObject, assign, emit, fromCallback, setup} from "xstate";
+import {AnyEventObject, assign, emit, enqueueActions, fromCallback, setup} from "xstate";
 
 export type SurveyFlowMachineContext = {
     numUseCases: number;
     useCaseDuration: number;
     useCaseIndex: number;
     dataIndex: number;
+    numDataPerUseCase: number;
     timeout: number | null;
 };
 
 export type SurveyFlowMachineState = "NotStarted" | "Finished" | {
-    UseCase: "NotStarted" | "Running" | "Questions"
+    UseCase: "NotStarted" | "Running" | "NoMoreData" | "Questions"
 }
 
 const surveyFlowMachine = setup({
@@ -20,8 +21,9 @@ const surveyFlowMachine = setup({
             | { type: "startUseCase" }
             | { type: "addData" }
             | { type: "completeUseCase" }
+            | { type: "completeNoMoreData" }
             | { type: "timerOut" }, // TimerOut is only for debugging purposes
-        input: {} as { numUseCases: number, useCaseDuration: number },
+        input: {} as { numUseCases: number, useCaseDuration: number, numDataPerUseCase: number },
         emitted: {} as
             | { type: "sendEmail"; useCaseIndex: number; dataIndex: number }
             | { type: "clockTick", timeDifference: number },
@@ -50,6 +52,7 @@ const surveyFlowMachine = setup({
         useCaseDuration: input.useCaseDuration,
         useCaseIndex: 0,
         dataIndex: 0,
+        numDataPerUseCase: input.numDataPerUseCase,
         timeout: null,
     }),
     states: {
@@ -67,6 +70,10 @@ const surveyFlowMachine = setup({
                     },
                 },
                 Running: {
+                    always: {
+                        guard: ({context}) => context.dataIndex === context.numDataPerUseCase,
+                        target: "NoMoreData",
+                    },
                     entry: [assign({
                         timeout: ({context}) => {
                             return (new Date()).valueOf() + context.useCaseDuration * 1000;
@@ -93,14 +100,16 @@ const surveyFlowMachine = setup({
                         addData: {
                             actions: [
                                 assign({
-                                    dataIndex: ({context}) => context.dataIndex + 1,
+                                    dataIndex: ({ context }) => context.dataIndex + 1,
                                 }),
-                                emit(({context}) => {
-                                    return {
-                                        type: "sendEmail",
-                                        useCaseIndex: context.useCaseIndex,
-                                        dataIndex: context.dataIndex,
-                                    };
+                                enqueueActions(({context, enqueue}) => {
+                                    if (context.dataIndex < context.numDataPerUseCase) {
+                                        enqueue.emit({
+                                            type: "sendEmail",
+                                            useCaseIndex: context.useCaseIndex,
+                                            dataIndex: context.dataIndex,
+                                        });
+                                    }
                                 }),
                             ],
                         },
@@ -113,6 +122,13 @@ const surveyFlowMachine = setup({
                             ]
                         }
                     },
+                },
+                NoMoreData: {
+                    on: {
+                        completeNoMoreData: {
+                            target: "Questions"
+                        }
+                    }
                 },
                 Questions: {
                     on: {

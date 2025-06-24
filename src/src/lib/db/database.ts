@@ -185,14 +185,10 @@ export async function getAllEMails(): Promise<EMail[]|null> {
         return [];
     }
     const useCaseIndex = useCaseData.useCaseIndex;
-    const dataIndex = useCaseData.dataIndex;
+    const dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, useCaseData.dataIndex);
 
     if(useCaseIndex >= NUM_USE_CASES) {
         throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
-    }
-
-    if(dataIndex >= NUM_DATA_PER_USE_CASE) {
-        throw new Error(`dataIndex must be smaller than ${NUM_DATA_PER_USE_CASE}.`)
     }
 
     const type = USE_CASE_INDEX_TYPES[useCaseIndex];
@@ -240,9 +236,7 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
         throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
     }
 
-    if(dataIndex >= NUM_DATA_PER_USE_CASE) {
-        throw new Error(`dataIndex must be smaller than ${NUM_DATA_PER_USE_CASE}.`)
-    }
+    dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, dataIndex);
 
     const type = USE_CASE_INDEX_TYPES[useCaseIndex];
 

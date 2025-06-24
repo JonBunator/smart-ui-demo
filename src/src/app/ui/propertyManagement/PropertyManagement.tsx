@@ -3,6 +3,7 @@ import NavigationBar from "@/app/ui/propertyManagement/navigationBar/NavigationB
 import StartSurveyDialog from "@/app/ui/propertyManagement/dialogs/StartSurveyDialog";
 import StartUseCaseDialog from "@/app/ui/propertyManagement/dialogs/StartUseCaseDialog";
 import "./PropertyManagement.scss"
+import NoMoreDataDialog from "@/app/ui/propertyManagement/dialogs/NoMoreDataDialog";
 
 interface PropertyManagementProps {
     children: React.ReactNode;
@@ -25,6 +26,7 @@ export default function PropertyManagement(props: PropertyManagementProps) {
             </div>
             <StartSurveyDialog/>
             <StartUseCaseDialog/>
+            <NoMoreDataDialog/>
         </>
     );
 }
