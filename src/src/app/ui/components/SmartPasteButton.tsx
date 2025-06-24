@@ -1,9 +1,10 @@
 import {Button, ButtonProps} from "@mui/material";
 import React, {useState} from "react";
 import { useSmartAgent } from "smart-ui";
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function SmartPasteButton(props: ButtonProps) {
-    const {onClick, loading, ...otherProps} = props;
+    const {onClick, loading, className, startIcon, variant, ...otherProps} = props;
     const [isLoading, setIsLoading] = useState(false);
     const {sendPrompt} = useSmartAgent();
 
@@ -24,6 +25,10 @@ export default function SmartPasteButton(props: ButtonProps) {
         setIsLoading(false);
     }
     return (
-        <Button {...otherProps} onClick={handleClick} loading={loading ?? isLoading}/>
+        <Button {...otherProps}
+            className={`${className} smart-paste-button`}
+            variant={variant ?? "contained"}
+            startIcon={startIcon ?? <AutoAwesomeIcon/>}
+            onClick={handleClick} loading={loading ?? isLoading}/>
     );
 }

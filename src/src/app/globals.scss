@@ -35,7 +35,7 @@ html, body, .fui-FluentProvider {
   margin: 0;
 }
 
-.ai-agent.MuiButtonBase-root {
+.ai-agent.MuiButtonBase-root, .smart-paste-button.MuiButtonBase-root {
   background: linear-gradient(90deg, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%);
   color: var(--colorNeutralForeground2);
   &:hover {

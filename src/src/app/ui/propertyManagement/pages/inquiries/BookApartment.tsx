@@ -3,6 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
 import TextField from '@mui/material/TextField';
+import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
 
 export default function BookApartment() {
     const linkedProperties = [
@@ -15,6 +16,14 @@ export default function BookApartment() {
         <Grid container spacing={8}>
             {/* Personal Information Section */}
             <Grid container spacing={4}>
+                <Grid size={{ xs: 9}}>
+                    <Typography variant="h5" gutterBottom>
+                        Neue Buchung hinzufügen
+                    </Typography>
+                </Grid>
+                <Grid size={{ xs: 3}}>
+                    <SmartPasteButton>Einfügen</SmartPasteButton>
+                </Grid>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="h6" gutterBottom>
                         Persönliche Informationen

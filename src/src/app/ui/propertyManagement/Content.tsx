@@ -11,7 +11,6 @@ import {SmartGroup} from "smart-ui";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
 import { useSurveyManager } from "./surveyManager/SurveyManagerProvider";
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 type Animal = {
     label: string;
@@ -78,7 +77,7 @@ export default function Content() {
             <Grid size={6}>
                 <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
             </Grid>
-            <SmartPasteButton className="ai-agent" variant="contained" startIcon={<AutoAwesomeIcon/>}>Einfügen</SmartPasteButton>
+            <SmartPasteButton>Einfügen</SmartPasteButton>
             <Button onClick={startSurvey}>Start survey</Button>
             <Button onClick={startUseCase}>Start use case</Button>
             <Button onClick={addData}>add data</Button>
