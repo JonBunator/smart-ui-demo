@@ -1,6 +1,6 @@
 "use client"
 import {SmartComponent} from "smart-ui"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartButton from "@/app/ui/components/SmartButton";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
@@ -11,6 +11,7 @@ import {SmartGroup} from "smart-ui";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
 import { useSurveyManager } from "./surveyManager/SurveyManagerProvider";
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 type Animal = {
     label: string;
@@ -33,7 +34,7 @@ export default function Content() {
     });
     const [animal, setAnimal] = useState<Animal|null>(null);
 
-    const {startSurvey, startUseCase, addData, completeUseCase, snapshot, stateMachine} = useSurveyManager();
+    const {startSurvey, startUseCase, addData, completeUseCase} = useSurveyManager();
 
     return (
         <Grid container spacing={2}>
@@ -77,7 +78,7 @@ export default function Content() {
             <Grid size={6}>
                 <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
             </Grid>
-            <SmartPasteButton>Intelligentes Einfügen</SmartPasteButton>
+            <SmartPasteButton className="ai-agent" variant="contained" startIcon={<AutoAwesomeIcon/>}>Einfügen</SmartPasteButton>
             <Button onClick={startSurvey}>Start survey</Button>
             <Button onClick={startUseCase}>Start use case</Button>
             <Button onClick={addData}>add data</Button>

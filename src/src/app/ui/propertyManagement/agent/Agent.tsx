@@ -37,7 +37,7 @@ export default function Agent() {
                         <Button className="approval-button" size="small" startIcon={<ClearIcon/>} onClick={async () => await handleChangeApproval(false)} color="error" variant="contained"></Button>
                         <Button className="approval-button" size="small" startIcon={<DoneIcon/>} onClick={async () => await handleChangeApproval(true)} color="success" variant="contained"></Button>
                     </>)}
-                    <Button loading={loading} loadingPosition="start" size="small" disabled={value.trim() === ''} className="send-button" startIcon={<SendIcon/>} variant="contained" onClick={send}>{loading ? "Sendet.." : "Senden"}</Button>
+                    <Button loading={loading} loadingPosition="start" size="small" disabled={value.trim() === ''} className="send-button ai-agent" startIcon={<SendIcon/>} variant="contained" onClick={send}>{loading ? "Sendet.." : "Senden"}</Button>
                 </div>
 
             </div>

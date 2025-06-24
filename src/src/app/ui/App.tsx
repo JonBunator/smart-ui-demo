@@ -6,6 +6,7 @@ import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/Surv
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import "./App.scss";
+import {useSmartAgent} from "smart-ui";
 
 interface AppProps {
     children: React.ReactNode;
@@ -14,17 +15,19 @@ interface AppProps {
 
 export default function App(props: AppProps) {
     const {children, agent} = props;
-    const {subscribe } = useSurveyManager();
+    const {subscribe} = useSurveyManager();
+    const {deleteChatHistory} = useSmartAgent();
     const router = useRouter();
 
     useEffect(() => {
         const unsubscribe = subscribe((snapshot) => {
             if(snapshot.matches({UseCase: "Questions"})) {
+                deleteChatHistory();
                 router.push('/questions')
             }
         })
         return () => unsubscribe();
-    }, [router, subscribe]);
+    }, [deleteChatHistory, router, subscribe]);
 
     return (
         <div className="app-layout">

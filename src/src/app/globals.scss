@@ -3,6 +3,20 @@
   --primary-container-hover: rgba(var(--mui-palette-primary-mainChannel) / 0.4);
   --primary-container-color: rgba(var(--mui-palette-common-onBackgroundChannel) / 0.9);
   --primary-container-secondary-color: rgba(var(--mui-palette-common-onBackgroundChannel) / 0.8);
+  .dark {
+    --ai-agent-color-1: rgba(224, 64, 251, 0.35);
+    --ai-agent-color-1-hover: rgba(224, 64, 251, 0.5);
+    --ai-agent-color-2: rgba(0, 188, 212, 0.35);
+    --ai-agent-color-2-hover: rgba(0, 188, 212, 0.5);
+    --paper-container-bg: #292b29;
+  }
+  .light {
+    --ai-agent-color-1: rgba(224, 64, 251, 0.3);
+    --ai-agent-color-1-hover: rgba(224, 64, 251, 0.45);
+    --ai-agent-color-2: rgba(0, 188, 212, 0.3);
+    --ai-agent-color-2-hover: rgba(0, 188, 212, 0.45);
+    --paper-container-bg: #faf9f6;
+  }
 }
 
 html,
@@ -21,19 +35,38 @@ html, body, .fui-FluentProvider {
   margin: 0;
 }
 
-
-
-@mixin smart-changes-basic {
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3) !important;
-  transition: box-shadow 0.1s ease-in;
+.ai-agent.MuiButtonBase-root {
+  background: linear-gradient(90deg, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%);
+  color: var(--colorNeutralForeground2);
   &:hover {
-    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3) !important;
+    background: linear-gradient(90deg, var(--ai-agent-color-1-hover) 0%, var(--ai-agent-color-2-hover) 100%);
+  }
+}
+
+@mixin smart-changes-basic() {
+  background:
+          linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
+          linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
+          linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
+  border: 3px solid transparent;
+  margin: -3px;
+  &:hover {
+    background:
+            linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
+            linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
+            linear-gradient(to top right, var(--ai-agent-color-1-hover) 0%, var(--ai-agent-color-2-hover) 100%) border-box;
+
   }
 }
 
 
 // Textfield
 input.MuiInputBase-input.smart-changes {
+  --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+  &:hover {
+    --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
+  }
+
   @include smart-changes-basic();
   border-radius: 8px;
 
@@ -45,6 +78,11 @@ input.MuiInputBase-input.smart-changes {
 
 // Autocomplete
 .MuiAutocomplete-root.smart-changes .MuiInputBase-root  {
+  --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+  &:hover {
+    --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
+  }
+
   @include smart-changes-basic();
   border-radius: 8px;
 
@@ -56,12 +94,20 @@ input.MuiInputBase-input.smart-changes {
 
 // Textarea
 .MuiInputBase-root:has(textarea.smart-changes) {
+  --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+  &:hover {
+    --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
+  }
   @include smart-changes-basic();
 }
 
 // Radio and Checkbox
 .MuiRadio-root, .MuiCheckbox-root {
   &.smart-changes {
+    --smart-changes-element-background-color: transparent;
+    &:hover {
+      --smart-changes-element-background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity))
+    }
     @include smart-changes-basic();
   }
 }
