@@ -1,5 +1,4 @@
-import {AgentResponse} from "smart-ui/server";
-import {ChatCompletionMessageParam} from "openai/resources/chat/completions/completions";
+import {AgentInput, AgentResponse} from "smart-ui/server";
 
 const promptResponses : Map<string, AgentResponse> = new Map<string, AgentResponse>([
     ["prompt1", {uiInteractions: [{id: "name", value: "Luke"}, {id: "gender-male", value: true}, {id: "interests-sports", value: true}, {id: "favourite-animal", value: "Cat"}, {id: "toggle-button", value: ""}], naturalLanguageInteraction: "prompt1_response"}],
@@ -12,8 +11,8 @@ const promptResponses : Map<string, AgentResponse> = new Map<string, AgentRespon
 
 const emptyResponse = {uiInteractions: [], naturalLanguageInteraction: "no_response"};
 
-export async  function callAgentEndpoint(messages: ChatCompletionMessageParam[]): Promise<AgentResponse> {
-    const prompt = messages[messages.length - 1].content as string;
+export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentResponse> {
+    const prompt = agentInput.messages[agentInput.messages.length - 1].content as string;
     if(promptResponses.has(prompt)) {
         return promptResponses.get(prompt) ?? emptyResponse;
     }
