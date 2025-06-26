@@ -115,9 +115,9 @@ CREATE TABLE "Participation" (
 -- CreateTable
 CREATE TABLE "UseCaseParticipation" (
     "id" SERIAL NOT NULL,
+    "type" "DataType" NOT NULL,
     "aiSupport" "AISupport" NOT NULL,
     "participationId" TEXT NOT NULL,
-    "dataId" INTEGER NOT NULL,
 
     CONSTRAINT "UseCaseParticipation_pkey" PRIMARY KEY ("id")
 );

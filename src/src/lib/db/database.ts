@@ -1,6 +1,6 @@
 "use server"
 
-import {AISupport, DataCategory, EMail} from "@prisma";
+import {AISupport, DataCategory, EMail, Data, DataType, BookingCreateInput, PropertyCreateInput, MaintenanceCreateInput} from "@prisma";
 import {AI_SUPPORT_ORDER, NUM_DATA_PER_USE_CASE, NUM_USE_CASES, USE_CASE_INDEX_TYPES} from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
@@ -222,6 +222,42 @@ export async function getAllEMails(): Promise<EMail[]|null> {
     }
 }
 
+export async function getGroundTruthData(useCaseIndex: number, dataIndex: number): Promise<Data|null> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('getGroundTruthData: Session is invalid');
+        return null;
+    }
+
+    if(useCaseIndex >= NUM_USE_CASES) {
+        throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
+    }
+
+    dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, dataIndex);
+
+    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+
+    try {
+        const data = await prisma.data.findFirst({
+            where: {
+                category: DataCategory.GroundTruth,
+                type: type,
+                order: dataIndex,
+            }
+        });
+
+        if (!data) {
+            console.error('Error getting data');
+            return null;
+        }
+        return data;
+
+    } catch(error) {
+        console.error('Error getting use case', error);
+        return null;
+    }
+}
+
 /**
  * Returns emails for use cases where the sequence is less than or equal to the dataIndex.
  */
@@ -294,4 +330,99 @@ export async function _getUseCaseData(): Promise<UseCaseData|null> {
     const useCaseIndex = surveyState.context.useCaseIndex;
     const dataIndex = surveyState.context.dataIndex;
     return {useCaseIndex, dataIndex};
+}
+
+async function _getUseCaseParticipation(type: DataType) {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('_getUseCaseParticipation: Session is invalid');
+        return;
+    }
+
+    const participation = await prisma.participation.findUnique({
+        where: {
+            id: sessionData.userId,
+        },
+        include: {
+            useCaseParticipations: true
+        },
+    });
+
+    if(!participation) {
+        throw new Error(`Participation not found!`)
+    }
+
+    const existingParticipation = participation.useCaseParticipations.find(
+        (ucp) => ucp.type === type
+    );
+
+    if (existingParticipation) {
+        return existingParticipation;
+    }
+    const aiSupport = await getAISupportForCurrentUseCase();
+    return prisma.useCaseParticipation.create({
+        data: {
+            type: type,
+            participationId: participation.id,
+            aiSupport: aiSupport
+        },
+    });
+}
+
+export async function addBooking(booking: BookingCreateInput) {
+    await addData(DataType.Booking, booking);
+}
+
+export async function addProperty(property: PropertyCreateInput) {
+    await addData(DataType.Property, property);
+}
+
+export async function addMaintenance(maintenance: MaintenanceCreateInput) {
+    await addData(DataType.Maintenance, maintenance);
+}
+
+/**
+ * Adds data of the corresponding type. Payload must be correct for the specified type.
+ */
+export async function addData(type: DataType, payload: unknown) {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('addMaintenance: Session is invalid');
+        return;
+    }
+    const useCaseData = await _getUseCaseData();
+    if (!useCaseData) {
+        throw new Error("UseCaseData is null.");
+    }
+    /* //TODO uncomment
+    if(USE_CASE_INDEX_TYPES.indexOf(type) !== useCaseData.useCaseIndex) {
+        throw new Error(`Adding new ${type} is not allowed.`);
+    }*/
+
+    const useCaseParticipation = await _getUseCaseParticipation(type);
+
+    //const groundTruthData = await getGroundTruthData(useCaseData.useCaseIndex, useCaseData.dataIndex);
+    const groundTruthData = await getGroundTruthData(2, useCaseData.dataIndex);
+    if (!groundTruthData) {
+        throw new Error("GroundTruthData is null.");
+    }
+    await prisma.participationData.create({
+        data: {
+            UseCaseParticipation: {
+                connect: {id: useCaseParticipation.id}
+            },
+            groundTruth: {
+                connect: {id: groundTruthData.id}
+            },
+            userData: {
+                create: {
+                    category: DataCategory.UserAdded,
+                    type: DataType.Maintenance,
+                    [type]: {
+                        create: payload
+                    }
+                }
+            }
+        },
+    });
 }

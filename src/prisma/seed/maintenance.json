@@ -8,7 +8,7 @@
         "author": "Natalia Saile",
         "authorEmail": "Natalia.Saile13@yahoo.com",
         "subject": "Anfrage zur Gartenpflege",
-        "content": "Sehr geehrtes Wartungsteam,\n\nich möchte eine Anfrage zur Pflege des Gartens bei der Immobilie 'Sunny Retreat' stellen. Der Rasen benötigt dringend einen Schnitt und einige Sträucher sollten zurückgeschnitten werden.\n\nVielen Dank im Voraus.\n\nMit freundlichen Grüßen,\nNatalia Saile"
+        "content": "Sehr geehrtes Wartungsteam,\n\nich möchte eine Anfrage zur Pflege des Gartens bei der Immobilie 'Landhaus' stellen. Der Rasen benötigt dringend einen Schnitt und einige Sträucher sollten zurückgeschnitten werden.\n\nVielen Dank im Voraus.\n\nMit freundlichen Grüßen,\nNatalia Saile"
       }
     },
     "Maintenance": {
@@ -16,7 +16,7 @@
         "name": "Natalia",
         "surname": "Saile",
         "eMail": "Natalia.Saile13@yahoo.com",
-        "property": "Sunny Retreat",
+        "property": "Landhaus",
         "category": "garden",
         "urgency": "medium",
         "description": "Rasenmähen und Sträucher schneiden.",
@@ -33,7 +33,7 @@
         "author": "Lisa Ganzmann",
         "authorEmail": "Lisa.Ganzmann@yahoo.com",
         "subject": "Reparatur der Klimaanlage erforderlich",
-        "content": "Hallo,\n\nich habe festgestellt, dass die Klimaanlage in der Immobilie 'Ocean View Villa' nicht richtig funktioniert. Sie kühlt nicht mehr effektiv und benötigt eine dringende Wartung.\n\nBitte kümmern Sie sich so schnell wie möglich darum.\n\nDanke und Grüße,\nLisa Ganzmann"
+        "content": "Hallo,\n\nich habe festgestellt, dass die Klimaanlage in der Immobilie 'Ferienoase' nicht richtig funktioniert. Sie kühlt nicht mehr effektiv und benötigt eine dringende Wartung.\n\nBitte kümmern Sie sich so schnell wie möglich darum.\n\nDanke und Grüße,\nLisa Ganzmann"
       }
     },
     "Maintenance": {
@@ -41,7 +41,7 @@
         "name": "Lisa",
         "surname": "Ganzmann",
         "eMail": "Lisa.Ganzmann@yahoo.com",
-        "property": "Ocean View Villa",
+        "property": "Ferienoase",
         "category": "hvac",
         "urgency": "high",
         "description": "Klimaanlage kühlt nicht effektiv.",
@@ -58,7 +58,7 @@
         "author": "Jakob Rose",
         "authorEmail": "Jakob.Rose50@yahoo.com",
         "subject": "Anfrage zur Möbelreparatur",
-        "content": "Guten Tag,\n\nich möchte eine Reparaturanfrage für die Immobilie 'Mountain Escape' stellen. Der Esstisch hat einen wackeligen Fuß und sollte repariert werden.\n\nVielen Dank für Ihre Unterstützung.\n\nMit besten Grüßen,\nJakob Rose"
+        "content": "Guten Tag,\n\nich möchte eine Reparaturanfrage für die Immobilie 'Bergchalet' stellen. Der Esstisch hat einen wackeligen Fuß und sollte repariert werden.\n\nVielen Dank für Ihre Unterstützung.\n\nMit besten Grüßen,\nJakob Rose"
       }
     },
     "Maintenance": {
@@ -66,7 +66,7 @@
         "name": "Jakob",
         "surname": "Rose",
         "eMail": "Jakob.Rose50@yahoo.com",
-        "property": "Mountain Escape",
+        "property": "Bergchalet",
         "category": "furniture",
         "urgency": "low",
         "description": "Wackeliger Fuß am Esstisch.",
@@ -83,7 +83,7 @@
         "author": "Mario Borrmann",
         "authorEmail": "Mario_Borrmann@hotmail.com",
         "subject": "Elektrische Probleme im Schlafzimmer",
-        "content": "Sehr geehrtes Team,\n\nin der Immobilie 'Lakeside Cabin' gibt es ein Problem mit der Beleuchtung im Schlafzimmer. Die Lampen flackern ständig und benötigen eine Überprüfung.\n\nIch hoffe auf eine baldige Lösung.\n\nMit freundlichen Grüßen,\nMario Borrmann"
+        "content": "Sehr geehrtes Team,\n\nin der Immobilie 'Nordseeparadies' gibt es ein Problem mit der Beleuchtung im Schlafzimmer. Die Lampen flackern ständig und benötigen eine Überprüfung.\n\nIch hoffe auf eine baldige Lösung.\n\nMit freundlichen Grüßen,\nMario Borrmann"
       }
     },
     "Maintenance": {
@@ -91,7 +91,7 @@
         "name": "Mario",
         "surname": "Borrmann",
         "eMail": "Mario_Borrmann@hotmail.com",
-        "property": "Lakeside Cabin",
+        "property": "Nordseeparadies",
         "category": "electrical",
         "urgency": "medium",
         "description": "Flackernde Lampen im Schlafzimmer.",
@@ -108,7 +108,7 @@
         "author": "Naemi Schlitzer",
         "authorEmail": "Naemi.Schlitzer@hotmail.com",
         "subject": "Sanitärproblem in der Küche",
-        "content": "Hallo,\n\nich habe ein Problem mit dem Wasserhahn in der Küche der Immobilie 'Beachfront Bungalow'. Er tropft ständig und sollte repariert werden.\n\nVielen Dank für Ihre Hilfe.\n\nBeste Grüße,\nNaemi Schlitzer"
+        "content": "Hallo,\n\nich habe ein Problem mit dem Wasserhahn in der Küche der Immobilie 'Alpenblick'. Er tropft ständig und sollte repariert werden.\n\nVielen Dank für Ihre Hilfe.\n\nBeste Grüße,\nNaemi Schlitzer"
       }
     },
     "Maintenance": {
@@ -116,7 +116,7 @@
         "name": "Naemi",
         "surname": "Schlitzer",
         "eMail": "Naemi.Schlitzer@hotmail.com",
-        "property": "Beachfront Bungalow",
+        "property": "Alpenblick",
         "category": "plumbing",
         "urgency": "low",
         "description": "Tropfender Wasserhahn in der Küche.",
@@ -133,7 +133,7 @@
         "author": "Chris Rosbach",
         "authorEmail": "Chris.Rosbach56@hotmail.com",
         "subject": "Strukturelle Schäden am Dach",
-        "content": "Sehr geehrtes Wartungsteam,\n\nin der Immobilie 'Forest Hideaway' gibt es strukturelle Schäden am Dach, die dringend behoben werden müssen. Es gibt einige undichte Stellen, die bei Regen zu Problemen führen.\n\nBitte kümmern Sie sich umgehend darum.\n\nMit freundlichen Grüßen,\nChris Rosbach"
+        "content": "Sehr geehrtes Wartungsteam,\n\nin der Immobilie 'Seeblick' gibt es strukturelle Schäden am Dach, die dringend behoben werden müssen. Es gibt einige undichte Stellen, die bei Regen zu Problemen führen.\n\nBitte kümmern Sie sich umgehend darum.\n\nMit freundlichen Grüßen,\nChris Rosbach"
       }
     },
     "Maintenance": {
@@ -141,7 +141,7 @@
         "name": "Chris",
         "surname": "Rosbach",
         "eMail": "Chris.Rosbach56@hotmail.com",
-        "property": "Forest Hideaway",
+        "property": "Seeblick",
         "category": "structural",
         "urgency": "high",
         "description": "Undichte Stellen am Dach.",
@@ -158,7 +158,7 @@
         "author": "Talea Lohse",
         "authorEmail": "Talea.Lohse@gmail.com",
         "subject": "Anfrage zur Gartenpflege",
-        "content": "Hallo,\n\nich möchte eine Anfrage zur Pflege des Gartens bei der Immobilie 'Countryside Cottage' stellen. Der Garten ist überwuchert und benötigt dringend Pflege.\n\nVielen Dank im Voraus.\n\nMit besten Grüßen,\nTalea Lohse"
+        "content": "Hallo,\n\nich möchte eine Anfrage zur Pflege des Gartens bei der Immobilie 'Waldblick' stellen. Der Garten ist überwuchert und benötigt dringend Pflege.\n\nVielen Dank im Voraus.\n\nMit besten Grüßen,\nTalea Lohse"
       }
     },
     "Maintenance": {
@@ -166,7 +166,7 @@
         "name": "Talea",
         "surname": "Lohse",
         "eMail": "Talea.Lohse@gmail.com",
-        "property": "Countryside Cottage",
+        "property": "Waldblick",
         "category": "garden",
         "urgency": "medium",
         "description": "Überwucherter Garten benötigt Pflege.",
@@ -183,7 +183,7 @@
         "author": "Ricardo Marl",
         "authorEmail": "Ricardo.Marl38@yahoo.com",
         "subject": "Reparatur der Heizung erforderlich",
-        "content": "Sehr geehrtes Team,\n\nin der Immobilie 'City Apartment' funktioniert die Heizung nicht richtig. Sie heizt nicht ausreichend und sollte überprüft werden.\n\nIch hoffe auf eine baldige Lösung.\n\nMit freundlichen Grüßen,\nRicardo Marl"
+        "content": "Sehr geehrtes Team,\n\nin der Immobilie 'Stadtvilla' funktioniert die Heizung nicht richtig. Sie heizt nicht ausreichend und sollte überprüft werden.\n\nIch hoffe auf eine baldige Lösung.\n\nMit freundlichen Grüßen,\nRicardo Marl"
       }
     },
     "Maintenance": {
@@ -191,7 +191,7 @@
         "name": "Ricardo",
         "surname": "Marl",
         "eMail": "Ricardo.Marl38@yahoo.com",
-        "property": "City Apartment",
+        "property": "Stadtvilla",
         "category": "hvac",
         "urgency": "high",
         "description": "Heizung heizt nicht ausreichend.",
@@ -208,7 +208,7 @@
         "author": "Lennard Haschke",
         "authorEmail": "Lennard.Haschke@hotmail.com",
         "subject": "Anfrage zur Möbelreparatur",
-        "content": "Guten Tag,\n\nich möchte eine Reparaturanfrage für die Immobilie 'Seaside Cottage' stellen. Der Sessel im Wohnzimmer hat einen gebrochenen Fuß und sollte repariert werden.\n\nVielen Dank für Ihre Unterstützung.\n\nMit besten Grüßen,\nLennard Haschke"
+        "content": "Guten Tag,\n\nich möchte eine Reparaturanfrage für die Immobilie 'Bergpanorama' stellen. Der Sessel im Wohnzimmer hat einen gebrochenen Fuß und sollte repariert werden.\n\nVielen Dank für Ihre Unterstützung.\n\nMit besten Grüßen,\nLennard Haschke"
       }
     },
     "Maintenance": {
@@ -216,7 +216,7 @@
         "name": "Lennard",
         "surname": "Haschke",
         "eMail": "Lennard.Haschke@hotmail.com",
-        "property": "Seaside Cottage",
+        "property": "Bergpanorama",
         "category": "furniture",
         "urgency": "low",
         "description": "Gebrochener Fuß am Sessel.",
@@ -233,7 +233,7 @@
         "author": "Raul Lubina",
         "authorEmail": "Raul.Lubina43@yahoo.com",
         "subject": "Sanitärproblem im Badezimmer",
-        "content": "Hallo,\n\nich habe ein Problem mit der Dusche in der Immobilie 'Hilltop Villa'. Das Wasser fließt nicht richtig ab und sollte überprüft werden.\n\nVielen Dank für Ihre Hilfe.\n\nBeste Grüße,\nRaul Lubina"
+        "content": "Hallo,\n\nich habe ein Problem mit der Dusche in der Immobilie 'Strandresort'. Das Wasser fließt nicht richtig ab und sollte überprüft werden.\n\nVielen Dank für Ihre Hilfe.\n\nBeste Grüße,\nRaul Lubina"
       }
     },
     "Maintenance": {
@@ -241,7 +241,7 @@
         "name": "Raul",
         "surname": "Lubina",
         "eMail": "Raul.Lubina43@yahoo.com",
-        "property": "Hilltop Villa",
+        "property": "Strandresort",
         "category": "plumbing",
         "urgency": "medium",
         "description": "Wasser fließt nicht richtig ab in der Dusche.",

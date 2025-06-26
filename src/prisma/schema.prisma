@@ -148,11 +148,11 @@ enum AISupport {
 
 model UseCaseParticipation {
   id                Int                 @id @default(autoincrement())
+  type              DataType
   aiSupport         AISupport
   participationId   String
   Participation     Participation       @relation(fields: [participationId], references: [id], onDelete: Cascade)
   ParticipationData ParticipationData[]
-  dataId            Int
 }
 
 model ParticipationData {
