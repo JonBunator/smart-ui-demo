@@ -43,13 +43,13 @@ html, body, .fui-FluentProvider {
   }
 }
 
-@mixin smart-changes-basic() {
+@mixin smart-changes-basic($borderWidth: 3px) {
   background:
           linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
           linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
           linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
-  border: 3px solid transparent;
-  margin: -3px;
+  border: $borderWidth solid transparent;
+  margin: -$borderWidth;
   &:hover {
     background:
             linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
@@ -109,5 +109,15 @@ input.MuiInputBase-input.smart-changes {
       --smart-changes-element-background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity))
     }
     @include smart-changes-basic();
+  }
+}
+
+.MuiButton-containedPrimary {
+  &.smart-changes {
+    --smart-changes-element-background-color: var(--variant-containedBg);
+    &:hover {
+      --smart-changes-element-background-color: var(--mui-palette-primary-dark);
+    }
+    @include smart-changes-basic(6px);
   }
 }

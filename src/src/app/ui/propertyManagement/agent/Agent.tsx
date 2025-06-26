@@ -11,18 +11,13 @@ import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
 
 export default function Agent() {
     const [value, setValue] = useState("I am Jonas and 24 years old. I am male and like sports and Rubik's Cubes.");
-    const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory} = useSmartAgent();
-    const [loading, setLoading] = useState(false);
+    const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading} = useSmartAgent();
 
     async function send() {
-        setLoading(true);
         const sendValue = value;
         setValue("");
         await sendPrompt(sendValue);
-        setLoading(false);
     }
-
-
 
     return (
         <Paper className="agent">

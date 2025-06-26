@@ -1,7 +1,7 @@
-import AddProperty from "@/app/ui/propertyManagement/pages/inquiries/AddProperty";
+import Properties from "@/app/ui/propertyManagement/pages/inquiries/Properties";
 
 export default function Home() {
   return (
-        <AddProperty/>
+        <Properties/>
   );
 }

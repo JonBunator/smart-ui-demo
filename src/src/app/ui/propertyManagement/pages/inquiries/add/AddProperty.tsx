@@ -15,6 +15,8 @@ import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup} from "smart-ui";
+import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
+
 
 export default function AddProperty() {
   // State for amenities checkboxes
@@ -48,10 +50,13 @@ export default function AddProperty() {
 
   return (
     <Grid container spacing={8}>
+    <Grid size={{ xs: 12 }}>
+        <AddInquiryHeader titleContent="Neue Immobilie hinzufügen"/>
+    </Grid>
     {/* Property Information Section */}
       <Grid container spacing={4}>
         <Grid size={{ xs: 12 }}>
-            <Typography variant="h6">
+            <Typography variant="subtitle1">
                 Immobilien Informationen
             </Typography>
         </Grid>
@@ -65,7 +70,7 @@ export default function AddProperty() {
       {/* Address Information Section */}
       <Grid container spacing={4}>
         <Grid size={{ xs: 12 }}>
-            <Typography variant="h6">
+            <Typography variant="subtitle1">
                 Adressinformationen
             </Typography>
         </Grid>
@@ -95,7 +100,7 @@ export default function AddProperty() {
       {/* Property Details Section */}
       <Grid container spacing={4}>
         <Grid size={{ xs: 12}}>
-            <Typography variant="h6">
+            <Typography variant="subtitle1">
                 Immobilien Details
             </Typography>
         </Grid>

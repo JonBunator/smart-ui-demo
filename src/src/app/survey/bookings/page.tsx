@@ -1,7 +1,7 @@
-import BookApartment from "@/app/ui/propertyManagement/pages/inquiries/BookApartment";
+import Bookings from "@/app/ui/propertyManagement/pages/inquiries/Bookings";
 
 export default function Home() {
   return (
-        <BookApartment/>
+        <Bookings/>
   );
 }

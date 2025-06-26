@@ -1,7 +1,7 @@
-import AddMaintenance from "@/app/ui/propertyManagement/pages/inquiries/AddMaintenance";
+import Maintenance from "@/app/ui/propertyManagement/pages/inquiries/Maintenance";
 
 export default function Home() {
   return (
-        <AddMaintenance/>
+        <Maintenance/>
   );
 }

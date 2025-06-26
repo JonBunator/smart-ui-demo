@@ -1,0 +1,15 @@
+.add-inquiry-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        .spacer {
+            flex: 1;
+        }
+    }
+}

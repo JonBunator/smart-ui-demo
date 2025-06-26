@@ -10,6 +10,7 @@ import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
+import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
 
 export default function AddMaintenance() {
     // Sample state management for form fields, adjust based on your needs.
@@ -46,10 +47,13 @@ export default function AddMaintenance() {
 
     return (
         <Grid container spacing={8}>
+            <Grid size={{ xs: 12 }}>
+                <AddInquiryHeader titleContent="Neue Instandhaltung hinzufügen"/>
+            </Grid>
             {/* Contact Information */}
             <Grid container spacing={4}>
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="h6">Kontaktinformationen</Typography>
+                    <Typography variant="subtitle1">Kontaktinformationen</Typography>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
                     <SmartTextField
@@ -93,7 +97,7 @@ export default function AddMaintenance() {
             {/* Details */}
             <Grid container spacing={4}>
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="h6">Details</Typography>
+                    <Typography variant="subtitle1">Details</Typography>
                 </Grid>
                 <Grid size={{ xs: 12 }}>
                     <SmartAutocomplete

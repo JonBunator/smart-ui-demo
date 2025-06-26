@@ -3,7 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
 import TextField from '@mui/material/TextField';
-import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
+import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
 
 export default function BookApartment() {
     const linkedProperties = [
@@ -14,18 +14,13 @@ export default function BookApartment() {
 
     return (
         <Grid container spacing={8}>
+            <Grid size={{ xs: 12 }}>
+                <AddInquiryHeader titleContent="Neue Buchung hinzufügen"/>
+            </Grid>
             {/* Personal Information Section */}
             <Grid container spacing={4}>
-                <Grid size={{ xs: 9}}>
-                    <Typography variant="h5" gutterBottom>
-                        Neue Buchung hinzufügen
-                    </Typography>
-                </Grid>
-                <Grid size={{ xs: 3}}>
-                    <SmartPasteButton>Einfügen</SmartPasteButton>
-                </Grid>
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="subtitle1" gutterBottom>
                         Persönliche Informationen
                     </Typography>
                 </Grid>
@@ -46,7 +41,7 @@ export default function BookApartment() {
             {/* Address Information Section */}
             <Grid container spacing={4}>
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="h6">
+                    <Typography variant="subtitle1">
                         Addressinformationen
                     </Typography>
                 </Grid>
@@ -54,13 +49,13 @@ export default function BookApartment() {
                     <SmartTextField variant="filled" label="Straße" fullWidth />
                 </Grid>
                 <Grid size={{ xs: 12, md: 4 }}>
-                    <SmartTextField variant="filled" label="Hausnummer" fullWidth type="number"/>
+                    <SmartTextField variant="filled" label="Hausnummer" fullWidth />
                 </Grid>
                 <Grid size={{ xs: 12, md: 8 }}>
                     <SmartTextField variant="filled" label="Stadt" fullWidth />
                 </Grid>
                 <Grid size={{ xs: 12, md: 4 }}>
-                    <SmartTextField variant="filled" label="Postleizahl" fullWidth type="number" />
+                    <SmartTextField variant="filled" label="Postleizahl" fullWidth />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
                     <SmartTextField variant="filled" label="Land" fullWidth />
@@ -70,7 +65,7 @@ export default function BookApartment() {
             {/* Booking Details Section */}
             <Grid container spacing={4}>
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="h6">
+                    <Typography variant="subtitle1">
                         Buchungsinformationen
                     </Typography>
                 </Grid>

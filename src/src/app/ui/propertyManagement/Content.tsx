@@ -77,7 +77,7 @@ export default function Content() {
             <Grid size={6}>
                 <SmartButton variant="contained" id="smart-button" onClick={() => console.log("Test button was clicked")}>Test button</SmartButton>
             </Grid>
-            <SmartPasteButton>Einfügen</SmartPasteButton>
+            <SmartPasteButton>Ausfüllen</SmartPasteButton>
             <Button onClick={startSurvey}>Start survey</Button>
             <Button onClick={startUseCase}>Start use case</Button>
             <Button onClick={addData}>add data</Button>

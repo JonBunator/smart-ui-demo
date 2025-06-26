@@ -24,7 +24,11 @@ export default function NavLinks() {
     const pathname = usePathname();
 
     function isPathSelected(href: string): boolean {
-        return pathname === href;
+        const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
+        if(href === "/survey") {
+            return pathname === href;
+        }
+        return (pathname === href || parentPath === href);
     }
 
     return (
