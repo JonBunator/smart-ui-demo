@@ -394,15 +394,16 @@ export async function addData(type: DataType, payload: unknown) {
     if (!useCaseData) {
         throw new Error("UseCaseData is null.");
     }
-    /* //TODO uncomment
     if(USE_CASE_INDEX_TYPES.indexOf(type) !== useCaseData.useCaseIndex) {
         throw new Error(`Adding new ${type} is not allowed.`);
-    }*/
+    }
 
     const useCaseParticipation = await _getUseCaseParticipation(type);
+    if(!useCaseParticipation) {
+        throw new Error("UseCaseParticipation is null.");
+    }
 
-    //const groundTruthData = await getGroundTruthData(useCaseData.useCaseIndex, useCaseData.dataIndex);
-    const groundTruthData = await getGroundTruthData(2, useCaseData.dataIndex);
+    const groundTruthData = await getGroundTruthData(useCaseData.useCaseIndex, useCaseData.dataIndex);
     if (!groundTruthData) {
         throw new Error("GroundTruthData is null.");
     }
