@@ -10,7 +10,7 @@ import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
 
 export default function Agent() {
-    const [value, setValue] = useState("I am Jonas and 24 years old. I am male and like sports and Rubik's Cubes.");
+    const [value, setValue] = useState("");
     const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading} = useSmartAgent();
 
     async function send() {

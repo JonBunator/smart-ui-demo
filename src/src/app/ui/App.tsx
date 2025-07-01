@@ -35,7 +35,7 @@ export default function App(props: AppProps) {
                 {children}
             </PropertyManagement>
             <EmailClient />
-            {process.env.NODE_ENV === 'development' && <DebugButtons />}
+            <DebugButtons />
         </div>
     );
 }
