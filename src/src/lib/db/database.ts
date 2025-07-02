@@ -1,7 +1,13 @@
 "use server"
 
 import {AISupport, DataCategory, EMail, Data, DataType, BookingCreateInput, PropertyCreateInput, MaintenanceCreateInput} from "@prisma";
-import {AI_SUPPORT_ORDER, NUM_DATA_PER_USE_CASE, NUM_USE_CASES, USE_CASE_INDEX_TYPES} from "../config";
+import {
+    AI_SUPPORT_ORDER,
+    NUM_AI_SUPPORT_ORDER_ELEMENTS,
+    NUM_DATA_PER_USE_CASE,
+    NUM_USE_CASES,
+    USE_CASE_INDEX_TYPES
+} from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
 import {SnapshotFrom} from "xstate";
@@ -45,7 +51,7 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
             return false;
         }
 
-        const nextAISupportOrder = (survey.nextAISupportOrder + 1) % 6;
+        const nextAISupportOrder = (survey.nextAISupportOrder + 1) % NUM_AI_SUPPORT_ORDER_ELEMENTS;
 
         const newParticipation = await prisma.participation.create({
             data: {
