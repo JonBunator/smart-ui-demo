@@ -2,6 +2,7 @@ import { BotFilled } from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
 import { Avatar } from "@mui/material";
+import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
 
 function AgentMessage({children}: {children: ReactNode}) {
@@ -43,7 +44,9 @@ export default function ChatHistory(props: ChatHistoryProps) {
                     {item.creator === ChatMessageCreator.AGENT && (<Avatar className="ai-avatar"><BotFilled /></Avatar>)}
                     <div  className="chat-history-message">
                         <div className="message">
-                            {item.creator === ChatMessageCreator.AGENT ? JSON.parse(item.message).naturalLanguageInteraction : item.message}
+                            <Markdown>
+                                {item.creator === ChatMessageCreator.AGENT ? JSON.parse(item.message).naturalLanguageInteraction : item.message}
+                            </Markdown>
                         </div>
                         {item.sentTime !== "" && <div className="time">
                             {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}

@@ -121,12 +121,12 @@ export default function BookApartment() {
     };
 
     return (
-        <Grid container spacing={8}>
+        <Grid container spacing={4}>
             <Grid size={{ xs: 12 }}>
-                <AddInquiryHeader titleContent="Neue Buchung hinzufügen"/>
+                <AddInquiryHeader title="Buchungen" titleContent="Neue Buchung hinzufügen"/>
             </Grid>
             {/* Personal Information Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1" gutterBottom>
                         Persönliche Informationen
@@ -187,7 +187,7 @@ export default function BookApartment() {
             </Grid>
 
             {/* Address Information Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">
                         Addressinformationen
@@ -268,7 +268,7 @@ export default function BookApartment() {
             </Grid>
 
             {/* Booking Details Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">
                         Buchungsinformationen

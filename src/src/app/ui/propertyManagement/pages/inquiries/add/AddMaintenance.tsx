@@ -116,7 +116,7 @@ export default function AddMaintenance() {
     return (
         <Grid container spacing={4}>
             <Grid size={{ xs: 12 }}>
-                <AddInquiryHeader titleContent="Neue Instandhaltung hinzufügen"/>
+                <AddInquiryHeader title="Instandhaltungen" titleContent="Neue Instandhaltung hinzufügen"/>
             </Grid>
             {/* Contact Information */}
             <Grid container spacing={2}>

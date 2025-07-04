@@ -13,7 +13,7 @@ export default function Providers({children}: {children: ReactNode}) {
             <MUIProvider>
                 <SurveyManagerProvider>
                     <SmartComponentManager>
-                        <SmartAgentProvider callAgent={callAgentEndpoint}>
+                        <SmartAgentProvider callAgent={callAgentEndpoint} language="german">
                             {children}
                         </SmartAgentProvider>
                     </SmartComponentManager>

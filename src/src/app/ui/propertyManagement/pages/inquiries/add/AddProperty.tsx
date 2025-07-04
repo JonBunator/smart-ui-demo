@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent } from "react";
+import React, {useState, ChangeEvent, useEffect} from "react";
 import {
     Grid,
     Typography,
@@ -145,12 +145,12 @@ export default function AddProperty() {
     };
 
     return (
-        <Grid container spacing={8}>
+        <Grid container spacing={4}>
             <Grid size={{ xs: 12 }}>
-                <AddInquiryHeader titleContent="Neue Immobilie hinzufügen" />
+                <AddInquiryHeader title="Immobilien" titleContent="Neue Immobilie hinzufügen" />
             </Grid>
             {/* Property Information Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2} size={{ xs: 12 }}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Immobilien Informationen</Typography>
                 </Grid>
@@ -184,7 +184,7 @@ export default function AddProperty() {
                 </Grid>
             </Grid>
             {/* Address Information Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Adressinformationen</Typography>
                 </Grid>
@@ -263,7 +263,7 @@ export default function AddProperty() {
             </Grid>
 
             {/* Property Details Section */}
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Immobilien Details</Typography>
                 </Grid>

@@ -46,16 +46,12 @@ export const theme = createTheme({
                 secondary: {
                     main: '#e7d6b7',
                 },
-                error: {
-                    main: '#ffdad6',
-                    contrastText: '#93000a',
-                },
                 info: {
                     main: '#aec1df',
                     contrastText: '#3d4f68',
                 },
                 success: {
-                    main: '#d4fade',
+                    main: '#7a9481',
                 },
                 warning: {
                     main: '#fde181',

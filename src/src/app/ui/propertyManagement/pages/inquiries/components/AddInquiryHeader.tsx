@@ -4,7 +4,9 @@ import {
     Divider,
     Tooltip,
     Typography,
-    IconButton
+    IconButton,
+    Breadcrumbs,
+    Link
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
@@ -18,13 +20,18 @@ interface AddInquiryHeaderProps {
      * Content displayed in the title
      */
     titleContent: React.ReactNode;
+    /**
+     * Parent page title.
+     */
+    title: string;
 }
 
 export default function AddInquiryHeader(props: AddInquiryHeaderProps) {
-    const {titleContent} = props;
+    const {titleContent, title} = props;
     const router = useRouter();
     const pathname = usePathname();
     const [showSmartPasteButton, setShowSmartPasteButton] = useState(false);
+    const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
 
     useEffect(() => {
         getAISupportForCurrentUseCase()
@@ -32,17 +39,27 @@ export default function AddInquiryHeader(props: AddInquiryHeaderProps) {
     }, []);
 
     function navigateToParentPage() {
-        const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
         router.push(parentPath);
     }
 
     return (
         <div className="add-inquiry-header">
+
             <div className="header-row">
-                <IconButton onClick={navigateToParentPage}><ArrowBackIcon fontSize="large"/></IconButton>
-                <Typography variant="h6">
-                    {titleContent}
-                </Typography>
+                <IconButton onClick={navigateToParentPage}><ArrowBackIcon sx={{ color: 'text.secondary' }} fontSize="large"/></IconButton>
+                <Breadcrumbs>
+                    <Link
+                        underline="hover"
+                        color="inherit"
+                        href={parentPath}
+                        variant="h6"
+                    >
+                        {title}
+                    </Link>
+                    <Typography variant="h6" sx={{ color: 'text.primary' }}>
+                        {titleContent}
+                    </Typography>
+                </Breadcrumbs>
                 <div className="spacer"/>
                 {showSmartPasteButton &&
                     <Tooltip title="Intelligentes Ausfüllen aus der Zwischenablage">
