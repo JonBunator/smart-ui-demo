@@ -433,3 +433,8 @@ export async function addData(type: DataType, payload: unknown) {
         },
     });
 }
+
+export async function addQuestionaireData(data: unknown) : Promise<boolean> {
+    console.log(data);
+    return true;
+}
