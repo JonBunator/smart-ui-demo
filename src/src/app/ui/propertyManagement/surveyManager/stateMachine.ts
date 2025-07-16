@@ -7,22 +7,26 @@ export type SurveyFlowMachineContext = {
     dataIndex: number;
     numDataPerUseCase: number;
     timeout: number | null;
+    showHelpDialog: boolean;
 };
 
 export type SurveyFlowMachineState = "NotStarted" | "Finished" | {
     UseCase: "NotStarted" | "Running" | "NoMoreData" | "Questions"
 }
 
+export type SurveyFlowMachineEvents =  | { type: "startSurvey" }
+    | { type: "startUseCase" }
+    | { type: "addData" }
+    | { type: "completeUseCase" }
+    | { type: "completeNoMoreData" }
+    | { type: "openHelpDialog" }
+    | { type: "closeHelpDialog" }
+    | { type: "timerOut" } // TimerOut is only for debugging purposes
+
 const surveyFlowMachine = setup({
     types: {
         context: {} as SurveyFlowMachineContext,
-        events: {} as
-            | { type: "startSurvey" }
-            | { type: "startUseCase" }
-            | { type: "addData" }
-            | { type: "completeUseCase" }
-            | { type: "completeNoMoreData" }
-            | { type: "timerOut" }, // TimerOut is only for debugging purposes
+        events: {} as SurveyFlowMachineEvents,
         input: {} as { numUseCases: number, useCaseDuration: number, numDataPerUseCase: number },
         emitted: {} as
             | { type: "sendEmail"; useCaseIndex: number; dataIndex: number }
@@ -54,6 +58,7 @@ const surveyFlowMachine = setup({
         dataIndex: 0,
         numDataPerUseCase: input.numDataPerUseCase,
         timeout: null,
+        showHelpDialog: false,
     }),
     states: {
         NotStarted: {
@@ -87,12 +92,19 @@ const surveyFlowMachine = setup({
                             };
                         }),
                     ],
+                    exit: [assign({showHelpDialog: false})],
                     invoke: {
                         id: "timerInterval",
                         src: "timerInterval",
                         input: ({context: {timeout}}) => ({timeout}),
                     },
                     on: {
+                        openHelpDialog: {
+                            actions: [ assign({showHelpDialog: true})]
+                        },
+                        closeHelpDialog: {
+                            actions: [ assign({showHelpDialog: false})]
+                        },
                         timerOut: {
                             internal: true,
                             target: "Questions",

@@ -1,6 +1,6 @@
 "use client"
 import {createContext, useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
-import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
+import surveyFlowMachine, {SurveyFlowMachineEvents} from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
 import {createActor, Actor, SnapshotFrom} from 'xstate';
 import {NUM_DATA_PER_USE_CASE, NUM_USE_CASES, USE_CASE_DURATION} from "@/lib/config";
@@ -26,6 +26,10 @@ interface SurveyManagerContextType {
      * Completes data adding and proceeds to questionnaire due to no more data.
      */
     completeNoMoreData: () => void
+    /**
+     * Shows a help dialog in running state.
+     */
+    showHelpDialog: (show: boolean) => void
     /**
      * Snapshot of the state machine.
      */
@@ -92,8 +96,8 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         return () => subscription?.unsubscribe();
     }, [machine, updateState]);
 
-    const sendEvent = useCallback(async (type: "startSurvey" | "startUseCase" | "addData" | "completeUseCase" | "completeNoMoreData") => {
-        machine?.send({type: type});
+    const sendEvent = useCallback(async (type: SurveyFlowMachineEvents) => {
+        machine?.send(type);
     }, [machine]);
 
 
@@ -102,18 +106,27 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         return () => listeners.current.delete(listener);
     }, []);
 
+    const showHelpDialog = useCallback((show: boolean) => {
+        if(show) { 
+            sendEvent({type: "openHelpDialog"}).then();
+        } else {
+            sendEvent({type: "closeHelpDialog"}).then();
+        }
+    }, [sendEvent]);
+    
     const value = useMemo(() => ({
-        startSurvey: () => sendEvent("startSurvey"),
-        startUseCase: () => sendEvent("startUseCase"),
-        addData: () => sendEvent("addData"),
-        completeUseCase: () => sendEvent("completeUseCase"),
-        completeNoMoreData: () => sendEvent("completeNoMoreData"),
+        startSurvey: () => sendEvent({type: "startSurvey"}),
+        startUseCase: () => sendEvent({type: "startUseCase"}),
+        addData: () => sendEvent({type: "addData"}),
+        completeUseCase: () => sendEvent({type: "completeUseCase"}),
+        completeNoMoreData: () => sendEvent({type: "completeNoMoreData"}),
+        showHelpDialog,
         snapshot: snapshot,
         useCaseIndex: snapshot?.context.useCaseIndex,
         dataIndex: snapshot?.context.dataIndex,
         stateMachine: machine,
         subscribe,
-    }), [machine, sendEvent, snapshot, subscribe]);
+    }), [machine, sendEvent, showHelpDialog, snapshot, subscribe]);
     
     return (
         <SurveyManagerContext.Provider value={value}>

@@ -1,13 +1,13 @@
 "use client"
 import React from 'react';
-import Dialog from '@mui/material/Dialog';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
-interface ApprovalDialogProps {
+interface ApprovalDialogProps extends Omit<DialogProps, 'title' | 'content'> {
     /**
      * When true, dialog is open.
      */
@@ -39,16 +39,15 @@ interface ApprovalDialogProps {
 }
 
 export default function ApprovalDialog(props: ApprovalDialogProps) {
-    const { open, onApprove, onClose, closable = true, approvalTitle, title, content } = props;
+    const { open, onApprove, onClose, closable = true, approvalTitle, title, content, ...dialogProps } = props;
 
     return (
-        <Dialog open={open} onClose={closable ? onClose : undefined}>
+        <Dialog open={open} onClose={closable ? onClose : undefined} {...dialogProps}>
             {title && <DialogTitle>{title}</DialogTitle>}
             <DialogContent>
-                <Typography>{content}</Typography>
+                {content}
             </DialogContent>
             <DialogActions>
-                {closable && <Button onClick={onClose}>Abbrechen</Button>}
                 <Button onClick={onApprove} variant="contained">{approvalTitle ?? "Starten"}</Button>
             </DialogActions>
         </Dialog>

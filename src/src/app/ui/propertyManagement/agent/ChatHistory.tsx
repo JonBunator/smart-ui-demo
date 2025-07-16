@@ -1,7 +1,7 @@
 import { BotFilled } from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
 
@@ -19,10 +19,11 @@ function AgentMessage({children}: {children: ReactNode}) {
 export interface ChatHistoryProps {
     history: ChatMessage[];
     loading: boolean;
+    loadingText?: string;
 }
 
 export default function ChatHistory(props: ChatHistoryProps) {
-    const {history, loading} = props;
+    const {history, loading, loadingText} = props;
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -35,7 +36,7 @@ export default function ChatHistory(props: ChatHistoryProps) {
     return (
         <div className="chat-history" ref={chatContainerRef}>
             <AgentMessage>
-                Ich kann dir helfen mit der Benutzeroberfläche zu interagieren. Frag etwas.
+                Ich kann Ihnen helfen mit der Benutzeroberfläche zu interagieren. Fragen Sie etwas.
             </AgentMessage>
             {history
                 .filter((item) => item.creator !== ChatMessageCreator.SYSTEM)
@@ -56,7 +57,10 @@ export default function ChatHistory(props: ChatHistoryProps) {
                 ))}
             {loading && (
                 <AgentMessage>
-                    <div className="loader"/>
+                    <div className="loading-message">
+                        {loadingText && <i>{loadingText}</i>}
+                        <div className="loader"/>
+                    </div>
                 </AgentMessage>
             )}
         </div>

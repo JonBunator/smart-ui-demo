@@ -11,7 +11,7 @@ import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
 
 export default function Agent() {
     const [value, setValue] = useState("");
-    const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading} = useSmartAgent();
+    const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading, loadingText} = useSmartAgent();
 
     async function send() {
         const sendValue = value;
@@ -21,7 +21,7 @@ export default function Agent() {
 
     return (
         <Paper className="agent">
-            <ChatHistory history={chatHistory} loading={loading}/>
+            <ChatHistory history={chatHistory} loading={loading} loadingText={loadingText}/>
             <div className="prompt-field">
                 <TextField multiline
                            placeholder="Frag etwas..."

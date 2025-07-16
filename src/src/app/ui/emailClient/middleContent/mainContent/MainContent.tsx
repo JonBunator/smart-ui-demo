@@ -7,9 +7,10 @@ import EmailPreview from "@/app/ui/emailClient/middleContent/mainContent/EmailPr
 import {useCallback, useEffect, useState} from "react";
 import {EmailItem} from "@/app/ui/emailClient/utils/types";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-import {getAllEMails, getEMail} from "@/lib/db/database";
-import {EMail} from "@prisma";
+import {getAISupportForCurrentUseCase, getAllEMails, getEMail} from "@/lib/db/database";
+import {$Enums, EMail} from "@prisma";
 import {useSmartAgent} from "smart-ui";
+import AISupport = $Enums.AISupport;
 
 export default function MainContent() {
     const [selectedEmail, setSelectedEmail] = useState<EmailItem|undefined>(undefined);
@@ -41,8 +42,12 @@ export default function MainContent() {
         updateEmails();
     }, [updateEmails]);
 
-    const sendEmailEvent = useCallback((email: EMail)=> {
+    const sendEmailEvent = useCallback(async (email: EMail)=> {
         console.log("email received", email)
+        const aiSupport = await getAISupportForCurrentUseCase();
+        if(aiSupport !== AISupport.PROACTIVE_AGENT) {
+            return;
+        }
         sendEvent("A new email was received. Check if the email is about adding a booking, " +
             "property or maintenance request. If so ask the user if the agent should add it. " +
             "Name the subject and author in the response to the user. Information about the email:\n" +
@@ -50,7 +55,8 @@ export default function MainContent() {
             `Author: ${email.author}\n` +
             `Email: ${email.authorEmail}\n` +
             `Content: ${email.content}\n`
-        , 1);
+        , 1,
+            "E-Mail wird verarbeitet");
     }, [sendEvent]);
 
     useEffect(() => {
@@ -60,7 +66,7 @@ export default function MainContent() {
                     if(email) {
                         setEmails((prevState) => {
                             const emailExists = prevState.some(existingEmail => existingEmail.id === email.id);
-                            sendEmailEvent(email);
+                            sendEmailEvent(email).then();
                             if (!emailExists) {
                                 return [createEmailItem(email), ...prevState];
                             }

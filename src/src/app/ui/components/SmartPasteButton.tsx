@@ -6,7 +6,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 export default function SmartPasteButton(props: ButtonProps) {
     const {onClick, loading, className, startIcon, variant, ...otherProps} = props;
     const [isLoading, setIsLoading] = useState(false);
-    const {sendPrompt} = useSmartAgent();
+    const {sendEvent} = useSmartAgent();
 
     async function handleClick(event:  React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         onClick?.(event);
@@ -20,7 +20,7 @@ export default function SmartPasteButton(props: ButtonProps) {
             return;
         }
         if(clipboardText.trim() !== ''){
-            await sendPrompt(clipboardText, 1);
+            await sendEvent("The following text was pasted from the clipboard. If the query makes no sense, ask the user whether they have inadvertently pasted the wrong text.\n" + clipboardText, 1, "Intelligentes Ausfüllen wird verarbeitet");
         }
         setIsLoading(false);
     }

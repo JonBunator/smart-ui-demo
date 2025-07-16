@@ -1,5 +1,4 @@
 "use client"
-import Link from 'next/link';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import HomeIcon from '@mui/icons-material/Home';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -13,6 +12,7 @@ import "./NavigationBar.scss";
 import Timer from "./Timer";
 import SmartButton from '@/app/ui/components/SmartButton';
 import { SmartGroup } from 'smart-ui';
+import HelpDialogButton from './HelpDialogButton';
 
 const links = [
     { name: 'Home', href: '/survey', icon: HomeOutlinedIcon, selectedIcon: HomeIcon },
@@ -61,7 +61,10 @@ export default function NavLinks() {
                     })}
                 </SmartGroup>
             </div>
-            <Timer/>
+            <div className="survey-information">
+                <HelpDialogButton/>
+                <Timer/>
+            </div>
         </div>
     );
 }

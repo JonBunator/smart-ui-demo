@@ -5,8 +5,8 @@ import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import {useEffect, useState} from "react";
 
 export default function Timer() {
-    const { snapshot, stateMachine } = useSurveyManager();
-    const [timer, setTimer] = useState("1:00");
+    const { stateMachine } = useSurveyManager();
+    const [timer, setTimer] = useState("5:00");
 
     useEffect(() => {
         const subscription = stateMachine?.on('clockTick', (event) => {
@@ -18,13 +18,9 @@ export default function Timer() {
     }, [stateMachine]);
 
     return (
-        snapshot?.matches({ UseCase: "Running" }) && timer !== '' ? (
         <Stack direction="row" spacing={1}>
             <TimerOutlinedIcon/>
             <Typography>{timer}</Typography>
         </Stack>
-        ) : (
-            <></>
-        )
     );
 }
