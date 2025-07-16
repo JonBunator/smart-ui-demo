@@ -18,12 +18,12 @@ export default function MainToolbar() {
                 <ToolbarButton icon={<BroomRegular className="broom-icon"/>}></ToolbarButton>
                 <SplitButton icon={<FolderArrowRightRegular className="folder-icon"/>} appearance="subtle"></SplitButton>
                 <ToolbarDivider />
-                <ToolbarButton icon={<ArrowReplyRegular className="reply-icon"/>}></ToolbarButton>
-                <ToolbarButton icon={<ArrowReplyAllRegular className="reply-icon"/>}></ToolbarButton>
-                <SplitButton icon={<ArrowForwardRegular className="forward-icon"/>} appearance="subtle"></SplitButton>
-                <ToolbarDivider />
-                <SplitButton icon={<FlashRegular className="flash-icon"/>}>Schnellstart</SplitButton>
-                <ToolbarDivider />
+                <ToolbarButton className="hide-1" icon={<ArrowReplyRegular className="reply-icon"/>}></ToolbarButton>
+                <ToolbarButton className="hide-1" icon={<ArrowReplyAllRegular className="reply-icon"/>}></ToolbarButton>
+                <SplitButton className="hide-1" icon={<ArrowForwardRegular className="forward-icon"/>} appearance="subtle"></SplitButton>
+                <ToolbarDivider className="hide-1"/>
+                <SplitButton className="hide-2" icon={<FlashRegular className="flash-icon"/>}>Schnellstart</SplitButton>
+                <ToolbarDivider className="hide-2" />
                 <ToolbarButton icon={<MoreHorizontalRegular/>}></ToolbarButton>
             </Toolbar>
         </Card>

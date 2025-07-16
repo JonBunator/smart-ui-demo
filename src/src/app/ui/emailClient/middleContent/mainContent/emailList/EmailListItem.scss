@@ -11,6 +11,9 @@
     cursor: pointer;
     background: var(--colorNeutralBackground1);
     padding: 12px 20px;
+    @media (max-width: 1800px) {
+        padding: 12px 12px;
+    }
 
     &.unread {
         border-left: 4px solid var(--colorNeutralForeground2BrandSelected);
@@ -30,8 +33,6 @@
         background: var(--colorNeutralBackground3);
     }
 
-
-
     .second-line {
         display: flex;
         justify-content: space-between;
@@ -44,6 +45,12 @@
         display: flex;
         color: var(--colorNeutralForeground3);
         width: 200px;
+    }
+
+    @media (max-width: 1900px) {
+        .second-line, .third-line {
+            width: 150px;
+        }
     }
 
     .ellipsis-text {

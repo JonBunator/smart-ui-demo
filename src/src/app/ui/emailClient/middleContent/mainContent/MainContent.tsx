@@ -43,7 +43,6 @@ export default function MainContent() {
     }, [updateEmails]);
 
     const sendEmailEvent = useCallback(async (email: EMail)=> {
-        console.log("email received", email)
         const aiSupport = await getAISupportForCurrentUseCase();
         if(aiSupport !== AISupport.PROACTIVE_AGENT) {
             return;

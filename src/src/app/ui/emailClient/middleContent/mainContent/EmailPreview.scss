@@ -27,6 +27,18 @@
 
             }
 
+            @media (max-width: 1800px) {
+                .hide-1 {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 1600px) {
+                .hide-2, .hide-3 {
+                    display: none;
+                }
+            }
+
             .first-line {
                 .fui-Toolbar {
                     padding: 0;

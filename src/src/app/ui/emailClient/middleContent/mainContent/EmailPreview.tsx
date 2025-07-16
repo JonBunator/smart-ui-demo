@@ -41,18 +41,18 @@ export default function EmailPreview(props: EmailPreviewProps) {
                                         <Text className="author-email">&lt;{email.authorEmail}&gt;</Text>
                                     </div>
                                     <Toolbar>
-                                        <ToolbarButton icon={<WeatherSunnyRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarButton icon={<EmojiRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarButton icon={<ArrowReplyRegular className="purple-icon"/>}></ToolbarButton>
-                                        <ToolbarButton icon={<ArrowReplyAllRegular className="purple-icon"/>}></ToolbarButton>
-                                        <ToolbarButton icon={<ArrowForwardRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarDivider />
+                                        <ToolbarButton className="hide-1" icon={<WeatherSunnyRegular className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-1" icon={<EmojiRegular className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowReplyRegular className="purple-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowReplyAllRegular className="purple-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowForwardRegular className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarDivider className="hide-2" />
                                         <ToolbarButton icon={<MoreHorizontalRegular/>}></ToolbarButton>
                                     </Toolbar>
                                 </div>
                                 <div className="second-line">
                                     <Text>An: <Text className="recipient">Ferienhäuservermietung GmbH</Text></Text>
-                                    <Text className="date">
+                                    <Text className="date hide-3">
                                         {email.sentTime.toLocaleDateString() + " " + toLocaleTimeNoSeconds(email.sentTime)}
                                     </Text>
                                 </div>

@@ -3,6 +3,18 @@
     margin: 0 8px;
     .fui-Toolbar {
         padding: 4px;
+
+        @media (max-width: 1450px) {
+            .hide-1 {
+                display: none;
+            }
+        }
+        @media (max-width: 1830px) {
+            .hide-2 {
+                display: none;
+            }
+        }
+
         .send-email {
             margin-right: 4px;
         }

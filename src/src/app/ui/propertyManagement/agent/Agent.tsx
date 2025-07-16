@@ -24,7 +24,7 @@ export default function Agent() {
             <ChatHistory history={chatHistory} loading={loading} loadingText={loadingText}/>
             <div className="prompt-field">
                 <TextField multiline
-                           placeholder="Frag etwas..."
+                           placeholder="Fragen Sie etwas..."
                            className="prompt-textfield"
                            fullWidth value={value} onChange={(event) => setValue(event.target.value)} />
                 <div className="field-buttons">

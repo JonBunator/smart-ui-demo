@@ -31,8 +31,8 @@ export default function EmailList(props: EmailListItemProps) {
                         <Tab value="tab2">Sonstige</Tab>
                     </TabList>
                     <ToolbarButton icon={<ArchiveRegular/>}></ToolbarButton>
-                    <ToolbarButton icon={<FilterRegular />}></ToolbarButton>
-                    <ToolbarButton icon={<ArrowSortRegular />}></ToolbarButton>
+                    <ToolbarButton className="hide" icon={<FilterRegular />}></ToolbarButton>
+                    <ToolbarButton className="hide" icon={<ArrowSortRegular />}></ToolbarButton>
                 </Toolbar>
 
 
