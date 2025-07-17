@@ -46,7 +46,7 @@ export default function Content() {
                 </Grid>
                 <Grid size={12}>
                     <Typography>Gender:</Typography>
-                    <SmartRadioGroup id="gender" row value={gender} onChange={(e) => setGender(e.target.value)}>
+                    <SmartRadioGroup id="gender" row value={gender} onChange={(e) => setGender(e.target.value)} onReset={setGender}>
                         <FormControlLabel value="male" control={<SmartRadio id="gender-male" />} label="Male" />
                         <FormControlLabel value="female" control={<SmartRadio id="gender-female" />} label="Female" />
                         <FormControlLabel value="other" control={<SmartRadio id="gender-other" />} label="Other" />

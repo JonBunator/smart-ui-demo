@@ -1,5 +1,5 @@
 import {RadioProps, Radio} from "@mui/material";
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useRef} from "react";
 import {SmartComponent, ValueType, SmartComponentElementProps} from "smart-ui";
 import { useSmartRadioGroup } from "./SmartRadioGroup";
 import "./SmartRadio.scss"
@@ -10,47 +10,28 @@ export default function SmartRadio(props: SmartRadioProps) {
     const {id, smartSemantic, checked, value, className, ...otherProps} = props;
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const {radioGroupValue, fakeValue, approvedValue, changeApproved, changeFakeValue} = useSmartRadioGroup();
+    const {onValueChange, onReset, radioGroupValue} = useSmartRadioGroup();
 
     const updateValue = useCallback(async (newValue: ValueType) => {
-        if(newValue === true) {
-            changeFakeValue(value);
-        }
-        return true;
-    }, [changeFakeValue, value]);
-
-    const handleApprove = useCallback(async (accept: boolean) => {
-        //Approve changes when approved or suggested changes were changed
-        changeApproved((fakeValue !== value || accept) ? fakeValue : undefined);
-    }, [changeApproved, fakeValue, value]);
-
-    useEffect(() => {
-        if(approvedValue !== undefined && approvedValue === value) {
-            changeApproved(undefined);
+        if(newValue) {
+            onValueChange(value);
             if(inputRef.current) {
                 inputRef.current.click();
             }
         }
-    }, [approvedValue, changeApproved, changeFakeValue, value]);
+        return true;
+    }, [onValueChange, value]);
 
-    function handleClick(event:  React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        // preventDefault is used here to prevent triggering update changes in the radio group.
-        event.preventDefault();
-        changeFakeValue(value);
-    }
+    const handleApprove = useCallback(async (accept: boolean) => {
+        if(!accept) {
+            onReset();
+        }
+    }, [onReset]);
 
     return (
-        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? (fakeValue ? value === fakeValue : value === radioGroupValue)} smartOnChange={updateValue} onApprove={handleApprove} noResetAfterDeny>
-            {fakeValue !== undefined &&
+        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? radioGroupValue === value} smartOnChange={updateValue} onApprove={handleApprove}>
                 <Radio
                     className={`${className} smart-component`}
-                    id={id + "-fake"}
-                    checked={fakeValue === value}
-                    onClick={(event) => handleClick(event)}
-                />
-            }
-                <Radio
-                    className={`${className} smart-component${fakeValue ? " smart-radio-hide" : ""}`}
                     id={id}
                     slotProps={{
                         input:{ref:inputRef}

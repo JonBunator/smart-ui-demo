@@ -17,11 +17,9 @@ test('Basic agent form fill', async ({ page }) => {
   expect(name).toBe('Luke');
 
   const genderMale = await page.isChecked('#gender-male');
-  const genderMaleFake = await page.isChecked('#gender-male-fake');
   const genderFemale = await page.isChecked('#gender-female');
   const genderOther = await page.isChecked('#gender-other');
-  expect(genderMale).toBe(false);
-  expect(genderMaleFake).toBe(true);
+  expect(genderMale).toBe(true);
   expect(genderFemale).toBe(false);
   expect(genderOther).toBe(false);
 

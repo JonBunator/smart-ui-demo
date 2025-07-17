@@ -218,6 +218,7 @@ export default function AddMaintenance() {
                             name="urgency"
                             value={formData.urgency}
                             onChange={handleChange}
+                            onReset={(value) => handleValueChange("urgency", value as string)}
                         >
                             {urgencyOptions.map((option) => (
                                 <FormControlLabel key={option.value} value={option.value} control={<SmartRadio id={option.value} />} label={option.label} />

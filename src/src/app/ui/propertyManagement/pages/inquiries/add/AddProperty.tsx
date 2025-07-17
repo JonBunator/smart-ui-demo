@@ -275,6 +275,7 @@ export default function AddProperty() {
                             value={formData.type}
                             smartSemantic="property type"
                             onChange={handleChange}
+                            onReset={(value) => handleValueChange("type", value as string)}
                             name="type"
                         >
                             <FormControlLabel value="villa" control={<SmartRadio id="villa" />} label="Villa" />
