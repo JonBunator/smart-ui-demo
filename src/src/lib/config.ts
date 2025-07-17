@@ -1,7 +1,7 @@
 import { AISupport, DataType } from '@prisma'
 
 // Duration of one use case in seconds
-export const USE_CASE_DURATION = 300;
+export const USE_CASE_DURATION = 3000;
 
 export const NUM_USE_CASES = 3;
 

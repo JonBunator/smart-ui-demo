@@ -4,6 +4,7 @@ import {bookings} from "@/app/ui/propertyManagement/pages/questions/parser/confi
 import {properties} from "@/app/ui/propertyManagement/pages/questions/parser/configs/properties";
 import {maintenance} from "@/app/ui/propertyManagement/pages/questions/parser/configs/maintenance";
 import QuestionsParser from "@/app/ui/propertyManagement/pages/questions/parser/QuestionsParser";
+import FrameLayout from "@/app/ui/propertyManagement/layoutComponents/FrameLayout";
 import "./Questions.scss"
 
 const questionaires = [bookings, properties, maintenance]
@@ -13,9 +14,9 @@ export default async function Questions() {
     const useCaseIndex = await getUseCaseIndex();
 
     return (
-        <div className="questionaire">
+        <FrameLayout>
             {useCaseIndex !== null && <QuestionsParser addData={addDataFunctions[useCaseIndex]} questionaire={questionaires[useCaseIndex]}/>}
             {useCaseIndex !== null && <QuestionsNavigation useCaseIndex={useCaseIndex} />}
-        </div>
+        </FrameLayout>
     );
 }

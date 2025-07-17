@@ -2,7 +2,7 @@
 import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import TextareaElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/TextareaElement";
-import {Button, Typography, Paper} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import React, {createContext, useCallback, useContext, useMemo, useRef, useState} from "react";
 import MultipleChoiceElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceElement";
 import CheckboxesElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/CheckboxesElement";
@@ -69,42 +69,40 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
 
     return (
         <QuestionsParserContext.Provider value={value}>
-            <Paper className="questionaire-content">
-                <div className="questionaire-wrapper">
-                    <div className="header">
-                        <Typography variant="h5">{questionaire.title}</Typography>
-                        <Typography variant="body1">{questionaire.description}</Typography>
-                    </div>
-                    <div className="questions">
-                        {questionaire.elements.map((element, index) => {
-                            return (
-                                <div className="question" key={element.name}>
-                                    <Typography variant="body1">{`${index + 1}. ${element.description}`}</Typography>
-                                    <div className="question-input">
-                                        {(() => {
-                                            switch (element.type) {
-                                                case "textarea":
-                                                    return <TextareaElement element={element} values={formData} onValuesChange={setFormData} />
-                                                case "multiple-choice-grid":
-                                                    return <MultipleChoiceGridElement element={element} values={formData} onValuesChange={setFormData} />
-                                                case "multiple-choice":
-                                                    return <MultipleChoiceElement element={element} values={formData} onValuesChange={setFormData} />
-                                                case "checkboxes":
-                                                    return <CheckboxesElement element={element} values={formData} onValuesChange={setFormData} />
-                                                default:
-                                                    return null;
-                                            }
-                                        })()}
-                                    </div>
-                            </div>
-                            );
-                        })}
-                    </div>
+            <div className="questionaire-wrapper">
+                <div className="header">
+                    <Typography variant="h5">{questionaire.title}</Typography>
+                    <Typography variant="body1">{questionaire.description}</Typography>
                 </div>
-                <div className="action-row">
-                    <Button variant="contained" onClick={submit}>Abschicken</Button>
+                <div className="questions">
+                    {questionaire.elements.map((element, index) => {
+                        return (
+                            <div className="question" key={element.name}>
+                                <Typography variant="body1">{`${index + 1}. ${element.description}`}</Typography>
+                                <div className="question-input">
+                                    {(() => {
+                                        switch (element.type) {
+                                            case "textarea":
+                                                return <TextareaElement element={element} values={formData} onValuesChange={setFormData} />
+                                            case "multiple-choice-grid":
+                                                return <MultipleChoiceGridElement element={element} values={formData} onValuesChange={setFormData} />
+                                            case "multiple-choice":
+                                                return <MultipleChoiceElement element={element} values={formData} onValuesChange={setFormData} />
+                                            case "checkboxes":
+                                                return <CheckboxesElement element={element} values={formData} onValuesChange={setFormData} />
+                                            default:
+                                                return null;
+                                        }
+                                    })()}
+                                </div>
+                        </div>
+                        );
+                    })}
                 </div>
-            </Paper>
+            </div>
+            <div className="action-row">
+                <Button variant="contained" onClick={submit}>Abschicken</Button>
+            </div>
         </QuestionsParserContext.Provider>
     );
 }

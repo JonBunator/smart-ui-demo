@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import {useParams, useRouter} from 'next/navigation'
 import {Button} from "@mui/material";
 import {isInviteCodeValid, startNewSurvey} from "@/lib/db/database";
+import FrameLayoutTextImage from "@/app/ui/propertyManagement/layoutComponents/FrameLayoutTextImage";
+import LoadingPage from "@/app/ui/LoadingPage";
 
 export default function StartPage() {
     const params = useParams<{ inviteCode: string }>()
@@ -21,11 +23,13 @@ export default function StartPage() {
         router.push(`/survey`)
     }
 
-    return (
-        <div>
-            {inviteCodeValid === true && <Button disabled={!inviteCodeValid} onClick={startSurvey}>Neue Umfrage starten</Button>}
-            {inviteCodeValid === false && <div>Invite code is not valid or survey is already closed!</div>}
-            {inviteCodeValid === undefined && <div>Lädt...</div>}
-        </div>
-    );
+    if(inviteCodeValid) {
+        return (<Button disabled={!inviteCodeValid} onClick={startSurvey}>Neue Umfrage starten</Button>);
+    }
+
+    if(inviteCodeValid === false) {
+        return (<FrameLayoutTextImage text="Der Einladungs-Code ist ungültig oder die Umfrage wurde bereits geschlossen!" imagePath="/image/cat-invitecode.png"/>);
+    }
+
+    return (<LoadingPage/>);
 }
