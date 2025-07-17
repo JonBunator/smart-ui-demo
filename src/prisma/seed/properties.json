@@ -6,7 +6,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Sonnenblick Villa",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Sonnenblick Villa\nBeschreibung: Eine luxuriöse Villa mit atemberaubendem Blick auf die Sonne und die Umgebung.\nStraße: Kirchweg\nHausnummer: 55c\nStadt: Grenchen\nPostleitzahl: 2715\nLand: Schweiz\nTyp: Villa\nAnzahl der Schlafzimmer: 4\nAnzahl der Badezimmer: 3\nMaximale Gästeanzahl: 8\nFläche: 250 Quadratmeter\nPreis pro Nacht: 300 Euro\nKaution: 500 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz"      }
     },
@@ -37,7 +37,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Meeresrauschen Cottage",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Meeresrauschen Cottage\nBeschreibung: Ein gemütliches Cottage direkt am Meer, ideal für Entspannung und Erholung.\nStraße: Explanada Caridad\nHausnummer: 3\nStadt: Fuengirola\nPostleitzahl: 19557\nLand: Spanien\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 80 Quadratmeter\nPreis pro Nacht: 150 Euro\nKaution: 200 Euro\nZusätzliche Informationen: WLAN, Haustierfreundlich"      }
     },
@@ -68,7 +68,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Waldzauber Lodge",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Waldzauber Lodge\nBeschreibung: Eine charmante Lodge im Herzen des Waldes, perfekt für Naturliebhaber.\nStraße: Allensteiner Str.\nHausnummer: 2\nStadt: Neu Mia\nPostleitzahl: 55923\nLand: Deutschland\nTyp: Hütte\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 120 Quadratmeter\nPreis pro Nacht: 180 Euro\nKaution: 300 Euro\nZusätzliche Informationen: WLAN, Parkplatz, Haustierfreundlich"      }
     },
@@ -99,7 +99,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Bergpanorama Chalet",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Bergpanorama Chalet\nBeschreibung: Ein Chalet mit spektakulärem Blick auf die Berge, ideal für Wintersportler.\nStraße: Strada Aleardo\nHausnummer: 59\nStadt: Calogero umbro\nPostleitzahl: 64450\nLand: Italien\nTyp: Hütte\nAnzahl der Schlafzimmer: 5\nAnzahl der Badezimmer: 4\nMaximale Gästeanzahl: 10\nFläche: 300 Quadratmeter\nPreis pro Nacht: 400 Euro\nKaution: 600 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz, Haustierfreundlich"      }
     },
@@ -130,7 +130,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Küstenparadies Bungalow",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Küstenparadies Bungalow\nBeschreibung: Ein Bungalow direkt an der Küste, ideal für Strandliebhaber.\nStraße: Peetersplantsoen\nHausnummer: 267c\nStadt: Half\nPostleitzahl: 4503 YR\nLand: Niederlande\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 90 Quadratmeter\nPreis pro Nacht: 160 Euro\nKaution: 250 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz"      }
     },
@@ -161,7 +161,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Landlust Haus",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Landlust Haus\nBeschreibung: Ein traditionelles Haus auf dem Land, ideal für Familien.\nStraße: Idrottsgärdet\nHausnummer: 8\nStadt: Nyby\nPostleitzahl: 55533\nLand: Schweden\nTyp: Villa\nAnzahl der Schlafzimmer: 4\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 8\nFläche: 200 Quadratmeter\nPreis pro Nacht: 220 Euro\nKaution: 350 Euro\nZusätzliche Informationen: WLAN, Parkplatz, Haustierfreundlich"      }
     },
@@ -192,7 +192,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Seewind Residenz",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Seewind Residenz\nBeschreibung: Eine moderne Residenz mit Blick auf den See, ideal für Erholung.\nStraße: Lindenhofweg\nHausnummer: 16c\nStadt: Biel/Bienne\nPostleitzahl: 7250\nLand: Schweiz\nTyp: Apartment\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 150 Quadratmeter\nPreis pro Nacht: 250 Euro\nKaution: 400 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz"      }
     },
@@ -223,7 +223,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Naturidyll Hütte",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Naturidyll Hütte\nBeschreibung: Eine rustikale Hütte inmitten der Natur, ideal für Abenteuer.\nStraße: Quinta Margarita Viera\nHausnummer: 9\nStadt: El Prat de LLobregat\nPostleitzahl: 35238\nLand: Spanien\nTyp: Hütte\nAnzahl der Schlafzimmer: 2\nAnzahl der Badezimmer: 1\nMaximale Gästeanzahl: 4\nFläche: 70 Quadratmeter\nPreis pro Nacht: 140 Euro\nKaution: 200 Euro\nZusätzliche Informationen: WLAN, Haustierfreundlich"      }
     },
@@ -254,7 +254,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Himmelreich Retreat",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Himmelreich Retreat\nBeschreibung: Ein exklusives Retreat mit himmlischem Ambiente, ideal für Entspannung.\nStraße: Gierener Weg\nHausnummer: 90c\nStadt: Achkinadzeburg\nPostleitzahl: 13401\nLand: Deutschland\nTyp: Villa\nAnzahl der Schlafzimmer: 5\nAnzahl der Badezimmer: 3\nMaximale Gästeanzahl: 10\nFläche: 280 Quadratmeter\nPreis pro Nacht: 350 Euro\nKaution: 500 Euro\nZusätzliche Informationen: WLAN, Pool, Klimaanlage, Parkplatz, Haustierfreundlich"      }
     },
@@ -285,7 +285,7 @@
     "EMail": {
       "create": {
         "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@ferienwohnungen.de",
+        "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Neues Ferienhaus hinzufügen: Strandjuwel Domizil",
         "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Strandjuwel Domizil\nBeschreibung: Ein Juwel am Strand, ideal für luxuriöse Aufenthalte.\nStraße: Incrocio Zappalà\nHausnummer: 971\nStadt: Sesto Callisto sardo\nPostleitzahl: 24476\nLand: Italien\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 160 Quadratmeter\nPreis pro Nacht: 280 Euro\nKaution: 400 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz, Haustierfreundlich"      }
     },

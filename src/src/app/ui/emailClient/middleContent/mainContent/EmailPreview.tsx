@@ -51,7 +51,7 @@ export default function EmailPreview(props: EmailPreviewProps) {
                                     </Toolbar>
                                 </div>
                                 <div className="second-line">
-                                    <Text>An: <Text className="recipient">Ferienhäuservermietung GmbH</Text></Text>
+                                    <Text>An: <Text className="recipient">Leafy Lodges GmbH</Text></Text>
                                     <Text className="date hide-3">
                                         {email.sentTime.toLocaleDateString() + " " + toLocaleTimeNoSeconds(email.sentTime)}
                                     </Text>

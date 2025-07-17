@@ -24,7 +24,7 @@ export function createProperty(_: unknown, index: number) {
         EMail: {
             create: {
                 author: "Kira Bartels",
-                authorEmail: "kira.bartels@ferienwohnungen.de",
+                authorEmail: "kira.bartels@leafylodges.de",
                 subject: "",
                 content: "",
             }
