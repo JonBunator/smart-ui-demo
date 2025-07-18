@@ -50,14 +50,19 @@
             flex-direction: column;
             padding: 6px 8px;
             border-radius: 8px;
+            overflow-wrap: anywhere;
+
             .time {
                 font-size: 12px;
             }
             .loading-message {
-                display: flex;
-                gap: 6px;
+                display: inline;
+                i {
+                    margin-right: 6px;
+                }
                 .loader {
                     //SOURCE: https://css-loaders.com/dots/
+                    display: inline-block;
                     width: 20px;
                     aspect-ratio: 2;
                     --_g: no-repeat radial-gradient(circle closest-side, var(--mui-palette-text-secondary) 90%, #0000);
