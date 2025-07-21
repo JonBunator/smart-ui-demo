@@ -15,7 +15,6 @@ import { SmartGroup } from 'smart-ui';
 import HelpDialogButton from './HelpDialogButton';
 
 const links = [
-    { name: 'Home', href: '/survey', icon: HomeOutlinedIcon, selectedIcon: HomeIcon },
     { name: 'Buchungen', href: '/survey/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon },
     { name: 'Immobilien', href: '/survey/properties', icon: HolidayVillageOutlinedIcon, selectedIcon: HolidayVillageIcon },
     { name: 'Instandhaltungen', href: '/survey/maintenance', icon: HandymanOutlinedIcon, selectedIcon: HandymanIcon },

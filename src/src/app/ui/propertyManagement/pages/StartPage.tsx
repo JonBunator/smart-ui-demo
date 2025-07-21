@@ -24,7 +24,7 @@ export default function StartPage() {
     async function startSurvey() {
         const successful = await startNewSurvey(params.inviteCode);
         setInviteCodeValid(successful);
-        router.push(`/survey`)
+        router.push('/survey/bookings')
     }
 
     if(inviteCodeValid) {
