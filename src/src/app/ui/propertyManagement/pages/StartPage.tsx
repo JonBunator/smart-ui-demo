@@ -32,7 +32,7 @@ export default function StartPage() {
             <FrameLayout>
                 <Grid className="start-page">
                     <div className="main-section">
-                        <Typography variant="h5">Umfrage zu intelligenten Benutzeroberflächen durch einen KI-Agenten (Masterarbeit Informatik)</Typography>
+                        <Typography variant="h5">Wissenschaftliche Umfrage zu intelligenten Benutzeroberflächen durch einen KI-Agenten (Masterarbeit Informatik)</Typography>
                         <Typography variant="body1">Dies ist eine interaktive Umfrage, in der die Teilnehmer eine Softwareanwendung bedienen. Dabei soll
                             evaluiert werden, inwiefern ein KI-Agent bei der Bearbeitung von Aufgaben hilfreich sein kann, um die Nutzererfahrung und Produktivität
                             zu steigern. </Typography>
