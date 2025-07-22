@@ -1,5 +1,5 @@
 import {RadioProps, Radio} from "@mui/material";
-import React, {useCallback, useRef} from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 import {SmartComponent, ValueType, SmartComponentElementProps} from "smart-ui";
 import { useSmartRadioGroup } from "./SmartRadioGroup";
 import "./SmartRadio.scss"
@@ -10,7 +10,7 @@ export default function SmartRadio(props: SmartRadioProps) {
     const {id, smartSemantic, checked, value, className, ...otherProps} = props;
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const {onValueChange, onReset, radioGroupValue} = useSmartRadioGroup();
+    const {onValueChange, onResetRadios, radioGroupValue} = useSmartRadioGroup();
 
     const updateValue = useCallback(async (newValue: ValueType) => {
         if(newValue) {
@@ -24,9 +24,9 @@ export default function SmartRadio(props: SmartRadioProps) {
 
     const handleApprove = useCallback(async (accept: boolean) => {
         if(!accept) {
-            onReset();
+            onResetRadios();
         }
-    }, [onReset]);
+    }, [onResetRadios]);
 
     return (
         <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? radioGroupValue === value} smartOnChange={updateValue} onApprove={handleApprove}>

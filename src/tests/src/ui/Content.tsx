@@ -28,7 +28,7 @@ export default function Content() {
   return (
     <div>
         <SmartTextField fullWidth label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-        <SmartRadioGroup row value={gender} onChange={(e) => setGender(e.target.value)} onReset={setGender}>
+        <SmartRadioGroup row value={gender} onChange={(e) => setGender(e.target.value)} onResetRadios={setGender}>
             <FormControlLabel className="gender-male-label" value="male" control={<SmartRadio id="gender-male" />} label="Male" />
             <FormControlLabel className="gender-female-label" value="female" control={<SmartRadio id="gender-female" />} label="Female" />
             <FormControlLabel className="gender-other-label" value="other" control={<SmartRadio id="gender-other" />} label="Other" />

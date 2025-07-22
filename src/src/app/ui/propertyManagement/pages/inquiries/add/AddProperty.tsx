@@ -1,5 +1,5 @@
 "use client"
-import React, {useState, ChangeEvent} from "react";
+import React, {useState, ChangeEvent, useCallback, useEffect} from "react";
 import {
     Grid,
     Typography,
@@ -82,7 +82,7 @@ export default function AddProperty() {
         handleValueChange(value, name);
     }
 
-    const handleValueChange = (value: string, name: string) => {
+    const handleValueChange = useCallback((value: string, name: string) => {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -91,7 +91,11 @@ export default function AddProperty() {
             ...prev,
             [name]: false,
         }));
-    }
+    }, []);
+
+    const resetRadios = useCallback((value: string) => {
+        handleValueChange(value, "type");
+    }, [handleValueChange]);
 
     const handleAdditionalInfoChange = (event: ChangeEvent<HTMLInputElement>) => {
         setFormData((prev) => ({
@@ -275,7 +279,7 @@ export default function AddProperty() {
                             value={formData.type}
                             smartSemantic="property type"
                             onChange={handleChange}
-                            onReset={(value) => handleValueChange("type", value as string)}
+                            onResetRadios={resetRadios}
                             name="type"
                         >
                             <FormControlLabel value="villa" control={<SmartRadio id="villa" />} label="Villa" />

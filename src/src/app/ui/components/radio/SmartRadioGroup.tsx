@@ -1,5 +1,5 @@
 import {RadioGroup, RadioGroupProps} from "@mui/material";
-import React, {createContext, useCallback, useContext, useMemo, useState} from "react";
+import React, {createContext, useCallback, useContext, useEffect, useMemo, useRef} from "react";
 import {SmartComponent, SmartComponentElementProps} from "smart-ui";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -9,11 +9,11 @@ export type SmartRadioProps = RadioGroupProps & SmartComponentElementProps & {
      * This callback is called when radios should be reverted to previous value.
      * @param value The previous value.
      */
-    onReset?: (value: any) => void;
+    onResetRadios?: (value: any) => void;
 };
 
 interface SmartRadioGroupContextType {
-    onReset: () => void;
+    onResetRadios: () => void;
     onValueChange: (newValue: any) => void;
     radioGroupValue: any;
 }
@@ -21,30 +21,30 @@ interface SmartRadioGroupContextType {
 const SmartRadioGroupContext = createContext<SmartRadioGroupContextType | undefined>(undefined);
 
 export default function SmartRadioGroup(props: SmartRadioProps) {
-    const {id, smartSemantic, value, onReset, children, ...otherProps} = props;
-    const [previousValue, setPreviousValue] = useState(undefined);
-    const [changedValue, setChangedValue] = useState(undefined);
+    const {id, smartSemantic, value, onResetRadios, children, ...otherProps} = props;
+    const previousValue = useRef(undefined);
+    const changedValue = useRef(undefined);
 
     const handleReset = useCallback(() => {
-        if(onReset === undefined) {
+        if(onResetRadios === undefined) {
             console.warn("Radio can't be unchecked by AI agent because onUnchecked callback is not set.")
         } else {
-            if(value === changedValue) {
-                onReset(previousValue);
+            if(value === changedValue.current) {
+                console.log("called")
+                onResetRadios(previousValue.current);
             }
         }
-        setPreviousValue(undefined);
-        setChangedValue(undefined)
-    }, [changedValue, onReset, previousValue, value]);
+        previousValue.current = undefined;
+        changedValue.current = undefined;
+    }, [onResetRadios, value]);
 
     const handleValueChange = useCallback((newValue: any) => {
-        setPreviousValue(value);
-        setChangedValue(newValue);
+        previousValue.current = value;
+        changedValue.current = newValue;
     }, [value]);
 
-
     const contextValue = useMemo(() => ({
-        onReset: handleReset,
+        onResetRadios: handleReset,
         onValueChange: handleValueChange,
         radioGroupValue: value
     }), [handleReset, handleValueChange, value]);

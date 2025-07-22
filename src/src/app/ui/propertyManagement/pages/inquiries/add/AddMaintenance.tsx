@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useCallback } from "react";
 import {
     Grid,
     Typography,
@@ -79,7 +79,7 @@ export default function AddMaintenance() {
         handleValueChange(value, name);
     }
 
-    const handleValueChange = (value: string, name: string) => {
+    const handleValueChange = useCallback((value: string, name: string) => {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -88,7 +88,11 @@ export default function AddMaintenance() {
             ...prev,
             [name]: false,
         }));
-    }
+    }, []);
+
+    const resetRadios = useCallback((value: string) => {
+        handleValueChange(value, "urgency");
+    }, [handleValueChange]);
 
     const handleSubmit = async () => {
         const newErrors = {
@@ -218,7 +222,7 @@ export default function AddMaintenance() {
                             name="urgency"
                             value={formData.urgency}
                             onChange={handleChange}
-                            onReset={(value) => handleValueChange("urgency", value as string)}
+                            onResetRadios={resetRadios}
                         >
                             {urgencyOptions.map((option) => (
                                 <FormControlLabel key={option.value} value={option.value} control={<SmartRadio id={option.value} />} label={option.label} />
