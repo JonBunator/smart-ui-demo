@@ -49,7 +49,7 @@ export default function MainContent() {
         }
         sendEvent("A new email was received. Check if the email is about adding a booking, " +
             "property or maintenance request. If so ask the user if the agent should add it. " +
-            "Name the subject and author in the response to the user. Information about the email:\n" +
+            "Name the subject and author in the response to the user. Don't querry the email via tools. Instead use this information:\n" +
             `Subject: ${email.subject}\n` +
             `Author: ${email.author}\n` +
             `Email: ${email.authorEmail}\n` +

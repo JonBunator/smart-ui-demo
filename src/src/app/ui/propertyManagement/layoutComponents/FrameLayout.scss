@@ -7,6 +7,8 @@
   .frame-layout-content {
     display: flex;
     padding: 16px 32px;
+    flex-direction: column;
+    gap: 16px;
     @media (max-width: 1000px) {
       width: 100%;
       border-radius: 0;
@@ -16,7 +18,5 @@
       min-width: 1000px;
       margin: 16px 0;
     }
-    flex-direction: column;
-    gap: 16px;
   }
 }

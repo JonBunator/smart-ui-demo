@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
 };
 
 module.exports = {
+    async redirects() {
+        return [
+            {
+                source: '/survey',
+                destination: '/survey/bookings',
+                permanent: true,
+            },
+        ]
+    },
     output: "standalone",
     reactStrictMode: false,
     eslint: {

@@ -311,16 +311,19 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
  * @param lastN The number of emails to get.
  */
 export async function getEmails(lastN: number): Promise<EMail[]> {
-    const useCaseIndex = await getUseCaseIndex();
-    if(!useCaseIndex) {
+    const useCaseData = await _getUseCaseData();
+    if (useCaseData === null) {
         throw new Error("An error occured.");
     }
-    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+    const type = USE_CASE_INDEX_TYPES[useCaseData.useCaseIndex];
     try {
         const data = await prisma.data.findMany({
             where: {
                 category: DataCategory.GroundTruth,
                 type: type,
+                order: {
+                    lte: useCaseData.dataIndex,
+                },
             },
             orderBy: {
                 order: 'desc',
