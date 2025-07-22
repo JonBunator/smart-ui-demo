@@ -1,7 +1,7 @@
 import { BotFilled } from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
-import { Avatar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
 
@@ -39,21 +39,21 @@ export default function ChatHistory(props: ChatHistoryProps) {
                 Ich kann Ihnen helfen mit der Benutzeroberfläche zu interagieren. Fragen Sie etwas.
             </AgentMessage>
             {history
-                .filter((item) => item.creator !== ChatMessageCreator.SYSTEM)
+                .filter((item) => ((item.message.role === ChatMessageCreator.AGENT && item.message.content !== undefined) || item.message.role === ChatMessageCreator.USER))
                 .map((item, index) => (
-                <div key={index} className={`chat-history-element ${item.creator === ChatMessageCreator.AGENT ? "agent-message" : "user-message"}`}>
-                    {item.creator === ChatMessageCreator.AGENT && (<Avatar className="ai-avatar"><BotFilled /></Avatar>)}
-                    <div  className="chat-history-message">
-                        <div className="message">
-                            <Markdown>
-                                {item.creator === ChatMessageCreator.AGENT ? JSON.parse(item.message).naturalLanguageInteraction : item.message}
-                            </Markdown>
+                    <div key={index} className={`chat-history-element ${item.message.role === ChatMessageCreator.AGENT ? "agent-message" : "user-message"}`}>
+                        {item.message.role === ChatMessageCreator.AGENT && (<Avatar className="ai-avatar"><BotFilled /></Avatar>)}
+                        <div  className="chat-history-message">
+                            <div className="message">
+                                <Markdown>
+                                    {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).naturalLanguageInteraction : item.message.content}
+                                </Markdown>
+                            </div>
+                            {item.sentTime !== "" && <div className="time">
+                                {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}
+                            </div>}
                         </div>
-                        {item.sentTime !== "" && <div className="time">
-                            {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}
-                        </div>}
                     </div>
-                </div>
                 ))}
             {loading && (
                 <AgentMessage>

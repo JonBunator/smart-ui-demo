@@ -307,6 +307,41 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
 }
 
 /**
+ * Gets last emails.
+ * @param lastN The number of emails to get.
+ */
+export async function getEmails(lastN: number): Promise<EMail[]> {
+    const useCaseIndex = await getUseCaseIndex();
+    if(!useCaseIndex) {
+        throw new Error("An error occured.");
+    }
+    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+    try {
+        const data = await prisma.data.findMany({
+            where: {
+                category: DataCategory.GroundTruth,
+                type: type,
+            },
+            orderBy: {
+                order: 'desc',
+            },
+            include: {
+                EMail: true,
+            },
+            take: lastN,
+        });
+        if (!data) {
+            throw new Error("Data is undefined.");
+        }
+        return data.map(item => item.EMail).filter(item => item !== null);
+
+    } catch(error) {
+        console.error(error);
+        throw new Error("An error occured.");
+    }
+}
+
+/**
  * Returns index of current use case.
  */
 export async function getUseCaseIndex(): Promise<number|null> {

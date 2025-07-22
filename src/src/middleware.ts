@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
             return redirectWhenAuthenticated("/completed");
 
         } else if((surveyState === "NotStarted" || surveyState["UseCase"] === "Running" || surveyState["UseCase"] === "NotStarted" || surveyState["UseCase"] === "NoMoreData")) {
-            return redirectWhenAuthenticated("/survey/bookings");
+            return redirectWhenAuthenticated("/survey");
 
         } else if(surveyState["UseCase"] === "Questions") {
             return redirectWhenAuthenticated("/questions");
