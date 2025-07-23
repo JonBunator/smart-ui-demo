@@ -1,5 +1,6 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
+import type {} from '@mui/x-data-grid/themeAugmentation';
 
 export const theme = createTheme({
     typography: {
@@ -11,30 +12,28 @@ export const theme = createTheme({
             palette: {
                 mode: 'dark',
                 primary: {
-                    main: '#a4c8ae',
-                    contrastText: '#3b4a3f',
-                },
-                secondary: {
-                    main: '#e7d6b7',
+                    main: '#c6ecd0',
+                    contrastText: '#4a6c56',
                 },
                 error: {
-                    main: '#ffdad6',
-                    contrastText: '#93000a',
-                },
-                info: {
-                    main: '#aec1df',
-                    contrastText: '#3d4f68',
+                    main: '#93000a',
+                    contrastText: '#ffdad6',
                 },
                 success: {
-                    main: '#d4fade',
+                    main: '#c6ecd0',
+                    contrastText: '#4a6c56',
                 },
                 warning: {
                     main: '#fde181',
                 },
                 background: {
-                    default: '#121412',
+                    default: '#0d0f0d',
                     paper: '#1e201e',
                 },
+                DataGrid: {
+                    bg: "#292a28",
+                    headerBg: '#333533',
+                }
             },
         },
         light: {
@@ -42,13 +41,6 @@ export const theme = createTheme({
                 mode: 'light',
                 primary: {
                     main: '#7a9481',
-                },
-                secondary: {
-                    main: '#e7d6b7',
-                },
-                info: {
-                    main: '#aec1df',
-                    contrastText: '#3d4f68',
                 },
                 success: {
                     main: '#7a9481',
@@ -60,6 +52,10 @@ export const theme = createTheme({
                     default: '#e8e8e5',
                     paper: '#faf9f6',
                 },
+                DataGrid: {
+                    bg: "transparent",
+                    headerBg: '#e8e8e5',
+                }
             },
         }
     },
