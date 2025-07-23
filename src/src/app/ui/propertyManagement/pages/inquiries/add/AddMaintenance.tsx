@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent, useCallback } from "react";
+import React, {useState, ChangeEvent, useCallback, useMemo} from "react";
 import {
     Grid,
     Typography,
@@ -179,7 +179,7 @@ export default function AddMaintenance() {
                         options={propertyOptions}
                         smartSemantic="property"
                         fullWidth
-                        value={propertyOptions.find(option => option.label === formData.property) || null}
+                        value={useMemo(() => propertyOptions.find(option => option.label === formData.property) || null, [formData.property])}
                         onChange={(_event, value) => handleValueChange(value?.label ?? "", "property")}
                         renderInput={(params) => (
                             <TextField
@@ -198,7 +198,7 @@ export default function AddMaintenance() {
                     <SmartAutocomplete
                         options={categoryOptions}
                         smartSemantic="incident category"
-                        value={categoryOptions.find(option => option.value === formData.category) || null}
+                        value={useMemo(() => categoryOptions.find(option => option.value === formData.category) || null, [formData.category])}
                         onChange={(_event, value) => handleValueChange(value?.value ?? "", "category")}
                         renderInput={(params) => (
                             <TextField

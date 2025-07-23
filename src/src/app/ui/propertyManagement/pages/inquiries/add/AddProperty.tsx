@@ -1,5 +1,5 @@
 "use client"
-import React, {useState, ChangeEvent, useCallback, useEffect} from "react";
+import React, {useState, ChangeEvent, useCallback, useEffect, useMemo} from "react";
 import {
     Grid,
     Typography,
@@ -25,6 +25,9 @@ const countryOptions = [
     { label: "Deutschland", value: "Deutschland" },
     { label: "Österreich", value: "Österreich" },
     { label: "Schweiz", value: "Schweiz" },
+    { label: "Spanien", value: "Spanien" },
+    { label: "Italien", value: "Italien" },
+    { label: "Niederlande", value: "Niederlande" },
 ];
 
 type AdditionalInfoType = "wifi" | "pool" | "airConditioning" |  "parking" | "petFriendly";
@@ -249,7 +252,7 @@ export default function AddProperty() {
                     <SmartAutocomplete
                         options={countryOptions}
                         smartSemantic="Land"
-                        value={countryOptions.find((option) => option.value === formData.country) || null}
+                        value={useMemo(() => countryOptions.find((option) => option.value === formData.country) || null, [formData.country])}
                         onChange={(_event, value) => handleValueChange(value?.value ?? "", "country")}
                         renderInput={(params) => (
                             <TextField

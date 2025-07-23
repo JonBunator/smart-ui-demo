@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent } from "react";
+import React, {useState, ChangeEvent, useMemo} from "react";
 import { Grid, Typography, Button, Box } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
@@ -250,7 +250,7 @@ export default function BookApartment() {
                     <SmartAutocomplete
                         options={countryOptions}
                         smartSemantic="Land"
-                        value={countryOptions.find((option) => option.value === formData.country) || null}
+                        value={useMemo(() => countryOptions.find((option) => option.value === formData.country) || null, [formData.country])}
                         onChange={(_event, value) => handleValueChange(value?.value ?? "", "country")}
                         renderInput={(params) => (
                             <TextField
@@ -278,7 +278,7 @@ export default function BookApartment() {
                     <SmartAutocomplete
                         smartSemantic="Property this inquiry belongs to"
                         options={linkedProperties}
-                        value={linkedProperties.find(option => option.label === formData.property) || null}
+                        value={useMemo(() => linkedProperties.find(option => option.label === formData.property) || null, [formData.property])}
                         onChange={(_event, value) => handleValueChange(value?.label ?? "", "property")}
                         renderInput={(params) => (
                             <TextField

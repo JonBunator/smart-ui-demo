@@ -59,6 +59,7 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
             <Autocomplete id={id}
                           disablePortal
                           className={`${className} smart-component`}
+                          value={value}
                           options={options}
                           getOptionLabel={getOptionLabel}
                           ref={autocompleteRef}
