@@ -3,8 +3,15 @@
     flex-direction: column;
     gap: 8px;
 
+    .approval-buttons {
+        display: flex;
+        margin: 0 8px 2px 8px;
+        justify-content: space-between;
+    }
+
     .prompt-field {
         position: relative;
+        margin-top: 6px;
         .prompt-textfield .MuiInputBase-root {
             padding-bottom: 52px;
 
@@ -23,12 +30,6 @@
             justify-content: flex-end;
             gap: 8px;
             margin: 0 8px 8px;
-            .approval-button {
-                min-width: unset;
-                .MuiButton-icon {
-                    margin: 0;
-                }
-            }
         }
     }
     .bottom-buttons {

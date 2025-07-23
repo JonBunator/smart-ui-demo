@@ -22,19 +22,18 @@ export default function Agent() {
     return (
         <Paper className="agent">
             <ChatHistory history={chatHistory} loading={loading} loadingText={loadingText}/>
+            {approvalRequired && (<div className="approval-buttons">
+                <Button size="small" startIcon={<ClearIcon/>} onClick={async () => await handleChangeApproval(false)} color="error" variant="contained">Ablehnen</Button>
+                <Button size="small" startIcon={<DoneIcon/>} onClick={async () => await handleChangeApproval(true)} color="success" variant="contained">Annehmen</Button>
+            </div>)}
             <div className="prompt-field">
                 <TextField multiline
                            placeholder="Fragen Sie etwas..."
                            className="prompt-textfield"
                            fullWidth value={value} onChange={(event) => setValue(event.target.value)} />
                 <div className="field-buttons">
-                    {approvalRequired && (<>
-                        <Button className="approval-button" size="small" startIcon={<ClearIcon/>} onClick={async () => await handleChangeApproval(false)} color="error" variant="contained"></Button>
-                        <Button className="approval-button" size="small" startIcon={<DoneIcon/>} onClick={async () => await handleChangeApproval(true)} color="success" variant="contained"></Button>
-                    </>)}
                     <Button loading={loading} loadingPosition="start" size="small" disabled={value.trim() === ''} className="send-button ai-agent" startIcon={<SendIcon/>} variant="contained" onClick={send}>{loading ? "Sendet.." : "Senden"}</Button>
                 </div>
-
             </div>
             <div className="bottom-buttons">
                 <IconButton onClick={() => deleteChatHistory()}>
