@@ -1,0 +1,46 @@
+.datagrid-toolbar.MuiDataGrid-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+
+    .title {
+        flex: 1;
+        margin-left: 8px;
+    }
+
+    .quick-filter {
+        display: grid;
+        align-items: center;
+    }
+
+    .toolbar-button {
+        grid-area: 1 / 1;
+        width: min-content;
+        height: min-content;
+        z-index: 1;
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity var(--transition-duration) var(--transition-timing-function);
+        &.expanded {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    .MuiTextField-root {
+        grid-area: 1 / 1;
+        overflow-x: clip;
+        width: var(--trigger-width);
+        opacity: 0;
+        transition: width var(--transition-duration) var(--transition-timing-function), opacity var(--transition-duration) var(--transition-timing-function);
+        &.expanded {
+            opacity: 1;
+            width: 260px;
+        }
+    }
+
+    .button-content {
+        margin-left: 8px;
+    }
+}

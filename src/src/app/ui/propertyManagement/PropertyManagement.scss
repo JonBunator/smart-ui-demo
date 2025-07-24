@@ -21,6 +21,8 @@
     overflow: auto;
 
     .property-management-content-container {
+      display: flex;
+      flex-direction: column;
       overflow: auto;
       padding: 24px;
       flex: 1;

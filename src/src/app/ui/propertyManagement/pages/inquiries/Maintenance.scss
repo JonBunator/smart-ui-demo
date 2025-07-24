@@ -1,18 +1,15 @@
 .maintenance {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     .MuiDataGrid-root {
-        flex: 1;
         width: 100%;
         .MuiDataGrid-cell {
             display: flex;
             align-items: center;
-
             .email {
                 font-size: 14px;
-            }
-
-            .description {
-                overflow: hidden;
-                text-overflow: ellipsis;
             }
         }
     }

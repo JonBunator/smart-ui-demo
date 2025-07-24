@@ -3,10 +3,11 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import SmartButton from "@/app/ui/components/SmartButton";
-import {Chip, Typography} from '@mui/material';
+import {Chip, NoSsr, Typography} from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import "./Maintenance.scss"
 import InquiryPageLayout from "@/app/ui/propertyManagement/pages/inquiries/components/InquiryPageLayout";
+import DataGridToolbar from "@/app/ui/propertyManagement/pages/inquiries/components/DataGridToolbar";
 
 enum Urgency {
     LOW,
@@ -52,49 +53,125 @@ const rows: MaintenanceData[] = [
         category: "Klempnerarbeit",
         urgency: Urgency.HIGH,
     },
+    {
+        id: 4,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 5,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 6,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 7,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 8,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 9,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 10,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
+    {
+        id: 11,
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        description: "Dies ist eine sehr lange Nachricht",
+        property: "Ferienoase",
+        category: "Klempnerarbeit",
+        urgency: Urgency.HIGH,
+    },
 ]
 
 const columns: GridColDef[] = [
     {
         field: 'name',
         headerName: 'Verfasser',
-        flex: 1,
+        width: 150,
         maxWidth: 250,
         renderCell: (params) => (
-            <div>
-                <Typography>{params.row.name}</Typography>
-                <Typography className="email" color="textSecondary">{params.row.email}</Typography>
+            <div className="ellipsis">
+                <Typography className="ellipsis">{params.row.name}</Typography>
+                <Typography className="email ellipsis" color="textSecondary">{params.row.email}</Typography>
             </div>
         ),
     },
     {
         field: 'urgency',
         headerName: 'Dringlichkeit',
-        width: 130,
+        width: 100,
         renderCell: (params) => {
             let color;
+            let label;
             switch (params.value) {
                 case Urgency.LOW:
                     color = 'success';
+                    label = "Niedrig";
                     break;
                 case Urgency.MEDIUM:
                     color = 'warning';
+                    label = "Mittel";
                     break;
                 case Urgency.HIGH:
                     color = 'error';
+                    label = "Hoch";
                     break;
                 default:
                     color = 'default';
             }
-            return <Chip label={Urgency[params.value]} color={color as ('success' | 'warning' | 'error' | 'default')} />;
+            return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
         },
     },
-    { field: 'property', headerName: 'Immobilie', width: 130 },
-    { field: 'category', headerName: 'Kategorie', width: 130 },
-    { field: 'description', headerName: 'Beschreibung', flex: 1,
+    { field: 'property', headerName: 'Immobilie', flex: 1 },
+    { field: 'category', headerName: 'Kategorie', flex: 1 },
+    { field: 'description', headerName: 'Beschreibung', width: 200,
         renderCell: (params) => (
-            <span className="description">
-                {params.row.description}
+            <span className="ellipsis">
+                {params.value}
             </span>
         ),},
 ];
@@ -106,12 +183,23 @@ export default function Maintenance() {
         router.push("/survey/maintenance/add");
     }
 
+    const AddButton = (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form" variant="contained" onClick={navigateToAddPage}>Hinzufügen</SmartButton>);
+
     return (
-        <InquiryPageLayout title="Instandhaltungen"
-                           className="maintenance"
-                           buttonContent={<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form" variant="contained" onClick={navigateToAddPage}>Hinzufügen</SmartButton>}
-        >
-            <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[5, 10, 25]} />
-        </InquiryPageLayout>
+        <div className="maintenance">
+            <NoSsr>
+                <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[10, 25, 100]} disableRowSelectionOnClick showToolbar
+                          slots={{ toolbar: DataGridToolbar }}
+                          slotProps={{ toolbar: { title: "Instandhaltungen", buttonContent: AddButton}}}
+                          initialState={{
+                              pagination: {
+                                  paginationModel: {
+                                      pageSize: 10,
+                                  },
+                              },
+                          }}
+                />
+            </NoSsr>
+        </div>
     );
 }

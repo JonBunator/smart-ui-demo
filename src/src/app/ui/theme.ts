@@ -1,5 +1,7 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
+import { deDE as deDEDatagrid } from '@mui/x-data-grid/locales';
+import { deDE } from '@mui/material/locale';
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
 export const theme = createTheme({
@@ -72,4 +74,6 @@ export const theme = createTheme({
             },
         },
     },
-});
+},
+    deDE,
+    deDEDatagrid);
