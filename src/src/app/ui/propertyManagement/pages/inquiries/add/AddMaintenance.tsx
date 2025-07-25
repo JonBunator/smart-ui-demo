@@ -17,34 +17,8 @@ import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/compon
 import {addMaintenance} from "@/lib/db/database";
 import {useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-
-const propertyOptions = [
-    {label: "Nordseeparadies"},
-    {label: "Alpenblick"},
-    {label: "Seeblick"},
-    {label: "Bergpanorama"},
-    {label: "Waldblick"},
-    {label: "Stadtvilla"},
-    {label: "Landhaus"},
-    {label: "Strandresort"},
-    {label: "Bergchalet"},
-    {label: "Ferienoase"},
-];
-
-const categoryOptions = [
-    { label: "Klempnerarbeit", value: "plumbing" },
-    { label: "Elektrik", value: "electrical" },
-    { label: "HVAC", value: "hvac" },
-    { label: "Gebäude", value: "structural" },
-    { label: "Garten", value: "garden" },
-    { label: "Möbel", value: "furniture" },
-];
-
-const urgencyOptions = [
-    { label: "Niedrig", value: "low" },
-    { label: "Mittel", value: "medium" },
-    { label: "Hoch", value: "high" },
-];
+import {categoryOptions, urgencyOptions } from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
+import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 
 const emptyFormData = {
     name: "",
@@ -123,7 +97,7 @@ export default function AddMaintenance() {
                 <AddInquiryHeader title="Instandhaltungen" titleContent="Neue Instandhaltung hinzufügen"/>
             </Grid>
             {/* Contact Information */}
-            <Grid container spacing={2}>
+            <Grid container spacing={2} size={{ xs: 12 }}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Kontaktinformationen</Typography>
                 </Grid>
@@ -170,7 +144,7 @@ export default function AddMaintenance() {
             </Grid>
 
             {/* Details */}
-            <Grid container spacing={2}>
+            <Grid container spacing={2} size={{ xs: 12 }} columnSpacing={4}>
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Details</Typography>
                 </Grid>

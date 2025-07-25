@@ -1,0 +1,53 @@
+.properties {
+    .properties-container {
+        padding-bottom: 16px;
+    }
+
+    .properties-card {
+        background: var(--card-container-bg);
+        border: 1px solid var(--mui-palette-TableCell-border);
+        border-radius: 8px;
+        height: 100%;
+        .image-container {
+            position: relative;
+            .image {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            .row {
+                display: flex;
+                gap: 16px;
+                justify-content: space-between;
+
+                .infos {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    .info {
+                        display: flex;
+                        gap: 6px;
+                        white-space: nowrap;
+                        align-items: center;
+                        color: var(--mui-palette-text-secondary);
+
+                        .label {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .additional-infos {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}

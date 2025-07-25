@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { useRouter } from "next/navigation";
 import {DataGrid, GridColDef, GridRowSelectionModel} from '@mui/x-data-grid';
 import SmartButton from "@/app/ui/components/SmartButton";
@@ -12,23 +12,7 @@ import "react-day-picker/style.css";
 import { de } from "react-day-picker/locale";
 import "./Bookings.scss"
 import DataGridToolbar from "./components/DataGridToolbar";
-
-type BookingsData = {
-    id: number;
-    name: string;
-    email: string;
-    property: string;
-    numAdults: number;
-    numChildren: number;
-    status: BookingStatus;
-    dateRange: DateRange;
-}
-
-enum BookingStatus {
-    COMPLETED,
-    CONFIRMED,
-    NOT_CONFIRMED,
-}
+import { BookingsData, BookingStatus } from "@/app/ui/propertyManagement/pages/inquiries/types/bookings";
 
 const rows: BookingsData[] = [
     {
@@ -115,8 +99,8 @@ const columns: GridColDef[] = [
     {
         field: 'name',
         headerName: 'Gast',
-        width: 150,
-        maxWidth: 250,
+        flex: 2,
+        minWidth: 150,
         renderCell: (params) => (
             <div className="ellipsis">
                 <Typography className="ellipsis">{params.row.name}</Typography>
@@ -127,7 +111,8 @@ const columns: GridColDef[] = [
     {
         field: 'status',
         headerName: 'Status',
-        width: 130,
+        flex: 1,
+        minWidth: 130,
         renderCell: (params) => {
             let color;
             let label;
@@ -150,8 +135,8 @@ const columns: GridColDef[] = [
             return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 1 },
-    { field: 'dateRange', headerName: 'Buchungszeitraum', width: 180,
+    { field: 'property', headerName: 'Immobilie', flex: 1, minWidth: 100 },
+    { field: 'dateRange', headerName: 'Buchungszeitraum', flex: 2, minWidth: 180,
         valueGetter: (value: DateRange) => {
             return `${value.from?.toLocaleDateString()} - ${value.to?.toLocaleDateString()}`;
         },
@@ -161,7 +146,7 @@ const columns: GridColDef[] = [
             </span>
         )
     },
-    { field: 'numVisitors', headerName: 'Gästeanzahl', width: 110,
+    { field: 'numVisitors', headerName: 'Gästeanzahl', flex: 1, minWidth: 110,
         valueGetter: (value, row) => {
             return row.numAdults + row.numChildren;
         },

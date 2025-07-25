@@ -23,7 +23,7 @@ export default function InquiryPageLayout(props: InquiryPageLayoutProps) {
     return (
         <div className={`inquiry-page ${className ?? ''}`}>
             <div className="header-row">
-                <Typography variant="h6" sx={{ color: 'text.primary' }}>
+                <Typography variant="h6">
                     {title}
                 </Typography>
                 {buttonContent}

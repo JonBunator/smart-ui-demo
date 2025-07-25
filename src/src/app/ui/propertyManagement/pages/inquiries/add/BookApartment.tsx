@@ -8,25 +8,8 @@ import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/compon
 import { addBooking } from "@/lib/db/database";
 import {useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-
-    const countryOptions = [
-        { label: "Deutschland", value: "Deutschland" },
-        { label: "Österreich", value: "Österreich" },
-        { label: "Schweiz", value: "Schweiz" },
-    ];
-
-    const linkedProperties = [
-        {label: "Nordseeparadies"},
-        {label: "Alpenblick"},
-        {label: "Seeblick"},
-        {label: "Bergpanorama"},
-        {label: "Waldblick"},
-        {label: "Stadtvilla"},
-        {label: "Landhaus"},
-        {label: "Strandresort"},
-        {label: "Bergchalet"},
-        {label: "Ferienoase"},
-    ];
+import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/common";
 
     const emptyFormData = {
         name: "",
@@ -277,8 +260,8 @@ export default function BookApartment() {
                 <Grid size={{ xs: 12 }}>
                     <SmartAutocomplete
                         smartSemantic="Property this inquiry belongs to"
-                        options={linkedProperties}
-                        value={useMemo(() => linkedProperties.find(option => option.label === formData.property) || null, [formData.property])}
+                        options={propertyOptions}
+                        value={useMemo(() => propertyOptions.find(option => option.label === formData.property) || null, [formData.property])}
                         onChange={(_event, value) => handleValueChange(value?.label ?? "", "property")}
                         renderInput={(params) => (
                             <TextField

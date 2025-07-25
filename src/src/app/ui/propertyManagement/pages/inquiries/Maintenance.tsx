@@ -6,24 +6,8 @@ import SmartButton from "@/app/ui/components/SmartButton";
 import {Chip, NoSsr, Typography} from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import "./Maintenance.scss"
-import InquiryPageLayout from "@/app/ui/propertyManagement/pages/inquiries/components/InquiryPageLayout";
 import DataGridToolbar from "@/app/ui/propertyManagement/pages/inquiries/components/DataGridToolbar";
-
-enum Urgency {
-    LOW,
-    MEDIUM,
-    HIGH
-}
-
-type MaintenanceData = {
-    id: number;
-    name: string;
-    email: string;
-    property: string;
-    category: string;
-    urgency: Urgency;
-    description: string;
-}
+import { MaintenanceData, Urgency } from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
 
 const rows: MaintenanceData[] = [
     {
@@ -131,8 +115,8 @@ const columns: GridColDef[] = [
     {
         field: 'name',
         headerName: 'Verfasser',
-        width: 150,
-        maxWidth: 250,
+        flex: 2,
+        minWidth: 150,
         renderCell: (params) => (
             <div className="ellipsis">
                 <Typography className="ellipsis">{params.row.name}</Typography>
@@ -143,7 +127,8 @@ const columns: GridColDef[] = [
     {
         field: 'urgency',
         headerName: 'Dringlichkeit',
-        width: 100,
+        flex: 1,
+        minWidth: 100,
         renderCell: (params) => {
             let color;
             let label;
@@ -166,9 +151,9 @@ const columns: GridColDef[] = [
             return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 1 },
-    { field: 'category', headerName: 'Kategorie', flex: 1 },
-    { field: 'description', headerName: 'Beschreibung', width: 200,
+    { field: 'property', headerName: 'Immobilie', flex: 1, minWidth: 100 },
+    { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120 },
+    { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 200,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}

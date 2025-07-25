@@ -1,5 +1,5 @@
 "use client"
-import React, {useState, ChangeEvent, useCallback, useEffect, useMemo} from "react";
+import React, {useState, ChangeEvent, useCallback, useMemo} from "react";
 import {
     Grid,
     Typography,
@@ -20,17 +20,8 @@ import {SmartGroup, useSmartAgent} from "smart-ui";
 import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
 import { addProperty } from "@/lib/db/database";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-
-const countryOptions = [
-    { label: "Deutschland", value: "Deutschland" },
-    { label: "Österreich", value: "Österreich" },
-    { label: "Schweiz", value: "Schweiz" },
-    { label: "Spanien", value: "Spanien" },
-    { label: "Italien", value: "Italien" },
-    { label: "Niederlande", value: "Niederlande" },
-];
-
-type AdditionalInfoType = "wifi" | "pool" | "airConditioning" |  "parking" | "petFriendly";
+import {AdditionalInfoType, propertyTypes} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/common";
 
 const emptyFormData = {
     name: "",
@@ -285,10 +276,9 @@ export default function AddProperty() {
                             onResetRadios={resetRadios}
                             name="type"
                         >
-                            <FormControlLabel value="villa" control={<SmartRadio id="villa" />} label="Villa" />
-                            <FormControlLabel value="apartment" control={<SmartRadio id="apartment" />} label="Apartment" />
-                            <FormControlLabel value="cabin" control={<SmartRadio id="cabin" />} label="Hütte" />
-                            <FormControlLabel value="beachHouse" control={<SmartRadio id="beach-house" />} label="Strandhaus" />
+                            {propertyTypes.map((property) => (
+                                <FormControlLabel key={property.value} value={property.value} control={<SmartRadio id={property.value} />} label={property.label} />
+                            ))}
                         </SmartRadioGroup>
                         {errors.type && <FormHelperText>Immobilienart ist erforderlich</FormHelperText>}
                     </FormControl>

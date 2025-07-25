@@ -51,8 +51,8 @@ export const theme = createTheme({
                     main: '#fde181',
                 },
                 background: {
-                    default: '#e8e8e5',
-                    paper: '#faf9f6',
+                    default: '#ffffff',
+                    paper: '#eeeeea',
                 },
                 DataGrid: {
                     bg: "transparent",
