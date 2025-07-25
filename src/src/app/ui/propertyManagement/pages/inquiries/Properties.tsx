@@ -22,7 +22,7 @@ import "./Properties.scss";
 import InquiryPageLayout from "@/app/ui/propertyManagement/pages/inquiries/components/InquiryPageLayout";
 import {
     AdditionalInfoType,
-    PropertyData,
+    PropertyData, propertyOptions,
     PropertyType
 } from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import WifiIcon from '@mui/icons-material/Wifi';
@@ -37,7 +37,7 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 
 const properties: PropertyData[] = [
     {
-        name: "Urban Workspace Zürich",
+        name: propertyOptions[0].label,
         address: "Dorfstrasse 8, 9835 Zürich, Schweiz",
         image: "/image/properties/property1.png",
         description: "Erleben Sie Zürich in unserer zentral gelegenen Wohnung, die perfekt für Work and Travel ausgestattet ist. Mit einem modernen Computer-Arbeitsplatz bietet diese Unterkunft alles, was Sie für produktives Arbeiten und entspanntes Wohnen benötigen. Genießen Sie die Nähe zu den kulturellen Highlights und den lebhaften Straßen der Stadt, ideal für Geschäftsreisende und digitale Nomaden.",
@@ -49,7 +49,7 @@ const properties: PropertyData[] = [
         price: 139,
     },
     {
-        name: "Waldzauber Holzhütte",
+        name: propertyOptions[1].label,
         address: "Britts Väg 91, 85490 Söderlöv, Schweden",
         image: "/image/properties/property3.png",
         description: "Entfliehen Sie dem Alltag und tauchen Sie ein in die Ruhe der schwedischen Natur mit unserer idyllischen Holzhütte im Herzen des Waldes. Diese gemütliche Unterkunft bietet Ihnen die perfekte Gelegenheit, sich zu entspannen und die unberührte Schönheit der Umgebung zu genießen. Ideal für Naturliebhaber und alle, die eine Auszeit in der Abgeschiedenheit suchen.",
@@ -61,7 +61,7 @@ const properties: PropertyData[] = [
         price: 120,
     },
     {
-        name: "Amsterdam Hausboot",
+        name: propertyOptions[2].label,
         address: "Jasperplantsoen 618 I, 2975 IY Amsterdam, Niederlande",
         image: "/image/properties/property4.png",
         description: "Erleben Sie Amsterdam auf einzigartige Weise in unserem charmanten Hausboot, das direkt in der Innenstadt auf einem malerischen Fluss liegt. Genießen Sie die Nähe zu den kulturellen Highlights und den lebhaften Straßen der Stadt, während Sie die Ruhe und Gelassenheit des Wassers genießen. Ideal für einen unvergesslichen Aufenthalt in der niederländischen Hauptstadt.",
@@ -73,7 +73,7 @@ const properties: PropertyData[] = [
         price: 169,
     },
     {
-        name: "Villa Fiesta del Sol",
+        name: propertyOptions[3].label,
         address: "Barrio Roser 5, 05962 Mataró, Spanien",
         image: "/image/properties/property2.png",
         description: "Erleben Sie den ultimativen Luxus in unserer modernen Villa in Spanien, die mit einem beeindruckenden Pool ausgestattet ist. Diese exquisite Unterkunft ist perfekt für stilvolle Cocktailpartys und bietet Ihnen und Ihren Gästen ein unvergessliches Erlebnis. Genießen Sie die elegante Architektur und die erstklassigen Annehmlichkeiten in einer der begehrtesten Lagen Spaniens. Ideal für diejenigen, die das Leben in vollen Zügen genießen möchten.",
@@ -85,7 +85,7 @@ const properties: PropertyData[] = [
         price: 1500,
     },
     {
-        name: "Föhrer Reetdach-Retreat",
+        name: propertyOptions[4].label,
         address: "Fritz-Erler-Str. 96a, 25938 Wyk auf Föhr, Deutschland",
         image: "/image/properties/property5.png",
         description: "Entdecken Sie die Schönheit der nordfriesischen Insel Föhr in unserem großen Haus mit traditionellem Reetdach, direkt am Fluss gelegen. Diese charmante Unterkunft bietet Ihnen eine perfekte Mischung aus traditionellem Charme und natürlicher Schönheit. Genießen Sie die friedliche Umgebung und die malerische Aussicht, ideal für einen erholsamen Urlaub inmitten der Natur.",

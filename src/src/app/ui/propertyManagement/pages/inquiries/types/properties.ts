@@ -28,16 +28,11 @@ export interface PropertyData {
 }
 
 export const propertyOptions = [
+    {label: "Urban Workspace Zürich"},
+    {label: "Waldzauber Holzhütte"},
+    {label: "Amsterdam Hausboot"},
+    {label: "Villa Fiesta del Sol"},
     {label: "Nordseeparadies"},
-    {label: "Alpenblick"},
-    {label: "Seeblick"},
-    {label: "Bergpanorama"},
-    {label: "Waldblick"},
-    {label: "Stadtvilla"},
-    {label: "Landhaus"},
-    {label: "Strandresort"},
-    {label: "Bergchalet"},
-    {label: "Ferienoase"},
 ];
 
 export enum AdditionalInfoType {

@@ -151,7 +151,12 @@ const columns: GridColDef[] = [
             return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 1, minWidth: 100 },
+    { field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
+        renderCell: (params) => (
+            <span className="ellipsis">
+                {params.value}
+            </span>
+        )},
     { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120 },
     { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 200,
         renderCell: (params) => (

@@ -13,84 +13,111 @@ import { de } from "react-day-picker/locale";
 import "./Bookings.scss"
 import DataGridToolbar from "./components/DataGridToolbar";
 import { BookingsData, BookingStatus } from "@/app/ui/propertyManagement/pages/inquiries/types/bookings";
+import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 
 const rows: BookingsData[] = [
     {
         id: 1,
-        name: "John Doe",
-        email: "john.doe@example.com",
-        property: "Waldblick",
+        name: "Hanna Hodel",
+        email: "Hanna_Hodel@gmail.com",
+        property: propertyOptions[2].label,
         numAdults: 1,
         numChildren: 0,
         status: BookingStatus.NOT_CONFIRMED,
         dateRange: {
-            from: new Date(2025, 9, 2),
-            to: new Date(2025, 9, 9)
+            from: new Date(2025, 11, 6),
+            to: new Date(2025, 11, 13)
         }
     },
     {
         id: 2,
-        name: "Jane Smith",
-        email: "jane.smith@example.com",
-        property: "Landhaus",
+        name: "Nathalie Albrecht",
+        email: "Nathalieeee73@hotmail.com",
+        property: propertyOptions[4].label,
         numAdults: 2,
-        numChildren: 2,
+        numChildren: 3,
         status: BookingStatus.CONFIRMED,
         dateRange: {
-            from: new Date(2025, 9, 14),
-            to: new Date(2025, 9, 28)
+            from: new Date(2025, 9, 7),
+            to: new Date(2025, 9, 21)
         }
     },
     {
         id: 3,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        property: "Ferienoase",
+        name: "Lyn Jaros",
+        email: "LynJaros69@gmail.com",
+        property: propertyOptions[1].label,
         numAdults: 2,
-        numChildren: 3,
-        status: BookingStatus.COMPLETED,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
         dateRange: {
-            from: new Date(2025, 10, 19),
-            to: new Date(2025, 10, 26)
+            from: new Date(2025, 9, 3),
+            to: new Date(2025, 9, 10)
         }
     },
     {
         id: 4,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        property: "Ferienoase",
+        name: "Khalid Al-Mansour",
+        email: "al-manasour@gmail.com",
+        property: propertyOptions[3].label,
         numAdults: 2,
-        numChildren: 3,
+        numChildren: 1,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 10, 19),
-            to: new Date(2025, 10, 26)
+            from: new Date(2025, 7, 22),
+            to: new Date(2025, 7, 24)
         }
     },
     {
         id: 5,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        property: "Ferienoase",
-        numAdults: 2,
-        numChildren: 3,
+        name: "Hermann Stöckli",
+        email: "Hermann.Stockli@hotmail.com",
+        property: propertyOptions[0].label,
+        numAdults: 1,
+        numChildren: 0,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 10, 19),
-            to: new Date(2025, 10, 26)
+            from: new Date(2025, 7, 19),
+            to: new Date(2025, 7, 26)
         }
     },
     {
         id: 6,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
+        name: "Jean-Louis Mercier",
+        email: "contact@jean-louis-mercier.com",
+        property: propertyOptions[3].label,
+        numAdults: 6,
+        numChildren: 0,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 4),
+            to: new Date(2025, 7, 11)
+        }
+    },
+    {
+        id: 7,
+        name: "Florentine Hohl",
+        email: "floraaa0@posteo.com",
         property: "Ferienoase",
         numAdults: 2,
         numChildren: 3,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 10, 19),
-            to: new Date(2025, 10, 26)
+            from: new Date(2025, 7, 4),
+            to: new Date(2025, 7, 18)
+        }
+    },
+    {
+        id: 8,
+        name: "Omar Tonat",
+        email: "omarowich897@gmail.com",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 6, 23),
+            to: new Date(2025, 6, 29)
         }
     },
 ]
@@ -135,7 +162,12 @@ const columns: GridColDef[] = [
             return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 1, minWidth: 100 },
+    { field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
+        renderCell: (params) => (
+            <span className="ellipsis">
+                {params.value}
+            </span>
+        )},
     { field: 'dateRange', headerName: 'Buchungszeitraum', flex: 2, minWidth: 180,
         valueGetter: (value: DateRange) => {
             return `${value.from?.toLocaleDateString()} - ${value.to?.toLocaleDateString()}`;
