@@ -5,7 +5,7 @@ const protectedRoutes = ['/survey', '/questions', '/completed']
 
 export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
-    const isProtectedRoute = protectedRoutes.includes(path);
+    const isProtectedRoute = path !== '/' && protectedRoutes.some(route => path.startsWith(route));
     const sessionData = await getSession();
 
     // Redirect to / if the user is not authenticated
