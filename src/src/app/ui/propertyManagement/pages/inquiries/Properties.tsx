@@ -93,8 +93,20 @@ const properties: PropertyData[] = [
         additionalInfos: [AdditionalInfoType.WIFI, AdditionalInfoType.PARKING, AdditionalInfoType.PET_FRIENDLY],
         numBeds: 6,
         numBathrooms: 2,
-        area: 333,
-        price: 120,
+        area: 210,
+        price: 333,
+    },
+    {
+        name: propertyOptions[5].label,
+        address: "Lichtmattstrasse 43, 9050 Rüte, Schweiz",
+        image: "/image/properties/property6.png",
+        description: "Entdecken Sie die Schönheit der Schweizer Alpen in unserem gemütlichen Alpenblick Chalet. Genießen Sie den atemberaubenden Ausblick auf die majestätischen Berge und die unberührte Natur. Die Hütte ist bequem mit dem Auto zu erreichen und bietet Ihnen eine perfekte Mischung aus Ruhe und Erholung. Ideal für Naturliebhaber und Abenteurer!",
+        type: PropertyType.CABIN,
+        additionalInfos: [AdditionalInfoType.PARKING, AdditionalInfoType.PET_FRIENDLY],
+        numBeds: 6,
+        numBathrooms: 2,
+        area: 290,
+        price: 419,
     },
 ]
 

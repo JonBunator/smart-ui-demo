@@ -7,8 +7,8 @@
       "create": {
         "author": "Ali Wiegelmann",
         "authorEmail": "Ali.Wiegelmann52@yahoo.com",
-        "subject": "Buchungsanfrage für Ali Wiegelmann",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Nordseeparadies' anfragen. Hier sind meine Details:\n\nName: Ali Wiegelmann\nTelefonnummer: +490320177758\nAdresse: Theodor-Storm-Str. 64c, 67826 Bremerhaven, Deutschland\nBuchungszeitraum: 01.09.2025 bis 05.09.2025\nAnzahl Erwachsene: 2\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nAli Wiegelmann"
+        "subject": "Buchung Nordseeparadies",
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne vom 1. - 8. November mit meiner Frau und unseren zwei Kindern das Ferienhaus 'Nordseeparadies' buchen. Hier sind die benötigten Informationen:\n\n\nTelefonnummer: +490320177758\nAdresse: Theodor-Storm-Str. 64c, 67826 Bremerhaven, Deutschland\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nAli Wiegelmann"
       }
     },
     "Booking": {
@@ -22,8 +22,8 @@
         "city": "Bremerhaven",
         "postalCode": "67826",
         "country": "Deutschland",
-        "bookingStart": "2025-09-01T20:38:13.516Z",
-        "bookingEnd": "2025-09-05T20:38:13.516Z",
+        "bookingStart": "2025-11-01T20:38:13.516Z",
+        "bookingEnd": "2025-11-08T20:38:13.516Z",
         "numAdults": 2,
         "numChildren": 0,
         "property": "Nordseeparadies"
@@ -38,8 +38,8 @@
       "create": {
         "author": "Mohamed Barylla",
         "authorEmail": "Mohamed.Barylla89@gmail.com",
-        "subject": "Buchungsanfrage für Mohamed Barylla",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Alpenblick' anfragen. Hier sind meine Details:\n\nName: Mohamed Barylla\nTelefonnummer: +4988290513187\nAdresse: Domblick 8, 81958 Flensburg, Deutschland\nBuchungszeitraum: 01.09.2025 bis 14.09.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMohamed Barylla"
+        "subject": "Urban Workspace Zürich Besuch",
+        "content": "Sehr geehrte Damen und Herren,\n\nich bin vom 14.10 bis 16.10 geschäftlich in Zürich und würde gerne dort in Ihrer Wohnung übernachten. Sie können mich unter der Nummer +4988290513187 erreichen. Meine Adresse lautet Domblick 8, 81958 Flensburg, Deutschland.\n\nVielen Dank,\nMohamed Barylla"
       }
     },
     "Booking": {
@@ -53,11 +53,11 @@
         "city": "Flensburg",
         "postalCode": "81958",
         "country": "Deutschland",
-        "bookingStart": "2025-09-01T01:48:24.307Z",
-        "bookingEnd": "2025-09-14T01:48:24.307Z",
-        "numAdults": 5,
-        "numChildren": 2,
-        "property": "Alpenblick"
+        "bookingStart": "2025-10-14T01:48:24.307Z",
+        "bookingEnd": "2025-10-16T01:48:24.307Z",
+        "numAdults": 1,
+        "numChildren": 0,
+        "property": "Urban Workspace Zürich"
       }
     }
   },
@@ -69,7 +69,7 @@
       "create": {
         "author": "Patrice Kempe",
         "authorEmail": "Patrice_Kempe7@gmail.com",
-        "subject": "Buchungsanfrage für Patrice Kempe",
+        "subject": "Buchungsanfrage Patrice Kempe",
         "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Seeblick' anfragen. Hier sind meine Details:\n\nName: Patrice Kempe\nTelefonnummer: +491227920916\nAdresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\nBuchungszeitraum: 26.10.2025 bis 08.11.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nPatrice Kempe"
       }
     },
@@ -129,9 +129,9 @@
     "order": 4,
     "EMail": {
       "create": {
-        "author": "Kira Bartels",
-        "authorEmail": "Kira.Bartels65@yahoo.com",
-        "subject": "Buchungsanfrage für Kira Bartels",
+        "author": "Radovan Daňko",
+        "authorEmail": "Radovan.Danko@zoznam.sk",
+        "subject": "Buchungsanfrage für Radovan Daňko",
         "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Waldblick' anfragen. Hier sind meine Details:\n\nName: Kira Bartels\nTelefonnummer: +4981600153822\nAdresse: Gregor-Mendel-Str. 9, 21015 West Leifstadt, Deutschland\nBuchungszeitraum: 16.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nKira Bartels"
       }
     },

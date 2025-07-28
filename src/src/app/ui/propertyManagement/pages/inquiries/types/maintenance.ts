@@ -6,6 +6,7 @@ export enum Urgency {
 
 export type MaintenanceData = {
     id: number;
+    completed: boolean;
     name: string;
     email: string;
     property: string;

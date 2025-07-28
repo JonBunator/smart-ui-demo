@@ -33,6 +33,7 @@ export const propertyOptions = [
     {label: "Amsterdam Hausboot"},
     {label: "Villa Fiesta del Sol"},
     {label: "Nordseeparadies"},
+    {label: "Alpenblick Chalet"},
 ];
 
 export enum AdditionalInfoType {

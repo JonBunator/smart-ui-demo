@@ -52,6 +52,12 @@
             border-radius: 8px;
             overflow-wrap: anywhere;
 
+            .message {
+                li {
+                    margin-left: 16px;
+                }
+            }
+
             .time {
                 font-size: 12px;
             }

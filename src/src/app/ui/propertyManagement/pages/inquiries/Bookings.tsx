@@ -70,8 +70,8 @@ const rows: BookingsData[] = [
     },
     {
         id: 5,
-        name: "Hermann Stöckli",
-        email: "Hermann.Stockli@hotmail.com",
+        name: "Rija Stašćik",
+        email: "Rija_Stascik@hrnet.hr",
         property: propertyOptions[0].label,
         numAdults: 1,
         numChildren: 0,
@@ -120,6 +120,84 @@ const rows: BookingsData[] = [
             to: new Date(2025, 6, 29)
         }
     },
+    {
+        id: 9,
+        name: "Amalric Rousseau",
+        email: "Amalric.Rousseau75@yahoo.fr",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 6, 30),
+            to: new Date(2025, 7, 5)
+        }
+    },
+    {
+        id: 10,
+        name: "Lucas de Vries",
+        email: "Lucas.deVries@gmail.com",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 6),
+            to: new Date(2025, 7, 11)
+        }
+    },
+    {
+        id: 11,
+        name: "Kata Stuparić",
+        email: "Kata.Stuparic@hrnet.hr",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 12),
+            to: new Date(2025, 7, 17)
+        }
+    },
+    {
+        id: 12,
+        name: "فائز الرصاع",
+        email: "fay190z.alrsae@hotmail.com",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 18),
+            to: new Date(2025, 7, 23)
+        }
+    },
+    {
+        id: 13,
+        name: "María Elena Pichardo Figueroa",
+        email: "pichardo-figueroa@gmail.com",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 24),
+            to: new Date(2025, 7, 29)
+        }
+    },
+    {
+        id: 14,
+        name: "Vanda Mamojková",
+        email: "Vanda_Mamojkova@zoznam.sk",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: new Date(2025, 7, 30),
+            to: new Date(2025, 8, 4)
+        }
+    }
 ]
 
 const columns: GridColDef[] = [

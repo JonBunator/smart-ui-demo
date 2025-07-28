@@ -8,12 +8,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import "./Maintenance.scss"
 import DataGridToolbar from "@/app/ui/propertyManagement/pages/inquiries/components/DataGridToolbar";
 import { MaintenanceData, Urgency } from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const rows: MaintenanceData[] = [
     {
         id: 1,
-        name: "John Doe",
-        email: "john.doe@example.com",
+        completed: false,
+        name: "Amalric Rousseau",
+        email: "Amalric.Rousseau75@yahoo.fr",
         description: "Dies ist eine sehr lange Nachricht lorum ipsum lora sit amet",
         property: "Waldblick",
         category: "Garten",
@@ -21,8 +24,9 @@ const rows: MaintenanceData[] = [
     },
     {
         id: 2,
-        name: "Jane Smith",
-        email: "jane.smith@example.com",
+        completed: true,
+        name: "Lucas de Vries",
+        email: "Lucas.deVries@gmail.com\"",
         description: "Dies ist eine sehr lange Nachricht",
         property: "Landhaus",
         category: "Möbel",
@@ -30,8 +34,9 @@ const rows: MaintenanceData[] = [
     },
     {
         id: 3,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
+        completed: true,
+        name: "Kata Stuparić",
+        email: "Kata.Stuparic@hrnet.hr",
         description: "Dies ist eine sehr lange Nachricht",
         property: "Ferienoase",
         category: "Klempnerarbeit",
@@ -39,8 +44,9 @@ const rows: MaintenanceData[] = [
     },
     {
         id: 4,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
+        completed: true,
+        name: "فائز الرصاع",
+        email: "fay190z.alrsae@hotmail.com",
         description: "Dies ist eine sehr lange Nachricht",
         property: "Ferienoase",
         category: "Klempnerarbeit",
@@ -48,8 +54,9 @@ const rows: MaintenanceData[] = [
     },
     {
         id: 5,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
+        completed: true,
+        name: "María Elena Pichardo Figueroa",
+        email: "pichardo-figueroa@gmail.com",
         description: "Dies ist eine sehr lange Nachricht",
         property: "Ferienoase",
         category: "Klempnerarbeit",
@@ -57,61 +64,29 @@ const rows: MaintenanceData[] = [
     },
     {
         id: 6,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
+        completed: true,
+        name: "Vanda Mamojková",
+        email: "Vanda_Mamojkova@zoznam.sk",
         description: "Dies ist eine sehr lange Nachricht",
         property: "Ferienoase",
         category: "Klempnerarbeit",
         urgency: Urgency.HIGH,
-    },
-    {
-        id: 7,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        description: "Dies ist eine sehr lange Nachricht",
-        property: "Ferienoase",
-        category: "Klempnerarbeit",
-        urgency: Urgency.HIGH,
-    },
-    {
-        id: 8,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        description: "Dies ist eine sehr lange Nachricht",
-        property: "Ferienoase",
-        category: "Klempnerarbeit",
-        urgency: Urgency.HIGH,
-    },
-    {
-        id: 9,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        description: "Dies ist eine sehr lange Nachricht",
-        property: "Ferienoase",
-        category: "Klempnerarbeit",
-        urgency: Urgency.HIGH,
-    },
-    {
-        id: 10,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        description: "Dies ist eine sehr lange Nachricht",
-        property: "Ferienoase",
-        category: "Klempnerarbeit",
-        urgency: Urgency.HIGH,
-    },
-    {
-        id: 11,
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        description: "Dies ist eine sehr lange Nachricht",
-        property: "Ferienoase",
-        category: "Klempnerarbeit",
-        urgency: Urgency.HIGH,
-    },
+    }
 ]
 
 const columns: GridColDef[] = [
+    {
+        field: 'completed',
+        headerName: 'Status',
+        flex: 1,
+        minWidth: 5,
+        renderCell: (params) => {
+            if(params.value) {
+                return <CheckCircleIcon color="success"/>
+            }
+            return <CancelIcon color="error"/>
+        },
+    },
     {
         field: 'name',
         headerName: 'Verfasser',
