@@ -29,6 +29,21 @@ services:
     networks:
       - bridge-network
 
+  prisma-studio:
+    build:
+      context: .
+      dockerfile: prisma-studio/Dockerfile
+    env_file:
+      - src/.env
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "5555:5555"
+    restart: unless-stopped
+    networks:
+      - bridge-network
+
 networks:
   bridge-network:
     driver: bridge
