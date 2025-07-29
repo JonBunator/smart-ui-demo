@@ -1,14 +1,9 @@
-.properties-container .properties-card {
-    .skeleton-image {
-        aspect-ratio: 3 / 2;
-    }
-    .description-skeleton {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        .MuiSkeleton-root {
-            height: 10px;
-            width: 100%;
-        }
+.properties-container .properties-card .description-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .MuiSkeleton-root {
+        height: 10px;
+        width: 100%;
     }
 }

@@ -27,7 +27,7 @@ export default function LoadingPropertyCards() {
                             />
                             <CardMedia>
                                 <div className="image-container">
-                                    <Skeleton className="image skeleton-image" animation="wave" variant="rectangular" />
+                                    <Skeleton className="image" animation="wave" variant="rectangular" />
                                 </div>
                             </CardMedia>
                             <CardContent className="card-content">

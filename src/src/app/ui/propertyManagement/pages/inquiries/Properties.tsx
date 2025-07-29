@@ -36,7 +36,6 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {getProperties} from "@/lib/db/database";
 import LoadingPropertyCards from "@/app/ui/propertyManagement/pages/inquiries/LoadingPropertyCards";
-import Skeleton from "@mui/material/Skeleton";
 
 export default function Properties() {
     const router = useRouter();
@@ -49,6 +48,7 @@ export default function Properties() {
                 name: property.name,
                 address: `${property.street} ${property.houseNumber}, ${property.postalCode} ${property.city}, ${property.country}`,
                 image: "/image/properties/property1.png",
+                placeholderImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAMAAACejr5sAAABGlBMVEWqnYQXGhO9rZNcWEcRFA62p44rLCJ1a1aorK/i2MZBPy9LSDYFBwMcHhQgIBMnKBqxoolQT0Y0Niyxt7yjmIKHf217dWSZkH1gX1WDdWB2cWJlW0QMDQkgJB2eknx/dFyVi3mViXStoYillns3OS7Ht5yGg3+ZlIdVTTqgmozKuZ+Wm55rY0+HiIdtcXCan512c2xLQjC7rJW5qY/CsZfEtJtDQzi6vsOtqqWOgGg7PDKWkY6RkpdmYEyBeWlaUTdlZkaOh36PhG6IfGVZWlOOlJlVU0STlHWhpqKcqbPh07tCTCp+cFezqZmUl6Gro5V3dXZaUkZiZ2/CvLJydn9+fHuAf3xubFvSxrGdjnOCj5V1hY6vv8eRpbOETkNaAAAA+UlEQVQY0w3BhWKCABQAwEd3dygoioSis5XZte6O//+N7Q4wyghlFB0Qch3+RTOHWsEiqOmAZs3REO0TBBF97jwWKKM6Qusy6NWqBQMZttiCBdPSmStUm9C5dtka1tf59+8RXCtlmCat0RcTLW1a3OHrZw9m655h+iXdPU3pNHO8TtHFwHbfnj9eO0/ntWm3lS2PG7fHAak2ytvYLHphfjAIO9GNNgei2nivRWHcW3bi9XU7sU2TAkRCuGAbtL3dzUxprCSSVFlAKhXMo4rScTYPakUUJcHnAUcULDlTlEfs7oUUcJ/neR8QkRQ5bszO5/Z+zEqCgOP4H8ZuIQV5KBgvAAAAAElFTkSuQmCC",
                 description: property.description,
                 type: property.type as PropertyType,
                 additionalInfos: property.additionalInfo as AdditionalInfoType[],
@@ -136,6 +136,8 @@ export default function Properties() {
                                             width={600}
                                             height={400}
                                             alt={`Image of ${property.name}`}
+                                            placeholder="blur"
+                                            blurDataURL={property.placeholderImage}
                                         />
                                     </div>
                                 </CardMedia>
