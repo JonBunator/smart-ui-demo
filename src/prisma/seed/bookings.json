@@ -25,7 +25,7 @@
         "bookingStart": "2025-11-01T20:38:13.516Z",
         "bookingEnd": "2025-11-08T20:38:13.516Z",
         "numAdults": 2,
-        "numChildren": 0,
+        "numChildren": 2,
         "property": "Nordseeparadies"
       }
     }
@@ -34,6 +34,37 @@
     "category": "GroundTruth",
     "type": "Booking",
     "order": 1,
+    "EMail": {
+      "create": {
+        "author": "Earthbnb",
+        "authorEmail": "noreply@earthbnb.com",
+        "subject": "Buchungsanfrage von Earthbnb für Alpenblick Chalet",
+        "content": "Dies ist eine automatisiert generierte Buchungsanfrage von Earthbnb.com\n\nImmobilie: 'Alpenblick Chalet'\nName: Silja Schroder\nEmail: Silja_Schroder93@hotmail.com\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Koblenz, Deutschland\nBuchungszeitraum: 03.10.2025 bis 17.10.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Silja",
+        "surname": "Schroder",
+        "phoneNumber": "+49102823903101",
+        "eMail": "Silja_Schroder93@hotmail.com",
+        "street": "Oststr.",
+        "houseNumber": "11",
+        "city": "Koblenz",
+        "postalCode": "12279",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-03T14:20:18.219Z",
+        "bookingEnd": "2025-10-17T14:20:18.219Z",
+        "numAdults": 3,
+        "numChildren": 2,
+        "property": "Alpenblick Chalet"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 2,
     "EMail": {
       "create": {
         "author": "Mohamed Barylla",
@@ -64,13 +95,13 @@
   {
     "category": "GroundTruth",
     "type": "Booking",
-    "order": 2,
+    "order": 3,
     "EMail": {
       "create": {
         "author": "Patrice Kempe",
         "authorEmail": "Patrice_Kempe7@gmail.com",
         "subject": "Buchungsanfrage Patrice Kempe",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Seeblick' anfragen. Hier sind meine Details:\n\nName: Patrice Kempe\nTelefonnummer: +491227920916\nAdresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\nBuchungszeitraum: 26.10.2025 bis 08.11.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nPatrice Kempe"
+        "content": "Hallo Leafy Lodges Team,\n\nich hoffe, ich interessiere mich für die Buchung Ihrer Villa Fiesta del Sol. Wir planen einen Aufenthalt vom 5. Juni 2026 bis zum 19. Juni 2026 und sind eine Gruppe von sechs Erwachsenen.\n\nBitte lassen Sie mich wissen, ob die Villa in diesem Zeitraum verfügbar ist und welche weiteren Informationen Sie von mir benötigen, um die Buchung abzuschließen.\n\nHier sind meine Kontaktdaten:\n- Telefon: +491227920916\n- E-Mail: Patrice_Kempe7@gmail.com\n- Adresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\n\nBeste Grüße,\n\nPatrice Kempe"
       }
     },
     "Booking": {
@@ -84,42 +115,11 @@
         "city": "Bad Josef",
         "postalCode": "72913",
         "country": "Deutschland",
-        "bookingStart": "2025-10-26T13:19:35.441Z",
-        "bookingEnd": "2025-11-08T13:19:35.441Z",
-        "numAdults": 4,
+        "bookingStart": "2026-06-05T13:19:35.441Z",
+        "bookingEnd": "2026-06-19T13:19:35.441Z",
+        "numAdults": 6,
         "numChildren": 0,
-        "property": "Seeblick"
-      }
-    }
-  },
-  {
-    "category": "GroundTruth",
-    "type": "Booking",
-    "order": 3,
-    "EMail": {
-      "create": {
-        "author": "Silja Schroder",
-        "authorEmail": "Silja_Schroder93@hotmail.com",
-        "subject": "Buchungsanfrage für Silja Schroder",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Bergpanorama' anfragen. Hier sind meine Details:\n\nName: Silja Schroder\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Lanaland, Deutschland\nBuchungszeitraum: 21.10.2025 bis 02.11.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nSilja Schroder"
-      }
-    },
-    "Booking": {
-      "create": {
-        "name": "Silja",
-        "surname": "Schroder",
-        "phoneNumber": "+49102823903101",
-        "eMail": "Silja_Schroder93@hotmail.com",
-        "street": "Oststr.",
-        "houseNumber": "11",
-        "city": "Lanaland",
-        "postalCode": "12279",
-        "country": "Deutschland",
-        "bookingStart": "2025-10-21T13:20:18.219Z",
-        "bookingEnd": "2025-11-02T14:20:18.219Z",
-        "numAdults": 3,
-        "numChildren": 2,
-        "property": "Bergpanorama"
+        "property": "Villa Fiesta del Sol"
       }
     }
   },
@@ -137,10 +137,10 @@
     },
     "Booking": {
       "create": {
-        "name": "Kira",
-        "surname": "Bartels",
+        "name": "Radovan",
+        "surname": "Daňko",
         "phoneNumber": "+4981600153822",
-        "eMail": "Kira.Bartels65@yahoo.com",
+        "eMail": "Radovan.Danko@zoznam.sk",
         "street": "Gregor-Mendel-Str.",
         "houseNumber": "9",
         "city": "West Leifstadt",

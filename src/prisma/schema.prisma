@@ -52,6 +52,7 @@ enum DataCategory {
 
 model Data {
   id                           Int                 @id @default(autoincrement())
+  timestamp                    DateTime            @default(now())
   order                        Int? // should be set when category = GroundTruth
   category                     DataCategory
   type                         DataType

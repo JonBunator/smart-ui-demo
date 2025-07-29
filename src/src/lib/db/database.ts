@@ -1,6 +1,6 @@
 "use server"
 
-import {AISupport, DataCategory, EMail, Data, DataType, BookingCreateInput, PropertyCreateInput, MaintenanceCreateInput} from "@prisma";
+import {AISupport, DataCategory, EMail, Data, DataType, BookingCreateInput, PropertyCreateInput, MaintenanceCreateInput, Booking, Maintenance, Property} from "@prisma";
 import {
     AI_SUPPORT_ORDER,
     NUM_AI_SUPPORT_ORDER_ELEMENTS,
@@ -428,18 +428,15 @@ export async function addMaintenance(maintenance: MaintenanceCreateInput) {
 /**
  * Adds data of the corresponding type. Payload must be correct for the specified type.
  */
-export async function addData(type: DataType, payload: unknown) {
+async function addData(type: DataType, payload: unknown) {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('addMaintenance: Session is invalid');
+        console.error('addData: Session is invalid');
         return;
     }
     const useCaseData = await _getUseCaseData();
     if (!useCaseData) {
         throw new Error("UseCaseData is null.");
-    }
-    if(USE_CASE_INDEX_TYPES.indexOf(type) !== useCaseData.useCaseIndex) {
-        throw new Error(`Adding new ${type} is not allowed.`);
     }
 
     const useCaseParticipation = await _getUseCaseParticipation(type);
@@ -462,7 +459,7 @@ export async function addData(type: DataType, payload: unknown) {
             userData: {
                 create: {
                     category: DataCategory.UserAdded,
-                    type: DataType.Maintenance,
+                    type: type,
                     [type]: {
                         create: payload
                     }
@@ -470,6 +467,55 @@ export async function addData(type: DataType, payload: unknown) {
             }
         },
     });
+}
+
+export async function getBookings(): Promise<Booking[]> {
+    return await getData(DataType.Booking) as unknown as Booking[];
+}
+
+export async function getProperties(): Promise<Property[]> {
+    return await getData(DataType.Property) as unknown as Property[];
+}
+
+export async function getMaintenances(): Promise<Maintenance[]> {
+    return await getData(DataType.Maintenance) as unknown as Maintenance[];
+}
+
+async function getData(type: DataType) {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('getData: Session is invalid');
+        return null;
+    }
+
+    const useCaseParticipation = await _getUseCaseParticipation(type);
+    if (!useCaseParticipation) {
+        throw new Error("UseCaseParticipation is null.");
+    }
+
+    const userAddedData = await prisma.participationData.findMany({
+        where: {
+            UseCaseParticipation: {
+                id: useCaseParticipation.id
+            },
+            userData: {
+                type: type
+            }
+        },
+        select: {
+            userData: {
+                select: {
+                    [type]: true,
+                }
+            }
+        },
+        orderBy: {
+            userData: {
+                timestamp: 'desc'
+            }
+        }
+    });
+    return userAddedData.map(data => data.userData[type]).filter(item => item !== null);
 }
 
 export async function addQuestionaireData(data: unknown) : Promise<boolean> {

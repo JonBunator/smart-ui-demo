@@ -4,6 +4,8 @@
     }
 
     .properties-card {
+        display: flex;
+        flex-direction: column;
         background: var(--card-container-bg);
         border: 1px solid var(--mui-palette-TableCell-border);
         border-radius: 8px;
@@ -18,16 +20,18 @@
         .card-content {
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
             gap: 24px;
-            .row {
-                display: flex;
-                gap: 16px;
-                justify-content: space-between;
-
+            .card-content-main {
                 .infos {
+                    float: left;
+                    margin-right: 24px;
+                    margin-bottom: 16px;
                     display: flex;
                     flex-direction: column;
                     gap: 8px;
+
                     .info {
                         display: flex;
                         gap: 6px;
@@ -39,6 +43,9 @@
                             text-decoration: underline;
                         }
                     }
+                }
+                .description {
+                    text-align: justify;
                 }
             }
 

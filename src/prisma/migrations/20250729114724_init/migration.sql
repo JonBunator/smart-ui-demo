@@ -20,6 +20,7 @@ CREATE TABLE "Survey" (
 -- CreateTable
 CREATE TABLE "Data" (
     "id" SERIAL NOT NULL,
+    "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "order" INTEGER,
     "category" "DataCategory" NOT NULL,
     "type" "DataType" NOT NULL,

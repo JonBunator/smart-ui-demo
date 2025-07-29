@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, {useState, useEffect, Suspense} from "react";
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,8 +22,7 @@ import "./Properties.scss";
 import InquiryPageLayout from "@/app/ui/propertyManagement/pages/inquiries/components/InquiryPageLayout";
 import {
     AdditionalInfoType,
-    PropertyData, propertyOptions,
-    PropertyType
+    PropertyData,     PropertyType
 } from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import WifiIcon from '@mui/icons-material/Wifi';
 import PoolIcon from '@mui/icons-material/Pool';
@@ -34,84 +33,37 @@ import BedIcon from '@mui/icons-material/Bed';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import BathtubIcon from '@mui/icons-material/Bathtub';
-
-const properties: PropertyData[] = [
-    {
-        name: propertyOptions[0].label,
-        address: "Dorfstrasse 8, 9835 Zürich, Schweiz",
-        image: "/image/properties/property1.png",
-        description: "Erleben Sie Zürich in unserer zentral gelegenen Wohnung, die perfekt für Work and Travel ausgestattet ist. Mit einem modernen Computer-Arbeitsplatz bietet diese Unterkunft alles, was Sie für produktives Arbeiten und entspanntes Wohnen benötigen. Genießen Sie die Nähe zu den kulturellen Highlights und den lebhaften Straßen der Stadt, ideal für Geschäftsreisende und digitale Nomaden.",
-        type: PropertyType.APARTMENT,
-        additionalInfos: [AdditionalInfoType.WIFI, AdditionalInfoType.AIR_CONDITIONING, AdditionalInfoType.PARKING],
-        numBeds: 1,
-        numBathrooms: 1,
-        area: 40,
-        price: 139,
-    },
-    {
-        name: propertyOptions[1].label,
-        address: "Britts Väg 91, 85490 Söderlöv, Schweden",
-        image: "/image/properties/property3.png",
-        description: "Entfliehen Sie dem Alltag und tauchen Sie ein in die Ruhe der schwedischen Natur mit unserer idyllischen Holzhütte im Herzen des Waldes. Diese gemütliche Unterkunft bietet Ihnen die perfekte Gelegenheit, sich zu entspannen und die unberührte Schönheit der Umgebung zu genießen. Ideal für Naturliebhaber und alle, die eine Auszeit in der Abgeschiedenheit suchen.",
-        type: PropertyType.CABIN,
-        additionalInfos: [AdditionalInfoType.PARKING, AdditionalInfoType.PET_FRIENDLY],
-        numBeds: 2,
-        numBathrooms: 1,
-        area: 40,
-        price: 120,
-    },
-    {
-        name: propertyOptions[2].label,
-        address: "Jasperplantsoen 618 I, 2975 IY Amsterdam, Niederlande",
-        image: "/image/properties/property4.png",
-        description: "Erleben Sie Amsterdam auf einzigartige Weise in unserem charmanten Hausboot, das direkt in der Innenstadt auf einem malerischen Fluss liegt. Genießen Sie die Nähe zu den kulturellen Highlights und den lebhaften Straßen der Stadt, während Sie die Ruhe und Gelassenheit des Wassers genießen. Ideal für einen unvergesslichen Aufenthalt in der niederländischen Hauptstadt.",
-        type: PropertyType.HOUSE_BOAT,
-        additionalInfos: [AdditionalInfoType.AIR_CONDITIONING, AdditionalInfoType.PET_FRIENDLY],
-        numBeds: 3,
-        numBathrooms: 1,
-        area: 20,
-        price: 169,
-    },
-    {
-        name: propertyOptions[3].label,
-        address: "Barrio Roser 5, 05962 Mataró, Spanien",
-        image: "/image/properties/property2.png",
-        description: "Erleben Sie den ultimativen Luxus in unserer modernen Villa in Spanien, die mit einem beeindruckenden Pool ausgestattet ist. Diese exquisite Unterkunft ist perfekt für stilvolle Cocktailpartys und bietet Ihnen und Ihren Gästen ein unvergessliches Erlebnis. Genießen Sie die elegante Architektur und die erstklassigen Annehmlichkeiten in einer der begehrtesten Lagen Spaniens. Ideal für diejenigen, die das Leben in vollen Zügen genießen möchten.",
-        type: PropertyType.VILLA,
-        additionalInfos: [AdditionalInfoType.WIFI, AdditionalInfoType.POOL, AdditionalInfoType.AIR_CONDITIONING, AdditionalInfoType.PARKING],
-        numBeds: 8,
-        numBathrooms: 4,
-        area: 320,
-        price: 1500,
-    },
-    {
-        name: propertyOptions[4].label,
-        address: "Fritz-Erler-Str. 96a, 25938 Wyk auf Föhr, Deutschland",
-        image: "/image/properties/property5.png",
-        description: "Entdecken Sie die Schönheit der nordfriesischen Insel Föhr in unserem großen Haus mit traditionellem Reetdach, direkt am Fluss gelegen. Diese charmante Unterkunft bietet Ihnen eine perfekte Mischung aus traditionellem Charme und natürlicher Schönheit. Genießen Sie die friedliche Umgebung und die malerische Aussicht, ideal für einen erholsamen Urlaub inmitten der Natur.",
-        type: PropertyType.HOUSE,
-        additionalInfos: [AdditionalInfoType.WIFI, AdditionalInfoType.PARKING, AdditionalInfoType.PET_FRIENDLY],
-        numBeds: 6,
-        numBathrooms: 2,
-        area: 210,
-        price: 333,
-    },
-    {
-        name: propertyOptions[5].label,
-        address: "Lichtmattstrasse 43, 9050 Rüte, Schweiz",
-        image: "/image/properties/property6.png",
-        description: "Entdecken Sie die Schönheit der Schweizer Alpen in unserem gemütlichen Alpenblick Chalet. Genießen Sie den atemberaubenden Ausblick auf die majestätischen Berge und die unberührte Natur. Die Hütte ist bequem mit dem Auto zu erreichen und bietet Ihnen eine perfekte Mischung aus Ruhe und Erholung. Ideal für Naturliebhaber und Abenteurer!",
-        type: PropertyType.CABIN,
-        additionalInfos: [AdditionalInfoType.PARKING, AdditionalInfoType.PET_FRIENDLY],
-        numBeds: 6,
-        numBathrooms: 2,
-        area: 290,
-        price: 419,
-    },
-]
+import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {getProperties} from "@/lib/db/database";
+import LoadingPropertyCards from "@/app/ui/propertyManagement/pages/inquiries/LoadingPropertyCards";
+import Skeleton from "@mui/material/Skeleton";
 
 export default function Properties() {
     const router = useRouter();
+    const [properties, setProperties] = useState<PropertyData[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getProperties().then((properties) => {
+            const addedProperties: PropertyData[] = properties.map((property) => ({
+                name: property.name,
+                address: `${property.street} ${property.houseNumber}, ${property.postalCode} ${property.city}, ${property.country}`,
+                image: "/image/properties/property1.png",
+                description: property.description,
+                type: property.type as PropertyType,
+                additionalInfos: property.additionalInfo as AdditionalInfoType[],
+                numBeds: property.numBedrooms,
+                numBathrooms: property.numBathrooms,
+                area: property.area,
+                pricePerNight: property.pricePerNight,
+                available: false
+            }));
+
+            setProperties([...addedProperties, ...fakeData]);
+            setLoading(false);
+        })
+            .catch(() => setLoading(false));
+    }, []);
 
     function navigateToAddPage() {
         router.push("/survey/properties/add");
@@ -157,6 +109,7 @@ export default function Properties() {
 
     return (
         <InquiryPageLayout className="properties" title="Immobilien" buttonContent={AddButton}>
+            {loading ? <LoadingPropertyCards/> :
             <Grid container spacing={4} className="properties-container">
                 {properties.map((property, index) => {
                     const { icon, color } = getAvatarProps(property.type);
@@ -169,6 +122,9 @@ export default function Properties() {
                                             {icon}
                                         </Avatar>
                                     }
+                                    action={property.available ? undefined :
+                                        <Chip size="small" color="warning" label="Noch nicht verfügbar"/>
+                                    }
                                     title={property.name}
                                     subheader={property.address}
                                 />
@@ -177,14 +133,14 @@ export default function Properties() {
                                         <Image
                                             className="image"
                                             src={property.image}
-                                            width={640}
+                                            width={600}
                                             height={400}
                                             alt={`Image of ${property.name}`}
                                         />
                                     </div>
                                 </CardMedia>
                                 <CardContent className="card-content">
-                                    <div className="row">
+                                    <div className="card-content-main">
                                         <div className="infos">
                                             <div className="info">
                                                 <BedIcon/>
@@ -204,14 +160,13 @@ export default function Properties() {
                                             <div className="info">
                                                 <LocalOfferIcon/>
                                                 <Typography variant="body2" className="label">Preis/Nacht:</Typography>
-                                                <Typography variant="body2">{property.price}€</Typography>
+                                                <Typography variant="body2">{property.pricePerNight}€</Typography>
                                             </div>
                                         </div>
-                                        <Typography variant="body2">
+                                        <Typography variant="body2" className="description">
                                             {property.description}
                                         </Typography>
                                     </div>
-
                                     <div className="additional-infos">
                                         {property.additionalInfos.map((info, index) => {
                                             const {icon, label} = getAdditionalInfoProps(info);
@@ -227,6 +182,7 @@ export default function Properties() {
                     );
                 })}
             </Grid>
+            }
         </InquiryPageLayout>
     );
 }
