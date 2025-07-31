@@ -32,7 +32,9 @@
   }
 }
 
-
+canvas {
+  z-index: 3;
+}
 
 .rdp-root {
   .rdp-week {

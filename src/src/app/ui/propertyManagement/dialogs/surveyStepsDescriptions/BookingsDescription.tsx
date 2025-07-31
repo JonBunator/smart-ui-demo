@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-export default function BookingsUseCaseDescription() {
+export default function BookingsDescription() {
 
     return (
         <Typography>Im ersten Anwendungsfall bekommen Sie Buchungsanfragen von Urlaubern per E-Mail. Ihre Aufgabe

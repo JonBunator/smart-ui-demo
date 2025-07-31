@@ -2,19 +2,24 @@
 CREATE TYPE "DataType" AS ENUM ('Booking', 'Property', 'Maintenance');
 
 -- CreateEnum
-CREATE TYPE "DataCategory" AS ENUM ('Initial', 'GroundTruth', 'UserAdded');
-
--- CreateEnum
-CREATE TYPE "AISupport" AS ENUM ('NONE', 'AGENT', 'PROACTIVE_AGENT');
+CREATE TYPE "DataCategory" AS ENUM ('GroundTruth', 'UserAdded');
 
 -- CreateTable
 CREATE TABLE "Survey" (
     "id" SERIAL NOT NULL,
-    "active" BOOLEAN NOT NULL,
-    "invitationCode" TEXT NOT NULL,
-    "nextAISupportOrder" INTEGER NOT NULL DEFAULT 0,
+    "nextSurveyType" INTEGER NOT NULL DEFAULT 0,
+    "nextDataSetOrder" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Survey_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "SurveyGroup" (
+    "id" SERIAL NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "invitationCode" TEXT NOT NULL,
+
+    CONSTRAINT "SurveyGroup_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -22,6 +27,7 @@ CREATE TABLE "Data" (
     "id" SERIAL NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "order" INTEGER,
+    "dataSet" INTEGER,
     "category" "DataCategory" NOT NULL,
     "type" "DataType" NOT NULL,
 
@@ -106,28 +112,21 @@ CREATE TABLE "Participation" (
     "id" TEXT NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "state" TEXT,
-    "aiSupportOrder" INTEGER NOT NULL,
-    "promptHistory" TEXT,
-    "surveyId" INTEGER NOT NULL,
+    "surveyType" INTEGER NOT NULL,
+    "dataSetOrder" INTEGER NOT NULL,
+    "promptHistoryAgent" TEXT,
+    "promptHistoryProactiveAgent" TEXT,
+    "surveyGroupId" INTEGER NOT NULL,
 
     CONSTRAINT "Participation_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "UseCaseParticipation" (
-    "id" SERIAL NOT NULL,
-    "type" "DataType" NOT NULL,
-    "aiSupport" "AISupport" NOT NULL,
-    "participationId" TEXT NOT NULL,
-
-    CONSTRAINT "UseCaseParticipation_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ParticipationData" (
     "id" SERIAL NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "useCaseParticipationId" INTEGER NOT NULL,
+    "surveyStep" INTEGER NOT NULL,
+    "participationId" TEXT NOT NULL,
     "dataId" INTEGER NOT NULL,
     "groundTruthId" INTEGER NOT NULL,
 
@@ -135,7 +134,7 @@ CREATE TABLE "ParticipationData" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Survey_invitationCode_key" ON "Survey"("invitationCode");
+CREATE UNIQUE INDEX "SurveyGroup_invitationCode_key" ON "SurveyGroup"("invitationCode");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Booking_dataId_key" ON "Booking"("dataId");
@@ -162,13 +161,10 @@ ALTER TABLE "Maintenance" ADD CONSTRAINT "Maintenance_dataId_fkey" FOREIGN KEY (
 ALTER TABLE "EMail" ADD CONSTRAINT "EMail_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Participation" ADD CONSTRAINT "Participation_surveyId_fkey" FOREIGN KEY ("surveyId") REFERENCES "Survey"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Participation" ADD CONSTRAINT "Participation_surveyGroupId_fkey" FOREIGN KEY ("surveyGroupId") REFERENCES "SurveyGroup"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UseCaseParticipation" ADD CONSTRAINT "UseCaseParticipation_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_useCaseParticipationId_fkey" FOREIGN KEY ("useCaseParticipationId") REFERENCES "UseCaseParticipation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

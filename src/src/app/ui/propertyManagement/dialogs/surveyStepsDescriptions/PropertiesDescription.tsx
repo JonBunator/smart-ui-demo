@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import './UseCaseDescription.scss'
+import './SurveyStepDescription.scss'
 
-export default function PropertiesUseCaseDescription() {
+export default function PropertiesDescription() {
 
     return (
-        <div className="use-case-description">
+        <div className="survey-step-description">
             <Typography>
                 Im dritten Anwendungsfall bekommen Sie E-Mails von Ihrer Chefin <b>Kira Bartels</b>. Darin beschreibt sie neue Ferienhäuser,
                 die dem System hinzugefügt werden sollen. Ihre Aufgabe besteht darin diese Ferinhäuser mit allen nötigen

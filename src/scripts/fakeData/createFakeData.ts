@@ -9,17 +9,18 @@ const faker = new Faker({
 });
 
 faker.seed(743821);
+/*
 const bookings = faker.helpers.multiple(createBooking, {
     count: 10,
 });
-fs.writeFileSync('scripts/fakeData/bookings.json', JSON.stringify(bookings, null, 2));
+fs.writeFileSync('bookings.json', JSON.stringify(bookings, null, 2));
 
 const properties = faker.helpers.multiple(createProperty, {
     count: 10,
 });
-fs.writeFileSync('scripts/fakeData/properties.json', JSON.stringify(properties, null, 2));
-
+fs.writeFileSync('properties.json', JSON.stringify(properties, null, 2));
+*/
 const maintenance = faker.helpers.multiple(createMaintenance, {
-    count: 10,
+    count: 20,
 });
-fs.writeFileSync('scripts/fakeData/maintenance.json', JSON.stringify(maintenance, null, 2));
+fs.writeFileSync('maintenance.json', JSON.stringify(maintenance, null, 2));

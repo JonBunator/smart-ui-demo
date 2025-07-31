@@ -3,25 +3,25 @@ import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/Surv
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
 
-const nextURLS = ["/survey/properties", "/survey/maintenance", "/completed"]
+const nextURLS = ["/survey/bookings", "/survey/bookings", "/completed"]
 
 interface QuestionsNavigationProps {
-    useCaseIndex: number
+    surveyStep: number
 }
 
 export default function QuestionsNavigation(props: QuestionsNavigationProps) {
-    const { useCaseIndex } = props;
+    const { surveyStep } = props;
     const { subscribe } = useSurveyManager();
     const router = useRouter();
 
     useEffect(() => {
         const unsubscribe = subscribe((snapshot) => {
-            if(snapshot.matches({UseCase: "NotStarted"}) || snapshot.matches("Finished")) {
-                router.push(nextURLS[useCaseIndex])
+            if(snapshot.matches({SurveyStep: "NotStarted"}) || snapshot.matches("Finished")) {
+                router.push(nextURLS[surveyStep])
             }
         })
         return () => unsubscribe();
-    }, [router, subscribe, useCaseIndex]);
+    }, [router, subscribe, surveyStep]);
 
     return (
         <>

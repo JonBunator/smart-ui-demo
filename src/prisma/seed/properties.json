@@ -2,7 +2,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 0,
+    "order": 1,
+    "dataSet": 0,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -33,7 +34,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 1,
+    "order": 4,
+    "dataSet": 0,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -64,7 +66,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 2,
+    "order": 7,
+    "dataSet": 0,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -95,7 +98,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 3,
+    "order": 1,
+    "dataSet": 1,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -127,6 +131,7 @@
     "category": "GroundTruth",
     "type": "Property",
     "order": 4,
+    "dataSet": 1,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -157,7 +162,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 5,
+    "order": 7,
+    "dataSet": 1,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -188,7 +194,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 6,
+    "order": 1,
+    "dataSet": 2,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -219,7 +226,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 7,
+    "order": 4,
+    "dataSet": 2,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -250,7 +258,8 @@
   {
     "category": "GroundTruth",
     "type": "Property",
-    "order": 8,
+    "order": 7,
+    "dataSet": 2,
     "EMail": {
       "create": {
         "author": "Kira Bartels",
@@ -275,37 +284,6 @@
         "pricePerNight": 350,
         "deposit": 500,
         "additionalInfo": ["wifi", "pool", "airConditioning", "parking", "petFriendly"]
-      }
-    }
-  },
-  {
-    "category": "GroundTruth",
-    "type": "Property",
-    "order": 9,
-    "EMail": {
-      "create": {
-        "author": "Kira Bartels",
-        "authorEmail": "kira.bartels@leafylodges.de",
-        "subject": "Neues Ferienhaus hinzufügen: Strandjuwel Domizil",
-        "content": "Bitte fügen Sie das folgende Ferienhaus hinzu:\nName: Strandjuwel Domizil\nBeschreibung: Ein Juwel am Strand, ideal für luxuriöse Aufenthalte.\nStraße: Incrocio Zappalà\nHausnummer: 971\nStadt: Sesto Callisto sardo\nPostleitzahl: 24476\nLand: Italien\nTyp: Strandhaus\nAnzahl der Schlafzimmer: 3\nAnzahl der Badezimmer: 2\nMaximale Gästeanzahl: 6\nFläche: 160 Quadratmeter\nPreis pro Nacht: 280 Euro\nKaution: 400 Euro\nZusätzliche Informationen: WLAN, Klimaanlage, Parkplatz, Haustierfreundlich"      }
-    },
-    "Property": {
-      "create": {
-        "name": "Strandjuwel Domizil",
-        "description": "Ein Juwel am Strand, ideal für luxuriöse Aufenthalte.",
-        "street": "Incrocio Zappalà",
-        "houseNumber": "971",
-        "city": "Sesto Callisto sardo",
-        "postalCode": "24476",
-        "country": "Italien",
-        "type": "beachHouse",
-        "numBedrooms": 3,
-        "numBathrooms": 2,
-        "numMaximumGuests": 6,
-        "area": 160,
-        "pricePerNight": 280,
-        "deposit": 400,
-        "additionalInfo": ["wifi", "airConditioning", "parking", "petFriendly"]
       }
     }
   }

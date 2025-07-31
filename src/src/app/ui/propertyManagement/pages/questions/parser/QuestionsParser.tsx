@@ -29,7 +29,7 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
     const [formData, setFormData] = useState<T>({} as unknown as T);
     const errorRef = useRef<Element | null>(null);
     const validationListeners = useRef<Set<() => boolean>>(new Set());
-    const { completeUseCase } = useSurveyManager();
+    const { completeSurveyStep } = useSurveyManager();
 
     async function submit() {
         const errors = Array.from(validationListeners.current.values()).map(listener => listener());
@@ -40,7 +40,7 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
                 console.error("Saving data failed.")
                 return;
             }
-            completeUseCase();
+            completeSurveyStep();
         } else {
             scrollToError();
         }

@@ -6,6 +6,7 @@
     "dev": "dotenv -e .env.development -- next dev",
     "prisma-studio": "dotenv -e .env.development -- npx prisma studio",
     "prisma-init": "dotenv -e .env.development -- npx prisma generate",
+    "prisma-format": "dotenv -e .env.development -- npx prisma format",
     "init-db": "dotenv -e .env.development -- npx prisma migrate dev --name init",
     "seed": "dotenv -e .env.development -- npx prisma db seed",
     "create-fake-data": "tsx scripts/fakeData/createFakeData.ts",

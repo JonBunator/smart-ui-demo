@@ -18,10 +18,10 @@ export default async function middleware(req: NextRequest) {
         if (surveyState === "Finished") {
             return redirectWhenAuthenticated("/completed");
 
-        } else if((surveyState === "NotStarted" || surveyState["UseCase"] === "Running" || surveyState["UseCase"] === "NotStarted" || surveyState["UseCase"] === "NoMoreData")) {
+        } else if((surveyState === "NotStarted" || surveyState["SurveyStep"] === "Running" || surveyState["SurveyStep"] === "NotStarted" || surveyState["SurveyStep"] === "NoMoreData")) {
             return redirectWhenAuthenticated("/survey");
 
-        } else if(surveyState["UseCase"] === "Questions") {
+        } else if(surveyState["SurveyStep"] === "Questions") {
             return redirectWhenAuthenticated("/questions");
         }
     }

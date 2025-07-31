@@ -18,7 +18,7 @@ const columns: GridColDef[] = [
         field: 'completed',
         headerName: 'Status',
         flex: 1,
-        minWidth: 5,
+        minWidth: 70,
         renderCell: (params) => {
             if(params.value) {
                 return <CheckCircleIcon color="success"/>
@@ -72,7 +72,7 @@ const columns: GridColDef[] = [
             </span>
         )},
     { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120 },
-    { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 200,
+    { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 100,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}

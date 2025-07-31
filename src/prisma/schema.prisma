@@ -12,21 +12,33 @@ datasource db {
 }
 
 /**
- * AISupportOrder
- * 0: NONE -> AGENT -> PROACTIVE_AGENT (0, 1, 2)
- * 1: AGENT -> NONE -> PROACTIVE_AGENT (1, 0, 2)
- * 2: PROACTIVE_AGENT -> NONE -> AGENT (2, 0, 1)
- * 3: NONE -> PROACTIVE_AGENT -> AGENT (0, 2, 1)
- * 4: AGENT -> PROACTIVE_AGENT -> NONE (1, 2, 0)
- * 5: PROACTIVE_AGENT -> AGENT -> NONE (2, 1, 0)
+ * Survey type
+ * 0: No Agent -> Agent -> Proactive Agent (With complete fill)
+ * 1: No Agent -> Proactive Agent -> Agent (With section fill)
+ * 2: No Agent -> Agent -> Proactive Agent (With section fill)
+ * 3: No Agent -> Proactive Agent -> Agent (With complete fill)
  */
 
+/**
+ * dataSetOrder can be 0 - 5, specifies the order the datasets are assigned
+ * 0: A -> B -> C
+ * 1: A -> C -> B
+ * 2: B -> C -> A
+ * 3: B -> A -> C
+ * 4: C -> A -> B
+ * 5: C -> B -> A
+ */
 model Survey {
-  id                 Int             @id @default(autoincrement())
-  active             Boolean
-  invitationCode     String          @unique
-  nextAISupportOrder Int             @default(0)
-  Participations     Participation[]
+  id               Int @id @default(autoincrement())
+  nextSurveyType   Int @default(0)
+  nextDataSetOrder Int @default(0)
+}
+
+model SurveyGroup {
+  id             Int             @id @default(autoincrement())
+  active         Boolean         @default(true)
+  invitationCode String          @unique
+  Participations Participation[]
 }
 
 enum DataType {
@@ -37,11 +49,7 @@ enum DataType {
 
 enum DataCategory {
   /**
-   * Initially added data.
-   */
-  Initial
-  /**
-   * Data that is used in survey as use cases.
+   * Data that is used in survey.
    */
   GroundTruth
   /**
@@ -53,7 +61,8 @@ enum DataCategory {
 model Data {
   id                           Int                 @id @default(autoincrement())
   timestamp                    DateTime            @default(now())
-  order                        Int? // should be set when category = GroundTruth
+  order                        Int? // should be set when category = GroundTruth, order the mails are sent at
+  dataSet                      Int? // should be set when category = GroundTruth, values of 0-2
   category                     DataCategory
   type                         DataType
   EMail                        EMail?
@@ -131,38 +140,26 @@ model EMail {
 }
 
 model Participation {
-  id                    String                 @id @default(uuid())
-  timestamp             DateTime               @default(now())
-  state                 String?
-  aiSupportOrder        Int
-  promptHistory         String?
-  surveyId              Int
-  Survey                Survey                 @relation(fields: [surveyId], references: [id], onDelete: Cascade)
-  useCaseParticipations UseCaseParticipation[]
-}
-
-enum AISupport {
-  NONE
-  AGENT
-  PROACTIVE_AGENT
-}
-
-model UseCaseParticipation {
-  id                Int                 @id @default(autoincrement())
-  type              DataType
-  aiSupport         AISupport
-  participationId   String
-  Participation     Participation       @relation(fields: [participationId], references: [id], onDelete: Cascade)
-  ParticipationData ParticipationData[]
+  id                          String              @id @default(uuid())
+  timestamp                   DateTime            @default(now())
+  state                       String?
+  surveyType                  Int
+  dataSetOrder                Int
+  promptHistoryAgent          String?
+  promptHistoryProactiveAgent String?
+  surveyGroupId               Int
+  SurveyGroup                 SurveyGroup         @relation(fields: [surveyGroupId], references: [id], onDelete: Cascade)
+  ParticipationData           ParticipationData[]
 }
 
 model ParticipationData {
-  id                     Int                  @id @default(autoincrement())
-  timestamp              DateTime             @default(now())
-  useCaseParticipationId Int
-  UseCaseParticipation   UseCaseParticipation @relation(fields: [useCaseParticipationId], references: [id])
-  dataId                 Int
-  userData               Data                 @relation("UserDataToParticipationData", fields: [dataId], references: [id])
-  groundTruthId          Int
-  groundTruth            Data                 @relation("GroundTruthToParticipationData", fields: [groundTruthId], references: [id])
+  id              Int           @id @default(autoincrement())
+  timestamp       DateTime      @default(now())
+  surveyStep      Int
+  participationId String
+  Participation   Participation @relation(fields: [participationId], references: [id])
+  dataId          Int
+  userData        Data          @relation("UserDataToParticipationData", fields: [dataId], references: [id])
+  groundTruthId   Int
+  groundTruth     Data          @relation("GroundTruthToParticipationData", fields: [groundTruthId], references: [id])
 }

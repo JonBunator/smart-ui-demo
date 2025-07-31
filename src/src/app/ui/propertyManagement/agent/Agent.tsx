@@ -16,7 +16,11 @@ export default function Agent() {
     async function send() {
         const sendValue = value;
         setValue("");
-        await sendPrompt(sendValue);
+        try {
+            await sendPrompt(sendValue);
+        }catch(e) {
+            console.error(e);
+        }
     }
 
     return (

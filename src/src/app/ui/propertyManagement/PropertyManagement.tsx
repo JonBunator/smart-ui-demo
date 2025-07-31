@@ -1,7 +1,7 @@
 import {Paper} from "@mui/material";
 import NavigationBar from "@/app/ui/propertyManagement/navigationBar/NavigationBar";
 import StartSurveyDialog from "@/app/ui/propertyManagement/dialogs/StartSurveyDialog";
-import UseCaseDescriptionDialog from "@/app/ui/propertyManagement/dialogs/useCaseDescription/UseCaseDescriptionDialog";
+import SurveyStepDescriptionDialog from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/SurveyStepDescriptionDialog";
 import "./PropertyManagement.scss"
 import NoMoreDataDialog from "@/app/ui/propertyManagement/dialogs/NoMoreDataDialog";
 
@@ -25,7 +25,7 @@ export default function PropertyManagement(props: PropertyManagementProps) {
 
             </div>
             <StartSurveyDialog/>
-            <UseCaseDescriptionDialog/>
+            <SurveyStepDescriptionDialog/>
             <NoMoreDataDialog/>
         </>
     );

@@ -1,19 +1,31 @@
-import { AISupport, DataType } from '@prisma'
+import {DataType} from '@prisma'
+import {AISupport} from "@/lib/types"
 
-// Duration of one use case in seconds
-export const USE_CASE_DURATION = 300000;
+// Duration of one survey step in seconds
+export const SURVEY_STEP_DURATION = 30000;
 
-export const NUM_USE_CASES = 3;
+export const NUM_SURVEY_STEPS = 3;
 
-export const NUM_DATA_PER_USE_CASE = 10;
+export const NUM_DATA_PER_SURVEY_STEP = 10;
 
-// Order is important, because use case is querried by index
-export const USE_CASE_INDEX_TYPES = [DataType.Booking, DataType.Property, DataType.Maintenance]
+export const NUM_SURVEY_TYPES = 4;
 
-export const AI_SUPPORT_ORDER = [[AISupport.NONE, AISupport.AGENT, AISupport.PROACTIVE_AGENT],
+export const NUM_DATA_INDICES = 6;
+
+export const AI_SUPPORT_ORDER = [
+    [AISupport.NONE, AISupport.AGENT, AISupport.PROACTIVE_AGENT],
+    [AISupport.NONE, AISupport.PROACTIVE_AGENT, AISupport.AGENT],
+    [AISupport.NONE, AISupport.AGENT, AISupport.PROACTIVE_AGENT],
     [AISupport.NONE, AISupport.PROACTIVE_AGENT, AISupport.AGENT]]
 
-export const NUM_AI_SUPPORT_ORDER_ELEMENTS = AI_SUPPORT_ORDER.length;
+export const DATASET_ORDER = [
+    [0, 1, 2],
+    [0, 2, 1],
+    [1, 2, 0],
+    [1, 0, 2],
+    [2, 0, 1],
+    [2, 1, 0]
+]
 
 export const CUSTOM_SYSTEM_PROMPT = `You are an assistant that helps users interact with user interfaces. The user is an\
  employee of a company that manages vacation homes. You help him interact with the management software. The tasks of the\

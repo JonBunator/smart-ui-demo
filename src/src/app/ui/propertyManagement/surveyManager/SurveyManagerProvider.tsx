@@ -3,7 +3,7 @@ import {createContext, useCallback, useContext, useEffect, useMemo, useRef, useS
 import surveyFlowMachine, {SurveyFlowMachineEvents} from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
 import {createActor, Actor, SnapshotFrom} from 'xstate';
-import {NUM_DATA_PER_USE_CASE, NUM_USE_CASES, USE_CASE_DURATION} from "@/lib/config";
+import {NUM_DATA_PER_SURVEY_STEP, NUM_SURVEY_STEPS, SURVEY_STEP_DURATION} from "@/lib/config";
 
 interface SurveyManagerContextType {
     /**
@@ -11,17 +11,17 @@ interface SurveyManagerContextType {
      */
     startSurvey: () => void
     /**
-     * Starts the next use case.
+     * Starts the next survey step.
      */
-    startUseCase: () => void
+    startSurveyStep: () => void
     /**
-     * Adds data to the use case.
+     * Adds data to the survey step.
      */
     addData: () => void
     /**
-     * Completes the questionnaire of the use case.
+     * Completes the questionnaire of the survey step.
      */
-    completeUseCase: () => void
+    completeSurveyStep: () => void
     /**
      * Completes data adding and proceeds to questionnaire due to no more data.
      */
@@ -35,9 +35,9 @@ interface SurveyManagerContextType {
      */
     snapshot:  SnapshotFrom<typeof surveyFlowMachine> | undefined
     /**
-     * Index of the current use case.
+     * Index of the survey step.
      */
-    useCaseIndex:  number | undefined
+    surveyStep:  number | undefined
     /**
      * Index of the current data point.
      */
@@ -65,7 +65,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         getParticipationState()
             .then(state => {
                 const actor = createActor(surveyFlowMachine, {
-                    input: {numUseCases: NUM_USE_CASES, useCaseDuration: USE_CASE_DURATION, numDataPerUseCase: NUM_DATA_PER_USE_CASE},
+                    input: {numSurveySteps: NUM_SURVEY_STEPS, surveyStepDuration: SURVEY_STEP_DURATION, numDataPerSurveyStep: NUM_DATA_PER_SURVEY_STEP},
                     snapshot: state !== null ? state : undefined,
                 })
                 actor.start();
@@ -116,13 +116,13 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
     
     const value = useMemo(() => ({
         startSurvey: () => sendEvent({type: "startSurvey"}),
-        startUseCase: () => sendEvent({type: "startUseCase"}),
+        startSurveyStep: () => sendEvent({type: "startSurveyStep"}),
         addData: () => sendEvent({type: "addData"}),
-        completeUseCase: () => sendEvent({type: "completeUseCase"}),
+        completeSurveyStep: () => sendEvent({type: "completeSurveyStep"}),
         completeNoMoreData: () => sendEvent({type: "completeNoMoreData"}),
         showHelpDialog,
         snapshot: snapshot,
-        useCaseIndex: snapshot?.context.useCaseIndex,
+        surveyStep: snapshot?.context.surveyStep,
         dataIndex: snapshot?.context.dataIndex,
         stateMachine: machine,
         subscribe,

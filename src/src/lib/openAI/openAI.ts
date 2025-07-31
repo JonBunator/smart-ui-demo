@@ -34,8 +34,8 @@ const optionalAgentInput = {
 
 export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentResponse> {
     const sessionData = await getSession();
-    if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "NotStarted" || sessionData.surveyState["UseCase"] !== "Running") {
-        return {uiInteractions: [], naturalLanguageInteraction: "An error occurred"};
+    if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "NotStarted" || sessionData.surveyState["SurveyStep"] !== "Running") {
+        return {agentOutput: {uiInteractions: [], naturalLanguageInteraction: "An error occurred"}, messages: []};
     }
     console.log(agentInput)
     console.log(JSON.stringify(optionalAgentInput))

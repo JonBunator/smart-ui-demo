@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import './UseCaseDescription.scss'
+import './SurveyStepDescription.scss'
 
-export default function MaintenanceUseCaseDescription() {
+export default function MaintenanceDescription() {
 
     return (
-        <div className="use-case-description">
+        <div className="survey-step-description">
             <Typography>Im dritten Anwendungsfall bekommen Sie Instandhaltungsanfragen wie Mitteilungen über defekte Toiletten etc.
                 von Urlaubern per E-Mail. Ihre Aufgabe besteht darin diese Instandhaltung mit allen nötigen Informationen aus
                 den zugehörigen E-Mails dem System hinzuzufügen. Navigieren Sie dafür auf die Seite <b>Instandhaltungen</b>

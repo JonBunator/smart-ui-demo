@@ -1,5 +1,5 @@
 import QuestionsNavigation from "./QuestionsNavigation";
-import {getUseCaseIndex, addQuestionaireData} from "@/lib/db/database";
+import {getSurveyStep, addQuestionaireData} from "@/lib/db/database";
 import {bookings} from "@/app/ui/propertyManagement/pages/questions/parser/configs/bookings";
 import {properties} from "@/app/ui/propertyManagement/pages/questions/parser/configs/properties";
 import {maintenance} from "@/app/ui/propertyManagement/pages/questions/parser/configs/maintenance";
@@ -11,12 +11,12 @@ const questionaires = [bookings, properties, maintenance]
 const addDataFunctions = [addQuestionaireData, addQuestionaireData, addQuestionaireData]
 
 export default async function Questions() {
-    const useCaseIndex = await getUseCaseIndex();
+    const surveyStep = await getSurveyStep();
 
     return (
         <FrameLayout>
-            {useCaseIndex !== null && <QuestionsParser addData={addDataFunctions[useCaseIndex]} questionaire={questionaires[useCaseIndex]}/>}
-            {useCaseIndex !== null && <QuestionsNavigation useCaseIndex={useCaseIndex} />}
+            {surveyStep !== null && <QuestionsParser addData={addDataFunctions[surveyStep]} questionaire={questionaires[surveyStep]}/>}
+            {surveyStep !== null && <QuestionsNavigation surveyStep={surveyStep} />}
         </FrameLayout>
     );
 }

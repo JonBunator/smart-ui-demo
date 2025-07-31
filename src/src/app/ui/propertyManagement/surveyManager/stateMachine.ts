@@ -1,23 +1,23 @@
 import {AnyEventObject, assign, emit, enqueueActions, fromCallback, setup} from "xstate";
 
 export type SurveyFlowMachineContext = {
-    numUseCases: number;
-    useCaseDuration: number;
-    useCaseIndex: number;
+    numSurveySteps: number;
+    surveyStepDuration: number;
+    surveyStep: number;
     dataIndex: number;
-    numDataPerUseCase: number;
+    numDataPerSurveyStep: number;
     timeout: number | null;
     showHelpDialog: boolean;
 };
 
 export type SurveyFlowMachineState = "NotStarted" | "Finished" | {
-    UseCase: "NotStarted" | "Running" | "NoMoreData" | "Questions"
+    SurveyStep: "NotStarted" | "Running" | "NoMoreData" | "Questions"
 }
 
 export type SurveyFlowMachineEvents =  | { type: "startSurvey" }
-    | { type: "startUseCase" }
+    | { type: "startSurveyStep" }
     | { type: "addData" }
-    | { type: "completeUseCase" }
+    | { type: "completeSurveyStep" }
     | { type: "completeNoMoreData" }
     | { type: "openHelpDialog" }
     | { type: "closeHelpDialog" }
@@ -27,9 +27,9 @@ const surveyFlowMachine = setup({
     types: {
         context: {} as SurveyFlowMachineContext,
         events: {} as SurveyFlowMachineEvents,
-        input: {} as { numUseCases: number, useCaseDuration: number, numDataPerUseCase: number },
+        input: {} as { numSurveySteps: number, surveyStepDuration: number, numDataPerSurveyStep: number },
         emitted: {} as
-            | { type: "sendEmail"; useCaseIndex: number; dataIndex: number }
+            | { type: "sendEmail"; surveyStep: number; dataIndex: number }
             | { type: "clockTick", timeDifference: number },
     },
     actors: {
@@ -52,42 +52,42 @@ const surveyFlowMachine = setup({
     id: "surveyFlow",
     initial: "NotStarted",
     context: ({input}) => ({
-        numUseCases: input.numUseCases,
-        useCaseDuration: input.useCaseDuration,
-        useCaseIndex: 0,
+        numSurveySteps: input.numSurveySteps,
+        surveyStepDuration: input.surveyStepDuration,
+        surveyStep: 0,
         dataIndex: 0,
-        numDataPerUseCase: input.numDataPerUseCase,
+        numDataPerSurveyStep: input.numDataPerSurveyStep,
         timeout: null,
         showHelpDialog: false,
     }),
     states: {
         NotStarted: {
             on: {
-                startSurvey: "UseCase",
+                startSurvey: "SurveyStep",
             },
         },
-        UseCase: {
+        SurveyStep: {
             initial: "NotStarted",
             states: {
                 NotStarted: {
                     on: {
-                        startUseCase: "Running",
+                        startSurveyStep: "Running",
                     },
                 },
                 Running: {
                     always: {
-                        guard: ({context}) => context.dataIndex === context.numDataPerUseCase,
+                        guard: ({context}) => context.dataIndex === context.numDataPerSurveyStep,
                         target: "NoMoreData",
                     },
                     entry: [assign({
                         timeout: ({context}) => {
-                            return (new Date()).valueOf() + context.useCaseDuration * 1000;
+                            return (new Date()).valueOf() + context.surveyStepDuration * 1000;
                             }
                         }),
                         emit(({context}) => {
                             return {
                                 type: "sendEmail",
-                                useCaseIndex: context.useCaseIndex,
+                                surveyStep: context.surveyStep,
                                 dataIndex: context.dataIndex,
                             };
                         }),
@@ -115,10 +115,10 @@ const surveyFlowMachine = setup({
                                     dataIndex: ({ context }) => context.dataIndex + 1,
                                 }),
                                 enqueueActions(({context, enqueue}) => {
-                                    if (context.dataIndex < context.numDataPerUseCase) {
+                                    if (context.dataIndex < context.numDataPerSurveyStep) {
                                         enqueue.emit({
                                             type: "sendEmail",
-                                            useCaseIndex: context.useCaseIndex,
+                                            surveyStep: context.surveyStep,
                                             dataIndex: context.dataIndex,
                                         });
                                     }
@@ -144,18 +144,18 @@ const surveyFlowMachine = setup({
                 },
                 Questions: {
                     on: {
-                        completeUseCase: [
+                        completeSurveyStep: [
                             {
                                 guard: ({context}) =>
-                                    context.useCaseIndex === context.numUseCases - 1,
+                                    context.surveyStep === context.numSurveySteps - 1,
                                 target: "#surveyFlow.Finished",
                             },
                             {
                                 guard: ({context}) =>
-                                    context.useCaseIndex !== context.numUseCases - 1,
+                                    context.surveyStep !== context.numSurveySteps - 1,
                                 target: "NotStarted",
                                 actions: assign({
-                                    useCaseIndex: ({context}) => context.useCaseIndex + 1,
+                                    surveyStep: ({context}) => context.surveyStep + 1,
                                     dataIndex: 0,
                                 }),
                             },

@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
-import {getAISupportForCurrentUseCase} from "@/lib/db/database";
-import {AISupport} from "@prisma";
+import {getAISupportForCurrentSurveyStep} from "@/lib/db/database";
+import {AISupport} from "@/lib/types"
 import {usePathname, useRouter} from "next/navigation";
 import "./AddInquiryHeader.scss"
 
@@ -34,7 +34,7 @@ export default function AddInquiryHeader(props: AddInquiryHeaderProps) {
     const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
 
     useEffect(() => {
-        getAISupportForCurrentUseCase()
+        getAISupportForCurrentSurveyStep()
             .then(aiSupport => setShowSmartPasteButton(aiSupport === AISupport.PROACTIVE_AGENT || aiSupport === AISupport.AGENT ))
     }, []);
 

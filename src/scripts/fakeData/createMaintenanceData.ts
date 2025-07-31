@@ -1,8 +1,8 @@
-import { de, Faker } from '@faker-js/faker';
+import { fr, nl, hr, de, ar, es, sk, Faker } from '@faker-js/faker';
 import {DataCategory, DataType} from "@prisma";
 
 const faker = new Faker({
-    locale: [de],
+    locale: [sk],
 });
 
 

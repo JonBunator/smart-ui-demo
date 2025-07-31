@@ -1,17 +1,30 @@
 "use server"
 
-import {AISupport, DataCategory, EMail, Data, DataType, BookingCreateInput, PropertyCreateInput, MaintenanceCreateInput, Booking, Maintenance, Property} from "@prisma";
+import {
+    Booking,
+    BookingCreateInput,
+    Data,
+    DataCategory,
+    DataType,
+    EMail,
+    Maintenance,
+    MaintenanceCreateInput,
+    Property,
+    PropertyCreateInput
+} from "@prisma";
 import {
     AI_SUPPORT_ORDER,
-    NUM_AI_SUPPORT_ORDER_ELEMENTS,
-    NUM_DATA_PER_USE_CASE,
-    NUM_USE_CASES,
-    USE_CASE_INDEX_TYPES
+    DATASET_ORDER,
+    NUM_DATA_INDICES,
+    NUM_DATA_PER_SURVEY_STEP,
+    NUM_SURVEY_STEPS,
+    NUM_SURVEY_TYPES
 } from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
 import {SnapshotFrom} from "xstate";
 import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
+import {AISupport} from "@/lib/types"
 
 /**
  * Checks if the invite code is valid. False when not, true when valid.
@@ -19,13 +32,13 @@ import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMa
  */
 export async function isInviteCodeValid(inviteCode: string): Promise<boolean> {
     try {
-        const survey = await prisma.survey.findUnique({
+        const surveyGroup = await prisma.surveyGroup.findUnique({
             where: {
                 invitationCode: inviteCode,
             },
         });
 
-        return !(!survey || !survey.active);
+        return !(!surveyGroup || !surveyGroup.active);
 
 
     } catch(error) {
@@ -41,31 +54,40 @@ export async function isInviteCodeValid(inviteCode: string): Promise<boolean> {
  */
 export async function startNewSurvey(inviteCode: string): Promise<boolean> {
     try {
-        const survey = await prisma.survey.findUnique({
+        const surveyGroup = await prisma.surveyGroup.findUnique({
             where: {
                 invitationCode: inviteCode,
             },
         });
 
-        if (!survey || !survey.active) {
+        if (!surveyGroup || !surveyGroup.active) {
             return false;
         }
 
-        const nextAISupportOrder = (survey.nextAISupportOrder + 1) % NUM_AI_SUPPORT_ORDER_ELEMENTS;
+        const survey = await prisma.survey.findFirst();
+
+        if (!survey) {
+            return false;
+        }
 
         const newParticipation = await prisma.participation.create({
             data: {
-                surveyId: survey.id,
-                aiSupportOrder: survey.nextAISupportOrder,
+                surveyGroupId: surveyGroup.id,
+                surveyType: survey.nextSurveyType,
+                dataSetOrder: survey.nextDataSetOrder,
             },
         });
+
+        const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
+        const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
 
         await prisma.survey.update({
             where: {
                 id: survey.id,
             },
             data: {
-                nextAISupportOrder: nextAISupportOrder,
+                nextSurveyType: nextSurveyType,
+                nextDataSetOrder: nextDataSetOrder,
             },
         });
         await setSession({userId: newParticipation.id, surveyState: "NotStarted"})
@@ -77,20 +99,20 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
     }
 }
 
-export async function getAISupportForCurrentUseCase(): Promise<AISupport | null> {
+export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('getAISupportForUseCase: Session is invalid');
+        console.error('getAISupportForCurrentSurveyStep: Session is invalid');
         return null;
     }
 
-    const useCaseIndex = await getUseCaseIndex();
-    if(useCaseIndex === null) {
-        throw new Error(`UseCaseIndex is invalid`);
+    const surveyStep = await getSurveyStep();
+    if(surveyStep === null) {
+        throw new Error(`surveyStep is invalid`);
     }
 
-    if(useCaseIndex >= NUM_USE_CASES) {
-        throw new Error(`Index must be smaller than ${NUM_USE_CASES}.`)
+    if(surveyStep >= NUM_SURVEY_STEPS) {
+        throw new Error(`Index must be smaller than ${NUM_SURVEY_STEPS}.`)
     }
 
     try {
@@ -107,7 +129,7 @@ export async function getAISupportForCurrentUseCase(): Promise<AISupport | null>
             return null;
         }
 
-        return AI_SUPPORT_ORDER[participation.aiSupportOrder][useCaseIndex];
+        return AI_SUPPORT_ORDER[participation.surveyType][surveyStep];
 
 
     } catch(error) {
@@ -177,7 +199,7 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
 }
 
 /**
- * Returns emails for use cases where the sequence is less than or equal to the dataIndex.
+ * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
 export async function getAllEMails(): Promise<EMail[]|null> {
     const sessionData = await getSession();
@@ -186,24 +208,27 @@ export async function getAllEMails(): Promise<EMail[]|null> {
         return null;
     }
 
-    const useCaseData = await _getUseCaseData();
-    if(!useCaseData) {
+    const surveyStepData = await _getSurveyStepData();
+    if(!surveyStepData) {
         return [];
     }
-    const useCaseIndex = useCaseData.useCaseIndex;
-    const dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, useCaseData.dataIndex);
+    const surveyStep = surveyStepData.surveyStep;
+    const dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, surveyStepData.dataIndex);
 
-    if(useCaseIndex >= NUM_USE_CASES) {
-        throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
+    if(surveyStep >= NUM_SURVEY_STEPS) {
+        throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
     }
 
-    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+    const dataSet = await _getDataSet(surveyStep);
+    if(dataSet === null) {
+        throw new Error(`dataSet not found.`)
+    }
 
     try {
         const data = await prisma.data.findMany({
             where: {
                 category: DataCategory.GroundTruth,
-                type: type,
+                dataSet: dataSet,
                 order: {
                     lte: dataIndex,
                 },
@@ -223,31 +248,34 @@ export async function getAllEMails(): Promise<EMail[]|null> {
         return data.map(d => d.EMail).filter(email => email !== null);
 
     } catch(error) {
-        console.error('Error getting use case', error);
+        console.error('Error getting survey step', error);
         return null;
     }
 }
 
-export async function getGroundTruthData(useCaseIndex: number, dataIndex: number): Promise<Data|null> {
+export async function getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data|null> {
     const sessionData = await getSession();
     if (!sessionData) {
         console.error('getGroundTruthData: Session is invalid');
         return null;
     }
 
-    if(useCaseIndex >= NUM_USE_CASES) {
-        throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
+    if(surveyStep >= NUM_SURVEY_STEPS) {
+        throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
     }
 
-    dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, dataIndex);
+    dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, dataIndex);
 
-    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+    const dataSet = await _getDataSet(surveyStep);
+    if(dataSet === null) {
+        throw new Error(`dataSet not found.`)
+    }
 
     try {
         const data = await prisma.data.findFirst({
             where: {
                 category: DataCategory.GroundTruth,
-                type: type,
+                dataSet: dataSet,
                 order: dataIndex,
             }
         });
@@ -259,35 +287,63 @@ export async function getGroundTruthData(useCaseIndex: number, dataIndex: number
         return data;
 
     } catch(error) {
-        console.error('Error getting use case', error);
+        console.error('Error getting survey step', error);
         return null;
     }
 }
+ async function _getDataSet(surveyStep: number): Promise<number|null> {
+     const sessionData = await getSession();
+     if (!sessionData) {
+         console.error('_getDataSet: Session is invalid');
+         return null;
+     }
+     try {
+         const participation = await prisma.participation.findUnique({
+             where: {
+                 id: sessionData.userId,
+             },
+         });
+
+         if (!participation) {
+             console.error('Error getting data');
+             return null;
+         }
+         return DATASET_ORDER[participation.dataSetOrder][surveyStep];
+
+     } catch(error) {
+         console.error('Error getting survey step', error);
+         return null;
+     }
+ }
 
 /**
- * Returns emails for use cases where the sequence is less than or equal to the dataIndex.
+ * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
-export async function getEMail(useCaseIndex: number, dataIndex: number): Promise<EMail|null> {
+export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail|null> {
     const sessionData = await getSession();
     if (!sessionData) {
         console.error('getEMail: Session is invalid');
         return null;
     }
 
-    if(useCaseIndex >= NUM_USE_CASES) {
-        throw new Error(`useCaseIndex must be smaller than ${NUM_USE_CASES}.`)
+    if(surveyStep >= NUM_SURVEY_STEPS) {
+        throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
     }
 
-    dataIndex = Math.min(NUM_DATA_PER_USE_CASE - 1, dataIndex);
+    dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, dataIndex);
 
-    const type = USE_CASE_INDEX_TYPES[useCaseIndex];
+    const dataSet = await _getDataSet(surveyStep);
+
+    if(dataSet === null) {
+        throw new Error(`dataSet not found.`)
+    }
 
     try {
         const data = await prisma.data.findFirst({
             where: {
                 category: DataCategory.GroundTruth,
-                type: type,
                 order: dataIndex,
+                dataSet: dataSet,
             },
             include: {
                 EMail: true,
@@ -301,7 +357,7 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
         return data.EMail;
 
     } catch(error) {
-        console.error('Error getting use case', error);
+        console.error('Error getting survey step', error);
         return null;
     }
 }
@@ -311,18 +367,29 @@ export async function getEMail(useCaseIndex: number, dataIndex: number): Promise
  * @param lastN The number of emails to get.
  */
 export async function getEmails(lastN: number): Promise<EMail[]> {
-    const useCaseData = await _getUseCaseData();
-    if (useCaseData === null) {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        throw new Error('getEmails: Session is invalid');
+    }
+
+    const surveyStepData = await _getSurveyStepData();
+    if (surveyStepData === null) {
         throw new Error("An error occured.");
     }
-    const type = USE_CASE_INDEX_TYPES[useCaseData.useCaseIndex];
+
+    const dataSet = await _getDataSet(surveyStepData.surveyStep);
+
+    if(!dataSet) {
+        throw new Error("dataSet not found.");
+    }
+
     try {
         const data = await prisma.data.findMany({
             where: {
                 category: DataCategory.GroundTruth,
-                type: type,
+                dataSet: dataSet,
                 order: {
-                    lte: useCaseData.dataIndex,
+                    lte: surveyStepData.dataIndex,
                 },
             },
             orderBy: {
@@ -345,72 +412,35 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
 }
 
 /**
- * Returns index of current use case.
+ * Returns index of step of the survey.
  */
-export async function getUseCaseIndex(): Promise<number|null> {
+export async function getSurveyStep(): Promise<number|null> {
     const sessionData = await getSession();
     if (!sessionData) {
-        console.error('getUseCaseIndex: Session is invalid');
+        console.error('getSurveyStep: Session is invalid');
         return null;
     }
-    const useCaseData = await _getUseCaseData();
-    if (useCaseData === null) {
+    const surveyStepData = await _getSurveyStepData();
+    if (surveyStepData === null) {
         return 0;
     }
-    return useCaseData.useCaseIndex;
+    return surveyStepData.surveyStep;
 }
 
-interface UseCaseData {
-    useCaseIndex: number;
+interface SurveyStepData {
+    surveyStep: number;
     dataIndex: number;
 }
 
-export async function _getUseCaseData(): Promise<UseCaseData|null> {
+export async function _getSurveyStepData(): Promise<SurveyStepData|null> {
     const surveyState = await getParticipationState();
     if(!surveyState) {
         return null;
     }
 
-    const useCaseIndex = surveyState.context.useCaseIndex;
+    const surveyStep = surveyState.context.surveyStep;
     const dataIndex = surveyState.context.dataIndex;
-    return {useCaseIndex, dataIndex};
-}
-
-async function _getUseCaseParticipation(type: DataType) {
-    const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('_getUseCaseParticipation: Session is invalid');
-        return;
-    }
-
-    const participation = await prisma.participation.findUnique({
-        where: {
-            id: sessionData.userId,
-        },
-        include: {
-            useCaseParticipations: true
-        },
-    });
-
-    if(!participation) {
-        throw new Error(`Participation not found!`)
-    }
-
-    const existingParticipation = participation.useCaseParticipations.find(
-        (ucp) => ucp.type === type
-    );
-
-    if (existingParticipation) {
-        return existingParticipation;
-    }
-    const aiSupport = await getAISupportForCurrentUseCase();
-    return prisma.useCaseParticipation.create({
-        data: {
-            type: type,
-            participationId: participation.id,
-            aiSupport: aiSupport
-        },
-    });
+    return {surveyStep: surveyStep, dataIndex};
 }
 
 export async function addBooking(booking: BookingCreateInput) {
@@ -434,28 +464,24 @@ async function addData(type: DataType, payload: unknown) {
         console.error('addData: Session is invalid');
         return;
     }
-    const useCaseData = await _getUseCaseData();
-    if (!useCaseData) {
-        throw new Error("UseCaseData is null.");
+    const surveyStepData = await _getSurveyStepData();
+    if (!surveyStepData) {
+        throw new Error("SurveyStepData is null.");
     }
 
-    const useCaseParticipation = await _getUseCaseParticipation(type);
-    if(!useCaseParticipation) {
-        throw new Error("UseCaseParticipation is null.");
-    }
-
-    const groundTruthData = await getGroundTruthData(useCaseData.useCaseIndex, useCaseData.dataIndex);
+    const groundTruthData = await getGroundTruthData(surveyStepData.surveyStep, surveyStepData.dataIndex);
     if (!groundTruthData) {
         throw new Error("GroundTruthData is null.");
     }
     await prisma.participationData.create({
         data: {
-            UseCaseParticipation: {
-                connect: {id: useCaseParticipation.id}
+            Participation: {
+                connect: { id: sessionData.userId }
             },
             groundTruth: {
                 connect: {id: groundTruthData.id}
             },
+            surveyStep: surveyStepData.surveyStep,
             userData: {
                 create: {
                     category: DataCategory.UserAdded,
@@ -488,15 +514,10 @@ async function getData(type: DataType) {
         return null;
     }
 
-    const useCaseParticipation = await _getUseCaseParticipation(type);
-    if (!useCaseParticipation) {
-        throw new Error("UseCaseParticipation is null.");
-    }
-
     const userAddedData = await prisma.participationData.findMany({
         where: {
-            UseCaseParticipation: {
-                id: useCaseParticipation.id
+            Participation: {
+                id: sessionData.userId
             },
             userData: {
                 type: type
@@ -516,6 +537,44 @@ async function getData(type: DataType) {
         }
     });
     return userAddedData.map(data => data.userData[type]).filter(item => item !== null);
+}
+
+export async function setPromptHistory(promptHistory: string){
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('setPromptHistory: Session is invalid');
+        return;
+    }
+
+    const aiSupport = await getAISupportForCurrentSurveyStep()
+    if(aiSupport === null){
+        throw new Error('Failed getting ai support.');
+    }
+
+    let promptHistoryKey;
+
+    if (aiSupport === AISupport.AGENT) {
+        promptHistoryKey = "promptHistoryAgent";
+    } else if(aiSupport === AISupport.PROACTIVE_AGENT) {
+        promptHistoryKey = "promptHistoryProactiveAgent";
+    } else {
+        return;
+    }
+
+
+        try {
+        await prisma.participation.update({
+            where: {
+                id: sessionData.userId,
+            },
+            data: {
+                [promptHistoryKey]: promptHistory,
+            },
+        });
+
+    } catch {
+        console.error("Failed to set prompt history")
+    }
 }
 
 export async function addQuestionaireData(data: unknown) : Promise<boolean> {

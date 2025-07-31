@@ -7,10 +7,10 @@ import EmailPreview from "@/app/ui/emailClient/middleContent/mainContent/EmailPr
 import {useCallback, useEffect, useState} from "react";
 import {EmailItem} from "@/app/ui/emailClient/utils/types";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-import {getAISupportForCurrentUseCase, getAllEMails, getEMail} from "@/lib/db/database";
-import {$Enums, EMail} from "@prisma";
+import {getAISupportForCurrentSurveyStep, getAllEMails, getEMail} from "@/lib/db/database";
+import {AISupport} from "@/lib/types"
+import {EMail} from "@prisma";
 import {useSmartAgent} from "smart-ui";
-import AISupport = $Enums.AISupport;
 
 export default function MainContent() {
     const [selectedEmail, setSelectedEmail] = useState<EmailItem|undefined>(undefined);
@@ -43,7 +43,7 @@ export default function MainContent() {
     }, [updateEmails]);
 
     const sendEmailEvent = useCallback(async (email: EMail)=> {
-        const aiSupport = await getAISupportForCurrentUseCase();
+        const aiSupport = await getAISupportForCurrentSurveyStep();
         if(aiSupport !== AISupport.PROACTIVE_AGENT) {
             return;
         }
@@ -60,7 +60,7 @@ export default function MainContent() {
 
     useEffect(() => {
         const subscription = stateMachine?.on('sendEmail', (event) => {
-            getEMail(event.useCaseIndex, event.dataIndex)
+            getEMail(event.surveyStep, event.dataIndex)
                 .then(email => {
                     if(email) {
                         setEmails((prevState) => {

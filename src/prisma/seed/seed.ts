@@ -3,9 +3,8 @@ import fs from "fs";
 
 const prisma = new PrismaClient();
 
-const surveyData: Prisma.SurveyCreateInput[] = [
+const surveyGroupData: Prisma.SurveyGroupCreateInput[] = [
     {
-        active: true,
         invitationCode: "invite",
     }
 ];
@@ -22,8 +21,10 @@ function readJSONFile(path: string) {
 
 
 export async function main() {
-    for (const sd of surveyData) {
-        await prisma.survey.create({ data: sd });
+        await prisma.survey.create({});
+
+    for (const sd of surveyGroupData) {
+        await prisma.surveyGroup.create({ data: sd });
     }
 
     const bookingsData: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/bookings.json") as Prisma.DataCreateInput[];
