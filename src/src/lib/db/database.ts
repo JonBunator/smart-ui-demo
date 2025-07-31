@@ -379,7 +379,7 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
 
     const dataSet = await _getDataSet(surveyStepData.surveyStep);
 
-    if(!dataSet) {
+    if(dataSet === null) {
         throw new Error("dataSet not found.");
     }
 

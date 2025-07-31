@@ -8,7 +8,7 @@ import {getEmails} from "../db/database";
 
 const endpoint = process.env.OPENAI_ENDPOINT;
 const apiKey = process.env.OPENAI_API_KEY;
-const deployment = "gpt-4o";
+const deployment = process.env.OPENAI_DEPLOYMENT;
 const apiVersion = process.env.OPENAI_API_VERSION;
 const options = {endpoint, apiKey, deployment, apiVersion};
 const azureOpenAIClient = new AzureOpenAI(options);
