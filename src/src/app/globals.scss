@@ -126,6 +126,24 @@ html, body, .fui-FluentProvider {
   }
 }
 
+//Navigationbar buttons
+.navigation-bar .nav-items .MuiButtonBase-root {
+  &.smart-changes {
+    --smart-changes-element-background-color: var(--top-bar-bg);
+    &:hover {
+      --smart-changes-element-background-color: var(--variant-textBg);
+    }
+    @include smart-changes-basic(6px);
+  }
+
+  &.nav-element-selected.smart-changes {
+    --smart-changes-element-background-color: var(--primary-container-bg);
+    &:hover {
+      --smart-changes-element-background-color: var(--primary-container-hover);
+    }
+    @include smart-changes-basic(6px);
+  }
+}
 
 // Textfield
 input.MuiInputBase-input.smart-changes {
@@ -178,7 +196,7 @@ input.MuiInputBase-input.smart-changes {
     @include smart-changes-basic();
   }
 }
-
+// Contained buttons
 .MuiButton-containedPrimary {
   &.smart-changes {
     --smart-changes-element-background-color: var(--variant-containedBg);
