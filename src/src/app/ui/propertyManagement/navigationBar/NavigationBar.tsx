@@ -51,6 +51,7 @@ export default function NavLinks() {
                                 variant={isSelected ? "contained" : "text"}
                                 disableElevation
                                 onClick={() => navigate(link.href)}
+                                smartHref={link.href}
                             >
                                 {link.name}
                             </SmartButton>

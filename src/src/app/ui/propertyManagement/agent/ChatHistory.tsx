@@ -32,11 +32,10 @@ export default function ChatHistory(props: ChatHistoryProps) {
         }
     }, [history]);
 
-
     return (
         <div className="chat-history" ref={chatContainerRef}>
             <AgentMessage>
-                Ich kann Ihnen helfen mit der Benutzeroberfläche zu interagieren. Fragen Sie etwas.
+                Ich kann dir helfen mit der Benutzeroberfläche zu interagieren. Frag etwas.
             </AgentMessage>
             {history
                 .filter((item) => ((item.message.role === ChatMessageCreator.AGENT && item.message.content !== undefined) || item.message.role === ChatMessageCreator.USER))
@@ -46,7 +45,7 @@ export default function ChatHistory(props: ChatHistoryProps) {
                         <div  className="chat-history-message">
                             <div className="message">
                                 <Markdown>
-                                    {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).naturalLanguageInteraction : item.message.content}
+                                    {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}
                                 </Markdown>
                             </div>
                             {item.sentTime !== "" && <div className="time">

@@ -70,7 +70,7 @@ export default function Properties() {
     }
 
     const AddButton = (
-        <SmartButton startIcon={<AddCircleIcon />} smartSemantic="navigates to the 'add vacation home' form" variant="contained" onClick={navigateToAddPage}>Hinzufügen</SmartButton>
+        <SmartButton startIcon={<AddCircleIcon />} smartSemantic="navigates to the 'add vacation home' form" variant="contained" onClick={navigateToAddPage} smartHref="/survey/properties/add">Hinzufügen</SmartButton>
     );
 
     const getAvatarProps = (type: PropertyType) => {

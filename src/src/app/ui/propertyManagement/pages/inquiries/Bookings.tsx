@@ -128,7 +128,7 @@ export default function Bookings() {
 
     const AddButton =
         (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add booking request' form"
-                            variant="contained" onClick={navigateToAddPage}>Hinzufügen</SmartButton>
+                            variant="contained" onClick={navigateToAddPage} smartHref="/survey/bookings/add">Hinzufügen</SmartButton>
         );
 
     function updateSelected(model: GridRowSelectionModel) {

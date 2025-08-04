@@ -107,7 +107,7 @@ export default function Maintenance() {
         router.push("/survey/maintenance/add");
     }
 
-    const AddButton = (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form" variant="contained" onClick={navigateToAddPage}>Hinzufügen</SmartButton>);
+    const AddButton = (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form" variant="contained" onClick={navigateToAddPage} smartHref="/survey/maintenance/add">Hinzufügen</SmartButton>);
 
     return (
         <div className="maintenance">

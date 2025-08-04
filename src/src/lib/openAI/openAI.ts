@@ -37,8 +37,7 @@ export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentRe
     if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "NotStarted" || sessionData.surveyState["SurveyStep"] !== "Running") {
         return {agentOutput: {uiInteractions: [], naturalLanguageInteraction: "An error occurred"}, messages: []};
     }
-    console.log(agentInput)
-    console.log(JSON.stringify(optionalAgentInput))
-    //return {uiInteractions: [], naturalLanguageInteraction: ""};
-    return callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
+    const result = await callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
+    console.log(result)
+    return result;
 }

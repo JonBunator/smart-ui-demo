@@ -1,8 +1,8 @@
 import {Button, ButtonProps} from "@mui/material";
 import React from "react";
-import {SmartButton as SmartButtonBase, SmartComponentElementProps} from "smart-ui";
+import {SmartButton as SmartButtonBase, SmartButtonElementProps} from "smart-ui";
 
-export type SmartButtonProps = ButtonProps & SmartComponentElementProps;
+export type SmartButtonProps = ButtonProps & SmartButtonElementProps;
 
 export default function SmartButton(props: SmartButtonProps) {
     const {...otherProps} = props;
