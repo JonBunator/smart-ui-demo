@@ -110,13 +110,13 @@ html, body, .fui-FluentProvider {
   }
 }
 
-@mixin smart-changes-basic($borderWidth: 3px) {
+@mixin smart-changes-basic($borderWidth: 3px, $margin: null) {
   background:
           linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
           linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
           linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
   border: $borderWidth solid transparent;
-  margin: -$borderWidth;
+  $margin: if($margin == null, -$borderWidth, $margin);
   &:hover {
     background:
             linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
@@ -162,19 +162,17 @@ input.MuiInputBase-input.smart-changes {
 }
 
 // Autocomplete
-.MuiAutocomplete-root.smart-changes .MuiInputBase-root  {
+.MuiAutocomplete-root.smart-changes  {
   --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
   &:hover {
     --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
   }
-
-  @include smart-changes-basic();
-  border-radius: 8px;
-
-  &.MuiFilledInput-root {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  .MuiInputBase-root {
+    background: transparent;
   }
+  @include smart-changes-basic();
+  border-radius: 12px 12px 0 0;
+
 }
 
 // Textarea
@@ -183,7 +181,7 @@ input.MuiInputBase-input.smart-changes {
   &:hover {
     --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
   }
-  @include smart-changes-basic();
+  @include smart-changes-basic(3px, -3px 0 -3px 0);
 }
 
 // Radio and Checkbox
