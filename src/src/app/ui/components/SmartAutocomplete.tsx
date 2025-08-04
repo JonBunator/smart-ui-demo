@@ -56,7 +56,6 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
     }, [getLabel, options]);
 
     useEffect(() => {
-        console.log(autocompleteRef.current.querySelector('input'))
         if (autocompleteRef.current) {
             const inputElement = autocompleteRef.current.querySelector('input');
             if (inputElement) {
