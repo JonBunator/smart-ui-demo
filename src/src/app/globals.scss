@@ -116,7 +116,7 @@ html, body, .fui-FluentProvider {
           linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
           linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
   border: $borderWidth solid transparent;
-  $margin: if($margin == null, -$borderWidth, $margin);
+  margin: if($margin == null, -$borderWidth, $margin);
   &:hover {
     background:
             linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
