@@ -1,16 +1,19 @@
 import { BotFilled } from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
-import { Avatar } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
+import Typography from "@mui/material/Typography";
 
 function AgentMessage({children}: {children: ReactNode}) {
     return (
         <div className="chat-history-element agent-message">
             <Avatar className="ai-avatar"><BotFilled /></Avatar>
-            <div  className="chat-history-message">
+            <div className="chat-history-message">
+                <div className="message-no-time">
                 {children}
+                </div>
             </div>
         </div>
     )
@@ -32,6 +35,13 @@ export default function ChatHistory(props: ChatHistoryProps) {
         }
     }, [history]);
 
+    function getUIInteractionsInfo(numUIInteractions: number) {
+        if(numUIInteractions === 1) {
+            return "Eine Änderung vorgeschlagen";
+        }
+        return `${numUIInteractions} Änderungen vorgeschlagen`;
+    }
+
     return (
         <div className="chat-history" ref={chatContainerRef}>
             <AgentMessage>
@@ -48,9 +58,33 @@ export default function ChatHistory(props: ChatHistoryProps) {
                                     {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}
                                 </Markdown>
                             </div>
-                            {item.sentTime !== "" && <div className="time">
-                                {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}
-                            </div>}
+                            {(() => {
+                                let uiInteractionsLength = 0;
+                                let isAgentWithInteractions = false;
+
+                                if (item.message.role === ChatMessageCreator.AGENT) {
+                                    const parsedContent = JSON.parse(item.message.content as string);
+                                    uiInteractionsLength = parsedContent.output.uiInteractions.length;
+                                    isAgentWithInteractions = uiInteractionsLength > 0;
+                                }
+
+                                return (
+                                    <div className={`bottom-row ${isAgentWithInteractions ? "ui-interactions-available" : ""}`}>
+                                        {item.sentTime !== "" && (
+                                            <Typography className="time">
+                                                {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}
+                                            </Typography>
+                                        )}
+                                        {isAgentWithInteractions && (
+                                            <div className="ui-interactions">
+                                                <Typography color="textSecondary">
+                                                    <i>{getUIInteractionsInfo(uiInteractionsLength)}</i>
+                                                </Typography>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })()}
                         </div>
                     </div>
                 ))}
