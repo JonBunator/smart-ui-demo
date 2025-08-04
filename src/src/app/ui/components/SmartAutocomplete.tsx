@@ -1,11 +1,12 @@
 import {Autocomplete, AutocompleteProps, } from "@mui/material";
-import React, {useCallback, useMemo, useRef} from "react";
+import React, {useCallback, useMemo, useRef, useState, useEffect} from "react";
 import {SmartComponent, sleep, SmartComponentElementProps, ValueType} from "smart-ui";
 
 export type SmartAutocompleteProps<Value> = AutocompleteProps<Value, undefined, undefined, undefined> & SmartComponentElementProps;
 
 export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>) {
-    const {id, smartSemantic, value, options, getOptionLabel, className, ...otherProps} = props;
+    const {id, smartSemantic, value, options, getOptionLabel, className, renderInput, ...otherProps} = props;
+    const [isRequired, setIsRequired] = useState(false);
     const autocompleteRef = useRef<HTMLDivElement>(null);
 
     const getLabel = useCallback((option: Value): string => {
@@ -53,9 +54,20 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
     const smartOptions = useMemo(() => {
         return options.map((option) => ({ value: getLabel(option) }));
     }, [getLabel, options]);
-    
+
+    useEffect(() => {
+        console.log(autocompleteRef.current.querySelector('input'))
+        if (autocompleteRef.current) {
+            const inputElement = autocompleteRef.current.querySelector('input');
+            if (inputElement) {
+                console.log(inputElement.required)
+                setIsRequired(inputElement.required);
+            }
+        }
+    }, [autocompleteRef]);
+
     return (
-        <SmartComponent type="select" id={id} semantic={smartSemantic} options={smartOptions} value={getLabel(value as Value)} smartOnChange={updateValue}>
+        <SmartComponent type="select" id={id} semantic={smartSemantic} options={smartOptions} value={getLabel(value as Value)} smartOnChange={updateValue} required={isRequired}>
             <Autocomplete id={id}
                           disablePortal
                           className={`${className} smart-component`}
@@ -63,6 +75,7 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
                           options={options}
                           getOptionLabel={getOptionLabel}
                           ref={autocompleteRef}
+                          renderInput={renderInput}
                           {...otherProps}>
             </Autocomplete>
         </SmartComponent>

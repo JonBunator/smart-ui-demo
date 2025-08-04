@@ -21,7 +21,7 @@ const MuiSmartTextarea = forwardRef<HTMLTextAreaElement, SmartTextFieldProps>(
 )
 
 export default function SmartTextField(props: SmartTextFieldProps) {
-    const {smartSemantic, multiline, label, ...other} = props;
+    const {smartSemantic, multiline, label, ref, ...other} = props;
     return (
         <TextField
             {...other}
