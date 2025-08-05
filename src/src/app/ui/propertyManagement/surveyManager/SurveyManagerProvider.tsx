@@ -21,7 +21,7 @@ interface SurveyManagerContextType {
     /**
      * Completes the questionnaire of the survey step.
      */
-    completeSurveyStep: () => void
+    completeQuestions: () => void
     /**
      * Completes data adding and proceeds to questionnaire due to no more data.
      */
@@ -118,7 +118,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         startSurvey: () => sendEvent({type: "startSurvey"}),
         startSurveyStep: () => sendEvent({type: "startSurveyStep"}),
         addData: () => sendEvent({type: "addData"}),
-        completeSurveyStep: () => sendEvent({type: "completeSurveyStep"}),
+        completeQuestions: () => sendEvent({type: "completeQuestions"}),
         completeNoMoreData: () => sendEvent({type: "completeNoMoreData"}),
         showHelpDialog,
         snapshot: snapshot,

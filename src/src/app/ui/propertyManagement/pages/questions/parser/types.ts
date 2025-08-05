@@ -1,7 +1,9 @@
-export interface TextareaElementType {
-    type: 'textarea';
+export interface TextElementType {
+    type: 'text';
     name: string;
     description: string;
+    rows?: number;
+    number?: boolean;
 }
 
 export interface MultipleChoiceGridElementType {
@@ -26,7 +28,7 @@ export interface CheckboxesElementType {
     labels: string[];
 }
 
-export type ElementType = TextareaElementType | MultipleChoiceGridElementType | MultipleChoiceElementType | CheckboxesElementType;
+export type ElementType = TextElementType | MultipleChoiceGridElementType | MultipleChoiceElementType | CheckboxesElementType;
 
 export interface QuestionaireType {
     title: string;

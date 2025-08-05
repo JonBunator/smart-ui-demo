@@ -10,14 +10,14 @@ export type SurveyFlowMachineContext = {
     showHelpDialog: boolean;
 };
 
-export type SurveyFlowMachineState = "NotStarted" | "Finished" | {
+export type SurveyFlowMachineState = "NotStarted" | "InitialQuestions" | "Finished" | {
     SurveyStep: "NotStarted" | "Running" | "NoMoreData" | "Questions"
 }
 
 export type SurveyFlowMachineEvents =  | { type: "startSurvey" }
     | { type: "startSurveyStep" }
     | { type: "addData" }
-    | { type: "completeSurveyStep" }
+    | { type: "completeQuestions" }
     | { type: "completeNoMoreData" }
     | { type: "openHelpDialog" }
     | { type: "closeHelpDialog" }
@@ -61,6 +61,11 @@ const surveyFlowMachine = setup({
         showHelpDialog: false,
     }),
     states: {
+        InitialQuestions: {
+            on: {
+                completeQuestions: "NotStarted",
+            },
+        },
         NotStarted: {
             on: {
                 startSurvey: "SurveyStep",
@@ -144,7 +149,7 @@ const surveyFlowMachine = setup({
                 },
                 Questions: {
                     on: {
-                        completeSurveyStep: [
+                        completeQuestions: [
                             {
                                 guard: ({context}) =>
                                     context.surveyStep === context.numSurveySteps - 1,

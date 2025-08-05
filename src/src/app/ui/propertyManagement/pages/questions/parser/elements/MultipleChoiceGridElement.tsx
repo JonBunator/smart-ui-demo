@@ -41,33 +41,37 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
         return value[row] === null ? false: value[row] === column;
     }
 
+    const headerRow = (
+        <TableRow>
+            <TableCell/>
+            {element.xAxisLabels.map((label, index) => (
+                <TableCell key={index} align="center"><b>{label}</b></TableCell>
+            ))}
+        </TableRow>
+    );
+
     return (
         <FormControl required error={error} sx={{display: 'flex'}}>
             <Table >
                 <TableHead>
-                    <TableRow>
-                        <TableCell/>
-                        {element.xAxisLabels.map((label, index) => (
-                            <TableCell key={index} align="center">{label}</TableCell>
-                        ))}
-                    </TableRow>
+                    {headerRow}
                 </TableHead>
                 <TableBody>
 
                     {element.yAxisLabels.map((label, row) => (
-                        <TableRow
-                            key={row}
-                        >
-                            <TableCell component="th" scope="row">
-                                {label}
-                            </TableCell>
-                            {Array.from({length: element.xAxisLabels.length}, (_, column) => (
-                                <TableCell key={column} align="center">
-                                    <Radio checked={isChecked(column, row)} onChange={(_event, checked) => handleChange(checked, column, row)}/>
+                        <React.Fragment key={row}>
+                            {row % 6 === 0 && row !== 0 && headerRow}
+                            <TableRow>
+                                <TableCell component="th" scope="row" sx={{ maxWidth: 200 }}>
+                                    {label}
                                 </TableCell>
-                            ))
-                            }
-                        </TableRow>
+                                {Array.from({ length: element.xAxisLabels.length }, (_, column) => (
+                                    <TableCell key={column} align="center">
+                                        <Radio checked={isChecked(column, row)} onChange={(_event, checked) => handleChange(checked, column, row)} />
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </React.Fragment>
                     ))}
                 </TableBody>
             </Table>

@@ -1,13 +1,13 @@
 import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 
-export const bookings: QuestionaireType =
+export const noAgent: QuestionaireType =
     {
         title: "Umfrage zu Buchungen",
         description: "Dies ist die Umfrage zu Buchungen",
         elements: [
             {
-                type: "textarea",
-                name: "textarea-example",
+                type: "text",
+                name: "text-example",
                 description: "Dies ist ein mehrzeiliges Textfeld"
             },
             {

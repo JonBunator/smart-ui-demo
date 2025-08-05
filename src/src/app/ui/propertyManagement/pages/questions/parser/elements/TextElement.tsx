@@ -1,17 +1,17 @@
 "use client"
 import {
     ElementPropsType,
-    TextareaElementType
+    TextElementType
 } from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import {TextField} from "@mui/material";
 import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 import { useQuestionsParser } from "../QuestionsParser";
 
-interface TextareaElementProps<T> extends ElementPropsType<T> {
-    element: TextareaElementType
+interface TextElementProps<T> extends ElementPropsType<T> {
+    element: TextElementType
 }
 
-export default function TextareaElement<T>(props: TextareaElementProps<T>) {
+export default function TextElement<T>(props: TextElementProps<T>) {
     const {element, values, onValuesChange} = props;
     const [error, setError] = useState(false);
     const {subscribe} = useQuestionsParser();
@@ -38,12 +38,14 @@ export default function TextareaElement<T>(props: TextareaElementProps<T>) {
     return (
         <TextField
             name={name}
-            multiline
+            multiline={element.rows === undefined || element.rows > 1}
+            rows={element.rows}
             variant="filled"
+            type={element?.number ? "number" : "text"}
+            required
             value={value}
             onChange={handleChange}
             fullWidth
-            required
             error={error}
             helperText={error ? "Feld ist erforderlich" : ""}
         />

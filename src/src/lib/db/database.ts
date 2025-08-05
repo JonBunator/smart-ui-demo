@@ -90,7 +90,7 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
                 nextDataSetOrder: nextDataSetOrder,
             },
         });
-        await setSession({userId: newParticipation.id, surveyState: "NotStarted"})
+        await setSession({userId: newParticipation.id, surveyState: "InitialQuestions"})
         return true;
 
     } catch(error) {
@@ -409,6 +409,15 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
         console.error(error);
         throw new Error("An error occured.");
     }
+}
+
+export async function isInitialQuestions(): Promise<boolean> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('isInitialQuestions: Session is invalid');
+        return false;
+    }
+    return sessionData.surveyState === "InitialQuestions";
 }
 
 /**

@@ -2,9 +2,10 @@
 import {
     ElementPropsType, MultipleChoiceElementType,
 } from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {RadioGroup, Typography, FormControlLabel, Radio, FormControl, FormHelperText} from "@mui/material";
-import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
+import {Autocomplete, TextField, FormControl, FormHelperText} from "@mui/material";
+import React, {useCallback, useEffect, useState} from "react";
 import { useQuestionsParser } from "../QuestionsParser";
+import "./MultipleChoiceElement.scss"
 
 interface MultipleChoiceElementProps<T> extends ElementPropsType<T> {
     element: MultipleChoiceElementType;
@@ -18,8 +19,8 @@ export default function MultipleChoiceElement<T>(props: MultipleChoiceElementPro
     // @ts-expect-error values is used as generic type
     const value = values[name] ?? null;
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        onValuesChange({...values, [name]: Number(event.target.value)});
+    const handleChange = (newValue: string | null) => {
+        onValuesChange({...values, [name]: newValue});
         setError(false);
     }
 
@@ -33,18 +34,16 @@ export default function MultipleChoiceElement<T>(props: MultipleChoiceElementPro
         const unsubscribe = subscribe(validate);
         return () => unsubscribe();
     }, [subscribe, validate]);
-    
+
     return (
-        <FormControl required error={error}>
-            <RadioGroup
-                row
-                value={value}
-                onChange={handleChange}
-            >
-                {element.labels.map((label, index) => (
-                    <FormControlLabel key={index} value={index} control={<Radio />} label={label} />
-                ))}
-            </RadioGroup>
+        <FormControl required error={error} className="multiple-choice-element">
+            <Autocomplete
+                options={element.labels}
+                value={element.labels[value] ?? null}
+                onChange={(_event, value) => handleChange(value)}
+                fullWidth
+                renderInput={(params) => <TextField {...params} fullWidth label="Wählen Sie eine Option aus" />}
+            />
             {error && <FormHelperText>Auswahl ist erforderlich</FormHelperText>}
         </FormControl>
     );
