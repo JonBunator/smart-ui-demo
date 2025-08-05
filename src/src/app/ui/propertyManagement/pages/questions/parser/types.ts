@@ -2,6 +2,7 @@ export interface TextElementType {
     type: 'text';
     name: string;
     description: string;
+    label: string;
     rows?: number;
     number?: boolean;
 }
@@ -17,18 +18,28 @@ export interface MultipleChoiceGridElementType {
 export interface MultipleChoiceElementType {
     type: 'multiple-choice';
     name: string;
+    label: string;
     description: string;
     labels: string[];
 }
 
-export interface CheckboxesElementType {
-    type: 'checkboxes';
+export interface UEQPlusElementType {
+    type: 'ueq+';
     name: string;
     description: string;
-    labels: string[];
+    scaleSize: number;
+    labels: string[][];
 }
 
-export type ElementType = TextElementType | MultipleChoiceGridElementType | MultipleChoiceElementType | CheckboxesElementType;
+export interface SliderElementType {
+    type: 'slider';
+    name: string;
+    description: string;
+    startLabel: string;
+    endLabel: string;
+}
+
+export type ElementType = TextElementType | MultipleChoiceGridElementType | MultipleChoiceElementType | UEQPlusElementType | SliderElementType;
 
 export interface QuestionaireType {
     title: string;

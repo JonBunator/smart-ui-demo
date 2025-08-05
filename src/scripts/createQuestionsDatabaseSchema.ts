@@ -16,8 +16,11 @@ function createSchema(questionaire: QuestionaireType) {
             case "multiple-choice":
                 output += `${element.name}\tString\n`;
                 break;
-            case "checkboxes":
-                output += `${element.name}\tBoolean[]?\n`;
+            case "ueq+":
+                output += `${element.name}\tInt[]\n`;
+                break;
+            case "slider":
+                output += `${element.name}\tInt\n`;
                 break;
             default:
                 break;

@@ -3,9 +3,10 @@ import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/Surv
 import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import TextElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/TextElement";
 import {Button, Typography} from "@mui/material";
-import React, {createContext, useCallback, useContext, useMemo, useRef, useState} from "react";
+import React, {createContext, useCallback, useContext, useEffect, useMemo, useRef, useState} from "react";
 import MultipleChoiceElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceElement";
-import CheckboxesElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/CheckboxesElement";
+import SliderElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/SliderElement";
+import UEQPlusElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/UEQPlusElement";
 import MultipleChoiceGridElement
     from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceGridElement";
 import Markdown from "react-markdown";
@@ -48,15 +49,19 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
     }
 
     function scrollToError() {
-        const errorElement = document.querySelector('.Mui-error');
-        if (errorElement) {
-            errorRef.current = errorElement;
-            errorElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'nearest'
-            });
-        }
+            const errorElement = document.querySelector('.Mui-error');
+            if (errorElement) {
+                errorRef.current = errorElement;
+                errorElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'nearest'
+                });
+            } else {
+                setTimeout(() => {
+                    scrollToError();
+                }, 200);
+            }
     }
 
     const subscribe = useCallback((listener: () => boolean) => {
@@ -73,16 +78,20 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
             <div className="questionaire-wrapper">
                 <div className="header">
                     <Typography variant="h5">{questionaire.title}</Typography>
-                    <Typography variant="body1">{questionaire.description}</Typography>
+                    <div className="typography-body">
+                        <Markdown>
+                            {questionaire.description}
+                        </Markdown>
+                    </div>
                 </div>
                 <div className="questions">
                     {questionaire.elements.map((element, index) => {
                         return (
                             <div className="question" key={element.name}>
-                                    <div className="question-header">
+                                    <div className="typography-body">
                                         <Typography variant="body1">{`${index + 1}. `}</Typography>
                                         <Markdown>
-                                        {`${element.description}${element.type !== "checkboxes" ? " *": ""}`}
+                                        {`${element.description} *`}
                                         </Markdown>
                                     </div>
                                 <div className="question-input">
@@ -94,8 +103,10 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
                                                 return <MultipleChoiceGridElement element={element} values={formData} onValuesChange={setFormData} />
                                             case "multiple-choice":
                                                 return <MultipleChoiceElement element={element} values={formData} onValuesChange={setFormData} />
-                                            case "checkboxes":
-                                                return <CheckboxesElement element={element} values={formData} onValuesChange={setFormData} />
+                                            case "ueq+":
+                                                return <UEQPlusElement element={element} values={formData} onValuesChange={setFormData} />
+                                            case "slider":
+                                                return <SliderElement element={element} values={formData} onValuesChange={setFormData} />
                                             default:
                                                 return null;
                                         }

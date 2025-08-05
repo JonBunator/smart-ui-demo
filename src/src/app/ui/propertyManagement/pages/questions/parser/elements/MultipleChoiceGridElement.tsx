@@ -2,7 +2,7 @@
 import {
     ElementPropsType, MultipleChoiceGridElementType,
 } from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {Radio, Box, FormControl, TableBody, Table, TableRow, TableHead, TableCell, FormHelperText} from "@mui/material";
+import {Radio, FormControl, TableBody, Table, TableRow, TableHead, TableCell, FormHelperText} from "@mui/material";
 import React, {useCallback, useEffect, useState} from "react";
 import { useQuestionsParser } from "../QuestionsParser";
 
@@ -52,7 +52,7 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
 
     return (
         <FormControl required error={error} sx={{display: 'flex'}}>
-            <Table >
+            <Table size="small">
                 <TableHead>
                     {headerRow}
                 </TableHead>
@@ -62,7 +62,7 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
                         <React.Fragment key={row}>
                             {row % 6 === 0 && row !== 0 && headerRow}
                             <TableRow>
-                                <TableCell component="th" scope="row" sx={{ maxWidth: 200 }}>
+                                <TableCell component="th" scope="row" sx={{ maxWidth: 300 }}>
                                     {label}
                                 </TableCell>
                                 {Array.from({ length: element.xAxisLabels.length }, (_, column) => (

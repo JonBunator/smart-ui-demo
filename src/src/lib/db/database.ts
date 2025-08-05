@@ -9,6 +9,9 @@ import {
     EMail,
     Maintenance,
     MaintenanceCreateInput,
+    InitialQuestionsCreateInput,
+    NoAgentQuestionsCreateInput,
+    AgentQuestionsCreateInput,
     Property,
     PropertyCreateInput
 } from "@prisma";
@@ -588,5 +591,71 @@ export async function setPromptHistory(promptHistory: string){
 
 export async function addQuestionaireData(data: unknown) : Promise<boolean> {
     console.log(data);
+    return true;
+}
+
+export async function addInitialQuestions(data: InitialQuestionsCreateInput) : Promise<boolean> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('addInitialQuestions: Session is invalid');
+        return false;
+    }
+    try {
+        await prisma.initialQuestions.create({
+            data: {
+                Participation: {
+                    connect: {id: sessionData.userId}
+                },
+                ...data
+            },
+        });
+    } catch {
+        console.error("Failed to add initial questions")
+        return false;
+    }
+    return true;
+}
+
+export async function addNoAgentQuestions(data: NoAgentQuestionsCreateInput) : Promise<boolean> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('addNoAgentQuestions: Session is invalid');
+        return false;
+    }
+    try {
+        await prisma.noAgentQuestions.create({
+            data: {
+                Participation: {
+                    connect: {id: sessionData.userId}
+                },
+                ...data
+            },
+        });
+    } catch {
+        console.error("Failed to add no agent questions")
+        return false;
+    }
+    return true;
+}
+
+export async function addAgentQuestions(data: NoAgentQuestionsCreateInput) : Promise<boolean> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('addAgentQuestions: Session is invalid');
+        return false;
+    }
+    try {
+        await prisma.agentQuestions.create({
+            data: {
+                Participation: {
+                    connect: {id: sessionData.userId}
+                },
+                ...data
+            },
+        });
+    } catch {
+        console.error("Failed to add agent questions")
+        return false;
+    }
     return true;
 }

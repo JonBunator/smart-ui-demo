@@ -133,6 +133,57 @@ CREATE TABLE "ParticipationData" (
     CONSTRAINT "ParticipationData_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "InitialQuestions" (
+    "id" SERIAL NOT NULL,
+    "participationId" TEXT NOT NULL,
+    "age" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
+    "chatbotExperience" TEXT NOT NULL,
+    "dataManagementExperience" TEXT NOT NULL,
+    "proactivePersonality" INTEGER[],
+    "machineTrust" INTEGER[],
+    "technologicalAffinity" INTEGER[],
+
+    CONSTRAINT "InitialQuestions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "NoAgentQuestions" (
+    "id" SERIAL NOT NULL,
+    "participationId" TEXT NOT NULL,
+    "efficiency" INTEGER[],
+    "perspicuity" INTEGER[],
+    "dependability" INTEGER[],
+    "intuitiveUse" INTEGER[],
+    "visualAesthetics" INTEGER[],
+    "clarity" INTEGER[],
+
+    CONSTRAINT "NoAgentQuestions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AgentQuestions" (
+    "id" SERIAL NOT NULL,
+    "participationId" TEXT NOT NULL,
+    "efficiency" INTEGER[],
+    "perspicuity" INTEGER[],
+    "dependability" INTEGER[],
+    "intuitiveUse" INTEGER[],
+    "selfAwareness" INTEGER[],
+    "explanationQuality" INTEGER[],
+    "satisfaction" INTEGER NOT NULL,
+    "helpfulness" INTEGER NOT NULL,
+    "interpretation" INTEGER NOT NULL,
+    "processing" INTEGER NOT NULL,
+    "monitoringRole" INTEGER NOT NULL,
+    "decisionMakerRole" INTEGER NOT NULL,
+    "activeRole" INTEGER NOT NULL,
+    "agentAssessment" INTEGER[],
+
+    CONSTRAINT "AgentQuestions_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "SurveyGroup_invitationCode_key" ON "SurveyGroup"("invitationCode");
 
@@ -147,6 +198,15 @@ CREATE UNIQUE INDEX "Maintenance_dataId_key" ON "Maintenance"("dataId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "EMail_dataId_key" ON "EMail"("dataId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "InitialQuestions_participationId_key" ON "InitialQuestions"("participationId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "NoAgentQuestions_participationId_key" ON "NoAgentQuestions"("participationId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "AgentQuestions_participationId_key" ON "AgentQuestions"("participationId");
 
 -- AddForeignKey
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -171,3 +231,12 @@ ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" F
 
 -- AddForeignKey
 ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_groundTruthId_fkey" FOREIGN KEY ("groundTruthId") REFERENCES "Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "InitialQuestions" ADD CONSTRAINT "InitialQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "NoAgentQuestions" ADD CONSTRAINT "NoAgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AgentQuestions" ADD CONSTRAINT "AgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;

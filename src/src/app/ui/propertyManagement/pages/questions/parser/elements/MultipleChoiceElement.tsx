@@ -36,15 +36,20 @@ export default function MultipleChoiceElement<T>(props: MultipleChoiceElementPro
     }, [subscribe, validate]);
 
     return (
-        <FormControl required error={error} className="multiple-choice-element">
-            <Autocomplete
-                options={element.labels}
-                value={element.labels[value] ?? null}
-                onChange={(_event, value) => handleChange(value)}
-                fullWidth
-                renderInput={(params) => <TextField {...params} fullWidth label="Wählen Sie eine Option aus" />}
-            />
-            {error && <FormHelperText>Auswahl ist erforderlich</FormHelperText>}
-        </FormControl>
+        <Autocomplete
+            className="multiple-choice-element"
+            options={element.labels}
+            value={value ?? null}
+            onChange={(_event, value) => handleChange(value)}
+            fullWidth
+            renderInput={(params) => <TextField {...params}
+                                                variant="filled"
+                                                required
+                                                fullWidth
+                                                label={element.label}
+                                                placeholder="Wählen Sie eine Option aus"
+                                                error={error}
+                                                helperText={error ? "Feld ist erforderlich" : ""}/>}
+        />
     );
 }

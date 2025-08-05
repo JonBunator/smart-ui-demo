@@ -150,6 +150,9 @@ model Participation {
   surveyGroupId               Int
   SurveyGroup                 SurveyGroup         @relation(fields: [surveyGroupId], references: [id], onDelete: Cascade)
   ParticipationData           ParticipationData[]
+  initialQuestions            InitialQuestions?
+  noAgentQuestions            NoAgentQuestions?
+  agentQuestions              AgentQuestions?
 }
 
 model ParticipationData {
@@ -162,4 +165,50 @@ model ParticipationData {
   userData        Data          @relation("UserDataToParticipationData", fields: [dataId], references: [id])
   groundTruthId   Int
   groundTruth     Data          @relation("GroundTruthToParticipationData", fields: [groundTruthId], references: [id])
+}
+
+// Questions
+model InitialQuestions {
+  id                       Int           @id @default(autoincrement())
+  participationId          String        @unique
+  Participation            Participation @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  age                      String
+  gender                   String
+  chatbotExperience        String
+  dataManagementExperience String
+  proactivePersonality     Int[]
+  machineTrust             Int[]
+  technologicalAffinity    Int[]
+}
+
+model NoAgentQuestions {
+  id               Int           @id @default(autoincrement())
+  participationId  String        @unique
+  Participation    Participation @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  efficiency       Int[]
+  perspicuity      Int[]
+  dependability    Int[]
+  intuitiveUse     Int[]
+  visualAesthetics Int[]
+  clarity          Int[]
+}
+
+model AgentQuestions {
+  id                 Int           @id @default(autoincrement())
+  participationId    String        @unique
+  Participation      Participation @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  efficiency         Int[]
+  perspicuity        Int[]
+  dependability      Int[]
+  intuitiveUse       Int[]
+  selfAwareness      Int[]
+  explanationQuality Int[]
+  satisfaction       Int
+  helpfulness        Int
+  interpretation     Int
+  processing         Int
+  monitoringRole     Int
+  decisionMakerRole  Int
+  activeRole         Int
+  agentAssessment    Int[]
 }

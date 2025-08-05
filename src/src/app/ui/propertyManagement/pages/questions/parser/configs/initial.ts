@@ -9,6 +9,7 @@ export const initial: QuestionaireType =
                 type: "text",
                 name: "age",
                 description: "Wie alt sind Sie?",
+                label: "Alter",
                 rows: 1,
                 number: true,
             },
@@ -16,17 +17,20 @@ export const initial: QuestionaireType =
                 type: "multiple-choice",
                 name: "gender",
                 description: "Welches Geschlecht haben Sie?",
+                label: "Geschlecht",
                 labels: ["Männlich", "Weiblich", "Nicht-binär", "Möchte ich nicht freigeben"]
             },
             {
                 type: "multiple-choice",
                 name: "chatbotExperience",
+                label: "Chatbot Erfahrung",
                 description: "Wie oft nutzen Sie Chatbots mit künstlicher Intelligenz (KI) wie beispielsweise ChatGPT o. Ä. **privat oder beruflich**?",
                 labels: ["Täglich", "2-3 mal pro Woche", "2-3 mal pro Monat", "Nie"]
             },
             {
                 type: "multiple-choice",
                 name: "dataManagementExperience",
+                label: "Geschäftssoftware Erfahrung",
                 description: "Wie vertraut sind Sie mit **Geschäftssoftware**, die zu Verwaltung und Analyse von Daten dient? Darunter fallen beispielsweise Excel, SAP, Salesforce oder firmenspezifsche Software.",
                 labels: ["Keine Erfahrung", "Ein wenig Erfahrung", "Viel Erfahrung"]
             },

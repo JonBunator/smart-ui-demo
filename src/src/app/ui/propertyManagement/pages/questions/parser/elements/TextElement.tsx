@@ -42,6 +42,7 @@ export default function TextElement<T>(props: TextElementProps<T>) {
             rows={element.rows}
             variant="filled"
             type={element?.number ? "number" : "text"}
+            label={element.label}
             required
             value={value}
             onChange={handleChange}

@@ -2,32 +2,80 @@ import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/pars
 
 export const noAgent: QuestionaireType =
     {
-        title: "Umfrage zu Buchungen",
-        description: "Dies ist die Umfrage zu Buchungen",
+        title: "Umfrage zu Bearbeitung ohne KI-Agenten",
+        description: "Bitte beantworten Sie die folgenden Fragen basierend auf Ihrer eben erfolgten Interaktion mit der Verwaltungssoftware für Ferienhäuser innerhalb des 5-minütigen Zeitfensters. In diesen Fragen bezieht sich **Produkt** auf die genannte Anwendung. Beachten Sie, dass sich die Fragen **nicht** auf die gesamte Umfrage beziehen.",
         elements: [
             {
-                type: "text",
-                name: "text-example",
-                description: "Dies ist ein mehrzeiliges Textfeld"
+                type: "ueq+",
+                name: "efficiency",
+                description: "**Effizienz**: Für das Erreichen meiner Ziele empfinde ich das Produkt als...",
+                scaleSize: 7,
+                labels: [
+                    ["langsam", "schnell"],
+                    ["ineffizient", "effizient"],
+                    ["unpragmatisch", "pragmatisch"],
+                    ["überladen", "aufgeräumt"]
+                ]
             },
             {
-                type: "multiple-choice-grid",
-                name: "multiple-choice-grid-example",
-                description: "Dies ist ein multiple Choice Grid",
-                xAxisLabels: ["-2", "-1", "0", "1", "2"],
-                yAxisLabels: ["Wie geht es dir?", "Was ist die beste Zahl?"]
+                type: "ueq+",
+                name: "perspicuity",
+                description: "**Durchschaubarkeit**: Die Bedienung des Produkts empfinde ich als...",
+                scaleSize: 7,
+                labels: [
+                    ["unverständlich", "verständlich"],
+                    ["schwer zu lernen", "leicht zu lernen"],
+                    ["kompliziert", "einfach"],
+                    ["verwirrend", "übersichtlich"]
+                ]
             },
             {
-                type: "multiple-choice",
-                name: "multiple-choice-example",
-                description: "Wähle eine Option aus",
-                labels: ["blau", "grün", "rot"]
+                type: "ueq+",
+                name: "dependability",
+                description: "**Steuerbarkeit**: Die Reaktion des Produkts auf meine Eingaben und Befehle empfinde ich als...",
+                scaleSize: 7,
+                labels: [
+                    ["unberechenbar", "vorhersagbar"],
+                    ["behindernd", "unterstützend"],
+                    ["unsicher", "sicher"],
+                    ["nicht erwartungskonform", "erwartungskonform"]
+                ]
             },
             {
-                type: "checkboxes",
-                name: "checkboxes-example",
-                description: "Wähle mehrere Optionen aus",
-                labels: ["Pasta", "Burger", "Pizza"]
-            }
+                type: "ueq+",
+                name: "intuitiveUse",
+                description: "**Intuitive Bedienung**: Die Bedienung des Produkts wirkt auf mich...",
+                scaleSize: 7,
+                labels: [
+                    ["mühevoll", "mühelos"],
+                    ["unlogisch", "logisch"],
+                    ["nicht einleuchtend", "einleuchtend"],
+                    ["nicht schlüssig", "schlüssig"]
+                ]
+            },
+            {
+                type: "ueq+",
+                name: "visualAesthetics",
+                description: "**Visuelle Ästhetik**: Die visuelle Gestaltung des Produkts empfinde ich als...",
+                scaleSize: 7,
+                labels: [
+                    ["hässlich", "schön"],
+                    ["stillos", "stilvoll"],
+                    ["nicht ansprechend", "ansprechend"],
+                    ["unästhetisch", "ästhetisch"]
+                ]
+            },
+            {
+                type: "ueq+",
+                name: "clarity",
+                description: "**Übersichtlichkeit**: Die Benutzeroberfläche des Produkts empfinde ich als...",
+                scaleSize: 7,
+                labels: [
+                    ["schlecht gegliedert", "gut gegliedert"],
+                    ["unstrukturiert", "strukturiert"],
+                    ["ungeordnet", "geordnet"],
+                    ["unorganisiert", "organisiert"]
+                ]
+            },
         ]
     }

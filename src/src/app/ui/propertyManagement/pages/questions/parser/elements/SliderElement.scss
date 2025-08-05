@@ -1,0 +1,14 @@
+.slider-element.MuiFormControl-root {
+    display: flex;
+    .slider-row {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        width: 100%;
+        align-items: center;
+
+        .MuiTypography-root {
+            width: 80px;
+        }
+    }
+}
