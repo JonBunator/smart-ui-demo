@@ -1,25 +1,25 @@
 "use client"
 import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import ApprovalDialog from "@/app/ui/propertyManagement/dialogs/ApprovalDialog";
-import BookingsDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/BookingsDescription";
-import PropertiesDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/PropertiesDescription";
-import MaintenanceDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/MaintenanceDescription";
+import NoAgentDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/NoAgentDescription";
+import SecondStepDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/SecondStepDescription";
+import ThirdStepDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/ThirdStepDescription";
 import {useEffect, useState} from "react";
 
 const surveyStepsContent = [
     {
-        title: "Anwendungsfall Buchungen",
-        content: <BookingsDescription/>,
+        title: "Anwendung ohne KI-Agenten Unterstützung",
+        content: <NoAgentDescription/>,
         maxWidth: "sm"
     },
     {
-        title: "Anwendungsfall Immobilien",
-        content: <PropertiesDescription/>,
+        title: "Anwendung mit KI-Agenten Unterstützung (Variante 1)",
+        content: <SecondStepDescription/>,
         maxWidth: "md"
     },
     {
-        title: "Anwendungsfall Instandhaltung",
-        content: <MaintenanceDescription/>,
+        title: "Anwendung mit KI-Agenten Unterstützung (Variante 2)",
+        content: <ThirdStepDescription/>,
         maxWidth: "md"
     },
 ]

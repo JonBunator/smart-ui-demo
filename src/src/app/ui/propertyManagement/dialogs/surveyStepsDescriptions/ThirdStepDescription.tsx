@@ -1,0 +1,34 @@
+import { Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import './SurveyStepDescription.scss'
+
+export default function ThirdStepDescription() {
+
+    return (
+        <div className="survey-step-description">
+            <Typography>
+                Durch ein neues Update wurde der intelligente KI-Agent verändert. Er hat nun ein anderes Verhalten als der Agent im
+                vorherigen Schritt. Interaktionen mit dem Agenten sind in der Benutzeroberfläche mit <b>Magenta-Blauen</b> Farben dargestellt.
+            </Typography>
+            <Image src="/image/properties_ai_agent.gif" width={850} height={410} alt="user interface with ai agent" unoptimized />
+            <Typography>
+                Durch den <b>Ausfüllen</b> Knopf lassen sich beispielsweise Formulare mit Textinhalten aus der Zwischenablage befüllen.
+                Dies ist auch über das Einfügen des Textes in das Chat-Fenster des KI-Agenten möglich. Damit lassen sich z.B. die Daten
+                aus E-Mails über Copy-Paste (Kopieren und Einfügen) automatisch in das Formular überführen.
+            </Typography>
+            <Typography>
+                <br/>
+                Sie bekommen wieder E-Mails der folgenden Typen:<br/>
+                - <b>Buchungen hinzufügen</b>: Sie bekommen Buchungsanfragen von Urlaubern<br/>
+                - <b>Immobilien hinzufügen</b>: Sie bekommen E-Mails von Ihrer Chefin <b>Kira Bartels</b> mit neuen Ferienhäusern, die dem System hinzugefügt werden sollen<br/>
+                - <b>Instandhaltungen hinzufügen</b>: Sie bekommen Instandhaltungsanfragen wie Mitteilungen über defekte Toiletten etc.<br/>
+                Ihre Aufgabe besteht wieder darin die Buchungen, Immobilien und Instandhaltungen mit allen nötigen Informationen basierend
+                auf der jeweiligen E-Mail dem System hinzuzufügen.
+                Dafür haben Sie <b>5min</b> Zeit. Versuchen Sie so viele E-Mails wie möglich dem
+                System hinzuzufügen. Achten Sie darauf, dass Sie dabei möglichst keine Fehler machen. Akzeptieren Sie nicht blind Vorschläge des KI-Agenten, sondern
+                überprüfen Sie die Vorschläge und passen Sie sie entsprechend vor dem Hinzufügen an.
+            </Typography>
+        </div>
+    );
+}

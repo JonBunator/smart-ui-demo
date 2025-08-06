@@ -1,13 +1,18 @@
 import { Typography } from "@mui/material";
 
-export default function BookingsDescription() {
+export default function NoAgentDescription() {
 
     return (
-        <Typography>Im ersten Anwendungsfall bekommen Sie Buchungsanfragen von Urlaubern per E-Mail. Ihre Aufgabe
-            besteht darin diese Buchungen mit allen nötigen Informationen aus den zugehörigen E-Mails dem System
-            hinzuzufügen. Navigieren Sie dafür auf die Seite <b>Buchungen</b> und klicken Sie auf den <b>Hinzufügen</b> Knopf.
-            <br/>Dafür haben Sie <b>5min</b> Zeit. Versuchen Sie so viele Buchungen wie möglich dem
-            System hinzuzufügen.
+        <Typography>
+            Zunächst sollen Sie die Anwendung ohne einen KI-Agenten bedienen.
+            Sie bekommen E-Mails der folgenden Typen:<br/>
+            - <b>Buchungen hinzufügen</b>: Sie bekommen Buchungsanfragen von Urlaubern<br/>
+            - <b>Immobilien hinzufügen</b>: Sie bekommen E-Mails von Ihrer Chefin <b>Kira Bartels</b> mit neuen Ferienhäusern, die dem System hinzugefügt werden sollen<br/>
+            - <b>Instandhaltungen hinzufügen</b>: Sie bekommen Instandhaltungsanfragen wie Mitteilungen über defekte Toiletten etc.<br/><br/>
+            Ihre Aufgabe besteht darin die Buchungen, Immobilien und Instandhaltungen mit allen nötigen Informationen basierend
+            auf der jeweiligen E-Mail dem System hinzuzufügen.
+            Dafür haben Sie <b>5min</b> Zeit. Versuchen Sie so viele E-Mails wie möglich dem
+            System hinzuzufügen. Achten Sie darauf, dass Sie dabei möglichst keine Fehler machen.
         </Typography>
     );
 }
