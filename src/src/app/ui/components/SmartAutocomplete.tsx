@@ -59,7 +59,6 @@ export default function SmartSelect<Value,>(props: SmartAutocompleteProps<Value>
         if (autocompleteRef.current) {
             const inputElement = autocompleteRef.current.querySelector('input');
             if (inputElement) {
-                console.log(inputElement.required)
                 setIsRequired(inputElement.required);
             }
         }

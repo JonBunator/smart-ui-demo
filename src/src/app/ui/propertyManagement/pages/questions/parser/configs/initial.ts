@@ -85,7 +85,7 @@ export const initial: QuestionaireType =
                     "Wenn ich ein neues technisches System vor mir habe, probiere ich es intensiv aus",
                     "Ich verbringe sehr gern Zeit mit dem Kennenlernen eines neuen technischen Systems",
                     "Es genügt mir, dass ein technisches System funktioniert, mir ist es egal, wie oder warum",
-                    "Ich versuche zu verstehen, wie ein technisches System genau funktioniert.",
+                    "Ich versuche zu verstehen, wie ein technisches System genau funktioniert",
                     "Es genügt mir, die Grundfunktionen eines technischen Systems zu kennen",
                     "Ich versuche, die Möglichkeiten eines technischen Systems vollständig auszunutzen",
                 ]

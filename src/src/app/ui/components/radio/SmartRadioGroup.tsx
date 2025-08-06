@@ -30,7 +30,6 @@ export default function SmartRadioGroup(props: SmartRadioProps) {
             console.warn("Radio can't be unchecked by AI agent because onUnchecked callback is not set.")
         } else {
             if(value === changedValue.current) {
-                console.log("called")
                 onResetRadios(previousValue.current);
             }
         }

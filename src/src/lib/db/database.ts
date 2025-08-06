@@ -2,18 +2,14 @@
 
 import {
     Booking,
-    BookingCreateInput,
     Data,
     DataCategory,
     DataType,
     EMail,
     Maintenance,
-    MaintenanceCreateInput,
-    InitialQuestionsCreateInput,
-    NoAgentQuestionsCreateInput,
-    AgentQuestionsCreateInput,
+    AgentQuestionsType,
     Property,
-    PropertyCreateInput
+    type Prisma
 } from "@prisma";
 import {
     AI_SUPPORT_ORDER,
@@ -455,15 +451,15 @@ export async function _getSurveyStepData(): Promise<SurveyStepData|null> {
     return {surveyStep: surveyStep, dataIndex};
 }
 
-export async function addBooking(booking: BookingCreateInput) {
+export async function addBooking(booking: Prisma.BookingCreateInput) {
     await addData(DataType.Booking, booking);
 }
 
-export async function addProperty(property: PropertyCreateInput) {
+export async function addProperty(property: Prisma.PropertyCreateInput) {
     await addData(DataType.Property, property);
 }
 
-export async function addMaintenance(maintenance: MaintenanceCreateInput) {
+export async function addMaintenance(maintenance: Prisma.MaintenanceCreateInput) {
     await addData(DataType.Maintenance, maintenance);
 }
 
@@ -589,12 +585,9 @@ export async function setPromptHistory(promptHistory: string){
     }
 }
 
-export async function addQuestionaireData(data: unknown) : Promise<boolean> {
-    console.log(data);
-    return true;
-}
+type AddInitialQuestionsType = Omit<Prisma.InitialQuestionsCreateInput, "Participation">
 
-export async function addInitialQuestions(data: InitialQuestionsCreateInput) : Promise<boolean> {
+export async function addInitialQuestions(data: AddInitialQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
     if (!sessionData) {
         console.error('addInitialQuestions: Session is invalid');
@@ -616,7 +609,9 @@ export async function addInitialQuestions(data: InitialQuestionsCreateInput) : P
     return true;
 }
 
-export async function addNoAgentQuestions(data: NoAgentQuestionsCreateInput) : Promise<boolean> {
+type AddNoAgentQuestionsType = Omit<Prisma.NoAgentQuestionsCreateInput, "Participation">
+
+export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
     if (!sessionData) {
         console.error('addNoAgentQuestions: Session is invalid');
@@ -638,19 +633,30 @@ export async function addNoAgentQuestions(data: NoAgentQuestionsCreateInput) : P
     return true;
 }
 
-export async function addAgentQuestions(data: NoAgentQuestionsCreateInput) : Promise<boolean> {
+type AddAgentQuestionsType = Omit<Prisma.AgentQuestionsCreateInput, "type" | "Participation">
+
+export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
     if (!sessionData) {
         console.error('addAgentQuestions: Session is invalid');
         return false;
     }
+
+    const aiSupport = await getAISupportForCurrentSurveyStep();
+    if(aiSupport === null) {
+        console.error("AI support not found");
+        return false;
+    }
+
+    const type = aiSupport === AISupport.AGENT ? AgentQuestionsType.AGENT : AgentQuestionsType.PROACTIVE_AGENT;
+    const payload: Omit<Prisma.AgentQuestionsCreateInput, "Participation"> = {...data, type: type};
     try {
         await prisma.agentQuestions.create({
             data: {
                 Participation: {
                     connect: {id: sessionData.userId}
                 },
-                ...data
+                ...payload
             },
         });
     } catch {

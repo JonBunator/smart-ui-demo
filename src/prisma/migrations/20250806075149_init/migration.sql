@@ -4,6 +4,9 @@ CREATE TYPE "DataType" AS ENUM ('Booking', 'Property', 'Maintenance');
 -- CreateEnum
 CREATE TYPE "DataCategory" AS ENUM ('GroundTruth', 'UserAdded');
 
+-- CreateEnum
+CREATE TYPE "AgentQuestionsType" AS ENUM ('AGENT', 'PROACTIVE_AGENT');
+
 -- CreateTable
 CREATE TABLE "Survey" (
     "id" SERIAL NOT NULL,
@@ -166,6 +169,7 @@ CREATE TABLE "NoAgentQuestions" (
 CREATE TABLE "AgentQuestions" (
     "id" SERIAL NOT NULL,
     "participationId" TEXT NOT NULL,
+    "type" "AgentQuestionsType" NOT NULL,
     "efficiency" INTEGER[],
     "perspicuity" INTEGER[],
     "dependability" INTEGER[],
@@ -204,9 +208,6 @@ CREATE UNIQUE INDEX "InitialQuestions_participationId_key" ON "InitialQuestions"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "NoAgentQuestions_participationId_key" ON "NoAgentQuestions"("participationId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "AgentQuestions_participationId_key" ON "AgentQuestions"("participationId");
 
 -- AddForeignKey
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;

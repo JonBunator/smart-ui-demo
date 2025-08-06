@@ -1,5 +1,10 @@
 import QuestionsNavigation from "./QuestionsNavigation";
-import {getSurveyStep, addQuestionaireData, isInitialQuestions, addInitialQuestions} from "@/lib/db/database";
+import {
+    getSurveyStep,
+    isInitialQuestions,
+    addInitialQuestions,
+    addNoAgentQuestions, addAgentQuestions
+} from "@/lib/db/database";
 import {initial} from "@/app/ui/propertyManagement/pages/questions/parser/configs/initial";
 import {noAgent} from "@/app/ui/propertyManagement/pages/questions/parser/configs/noAgent";
 import {agent} from "@/app/ui/propertyManagement/pages/questions/parser/configs/agent";
@@ -8,7 +13,7 @@ import FrameLayout from "@/app/ui/propertyManagement/layoutComponents/FrameLayou
 import "./Questions.scss"
 
 const questionaires = [initial, noAgent, agent, agent]
-const addDataFunctions = [addInitialQuestions, addQuestionaireData, addQuestionaireData, addQuestionaireData]
+const addDataFunctions = [addInitialQuestions, addNoAgentQuestions, addAgentQuestions, addAgentQuestions]
 
 export default async function Questions() {
     const initialQuestions = await isInitialQuestions();

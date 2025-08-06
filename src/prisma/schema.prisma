@@ -152,7 +152,7 @@ model Participation {
   ParticipationData           ParticipationData[]
   initialQuestions            InitialQuestions?
   noAgentQuestions            NoAgentQuestions?
-  agentQuestions              AgentQuestions?
+  agentQuestions              AgentQuestions[]
 }
 
 model ParticipationData {
@@ -193,10 +193,16 @@ model NoAgentQuestions {
   clarity          Int[]
 }
 
+enum AgentQuestionsType {
+  AGENT
+  PROACTIVE_AGENT
+}
+
 model AgentQuestions {
-  id                 Int           @id @default(autoincrement())
-  participationId    String        @unique
-  Participation      Participation @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  id                 Int                @id @default(autoincrement())
+  participationId    String
+  Participation      Participation      @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  type               AgentQuestionsType
   efficiency         Int[]
   perspicuity        Int[]
   dependability      Int[]

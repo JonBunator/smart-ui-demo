@@ -24,7 +24,6 @@ export default function UEQPlusElement<T>(props: UEQPlusElementProps<T>) {
             value[row] = column;
         }
         onValuesChange({...values, [name]: value});
-        console.log({...values, [name]: value})
         setError(false);
     }
 
