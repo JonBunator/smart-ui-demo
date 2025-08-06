@@ -41,7 +41,6 @@ export default function TextElement<T>(props: TextElementProps<T>) {
             multiline={element.rows === undefined || element.rows > 1}
             rows={element.rows}
             variant="filled"
-            type={element?.number ? "number" : "text"}
             label={element.label}
             required
             value={value}

@@ -6,19 +6,19 @@ export const initial: QuestionaireType =
         description: "Bevor die eigentliche Umfrage startet, folgt noch eine Vorbefragung zu persönlichen Informationen und Ansichten.",
         elements: [
             {
-                type: "text",
+                type: "multiple-choice",
                 name: "age",
                 description: "Wie alt sind Sie?",
                 label: "Alter",
-                rows: 1,
-                number: true,
+                labels: ["unter 25", "25-34", "35-44", "45-54", "55-64", "über 65", "Möchte ich nicht angeben"]
+
             },
             {
                 type: "multiple-choice",
                 name: "gender",
                 description: "Welches Geschlecht haben Sie?",
                 label: "Geschlecht",
-                labels: ["Männlich", "Weiblich", "Nicht-binär", "Möchte ich nicht freigeben"]
+                labels: ["Männlich", "Weiblich", "Nicht-binär", "Möchte ich nicht angeben"]
             },
             {
                 type: "multiple-choice",
@@ -32,7 +32,7 @@ export const initial: QuestionaireType =
                 name: "dataManagementExperience",
                 label: "Geschäftssoftware Erfahrung",
                 description: "Wie vertraut sind Sie mit **Geschäftssoftware**, die zu Verwaltung und Analyse von Daten dient? Darunter fallen beispielsweise Excel, SAP, Salesforce oder firmenspezifsche Software.",
-                labels: ["Keine Erfahrung", "Ein wenig Erfahrung", "Viel Erfahrung"]
+                labels: ["Überhaupt keine Erfahrung", "Wenig Erfahrung", "Mittlere Erfahrung", "Viel Erfahrung", "Sehr viel Erfahrung"]
             },
             {
                 type: "multiple-choice-grid",
