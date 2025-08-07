@@ -25,10 +25,13 @@ export default function TextElement<T>(props: TextElementProps<T>) {
     }
 
     const validate = useCallback(() => {
+        if(element.notRequired) {
+            return false;
+        }
         const error = value === "";
         setError(error);
         return error;
-    }, [value]);
+    }, [element.notRequired, value]);
 
     useEffect(() => {
         const unsubscribe = subscribe(validate);
@@ -42,7 +45,7 @@ export default function TextElement<T>(props: TextElementProps<T>) {
             rows={element.rows}
             variant="filled"
             label={element.label}
-            required
+            required={!(element.notRequired === true)}
             value={value}
             onChange={handleChange}
             fullWidth

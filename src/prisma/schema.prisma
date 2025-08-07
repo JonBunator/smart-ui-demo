@@ -191,6 +191,7 @@ model NoAgentQuestions {
   intuitiveUse     Int[]
   visualAesthetics Int[]
   clarity          Int[]
+  optionalRemarks  String?
 }
 
 enum AgentQuestionsType {
@@ -217,4 +218,5 @@ model AgentQuestions {
   decisionMakerRole  Int
   activeRole         Int
   agentAssessment    Int[]
+  optionalRemarks    String?
 }

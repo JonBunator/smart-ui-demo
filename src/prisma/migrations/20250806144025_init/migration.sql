@@ -161,6 +161,7 @@ CREATE TABLE "NoAgentQuestions" (
     "intuitiveUse" INTEGER[],
     "visualAesthetics" INTEGER[],
     "clarity" INTEGER[],
+    "optionalRemarks" TEXT,
 
     CONSTRAINT "NoAgentQuestions_pkey" PRIMARY KEY ("id")
 );
@@ -184,6 +185,7 @@ CREATE TABLE "AgentQuestions" (
     "decisionMakerRole" INTEGER NOT NULL,
     "activeRole" INTEGER NOT NULL,
     "agentAssessment" INTEGER[],
+    "optionalRemarks" TEXT,
 
     CONSTRAINT "AgentQuestions_pkey" PRIMARY KEY ("id")
 );

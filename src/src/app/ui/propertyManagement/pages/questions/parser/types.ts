@@ -4,6 +4,7 @@ export interface TextElementType {
     description: string;
     label: string;
     rows?: number;
+    notRequired?: boolean;
 }
 
 export interface MultipleChoiceGridElementType {

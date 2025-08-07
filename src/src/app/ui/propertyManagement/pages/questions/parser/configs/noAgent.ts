@@ -77,5 +77,13 @@ export const noAgent: QuestionaireType =
                     ["unorganisiert", "organisiert"]
                 ]
             },
+            {
+                type: "text",
+                name: "optionalRemarks",
+                label: "Zusätzliche Anmerkungen",
+                description: "Hier ist Platz für zusätzliche optionale Gedanken und Anmerkungen",
+                rows: 8,
+                notRequired: true,
+            }
         ]
     }

@@ -145,5 +145,13 @@ export const agent: QuestionaireType =
             "Ich kann den Informationen vertrauen, die mir vom KI-Agenten präsentiert werden"
           ]
         },
+        {
+            type: "text",
+            name: "optionalRemarks",
+            label: "Zusätzliche Anmerkungen",
+            description: "Hier ist Platz für zusätzliche optionale Gedanken und Anmerkungen",
+            rows: 8,
+            notRequired: true,
+        }
       ]
     }

@@ -1,9 +1,9 @@
 "use client"
 import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
+import {ElementType, QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import TextElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/TextElement";
 import {Button, Typography} from "@mui/material";
-import React, {createContext, useCallback, useContext, useEffect, useMemo, useRef, useState} from "react";
+import React, {createContext, useCallback, useContext, useMemo, useRef, useState} from "react";
 import MultipleChoiceElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceElement";
 import SliderElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/SliderElement";
 import UEQPlusElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/UEQPlusElement";
@@ -73,6 +73,11 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
         subscribe,
     }), [subscribe]);
 
+    function getRequiredStar(element: ElementType) {
+        return (element.type !== "text" || !element.notRequired) ? " *" : "";
+
+    }
+
     return (
         <QuestionsParserContext.Provider value={value}>
             <div className="questionaire-wrapper">
@@ -91,7 +96,7 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
                                     <div className="typography-body">
                                         <Typography variant="body1">{`${index + 1}. `}</Typography>
                                         <Markdown>
-                                        {`${element.description} *`}
+                                        {`${element.description}${getRequiredStar(element)}`}
                                         </Markdown>
                                     </div>
                                 <div className="question-input">

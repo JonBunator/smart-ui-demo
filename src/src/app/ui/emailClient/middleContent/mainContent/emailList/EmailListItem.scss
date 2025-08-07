@@ -18,6 +18,9 @@
     &.unread {
         border-left: 4px solid var(--colorNeutralForeground2BrandSelected);
         padding-left: 16px;
+        @media (max-width: 1800px) {
+          padding-left: 8px;
+        }
         .second-line {
             color: var(--colorNeutralForeground2BrandSelected);
         }
