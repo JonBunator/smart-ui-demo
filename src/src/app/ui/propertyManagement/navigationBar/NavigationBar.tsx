@@ -11,6 +11,8 @@ import Timer from "./Timer";
 import SmartButton from '@/app/ui/components/SmartButton';
 import { SmartGroup } from 'smart-ui';
 import HelpDialogButton from './HelpDialogButton';
+import Image from "next/image";
+import React from "react";
 
 const links = [
     { name: 'Buchungen', href: '/survey/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon },
@@ -36,28 +38,31 @@ export default function NavLinks() {
 
     return (
         <div className="navigation-bar">
-            <div className="nav-items">
-                <SmartGroup smartSemantic="nav links">
-                    {links.map((link) => {
-                        const LinkIcon = link.icon;
-                        const SelectedIcon = link.selectedIcon;
-                        const isSelected = isPathSelected(link.href);
-                        return (
-                            <SmartButton
-                                className={`${isSelected ? "nav-element-selected" : ""}`}
-                                startIcon={isSelected ? <SelectedIcon className="nav-icon" /> : <LinkIcon className="nav-icon" />}
-                                key={link.name}
-                                smartSemantic={`Navigates to the ${link.name} page`}
-                                variant={isSelected ? "contained" : "text"}
-                                disableElevation
-                                onClick={() => navigate(link.href)}
-                                smartHref={link.href}
-                            >
-                                {link.name}
-                            </SmartButton>
-                        );
-                    })}
-                </SmartGroup>
+            <div className="left-side">
+                <Image src="/image/logo.svg" width={50} height={50} alt="" />
+                <div className="nav-items">
+                    <SmartGroup smartSemantic="nav links">
+                        {links.map((link) => {
+                            const LinkIcon = link.icon;
+                            const SelectedIcon = link.selectedIcon;
+                            const isSelected = isPathSelected(link.href);
+                            return (
+                                <SmartButton
+                                    className={`${isSelected ? "nav-element-selected" : ""}`}
+                                    startIcon={isSelected ? <SelectedIcon className="nav-icon" /> : <LinkIcon className="nav-icon" />}
+                                    key={link.name}
+                                    smartSemantic={`Navigates to the ${link.name} page`}
+                                    variant={isSelected ? "contained" : "text"}
+                                    disableElevation
+                                    onClick={() => navigate(link.href)}
+                                    smartHref={link.href}
+                                >
+                                    {link.name}
+                                </SmartButton>
+                            );
+                        })}
+                    </SmartGroup>
+                </div>
             </div>
             <div className="survey-information">
                 <HelpDialogButton/>

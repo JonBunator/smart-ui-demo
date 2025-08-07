@@ -12,8 +12,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "KI-Agenten Umfrage",
-  description: "Umfrage zu KI-Agenten, die mit der Benutzeroberfläche interagieren können.",
+    title: "KI-Agenten Umfrage",
+    description: "Umfrage zu KI-Agenten, die mit der Benutzeroberfläche interagieren können.",
 };
 
 export default function RootLayout({
