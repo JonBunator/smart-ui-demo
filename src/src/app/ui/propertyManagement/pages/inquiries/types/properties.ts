@@ -17,8 +17,8 @@ export const propertyTypes = [
 export interface PropertyData {
     name: string;
     address: string;
-    image: string;
-    placeholderImage: string;
+    image: string | undefined;
+    placeholderImage: string | undefined;
     description: string;
     type: PropertyType;
     additionalInfos: AdditionalInfoType[]

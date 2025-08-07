@@ -47,8 +47,8 @@ export default function Properties() {
             const addedProperties: PropertyData[] = properties.map((property) => ({
                 name: property.name,
                 address: `${property.street} ${property.houseNumber}, ${property.postalCode} ${property.city}, ${property.country}`,
-                image: "/image/properties/property1.png",
-                placeholderImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAMAAACejr5sAAABGlBMVEWqnYQXGhO9rZNcWEcRFA62p44rLCJ1a1aorK/i2MZBPy9LSDYFBwMcHhQgIBMnKBqxoolQT0Y0Niyxt7yjmIKHf217dWSZkH1gX1WDdWB2cWJlW0QMDQkgJB2eknx/dFyVi3mViXStoYillns3OS7Ht5yGg3+ZlIdVTTqgmozKuZ+Wm55rY0+HiIdtcXCan512c2xLQjC7rJW5qY/CsZfEtJtDQzi6vsOtqqWOgGg7PDKWkY6RkpdmYEyBeWlaUTdlZkaOh36PhG6IfGVZWlOOlJlVU0STlHWhpqKcqbPh07tCTCp+cFezqZmUl6Gro5V3dXZaUkZiZ2/CvLJydn9+fHuAf3xubFvSxrGdjnOCj5V1hY6vv8eRpbOETkNaAAAA+UlEQVQY0w3BhWKCABQAwEd3dygoioSis5XZte6O//+N7Q4wyghlFB0Qch3+RTOHWsEiqOmAZs3REO0TBBF97jwWKKM6Qusy6NWqBQMZttiCBdPSmStUm9C5dtka1tf59+8RXCtlmCat0RcTLW1a3OHrZw9m655h+iXdPU3pNHO8TtHFwHbfnj9eO0/ntWm3lS2PG7fHAak2ytvYLHphfjAIO9GNNgei2nivRWHcW3bi9XU7sU2TAkRCuGAbtL3dzUxprCSSVFlAKhXMo4rScTYPakUUJcHnAUcULDlTlEfs7oUUcJ/neR8QkRQ5bszO5/Z+zEqCgOP4H8ZuIQV5KBgvAAAAAElFTkSuQmCC",
+                image: undefined,
+                placeholderImage: undefined,
                 description: property.description,
                 type: property.type as PropertyType,
                 additionalInfos: property.additionalInfo as AdditionalInfoType[],
@@ -122,14 +122,33 @@ export default function Properties() {
                                             {icon}
                                         </Avatar>
                                     }
-                                    action={property.available ? undefined :
-                                        <Chip size="small" color="warning" label="Noch nicht verfügbar"/>
-                                    }
                                     title={property.name}
                                     subheader={property.address}
                                 />
                                 <CardMedia>
                                     <div className="image-container">
+                                        {property.image === undefined ?
+                                            <>
+                                                <Image
+                                                    className="image image-dark"
+                                                    src="/image/placeholder-house-dark.svg"
+                                                    width={600}
+                                                    height={400}
+                                                    alt=""
+                                                    placeholder="blur"
+                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAZlJREFUOI2lk8FuGjEQhj97MaCybEIPBAKFSkG5AI1SRainSD1H6stWysM0p6YQBUi7sEA3MdjTQ1oUJEqROqcZa/5P/4xtdfXpStgjoigiSZJ/9mX2gfU+9DDGcPPlhtFw9H/Ai94FS7skTVNOWicclg55TB+ZzWbEP+L9gEopOu86KKXw3rNyKwDm8znlcpnoIALg+vP1fkARoVAoYK1lsVjwMH7gqHLEoD+g0WwgIgzvh1sn0tsO25021lqWy+VWUZIkVKqVtdOdwHa3Tf5Vfg3LZrMc144JgoDm2ybVahWtNdPplPP354RhuBs46A+wT5bVasXwfsjd4A4RQWtN/U0dkzXU6jW01sRxjPNuN3ASTwDwzpNMEybxBBEhip7H63/rAxAdRHjvSX+mG/qNSykWi1x+vGQ8GgPQOm2hlNoQeO+fnait6yfTaDbWRfesC0DpdQn5vvmBjDGICPl8HhEhyASEYchLPUDm9uvtuniZA+RyOZxz6EAT6AARwXuPtXarO/jLs/kTzjmMMSilcO738tUuBfwCjTqk653/N0wAAAAASUVORK5CYII="
+                                                />
+                                                <Image
+                                                    className="image image-light"
+                                                    src="/image/placeholder-house-light.svg"
+                                                    width={600}
+                                                    height={400}
+                                                    alt=""
+                                                    placeholder="blur"
+                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAXdJREFUOI2lkzFzm1AQhD/uvQcPkC0kZ8aFijRu8v9/QkrXKWIVuIljggjESEjoIUiRGTlOZKwZX3czuzu7O3fe7e3ngTPGOYcx5k2cnCOWZQ8sl1/Y7bbvF8zz79R1RRxPuL9fUlU/aZo1+317Eq9fd/UNY3zKsiAILABhGJGmdzTNmuvrBTc3n84XLIofGOOTJFfE8QV1XZEkcwCU0sznH07yTkauqhVaG3w/OEmaThPyPMO5/duCVVWQZY/HmNvthtXqkbbdkecZh8MBpTTWWtL0K13nxiNbG2GtxdqQOL5ARCjLgmHoeXr6RdOsCYKQ6TTh8nKG53njDo3xAVBKEQQh1oaICEWRs9nUzGZXtG1DWa4QUSj10tOLrescaXrHfv+nm81m/V9HWhuGkVfQTfNMKsvieLz/dmOMQUQ4HDqCIEQpwbmWv/kAOoomxyWKJiwWH4+7cw6lhL7v6fse8BDx0Pr1Fxz9FBGh6zqGYUBEjUGP8xvDYp4TCW9t0QAAAABJRU5ErkJggg=="
+                                                />
+                                            </>
+                                        :
                                         <Image
                                             className="image"
                                             src={property.image}
@@ -138,7 +157,7 @@ export default function Properties() {
                                             alt={`Image of ${property.name}`}
                                             placeholder="blur"
                                             blurDataURL={property.placeholderImage}
-                                        />
+                                        />}
                                     </div>
                                 </CardMedia>
                                 <CardContent className="card-content">
@@ -176,7 +195,8 @@ export default function Properties() {
                                                 <Chip key={index} size="small" variant="outlined" icon={icon} label={label} />
                                             )
                                         })}
-
+                                        {property.available ? undefined :
+                                        <Chip size="small" color="warning" label="Noch nicht verfügbar"/>}
                                     </div>
                                 </CardContent>
                             </Card>
