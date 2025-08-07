@@ -136,8 +136,8 @@ export default function Properties() {
                                                     height={400}
                                                     alt=""
                                                     placeholder="blur"
-                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAZlJREFUOI2lk8FuGjEQhj97MaCybEIPBAKFSkG5AI1SRainSD1H6stWysM0p6YQBUi7sEA3MdjTQ1oUJEqROqcZa/5P/4xtdfXpStgjoigiSZJ/9mX2gfU+9DDGcPPlhtFw9H/Ai94FS7skTVNOWicclg55TB+ZzWbEP+L9gEopOu86KKXw3rNyKwDm8znlcpnoIALg+vP1fkARoVAoYK1lsVjwMH7gqHLEoD+g0WwgIgzvh1sn0tsO25021lqWy+VWUZIkVKqVtdOdwHa3Tf5Vfg3LZrMc144JgoDm2ybVahWtNdPplPP354RhuBs46A+wT5bVasXwfsjd4A4RQWtN/U0dkzXU6jW01sRxjPNuN3ASTwDwzpNMEybxBBEhip7H63/rAxAdRHjvSX+mG/qNSykWi1x+vGQ8GgPQOm2hlNoQeO+fnait6yfTaDbWRfesC0DpdQn5vvmBjDGICPl8HhEhyASEYchLPUDm9uvtuniZA+RyOZxz6EAT6AARwXuPtXarO/jLs/kTzjmMMSilcO738tUuBfwCjTqk653/N0wAAAAASUVORK5CYII="
-                                                />
+                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAZJJREFUOI2lk8tq20AYhb8ZXQiVPEZZxHbsxoWYbmy3pKGhq0DXgb5sIW/SLJptFCI7rWxZrvDoMl2IhjqojqFn9w9zPv6ruPpyZdhDSimSJHnxn70P7OLTBY7jcPv9llk0+z/g+cdzcp2TZRmno1OCICDLMlarFfHPeD+gEILJuwmWZWGMoSgLANI05ahzhGorjDFcf73eD2iMwfM8tNas12se5490uh3CuxCAqqqIHqLGimTT43gyRmtNnueNpiRJ6Pa6qLZ6GTiejjl4dfAEc12X4/4xlmUxfDOk1+shpWS5XHL24Qzf93cDw7sQvdEURUH0EHEf3mOMQUrJ4PUAx3XoD/pIKYnjmLIqdwMX8QKAqqxIlgmLeIExBqXqQdx8u6njtqKqKrJf2ZZ/ayitVovLz5fMZ3MARm9HCCG2DGVR1hmLxvZjnwxPnoLp+ykAwWGA+bF9QI7jAOD5HkIILNvC933+9gOIXaenlGKz2eC6LrZj1zuZF6Rp+i9L89r8kdYaz/eQUqK1rjN41oLn+g0o46cJOtG88wAAAABJRU5ErkJggg=="
+                                                    />
                                                 <Image
                                                     className="image image-light"
                                                     src="/image/placeholder-house-light.svg"
@@ -145,8 +145,8 @@ export default function Properties() {
                                                     height={400}
                                                     alt=""
                                                     placeholder="blur"
-                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAXdJREFUOI2lkzFzm1AQhD/uvQcPkC0kZ8aFijRu8v9/QkrXKWIVuIljggjESEjoIUiRGTlOZKwZX3czuzu7O3fe7e3ngTPGOYcx5k2cnCOWZQ8sl1/Y7bbvF8zz79R1RRxPuL9fUlU/aZo1+317Eq9fd/UNY3zKsiAILABhGJGmdzTNmuvrBTc3n84XLIofGOOTJFfE8QV1XZEkcwCU0sznH07yTkauqhVaG3w/OEmaThPyPMO5/duCVVWQZY/HmNvthtXqkbbdkecZh8MBpTTWWtL0K13nxiNbG2GtxdqQOL5ARCjLgmHoeXr6RdOsCYKQ6TTh8nKG53njDo3xAVBKEQQh1oaICEWRs9nUzGZXtG1DWa4QUSj10tOLrescaXrHfv+nm81m/V9HWhuGkVfQTfNMKsvieLz/dmOMQUQ4HDqCIEQpwbmWv/kAOoomxyWKJiwWH4+7cw6lhL7v6fse8BDx0Pr1Fxz9FBGh6zqGYUBEjUGP8xvDYp4TCW9t0QAAAABJRU5ErkJggg=="
-                                                />
+                                                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAADIAAAAyAEU/dc7AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAUVJREFUOI2lk8Fq5DAQRJ+klu3JQGAh5P//bA85LRkciGVZltXSHgaGNZk4A6tz9VNV02Xe3n43HniqinPuR519BBbCJ5fLH0rZ/h8YwsS6LnRdzzheWNdEzhnVclcv34Gm6RPnLMsSEbnKvO8Yx3dUlWF44uXl9XHgPE+IOE6nM13Xsa6JYXgCIKWF8/l8d+5u5Ksrh3P+7tAwnAghoKo/A5clEsJ0g21bZp4DpRRiDNRasdYiInx8vFPrHvolsohHRBDx9H0PGFKKtFZJKbFtKyKeYRjo+xNgjh2KXG/NWoNzgvceYwwxzpSy8fz8i1qVGGeMsVi7R+wc1qqM4+W2m5zzTmxMw7njS5N/h1KKlLLRGqjWfRTrAEcpinNCaw3V8vXTo+rlnLBWUFVqVYwBa4Wu6751eOjfWiHnFai3Hrd2XP2/B1urMZsds6YAAAAASUVORK5CYII="
+                                                    />
                                             </>
                                         :
                                         <Image

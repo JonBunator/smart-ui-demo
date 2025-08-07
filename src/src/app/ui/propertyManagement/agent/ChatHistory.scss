@@ -20,7 +20,7 @@
             .chat-history-message {
                 display: flex;
                 border-bottom-left-radius: 0;
-                background-color: var(--mui-palette-FilledInput-bg);
+                background-color: var(--card-container-bg);
 
                 .time {
                     color: var(--mui-palette-text-secondary);

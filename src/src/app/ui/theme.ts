@@ -29,7 +29,7 @@ export const theme = createTheme({
                     paper: '#1e201e',
                 },
                 DataGrid: {
-                    bg: "#292a28",
+                    bg: "transparent",
                     headerBg: '#333533',
                 }
             },
@@ -47,12 +47,12 @@ export const theme = createTheme({
                     main: '#fde181',
                 },
                 background: {
-                    default: '#ffffff',
+                    default: '#e3e3df',
                     paper: '#eeeeea',
                 },
                 DataGrid: {
                     bg: "transparent",
-                    headerBg: '#e8e8e5',
+                    headerBg: '#f4f4f0',
                 }
             },
         }

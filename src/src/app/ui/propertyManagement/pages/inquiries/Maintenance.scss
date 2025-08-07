@@ -1,6 +1,8 @@
 .maintenance {
     display: flex;
     flex-direction: column;
+    background: var(--card-container-bg);
+    border-radius: 8px;
     height: 100%;
 
     .MuiDataGrid-root {
