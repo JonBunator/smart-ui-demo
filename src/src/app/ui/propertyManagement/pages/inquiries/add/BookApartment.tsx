@@ -280,7 +280,7 @@ export default function BookApartment() {
                     <SmartTextField
                         variant="filled"
                         label="Buchungsbeginn"
-                        type="datetime-local"
+                        type="date"
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         required
@@ -295,7 +295,7 @@ export default function BookApartment() {
                     <SmartTextField
                         variant="filled"
                         label="Buchungsende"
-                        type="datetime-local"
+                        type="date"
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         required
