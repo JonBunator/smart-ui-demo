@@ -144,6 +144,8 @@ model Participation {
   id                          String              @id @default(uuid())
   timestamp                   DateTime            @default(now())
   state                       String?
+  surveyState                 String?
+  completionTimestamp         DateTime?
   surveyType                  Int
   dataSetOrder                Int
   promptHistoryAgent          String?

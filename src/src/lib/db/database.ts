@@ -115,7 +115,6 @@ export async function getSurveyCompletedMessage(): Promise<string> {
                 },
             },
         });
-        console.log(surveyGroup)
         return surveyGroup?.surveyCompletedMessage ?? "";
     } catch {
         throw new Error("An unknown error occurred");
@@ -174,15 +173,30 @@ export async function setParticipationState(state: string) {
 
     try {
         const stateObject: SnapshotFrom<typeof surveyFlowMachine> = JSON.parse(state);
-        await updateSession({...sessionData, surveyState: stateObject.value})
+        const surveyState = stateObject.value
+
+        await updateSession({...sessionData, surveyState: surveyState})
+
+        type UpdateData = {
+            state: string;
+            surveyState: string;
+            completionTimestamp?: Date;
+        };
+
+        let updateData: UpdateData = {
+            state: state,
+            surveyState: JSON.stringify(surveyState),
+        };
+
+        if (surveyState === "Finished") {
+            updateData = {...updateData, completionTimestamp: new Date()}
+        }
 
         await prisma.participation.update({
             where: {
                 id: sessionData.userId,
             },
-            data: {
-                state: state
-            }
+            data: updateData,
         });
 
 

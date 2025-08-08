@@ -116,6 +116,8 @@ CREATE TABLE "Participation" (
     "id" TEXT NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "state" TEXT,
+    "surveyState" TEXT,
+    "completionTimestamp" TIMESTAMP(3),
     "surveyType" INTEGER NOT NULL,
     "dataSetOrder" INTEGER NOT NULL,
     "promptHistoryAgent" TEXT,
