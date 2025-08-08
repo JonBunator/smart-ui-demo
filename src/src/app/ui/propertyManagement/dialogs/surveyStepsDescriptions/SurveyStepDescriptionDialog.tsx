@@ -15,12 +15,12 @@ const surveyStepsContent = [
     {
         title: "Anwendung mit KI-Agenten Unterstützung (Variante 1)",
         content: <SecondStepDescription/>,
-        maxWidth: "md"
+        maxWidth: "lg"
     },
     {
         title: "Anwendung mit KI-Agenten Unterstützung (Variante 2)",
         content: <ThirdStepDescription/>,
-        maxWidth: "md"
+        maxWidth: "lg"
     },
 ]
 

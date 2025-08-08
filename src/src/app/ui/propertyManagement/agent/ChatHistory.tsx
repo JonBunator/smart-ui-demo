@@ -45,7 +45,7 @@ export default function ChatHistory(props: ChatHistoryProps) {
     return (
         <div className="chat-history" ref={chatContainerRef}>
             <AgentMessage>
-                Ich kann dir helfen mit der Benutzeroberfläche zu interagieren. Frag etwas.
+                Ich kann Ihnen helfen mit der Benutzeroberfläche zu interagieren. Fragen Sie etwas.
             </AgentMessage>
             {history
                 .filter((item) => ((item.message.role === ChatMessageCreator.AGENT && item.message.content !== undefined) || item.message.role === ChatMessageCreator.USER))
