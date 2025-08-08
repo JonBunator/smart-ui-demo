@@ -6,7 +6,7 @@ export default function App() {
 
     return (
         <SmartComponentManager>
-            <SmartAgentProvider callAgent={callAgentEndpoint}>
+            <SmartAgentProvider callAgent={callAgentEndpoint} currentPagePath="/">
                 <Content/>
             </SmartAgentProvider>
         </SmartComponentManager>
