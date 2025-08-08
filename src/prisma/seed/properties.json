@@ -21,12 +21,10 @@
         "postalCode": "2715",
         "country": "Schweiz",
         "type": "villa",
-        "numBedrooms": 4,
+        "numBeds": 4,
         "numBathrooms": 3,
-        "numMaximumGuests": 8,
         "area": 250,
         "pricePerNight": 300,
-        "deposit": 500,
         "additionalInfo": ["wifi", "pool", "airConditioning", "parking"]
       }
     }
@@ -53,12 +51,10 @@
         "postalCode": "19557",
         "country": "Spanien",
         "type": "beachHouse",
-        "numBedrooms": 2,
+        "numBeds": 2,
         "numBathrooms": 1,
-        "numMaximumGuests": 4,
         "area": 80,
         "pricePerNight": 150,
-        "deposit": 200,
         "additionalInfo": ["wifi", "petFriendly"]
       }
     }
@@ -85,12 +81,10 @@
         "postalCode": "55923",
         "country": "Deutschland",
         "type": "cabin",
-        "numBedrooms": 3,
+        "numBeds": 3,
         "numBathrooms": 2,
-        "numMaximumGuests": 6,
         "area": 120,
         "pricePerNight": 180,
-        "deposit": 300,
         "additionalInfo": ["wifi", "parking", "petFriendly"]
       }
     }
@@ -117,12 +111,10 @@
         "postalCode": "64450",
         "country": "Italien",
         "type": "cabin",
-        "numBedrooms": 5,
+        "numBeds": 5,
         "numBathrooms": 4,
-        "numMaximumGuests": 10,
         "area": 300,
         "pricePerNight": 400,
-        "deposit": 600,
         "additionalInfo": ["wifi", "pool", "airConditioning", "parking", "petFriendly"]
       }
     }
@@ -149,12 +141,10 @@
         "postalCode": "4503 YR",
         "country": "Niederlande",
         "type": "beachHouse",
-        "numBedrooms": 2,
+        "numBeds": 2,
         "numBathrooms": 1,
-        "numMaximumGuests": 4,
         "area": 90,
         "pricePerNight": 160,
-        "deposit": 250,
         "additionalInfo": ["wifi", "airConditioning", "parking"]
       }
     }
@@ -181,12 +171,10 @@
         "postalCode": "55533",
         "country": "Schweden",
         "type": "villa",
-        "numBedrooms": 4,
+        "numBeds": 4,
         "numBathrooms": 2,
-        "numMaximumGuests": 8,
         "area": 200,
         "pricePerNight": 220,
-        "deposit": 350,
         "additionalInfo": ["wifi", "parking", "petFriendly"]
       }
     }
@@ -213,12 +201,10 @@
         "postalCode": "7250",
         "country": "Schweiz",
         "type": "apartment",
-        "numBedrooms": 3,
+        "numBeds": 3,
         "numBathrooms": 2,
-        "numMaximumGuests": 6,
         "area": 150,
         "pricePerNight": 250,
-        "deposit": 400,
         "additionalInfo": ["wifi", "airConditioning", "parking"]
       }
     }
@@ -245,12 +231,10 @@
         "postalCode": "35238",
         "country": "Spanien",
         "type": "cabin",
-        "numBedrooms": 2,
+        "numBeds": 2,
         "numBathrooms": 1,
-        "numMaximumGuests": 4,
         "area": 70,
         "pricePerNight": 140,
-        "deposit": 200,
         "additionalInfo": ["wifi", "petFriendly"]
       }
     }
@@ -277,12 +261,10 @@
         "postalCode": "13401",
         "country": "Deutschland",
         "type": "villa",
-        "numBedrooms": 5,
+        "numBeds": 5,
         "numBathrooms": 3,
-        "numMaximumGuests": 10,
         "area": 280,
         "pricePerNight": 350,
-        "deposit": 500,
         "additionalInfo": ["wifi", "pool", "airConditioning", "parking", "petFriendly"]
       }
     }

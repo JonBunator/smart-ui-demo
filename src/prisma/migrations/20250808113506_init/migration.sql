@@ -1,14 +1,14 @@
 -- CreateEnum
-CREATE TYPE "DataType" AS ENUM ('Booking', 'Property', 'Maintenance');
+CREATE TYPE "public"."DataType" AS ENUM ('Booking', 'Property', 'Maintenance');
 
 -- CreateEnum
-CREATE TYPE "DataCategory" AS ENUM ('GroundTruth', 'UserAdded');
+CREATE TYPE "public"."DataCategory" AS ENUM ('GroundTruth', 'UserAdded');
 
 -- CreateEnum
-CREATE TYPE "AgentQuestionsType" AS ENUM ('AGENT', 'PROACTIVE_AGENT');
+CREATE TYPE "public"."AgentQuestionsType" AS ENUM ('AGENT', 'PROACTIVE_AGENT');
 
 -- CreateTable
-CREATE TABLE "Survey" (
+CREATE TABLE "public"."Survey" (
     "id" SERIAL NOT NULL,
     "nextSurveyType" INTEGER NOT NULL DEFAULT 0,
     "nextDataSetOrder" INTEGER NOT NULL DEFAULT 0,
@@ -17,7 +17,7 @@ CREATE TABLE "Survey" (
 );
 
 -- CreateTable
-CREATE TABLE "SurveyGroup" (
+CREATE TABLE "public"."SurveyGroup" (
     "id" SERIAL NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "invitationCode" TEXT NOT NULL,
@@ -27,19 +27,19 @@ CREATE TABLE "SurveyGroup" (
 );
 
 -- CreateTable
-CREATE TABLE "Data" (
+CREATE TABLE "public"."Data" (
     "id" SERIAL NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "order" INTEGER,
     "dataSet" INTEGER,
-    "category" "DataCategory" NOT NULL,
-    "type" "DataType" NOT NULL,
+    "category" "public"."DataCategory" NOT NULL,
+    "type" "public"."DataType" NOT NULL,
 
     CONSTRAINT "Data_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Booking" (
+CREATE TABLE "public"."Booking" (
     "id" SERIAL NOT NULL,
     "dataId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE "Booking" (
 );
 
 -- CreateTable
-CREATE TABLE "Property" (
+CREATE TABLE "public"."Property" (
     "id" SERIAL NOT NULL,
     "dataId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
@@ -72,19 +72,17 @@ CREATE TABLE "Property" (
     "postalCode" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "type" TEXT NOT NULL,
-    "numBedrooms" INTEGER NOT NULL,
+    "numBeds" INTEGER NOT NULL,
     "numBathrooms" INTEGER NOT NULL,
-    "numMaximumGuests" INTEGER NOT NULL,
     "area" DOUBLE PRECISION NOT NULL,
     "pricePerNight" DOUBLE PRECISION NOT NULL,
-    "deposit" DOUBLE PRECISION NOT NULL,
     "additionalInfo" TEXT[],
 
     CONSTRAINT "Property_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Maintenance" (
+CREATE TABLE "public"."Maintenance" (
     "id" SERIAL NOT NULL,
     "dataId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
@@ -100,7 +98,7 @@ CREATE TABLE "Maintenance" (
 );
 
 -- CreateTable
-CREATE TABLE "EMail" (
+CREATE TABLE "public"."EMail" (
     "id" SERIAL NOT NULL,
     "author" TEXT NOT NULL,
     "authorEmail" TEXT NOT NULL,
@@ -112,7 +110,7 @@ CREATE TABLE "EMail" (
 );
 
 -- CreateTable
-CREATE TABLE "Participation" (
+CREATE TABLE "public"."Participation" (
     "id" TEXT NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "state" TEXT,
@@ -128,7 +126,7 @@ CREATE TABLE "Participation" (
 );
 
 -- CreateTable
-CREATE TABLE "ParticipationData" (
+CREATE TABLE "public"."ParticipationData" (
     "id" SERIAL NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "surveyStep" INTEGER NOT NULL,
@@ -140,7 +138,7 @@ CREATE TABLE "ParticipationData" (
 );
 
 -- CreateTable
-CREATE TABLE "InitialQuestions" (
+CREATE TABLE "public"."InitialQuestions" (
     "id" SERIAL NOT NULL,
     "participationId" TEXT NOT NULL,
     "age" TEXT NOT NULL,
@@ -155,7 +153,7 @@ CREATE TABLE "InitialQuestions" (
 );
 
 -- CreateTable
-CREATE TABLE "NoAgentQuestions" (
+CREATE TABLE "public"."NoAgentQuestions" (
     "id" SERIAL NOT NULL,
     "participationId" TEXT NOT NULL,
     "efficiency" INTEGER[],
@@ -170,10 +168,10 @@ CREATE TABLE "NoAgentQuestions" (
 );
 
 -- CreateTable
-CREATE TABLE "AgentQuestions" (
+CREATE TABLE "public"."AgentQuestions" (
     "id" SERIAL NOT NULL,
     "participationId" TEXT NOT NULL,
-    "type" "AgentQuestionsType" NOT NULL,
+    "type" "public"."AgentQuestionsType" NOT NULL,
     "efficiency" INTEGER[],
     "perspicuity" INTEGER[],
     "dependability" INTEGER[],
@@ -194,55 +192,55 @@ CREATE TABLE "AgentQuestions" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "SurveyGroup_invitationCode_key" ON "SurveyGroup"("invitationCode");
+CREATE UNIQUE INDEX "SurveyGroup_invitationCode_key" ON "public"."SurveyGroup"("invitationCode");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Booking_dataId_key" ON "Booking"("dataId");
+CREATE UNIQUE INDEX "Booking_dataId_key" ON "public"."Booking"("dataId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Property_dataId_key" ON "Property"("dataId");
+CREATE UNIQUE INDEX "Property_dataId_key" ON "public"."Property"("dataId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Maintenance_dataId_key" ON "Maintenance"("dataId");
+CREATE UNIQUE INDEX "Maintenance_dataId_key" ON "public"."Maintenance"("dataId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "EMail_dataId_key" ON "EMail"("dataId");
+CREATE UNIQUE INDEX "EMail_dataId_key" ON "public"."EMail"("dataId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "InitialQuestions_participationId_key" ON "InitialQuestions"("participationId");
+CREATE UNIQUE INDEX "InitialQuestions_participationId_key" ON "public"."InitialQuestions"("participationId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "NoAgentQuestions_participationId_key" ON "NoAgentQuestions"("participationId");
+CREATE UNIQUE INDEX "NoAgentQuestions_participationId_key" ON "public"."NoAgentQuestions"("participationId");
 
 -- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Booking" ADD CONSTRAINT "Booking_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Property" ADD CONSTRAINT "Property_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Property" ADD CONSTRAINT "Property_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Maintenance" ADD CONSTRAINT "Maintenance_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Maintenance" ADD CONSTRAINT "Maintenance_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EMail" ADD CONSTRAINT "EMail_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."EMail" ADD CONSTRAINT "EMail_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Participation" ADD CONSTRAINT "Participation_surveyGroupId_fkey" FOREIGN KEY ("surveyGroupId") REFERENCES "SurveyGroup"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Participation" ADD CONSTRAINT "Participation_surveyGroupId_fkey" FOREIGN KEY ("surveyGroupId") REFERENCES "public"."SurveyGroup"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ParticipationData" ADD CONSTRAINT "ParticipationData_groundTruthId_fkey" FOREIGN KEY ("groundTruthId") REFERENCES "Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_groundTruthId_fkey" FOREIGN KEY ("groundTruthId") REFERENCES "public"."Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "InitialQuestions" ADD CONSTRAINT "InitialQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."InitialQuestions" ADD CONSTRAINT "InitialQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "NoAgentQuestions" ADD CONSTRAINT "NoAgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."NoAgentQuestions" ADD CONSTRAINT "NoAgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AgentQuestions" ADD CONSTRAINT "AgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."AgentQuestions" ADD CONSTRAINT "AgentQuestions_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;

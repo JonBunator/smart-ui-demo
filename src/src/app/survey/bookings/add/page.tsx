@@ -1,7 +1,7 @@
-import BookApartment from "@/app/ui/propertyManagement/pages/inquiries/add/BookApartment";
+import AddBooking from "@/app/ui/propertyManagement/pages/inquiries/add/AddBooking";
 
 export default function Home() {
   return (
-        <BookApartment/>
+        <AddBooking/>
   );
 }

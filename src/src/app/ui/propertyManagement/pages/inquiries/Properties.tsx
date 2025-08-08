@@ -52,8 +52,8 @@ export default function Properties() {
                 description: property.description,
                 type: property.type as PropertyType,
                 additionalInfos: property.additionalInfo as AdditionalInfoType[],
-                numBeds: property.numBedrooms,
-                numBathrooms: property.numBathrooms,
+                numBeds: property.numBeds,
+                numBathrooms: property.numBeds,
                 area: property.area,
                 pricePerNight: property.pricePerNight,
                 available: false

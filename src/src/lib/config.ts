@@ -5,7 +5,7 @@ export const SURVEY_STEP_DURATION = 300000;
 
 export const NUM_SURVEY_STEPS = 3;
 
-export const NUM_DATA_PER_SURVEY_STEP = 10;
+export const NUM_DATA_PER_SURVEY_STEP = 9;
 
 export const NUM_SURVEY_TYPES = 4;
 

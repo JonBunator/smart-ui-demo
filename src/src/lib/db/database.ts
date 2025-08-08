@@ -489,15 +489,21 @@ export async function _getSurveyStepData(): Promise<SurveyStepData|null> {
     return {surveyStep: surveyStep, dataIndex};
 }
 
-export async function addBooking(booking: Prisma.BookingCreateInput) {
+type AddBookingType = Omit<Prisma.BookingCreateInput, "data">
+
+export async function addBooking(booking: AddBookingType) {
     await addData(DataType.Booking, booking);
 }
 
-export async function addProperty(property: Prisma.PropertyCreateInput) {
+type AddPropertyType = Omit<Prisma.PropertyCreateInput, "data">
+
+export async function addProperty(property: AddPropertyType) {
     await addData(DataType.Property, property);
 }
 
-export async function addMaintenance(maintenance: Prisma.MaintenanceCreateInput) {
+type AddMaintenanceType = Omit<Prisma.MaintenanceCreateInput, "data">
+
+export async function addMaintenance(maintenance: AddMaintenanceType) {
     await addData(DataType.Maintenance, maintenance);
 }
 

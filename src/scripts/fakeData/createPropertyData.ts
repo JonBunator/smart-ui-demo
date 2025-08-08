@@ -39,12 +39,10 @@ export function createProperty(_: unknown, index: number) {
                 postalCode: postalCode,
                 country: country,
                 type: "",
-                numBedrooms: 0,
+                numBeds: 0,
                 numBathrooms: 0,
-                numMaximumGuests: 0,
                 area: 0,
                 pricePerNight: 0,
-                deposit: 0,
                 additionalInfo: []
             }
         }

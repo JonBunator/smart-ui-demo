@@ -29,6 +29,15 @@ export interface PropertyData {
     available: boolean;
 }
 
+export const countryOptions = [
+    { label: "Deutschland", value: "Deutschland" },
+    { label: "Italien", value: "Italien" },
+    { label: "Niederlande", value: "Niederlande" },
+    { label: "Österreich", value: "Österreich" },
+    { label: "Schweiz", value: "Schweiz" },
+    { label: "Spanien", value: "Spanien" },
+];
+
 export const propertyOptions = [
     {label: "Urban Workspace Zürich"},
     {label: "Waldzauber Holzhütte"},

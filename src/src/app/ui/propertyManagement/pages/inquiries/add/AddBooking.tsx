@@ -9,7 +9,6 @@ import { addBooking } from "@/lib/db/database";
 import {useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
-import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/common";
 
     const emptyFormData = {
         name: "",
@@ -45,7 +44,7 @@ import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/
         property: false,
     };
 
-export default function BookApartment() {
+export default function AddBooking() {
     const [formData, setFormData] = useState(emptyFormData);
     const [errors, setErrors] = useState(emptyErrors);
     const {handleChangeApproval} = useSmartAgent();
@@ -230,22 +229,16 @@ export default function BookApartment() {
                     />
                 </Grid>
                 <Grid size={{ xs: 12 }}>
-                    <SmartAutocomplete
-                        options={countryOptions}
-                        smartSemantic="Land"
-                        value={useMemo(() => countryOptions.find((option) => option.value === formData.country) || null, [formData.country])}
-                        onChange={(_event, value) => handleValueChange(value?.value ?? "", "country")}
-                        renderInput={(params) => (
-                            <TextField
-                                variant="filled"
-                                {...params}
-                                label="Land"
-                                fullWidth
-                                required
-                                error={errors.country}
-                                helperText={errors.country ? "Land ist erforderlich" : ""}
-                            />
-                        )}
+                    <TextField
+                        variant="filled"
+                        label="Land"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        error={errors.country}
+                        helperText={errors.country ? "Land ist erforderlich" : ""}
                     />
                 </Grid>
             </Grid>

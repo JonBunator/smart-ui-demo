@@ -11,7 +11,7 @@ export default function ThirdStepDescription() {
                 Durch ein neues Update wurde der intelligente KI-Agent verändert. Er hat nun ein anderes Verhalten als der Agent im
                 vorherigen Schritt. Interaktionen mit dem Agenten sind in der Benutzeroberfläche mit <b>Magenta-Blauen</b> Farben dargestellt.
             </Typography>
-            <Image className="gif" src="/image/ai-agent.gif" width={1150} height={398} alt="user interface with ai agent" placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHBAMAAAD65XALAAAAGFBMVEUSEhI3OjkfICEZGho+PzwzNTQmKSkvMTH51JgIAAAAR0lEQVQI12NITEtSUklWUjJgZigNLSsNKRNTNlJmEBEUFE8vKlNgYAAzjY2VDMBMEXcgxWAMZLqIuIKYigYMIqGh4SCmmgEADecLOCovv5cAAAAASUVORK5CYII="/>
+            <Image className="gif" src="/image/ai-agent.gif" width={1150} height={398} alt="user interface with ai agent" unoptimized placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHBAMAAAD65XALAAAAGFBMVEUSEhI3OjkfICEZGho+PzwzNTQmKSkvMTH51JgIAAAAR0lEQVQI12NITEtSUklWUjJgZigNLSsNKRNTNlJmEBEUFE8vKlNgYAAzjY2VDMBMEXcgxWAMZLqIuIKYigYMIqGh4SCmmgEADecLOCovv5cAAAAASUVORK5CYII="/>
             <Typography>
                 Durch den <b>Ausfüllen</b> Knopf lassen sich beispielsweise Formulare mit Textinhalten aus der Zwischenablage befüllen.
                 Dies ist auch über das Einfügen des Textes in das Chat-Fenster des KI-Agenten möglich. Damit lassen sich z.B. die Daten

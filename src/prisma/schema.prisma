@@ -96,24 +96,22 @@ model Booking {
 }
 
 model Property {
-  id               Int      @id @default(autoincrement())
-  dataId           Int      @unique
-  data             Data     @relation(fields: [dataId], references: [id], onDelete: Cascade)
-  name             String
-  description      String
-  street           String
-  houseNumber      String
-  city             String
-  postalCode       String
-  country          String
-  type             String
-  numBedrooms      Int
-  numBathrooms     Int
-  numMaximumGuests Int
-  area             Float
-  pricePerNight    Float
-  deposit          Float
-  additionalInfo   String[]
+  id             Int      @id @default(autoincrement())
+  dataId         Int      @unique
+  data           Data     @relation(fields: [dataId], references: [id], onDelete: Cascade)
+  name           String
+  description    String
+  street         String
+  houseNumber    String
+  city           String
+  postalCode     String
+  country        String
+  type           String
+  numBeds        Int
+  numBathrooms   Int
+  area           Float
+  pricePerNight  Float
+  additionalInfo String[]
 }
 
 model Maintenance {

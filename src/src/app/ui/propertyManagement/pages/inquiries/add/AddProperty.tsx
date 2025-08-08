@@ -21,7 +21,7 @@ import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/compon
 import { addProperty } from "@/lib/db/database";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {AdditionalInfoType, propertyTypes} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
-import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/common";
+import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 
 const emptyFormData = {
     name: "",
@@ -32,12 +32,10 @@ const emptyFormData = {
     postalCode: "",
     country: "",
     type: "",
-    numBedrooms: "",
+    numBeds: "",
     numBathrooms: "",
-    numMaximumGuests: "",
     area: "",
     pricePerNight: "",
-    deposit: "",
     additionalInfo: {
         wifi: false,
         pool: false,
@@ -56,12 +54,10 @@ const emptyErrors = {
     postalCode: false,
     country: false,
     type: false,
-    numBedrooms: false,
+    numBeds: false,
     numBathrooms: false,
-    numMaximumGuests: false,
     area: false,
     pricePerNight: false,
-    deposit: false,
 };
 
 export default function AddProperty() {
@@ -111,12 +107,10 @@ export default function AddProperty() {
             postalCode: formData.postalCode === "",
             country: formData.country === "",
             type: formData.type === "",
-            numBedrooms: formData.numBedrooms === "",
+            numBeds: formData.numBeds === "",
             numBathrooms: formData.numBathrooms === "",
-            numMaximumGuests: formData.numMaximumGuests === "",
             area: formData.area === "",
             pricePerNight: formData.pricePerNight === "",
-            deposit: formData.deposit === "",
         };
         setErrors(newErrors);
 
@@ -126,12 +120,10 @@ export default function AddProperty() {
 
             const propertyData = {
                 ...formData,
-                numBedrooms: Number(formData.numBedrooms),
+                numBeds: Number(formData.numBeds),
                 numBathrooms: Number(formData.numBathrooms),
-                numMaximumGuests: Number(formData.numMaximumGuests),
                 area: Number(formData.area),
                 pricePerNight: Number(formData.pricePerNight),
-                deposit: Number(formData.deposit),
                 additionalInfo: additionalInfoList,
             };
             await handleChangeApproval(true);
@@ -286,15 +278,15 @@ export default function AddProperty() {
                 <Grid size={{ xs: 12, md: 6 }}>
                     <SmartTextField
                         variant="filled"
-                        label="Anzahl Schlafzimmer"
+                        label="Anzahl Betten"
                         fullWidth
                         type="number"
                         required
-                        name="numBedrooms"
-                        value={formData.numBedrooms}
+                        name="numBeds"
+                        value={formData.numBeds}
                         onChange={handleChange}
-                        error={errors.numBedrooms}
-                        helperText={errors.numBedrooms ? "Anzahl Schlafzimmer ist erforderlich" : ""}
+                        error={errors.numBeds}
+                        helperText={errors.numBeds ? "Anzahl Betten ist erforderlich" : ""}
                     />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
@@ -309,20 +301,6 @@ export default function AddProperty() {
                         onChange={handleChange}
                         error={errors.numBathrooms}
                         helperText={errors.numBathrooms ? "Anzahl Badezimmer ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Maximale Gäste"
-                        fullWidth
-                        type="number"
-                        required
-                        name="numMaximumGuests"
-                        value={formData.numMaximumGuests}
-                        onChange={handleChange}
-                        error={errors.numMaximumGuests}
-                        helperText={errors.numMaximumGuests ? "Maximale Gäste ist erforderlich" : ""}
                     />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
@@ -351,20 +329,6 @@ export default function AddProperty() {
                         onChange={handleChange}
                         error={errors.pricePerNight}
                         helperText={errors.pricePerNight ? "Preis pro Nacht ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Kaution (€)"
-                        fullWidth
-                        type="number"
-                        required
-                        name="deposit"
-                        value={formData.deposit}
-                        onChange={handleChange}
-                        error={errors.deposit}
-                        helperText={errors.deposit ? "Kaution ist erforderlich" : ""}
                     />
                 </Grid>
                 <Grid size={{ xs: 12 }}>
