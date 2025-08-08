@@ -98,6 +98,30 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
     }
 }
 
+export async function getSurveyCompletedMessage(): Promise<string> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        console.error('getSurveyCompletedMessage: Session is invalid');
+        return "";
+    }
+
+    try {
+        const surveyGroup = await prisma.surveyGroup.findFirst({
+            where: {
+                Participations: {
+                    some: {
+                        id: sessionData.userId,
+                    },
+                },
+            },
+        });
+        console.log(surveyGroup)
+        return surveyGroup?.surveyCompletedMessage ?? "";
+    } catch {
+        throw new Error("An unknown error occurred");
+    }
+}
+
 export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | null> {
     const sessionData = await getSession();
     if (!sessionData) {

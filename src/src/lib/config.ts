@@ -1,7 +1,7 @@
 import {AISupport} from "@/lib/types"
 
 // Duration of one survey step in seconds
-export const SURVEY_STEP_DURATION = 30000;
+export const SURVEY_STEP_DURATION = 300000;
 
 export const NUM_SURVEY_STEPS = 3;
 

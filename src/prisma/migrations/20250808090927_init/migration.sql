@@ -21,6 +21,7 @@ CREATE TABLE "SurveyGroup" (
     "id" SERIAL NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "invitationCode" TEXT NOT NULL,
+    "surveyCompletedMessage" TEXT,
 
     CONSTRAINT "SurveyGroup_pkey" PRIMARY KEY ("id")
 );

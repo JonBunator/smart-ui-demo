@@ -35,10 +35,11 @@ model Survey {
 }
 
 model SurveyGroup {
-  id             Int             @id @default(autoincrement())
-  active         Boolean         @default(true)
-  invitationCode String          @unique
-  Participations Participation[]
+  id                     Int             @id @default(autoincrement())
+  active                 Boolean         @default(true)
+  invitationCode         String          @unique
+  Participations         Participation[]
+  surveyCompletedMessage String?
 }
 
 enum DataType {
