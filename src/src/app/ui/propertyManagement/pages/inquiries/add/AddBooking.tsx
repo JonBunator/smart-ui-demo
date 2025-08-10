@@ -99,13 +99,13 @@ export default function AddBooking() {
             try {
                 await handleChangeApproval(true);
                 await addBooking(bookingData);
-                success("Erfolgreich hinzugefügt", "Buchung wurde erfolgreich hinzugefügt")
+                addData();
+                setFormData(emptyFormData);
+                setErrors(emptyErrors);
+                success("Erfolgreich hinzugefügt", "Buchung wurde hinzugefügt")
             } catch {
                 error();
             }
-            addData();
-            setFormData(emptyFormData);
-            setErrors(emptyErrors);
         }
     };
 

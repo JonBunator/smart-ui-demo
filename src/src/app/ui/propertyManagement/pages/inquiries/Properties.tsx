@@ -36,11 +36,13 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {getProperties} from "@/lib/db/database";
 import LoadingPropertyCards from "@/app/ui/propertyManagement/pages/inquiries/LoadingPropertyCards";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 export default function Properties() {
     const router = useRouter();
     const [properties, setProperties] = useState<PropertyData[]>([]);
     const [loading, setLoading] = useState(true);
+    const {error} = useSnackbar();
 
     useEffect(() => {
         getProperties().then((properties) => {
@@ -62,8 +64,8 @@ export default function Properties() {
             setProperties([...addedProperties, ...fakeData]);
             setLoading(false);
         })
-            .catch(() => setLoading(false));
-    }, []);
+            .catch(() => {setLoading(false); error()});
+    }, [error]);
 
     function navigateToAddPage() {
         router.push("/survey/properties/add");

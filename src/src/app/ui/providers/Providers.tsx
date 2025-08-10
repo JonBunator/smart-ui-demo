@@ -44,18 +44,18 @@ export default function Providers({children}: {children: ReactNode}) {
     return (
         <FluentUIProvider>
             <MUIProvider>
-                <SurveyManagerProvider>
-                    <SmartComponentManager>
-                        <SmartAgentProvider callAgent={callAgentEndpoint}
-                                            customSystemPrompt={CUSTOM_SYSTEM_PROMPT}
-                                            currentPagePath={currentPagePath}
-                                            pageDescriptions={pageDescriptions}>
-                            <SnackbarProvider>
-                                {children}
-                            </SnackbarProvider>
-                        </SmartAgentProvider>
-                    </SmartComponentManager>
-                </SurveyManagerProvider>
+                <SnackbarProvider>
+                    <SurveyManagerProvider>
+                        <SmartComponentManager>
+                            <SmartAgentProvider callAgent={callAgentEndpoint}
+                                                customSystemPrompt={CUSTOM_SYSTEM_PROMPT}
+                                                currentPagePath={currentPagePath}
+                                                pageDescriptions={pageDescriptions}>
+                                    {children}
+                            </SmartAgentProvider>
+                        </SmartComponentManager>
+                    </SurveyManagerProvider>
+                </SnackbarProvider>
             </MUIProvider>
         </FluentUIProvider>
     );

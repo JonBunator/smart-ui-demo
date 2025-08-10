@@ -4,6 +4,7 @@ import surveyFlowMachine, {SurveyFlowMachineEvents} from "@/app/ui/propertyManag
 import { setParticipationState, getParticipationState } from '@/lib/db/database';
 import {createActor, Actor, SnapshotFrom} from 'xstate';
 import {NUM_DATA_PER_SURVEY_STEP, NUM_SURVEY_STEPS, SURVEY_STEP_DURATION} from "@/lib/config";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 interface SurveyManagerContextType {
     /**
@@ -60,6 +61,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
     const [snapshot, setSnapshot] = useState<SnapshotFrom<typeof surveyFlowMachine> | undefined>(undefined);
     const [stringyfiedSnapshot, setStringyfiedSnapshot] = useState<string| undefined>(undefined);
     const listeners = useRef<Set<(snapshot: SnapshotFrom<typeof surveyFlowMachine>) => void>>(new Set());
+    const {error} = useSnackbar();
 
     useEffect(() => {
         getParticipationState()
@@ -71,8 +73,8 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
                 actor.start();
                 setMachine(actor);
                 setSnapshot(actor.getSnapshot());
-            }).catch();
-    }, []);
+            }).catch(() => error());
+    }, [error]);
     
     const updateState = useCallback(async () => {
         if(!machine) {
@@ -81,10 +83,14 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
         const state = JSON.stringify(machine?.getPersistedSnapshot());
         setStringyfiedSnapshot(state);
         if(state !== stringyfiedSnapshot) {
-            await setParticipationState(state);
+            try {
+                await setParticipationState(state);
+            } catch {
+                error();
+            }
         }
         setSnapshot(machine.getSnapshot());
-    }, [machine, stringyfiedSnapshot]);
+    }, [machine, stringyfiedSnapshot, error]);
 
     useEffect(() => {
         const subscription = machine?.subscribe(async () => {

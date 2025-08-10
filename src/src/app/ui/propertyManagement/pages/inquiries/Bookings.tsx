@@ -14,6 +14,7 @@ import "./Bookings.scss"
 import DataGridToolbar from "./components/DataGridToolbar";
 import {BookingsData, BookingStatus, fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/bookings";
 import {getBookings} from "@/lib/db/database";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 const columns: GridColDef[] = [
     {
@@ -100,27 +101,30 @@ export default function Bookings() {
     const [month, setMonth] = useState<Date | undefined>(undefined);
     const [rows, setRows] = useState<BookingsData[]>([]);
     const [loading, setLoading] = useState(true);
+    const {error} = useSnackbar();
 
     useEffect(() => {
-        getBookings().then((bookings) => {
-            const addedBookings: BookingsData[] = bookings.map((booking) => ({
-                id: `added${booking.id}`,
-                name: `${booking.name} ${booking.surname}`,
-                email: booking.eMail,
-                property: booking.property,
-                numAdults: booking.numAdults,
-                numChildren: booking.numChildren,
-                status: BookingStatus.NOT_CONFIRMED,
-                dateRange: {
-                    from: new Date(booking.bookingStart),
-                    to: new Date(booking.bookingEnd)
-                }
-            }));
+        getBookings()
+            .then((bookings) => {
+                const addedBookings: BookingsData[] = bookings.map((booking) => ({
+                    id: `added${booking.id}`,
+                    name: `${booking.name} ${booking.surname}`,
+                    email: booking.eMail,
+                    property: booking.property,
+                    numAdults: booking.numAdults,
+                    numChildren: booking.numChildren,
+                    status: BookingStatus.NOT_CONFIRMED,
+                    dateRange: {
+                        from: new Date(booking.bookingStart),
+                        to: new Date(booking.bookingEnd)
+                    }
+                }));
 
             setRows([...addedBookings, ...fakeData]);
             setLoading(false);
-        });
-    }, []);
+            })
+            .catch(() => error());
+    }, [error]);
 
     function navigateToAddPage() {
         router.push("/survey/bookings/add");

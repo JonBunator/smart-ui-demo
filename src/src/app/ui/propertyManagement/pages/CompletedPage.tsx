@@ -3,17 +3,21 @@ import React, {useState, useEffect} from "react";
 import Confetti from 'react-confetti'
 import FrameLayoutTextImage from "@/app/ui/propertyManagement/layoutComponents/FrameLayoutTextImage";
 import {getSurveyCompletedMessage} from "@/lib/db/database";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 export default function CompletedPage() {
     const [windowSize, setWindowSize] = useState({
         width: 0,
         height: 0,
     });
+    const {error} = useSnackbar();
     const [completedMessage, setCompletedMessage] = useState("")
 
     useEffect(() => {
-        getSurveyCompletedMessage().then(message => setCompletedMessage(message));
-    }, []);
+        getSurveyCompletedMessage()
+            .then(message => setCompletedMessage(message))
+            .catch(() => error());
+    }, [error]);
 
     function updateWindowSize() {
         setWindowSize({

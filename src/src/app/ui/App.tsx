@@ -22,7 +22,7 @@ export default function App(props: AppProps) {
     
     const updatePromptHistory = useCallback(() => {
         const history = JSON.stringify(chatHistory);
-        setPromptHistory(history).then();
+        setPromptHistory(history).then().catch();
         deleteChatHistory();
     }, [chatHistory, deleteChatHistory]);
     

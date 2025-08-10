@@ -11,12 +11,14 @@ import {getAISupportForCurrentSurveyStep, getAllEMails, getEMail} from "@/lib/db
 import {AISupport} from "@/lib/types"
 import {EMail} from "@prisma";
 import {useSmartAgent} from "smart-ui";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 export default function MainContent() {
     const [selectedEmail, setSelectedEmail] = useState<EmailItem|undefined>(undefined);
     const [emails, setEmails] = useState<EmailItem[]>([]);
     const {stateMachine} = useSurveyManager();
     const {sendEvent} = useSmartAgent();
+    const {error} = useSnackbar();
 
     function createEmailItem(email: EMail): EmailItem {
         return {
@@ -34,35 +36,40 @@ export default function MainContent() {
             .then(emails => {
                 setEmails(
                     emails?.map(email => createEmailItem(email)) ?? []
-                )});
+                )})
+            .catch(() => error());
 
-    }, []);
+    }, [error]);
     
     useEffect(() => {
         updateEmails();
     }, [updateEmails]);
 
     const sendEmailEvent = useCallback(async (email: EMail)=> {
-        const aiSupport = await getAISupportForCurrentSurveyStep();
-        if(aiSupport !== AISupport.PROACTIVE_AGENT) {
-            return;
+        try {
+            const aiSupport = await getAISupportForCurrentSurveyStep();
+            if (aiSupport !== AISupport.PROACTIVE_AGENT) {
+                return;
+            }
+            sendEvent("A new email was received. Check if the email is about adding a booking, " +
+                "property or maintenance request. If so ask the user if the agent should add it. " +
+                "Name the subject and author in the response to the user. Don't querry the email via tools. Instead use this information:\n" +
+                `Subject: ${email.subject}\n` +
+                `Author: ${email.author}\n` +
+                `Email: ${email.authorEmail}\n` +
+                `Content: ${email.content}\n`
+                , 1,
+                "E-Mail wird verarbeitet");
+        } catch {
+            error();
         }
-        sendEvent("A new email was received. Check if the email is about adding a booking, " +
-            "property or maintenance request. If so ask the user if the agent should add it. " +
-            "Name the subject and author in the response to the user. Don't querry the email via tools. Instead use this information:\n" +
-            `Subject: ${email.subject}\n` +
-            `Author: ${email.author}\n` +
-            `Email: ${email.authorEmail}\n` +
-            `Content: ${email.content}\n`
-        , 1,
-            "E-Mail wird verarbeitet");
-    }, [sendEvent]);
+    }, [sendEvent, error]);
 
     useEffect(() => {
         const subscription = stateMachine?.on('sendEmail', (event) => {
             getEMail(event.surveyStep, event.dataIndex)
                 .then(email => {
-                    if(email) {
+                    if(email !== null) {
                         setEmails((prevState) => {
                             const emailExists = prevState.some(existingEmail => existingEmail.id === email.id);
                             sendEmailEvent(email).then();
@@ -72,10 +79,11 @@ export default function MainContent() {
                             return prevState;
                         });
                     }
-                });
+                })
+                .catch(() => error());
         });
         return () => subscription?.unsubscribe();
-    }, [sendEmailEvent, stateMachine]);
+    }, [sendEmailEvent, stateMachine, error]);
 
     return (
         <div className="main-content">

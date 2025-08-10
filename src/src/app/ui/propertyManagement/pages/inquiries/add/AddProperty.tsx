@@ -130,13 +130,13 @@ export default function AddProperty() {
             try {
                 await handleChangeApproval(true);
                 await addProperty(propertyData);
-                success("Erfolgreich hinzugefügt", "Immobilie wurde erfolgreich hinzugefügt")
+                addData();
+                setFormData(emptyFormData);
+                setErrors(emptyErrors);
+                success("Erfolgreich hinzugefügt", "Immobilie wurde hinzugefügt")
             } catch {
                 error();
             }
-            addData();
-            setFormData(emptyFormData);
-            setErrors(emptyErrors);
         }
     };
 

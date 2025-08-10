@@ -12,6 +12,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {getMaintenances} from "@/lib/db/database";
 import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 const columns: GridColDef[] = [
     {
@@ -84,6 +85,7 @@ export default function Maintenance() {
     const router = useRouter();
     const [rows, setRows] = useState<MaintenanceData[]>([]);
     const [loading, setLoading] = useState(true);
+    const {error} = useSnackbar();
 
     useEffect(() => {
         getMaintenances().then((maintenances) => {
@@ -100,8 +102,9 @@ export default function Maintenance() {
 
             setRows([...addedMaintenances, ...fakeData]);
             setLoading(false);
-        });
-    }, []);
+            })
+            .catch(() => error());
+    }, [error]);
 
     function navigateToAddPage() {
         router.push("/survey/maintenance/add");

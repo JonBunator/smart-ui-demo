@@ -13,6 +13,7 @@ import SmartPasteButton from "@/app/ui/components/SmartPasteButton";
 import {getAISupportForCurrentSurveyStep} from "@/lib/db/database";
 import {AISupport} from "@/lib/types"
 import {usePathname, useRouter} from "next/navigation";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 import "./AddInquiryHeader.scss"
 
 interface AddInquiryHeaderProps {
@@ -32,11 +33,13 @@ export default function AddInquiryHeader(props: AddInquiryHeaderProps) {
     const pathname = usePathname();
     const [showSmartPasteButton, setShowSmartPasteButton] = useState(false);
     const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
+    const {error} = useSnackbar();
 
     useEffect(() => {
         getAISupportForCurrentSurveyStep()
             .then(aiSupport => setShowSmartPasteButton(aiSupport === AISupport.PROACTIVE_AGENT || aiSupport === AISupport.AGENT ))
-    }, []);
+            .catch(() => error())
+    }, [error]);
 
     function navigateToParentPage() {
         router.push(parentPath);

@@ -24,7 +24,7 @@ import {getSession, setSession, updateSession} from "@/lib/security/session";
 import {SnapshotFrom} from "xstate";
 import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import {AISupport} from "@/lib/types"
-import {InvalidSessionError, UnknownError} from "@/lib/exceptions";
+import {UnknownError} from "@/lib/exceptions";
 
 /**
  * Checks if the invite code is valid. False when not, true when valid.
@@ -100,7 +100,7 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
 export async function getSurveyCompletedMessage(): Promise<string> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return "";
 	}
 
     try {
@@ -120,10 +120,10 @@ export async function getSurveyCompletedMessage(): Promise<string> {
     }
 }
 
-export async function getAISupportForCurrentSurveyStep(): Promise<AISupport> {
+export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | null> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return null;
 	}
 
     const surveyStep = await getSurveyStep();
@@ -161,7 +161,7 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport> {
 export async function setParticipationState(state: string) {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return;
 	}
 
     try {
@@ -233,11 +233,11 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
 export async function getAllEMails(): Promise<EMail[]> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return [];
 	}
 
     const surveyStepData = await _getSurveyStepData();
-    if(!surveyStepData) {
+    if(surveyStepData === null) {
         return [];
     }
     const surveyStep = surveyStepData.surveyStep;
@@ -278,10 +278,10 @@ export async function getAllEMails(): Promise<EMail[]> {
     }
 }
 
-export async function getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data> {
+async function _getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data | null> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return null;
 	}
 
     if(surveyStep >= NUM_SURVEY_STEPS) {
@@ -312,10 +312,10 @@ export async function getGroundTruthData(surveyStep: number, dataIndex: number):
         throw new UnknownError();
     }
 }
- async function _getDataSet(surveyStep: number): Promise<number> {
+ async function _getDataSet(surveyStep: number): Promise<number | null> {
      const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return null;
 	}
 
      try {
@@ -339,10 +339,10 @@ export async function getGroundTruthData(surveyStep: number, dataIndex: number):
 /**
  * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
-export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail> {
+export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail | null> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return null;
 	}
 
     if(surveyStep >= NUM_SURVEY_STEPS) {
@@ -353,6 +353,10 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
     dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, dataIndex);
 
     const dataSet = await _getDataSet(surveyStep);
+
+    if(dataSet === null) {
+        throw new UnknownError();
+    }
 
     try {
         const data = await prisma.data.findFirst({
@@ -384,7 +388,7 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
 export async function getEmails(lastN: number): Promise<EMail[]> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return [];
 	}
 
     const surveyStepData = await _getSurveyStepData();
@@ -393,6 +397,10 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
     }
 
     const dataSet = await _getDataSet(surveyStepData.surveyStep);
+
+    if(dataSet === null) {
+        throw new UnknownError();
+    }
 
     try {
         const data = await prisma.data.findMany({
@@ -425,7 +433,7 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
 export async function isInitialQuestions(): Promise<boolean> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return false;
 	}
     return sessionData.surveyState === "InitialQuestions";
 }
@@ -433,10 +441,10 @@ export async function isInitialQuestions(): Promise<boolean> {
 /**
  * Returns index of step of the survey.
  */
-export async function getSurveyStep(): Promise<number|null> {
+export async function getSurveyStep(): Promise<number> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return 0;
 	}
 
     const surveyStepData = await _getSurveyStepData();
@@ -451,9 +459,9 @@ interface SurveyStepData {
     dataIndex: number;
 }
 
-export async function _getSurveyStepData(): Promise<SurveyStepData|null> {
+export async function _getSurveyStepData(): Promise<SurveyStepData | null> {
     const surveyState = await getParticipationState();
-    if(!surveyState) {
+    if(surveyState === null) {
         return null;
     }
 
@@ -465,28 +473,28 @@ export async function _getSurveyStepData(): Promise<SurveyStepData|null> {
 type AddBookingType = Omit<Prisma.BookingCreateInput, "data">
 
 export async function addBooking(booking: AddBookingType) {
-    await addData(DataType.Booking, booking);
+    await _addData(DataType.Booking, booking);
 }
 
 type AddPropertyType = Omit<Prisma.PropertyCreateInput, "data">
 
 export async function addProperty(property: AddPropertyType) {
-    await addData(DataType.Property, property);
+    await _addData(DataType.Property, property);
 }
 
 type AddMaintenanceType = Omit<Prisma.MaintenanceCreateInput, "data">
 
 export async function addMaintenance(maintenance: AddMaintenanceType) {
-    await addData(DataType.Maintenance, maintenance);
+    await _addData(DataType.Maintenance, maintenance);
 }
 
 /**
  * Adds data of the corresponding type. Payload must be correct for the specified type.
  */
-async function addData(type: DataType, payload: unknown) {
+async function _addData(type: DataType, payload: unknown) {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return;
 	}
 
     const surveyStepData = await _getSurveyStepData();
@@ -494,7 +502,11 @@ async function addData(type: DataType, payload: unknown) {
         throw new UnknownError();
     }
 
-    const groundTruthData = await getGroundTruthData(surveyStepData.surveyStep, surveyStepData.dataIndex);
+    const groundTruthData = await _getGroundTruthData(surveyStepData.surveyStep, surveyStepData.dataIndex);
+
+    if(groundTruthData === null) {
+        throw new UnknownError();
+    }
 
     try {
         await prisma.participationData.create({
@@ -524,21 +536,21 @@ async function addData(type: DataType, payload: unknown) {
 }
 
 export async function getBookings(): Promise<Booking[]> {
-    return await getData(DataType.Booking) as unknown as Booking[];
+    return await _getData(DataType.Booking) as unknown as Booking[];
 }
 
 export async function getProperties(): Promise<Property[]> {
-    return await getData(DataType.Property) as unknown as Property[];
+    return await _getData(DataType.Property) as unknown as Property[];
 }
 
 export async function getMaintenances(): Promise<Maintenance[]> {
-    return await getData(DataType.Maintenance) as unknown as Maintenance[];
+    return await _getData(DataType.Maintenance) as unknown as Maintenance[];
 }
 
-async function getData(type: DataType) {
+async function _getData(type: DataType) {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return [];
 	}
 
     try {
@@ -574,10 +586,14 @@ async function getData(type: DataType) {
 export async function setPromptHistory(promptHistory: string){
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return;
 	}
 
     const aiSupport = await getAISupportForCurrentSurveyStep()
+
+    if(aiSupport === null) {
+        throw new UnknownError();
+    }
 
     let promptHistoryKey;
 
@@ -610,7 +626,7 @@ type AddInitialQuestionsType = Omit<Prisma.InitialQuestionsCreateInput, "Partici
 export async function addInitialQuestions(data: AddInitialQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return false;
 	}
 
     try {
@@ -634,7 +650,7 @@ type AddNoAgentQuestionsType = Omit<Prisma.NoAgentQuestionsCreateInput, "Partici
 export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return false;
 	}
 
     try {
@@ -658,10 +674,14 @@ type AddAgentQuestionsType = Omit<Prisma.AgentQuestionsCreateInput, "type" | "Pa
 export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
 	if(!sessionData) {
-		throw new InvalidSessionError();
+		return false;
 	}
 
     const aiSupport = await getAISupportForCurrentSurveyStep();
+
+    if(aiSupport === null) {
+        throw new UnknownError();
+    }
 
     const type = aiSupport === AISupport.AGENT ? AgentQuestionsType.AGENT : AgentQuestionsType.PROACTIVE_AGENT;
     const payload: Omit<Prisma.AgentQuestionsCreateInput, "Participation"> = {...data, type: type};

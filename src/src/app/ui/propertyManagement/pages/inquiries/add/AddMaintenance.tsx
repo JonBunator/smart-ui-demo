@@ -88,13 +88,13 @@ export default function AddMaintenance() {
             try {
                 await handleChangeApproval(true);
                 await addMaintenance(formData);
-                success("Erfolgreich hinzugefügt", "Immobilie wurde erfolgreich hinzugefügt")
+                addData();
+                setFormData(emptyFormData);
+                setErrors(emptyErrors);
+                success("Erfolgreich hinzugefügt", "Immobilie wurde hinzugefügt")
             } catch {
                 error();
             }
-            addData();
-            setFormData(emptyFormData);
-            setErrors(emptyErrors);
         }
     };
 

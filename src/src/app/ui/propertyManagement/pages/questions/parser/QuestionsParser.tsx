@@ -10,6 +10,7 @@ import UEQPlusElement from "@/app/ui/propertyManagement/pages/questions/parser/e
 import MultipleChoiceGridElement
     from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceGridElement";
 import Markdown from "react-markdown";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 interface QuestionsParserProps<T> {
     addData: (data: T) => Promise<boolean>
@@ -32,17 +33,22 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
     const errorRef = useRef<Element | null>(null);
     const validationListeners = useRef<Set<() => boolean>>(new Set());
     const { completeQuestions } = useSurveyManager();
+    const {error} = useSnackbar();
 
     async function submit() {
         const errors = Array.from(validationListeners.current.values()).map(listener => listener());
         const hasErrors = errors.some((error) => error);
         if (!hasErrors) {
-            const success = await addData(formData)
-            if(!success) {
-                console.error("Saving data failed.")
-                return;
+            try {
+                const success = await addData(formData)
+                if (!success) {
+                    error();
+                    return;
+                }
+                completeQuestions();
+            } catch {
+                error();
             }
-            completeQuestions();
         } else {
             scrollToError();
         }
