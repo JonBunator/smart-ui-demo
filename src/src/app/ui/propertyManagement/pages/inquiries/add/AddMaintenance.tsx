@@ -19,6 +19,7 @@ import {useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {categoryOptions, urgencyOptions } from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
 import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 const emptyFormData = {
     name: "",
@@ -47,6 +48,7 @@ export default function AddMaintenance() {
     const [errors, setErrors] = useState(emptyErrors);
     const {handleChangeApproval} = useSmartAgent();
     const {addData} = useSurveyManager();
+    const {error, success} = useSnackbar();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = event.target;
@@ -83,8 +85,13 @@ export default function AddMaintenance() {
 
         const hasErrors = Object.values(newErrors).some(error => error);
         if (!hasErrors) {
-            await handleChangeApproval(true);
-            await addMaintenance(formData);
+            try {
+                await handleChangeApproval(true);
+                await addMaintenance(formData);
+                success("Erfolgreich hinzugefügt", "Immobilie wurde erfolgreich hinzugefügt")
+            } catch {
+                error();
+            }
             addData();
             setFormData(emptyFormData);
             setErrors(emptyErrors);

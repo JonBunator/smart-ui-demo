@@ -71,7 +71,7 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
                 actor.start();
                 setMachine(actor);
                 setSnapshot(actor.getSnapshot());
-            })
+            }).catch();
     }, []);
     
     const updateState = useCallback(async () => {

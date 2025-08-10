@@ -9,6 +9,7 @@ import { addBooking } from "@/lib/db/database";
 import {useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
     const emptyFormData = {
         name: "",
@@ -49,6 +50,7 @@ export default function AddBooking() {
     const [errors, setErrors] = useState(emptyErrors);
     const {handleChangeApproval} = useSmartAgent();
     const {addData} = useSurveyManager();
+    const {error, success} = useSnackbar();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -94,8 +96,13 @@ export default function AddBooking() {
                 numAdults: Number(formData.numAdults),
                 numChildren: Number(formData.numChildren),
             };
-            await handleChangeApproval(true);
-            await addBooking(bookingData);
+            try {
+                await handleChangeApproval(true);
+                await addBooking(bookingData);
+                success("Erfolgreich hinzugefügt", "Buchung wurde erfolgreich hinzugefügt")
+            } catch {
+                error();
+            }
             addData();
             setFormData(emptyFormData);
             setErrors(emptyErrors);

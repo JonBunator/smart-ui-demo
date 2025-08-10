@@ -18,10 +18,11 @@ import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup, useSmartAgent} from "smart-ui";
 import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
-import { addProperty } from "@/lib/db/database";
+import {addProperty} from "@/lib/db/database";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {AdditionalInfoType, propertyTypes} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 const emptyFormData = {
     name: "",
@@ -65,7 +66,7 @@ export default function AddProperty() {
     const [errors, setErrors] = useState(emptyErrors);
     const {handleChangeApproval} = useSmartAgent();
     const {addData} = useSurveyManager();
-
+    const {error, success} = useSnackbar();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = event.target;
@@ -126,8 +127,13 @@ export default function AddProperty() {
                 pricePerNight: Number(formData.pricePerNight),
                 additionalInfo: additionalInfoList,
             };
-            await handleChangeApproval(true);
-            await addProperty(propertyData);
+            try {
+                await handleChangeApproval(true);
+                await addProperty(propertyData);
+                success("Erfolgreich hinzugefügt", "Immobilie wurde erfolgreich hinzugefügt")
+            } catch {
+                error();
+            }
             addData();
             setFormData(emptyFormData);
             setErrors(emptyErrors);

@@ -24,6 +24,7 @@ import {getSession, setSession, updateSession} from "@/lib/security/session";
 import {SnapshotFrom} from "xstate";
 import surveyFlowMachine from "@/app/ui/propertyManagement/surveyManager/stateMachine";
 import {AISupport} from "@/lib/types"
+import {InvalidSessionError, UnknownError} from "@/lib/exceptions";
 
 /**
  * Checks if the invite code is valid. False when not, true when valid.
@@ -44,7 +45,6 @@ export async function isInviteCodeValid(inviteCode: string): Promise<boolean> {
         console.error('Error finding survey', error);
         return false;
     }
-
 }
 
 /**
@@ -79,7 +79,6 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
 
         const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
         const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
-
         await prisma.survey.update({
             where: {
                 id: survey.id,
@@ -100,10 +99,9 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
 
 export async function getSurveyCompletedMessage(): Promise<string> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getSurveyCompletedMessage: Session is invalid');
-        return "";
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     try {
         const surveyGroup = await prisma.surveyGroup.findFirst({
@@ -116,25 +114,25 @@ export async function getSurveyCompletedMessage(): Promise<string> {
             },
         });
         return surveyGroup?.surveyCompletedMessage ?? "";
-    } catch {
-        throw new Error("An unknown error occurred");
+    } catch(error) {
+        console.error(error);
+        throw new UnknownError();
     }
 }
 
-export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | null> {
+export async function getAISupportForCurrentSurveyStep(): Promise<AISupport> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getAISupportForCurrentSurveyStep: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     const surveyStep = await getSurveyStep();
     if(surveyStep === null) {
-        throw new Error(`surveyStep is invalid`);
+        throw new UnknownError();
     }
 
     if(surveyStep >= NUM_SURVEY_STEPS) {
-        throw new Error(`Index must be smaller than ${NUM_SURVEY_STEPS}.`)
+        throw new UnknownError();
     }
 
     try {
@@ -144,19 +142,15 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
             },
         });
 
-
-
         if(!participation) {
-            console.error('Participation not found');
-            return null;
+            throw new UnknownError();
         }
 
         return AI_SUPPORT_ORDER[participation.surveyType][surveyStep];
 
-
     } catch(error) {
-        console.error('Error finding participation', error);
-        return null;
+        console.error(error);
+        throw new UnknownError();
     }
 }
 
@@ -166,10 +160,9 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
  */
 export async function setParticipationState(state: string) {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('setParticipationState: Session is invalid');
-        return;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     try {
         const stateObject: SnapshotFrom<typeof surveyFlowMachine> = JSON.parse(state);
@@ -201,8 +194,8 @@ export async function setParticipationState(state: string) {
 
 
     } catch(error) {
-        console.error('Error updating state', error);
-        return;
+        console.error(error);
+        throw new UnknownError();
     }
 }
 
@@ -211,10 +204,10 @@ export async function setParticipationState(state: string) {
  */
 export async function getParticipationState(): Promise<SnapshotFrom<typeof surveyFlowMachine> | null> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getParticipationState: Session is invalid');
-        return null;
-    }
+    //Don't throw error since participation state should be callable when session is still invalid
+	if(!sessionData) {
+		return null;
+	}
 
     try {
         const participation = await prisma.participation.findUnique({
@@ -224,26 +217,24 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
         });
 
         if (!participation) {
-            console.error('Error getting participation');
-            return null;
+            throw new UnknownError();
         }
         return participation.state ? JSON.parse(participation.state) : null;
 
     } catch(error) {
-        console.error('Error getting state', error);
-        return null;
+        console.error(error);
+        throw new UnknownError();
     }
 }
 
 /**
  * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
-export async function getAllEMails(): Promise<EMail[]|null> {
+export async function getAllEMails(): Promise<EMail[]> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getAllEMails: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     const surveyStepData = await _getSurveyStepData();
     if(!surveyStepData) {
@@ -257,9 +248,6 @@ export async function getAllEMails(): Promise<EMail[]|null> {
     }
 
     const dataSet = await _getDataSet(surveyStep);
-    if(dataSet === null) {
-        throw new Error(`dataSet not found.`)
-    }
 
     try {
         const data = await prisma.data.findMany({
@@ -278,35 +266,32 @@ export async function getAllEMails(): Promise<EMail[]|null> {
             },
         });
 
-        if (!data || data.length === 0) {
-            console.error('Error getting data');
-            return null;
+        if (!data) {
+            throw new UnknownError();
         }
         return data.map(d => d.EMail).filter(email => email !== null);
 
     } catch(error) {
-        console.error('Error getting survey step', error);
-        return null;
+        console.error(error);
+        throw new UnknownError();
+
     }
 }
 
-export async function getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data|null> {
+export async function getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getGroundTruthData: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     if(surveyStep >= NUM_SURVEY_STEPS) {
-        throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
+        console.error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`);
+        throw new UnknownError();
     }
 
     dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, dataIndex);
 
     const dataSet = await _getDataSet(surveyStep);
-    if(dataSet === null) {
-        throw new Error(`dataSet not found.`)
-    }
 
     try {
         const data = await prisma.data.findFirst({
@@ -318,22 +303,21 @@ export async function getGroundTruthData(surveyStep: number, dataIndex: number):
         });
 
         if (!data) {
-            console.error('Error getting data');
-            return null;
+            throw new UnknownError();
         }
         return data;
 
     } catch(error) {
-        console.error('Error getting survey step', error);
-        return null;
+        console.error(error);
+        throw new UnknownError();
     }
 }
- async function _getDataSet(surveyStep: number): Promise<number|null> {
+ async function _getDataSet(surveyStep: number): Promise<number> {
      const sessionData = await getSession();
-     if (!sessionData) {
-         console.error('_getDataSet: Session is invalid');
-         return null;
-     }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
+
      try {
          const participation = await prisma.participation.findUnique({
              where: {
@@ -342,38 +326,33 @@ export async function getGroundTruthData(surveyStep: number, dataIndex: number):
          });
 
          if (!participation) {
-             console.error('Error getting data');
-             return null;
+             throw new UnknownError();
          }
          return DATASET_ORDER[participation.dataSetOrder][surveyStep];
 
      } catch(error) {
-         console.error('Error getting survey step', error);
-         return null;
+         console.error(error);
+         throw new UnknownError();
      }
  }
 
 /**
  * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
-export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail|null> {
+export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getEMail: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     if(surveyStep >= NUM_SURVEY_STEPS) {
-        throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
+        console.error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`);
+        throw new UnknownError();
     }
 
     dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, dataIndex);
 
     const dataSet = await _getDataSet(surveyStep);
-
-    if(dataSet === null) {
-        throw new Error(`dataSet not found.`)
-    }
 
     try {
         const data = await prisma.data.findFirst({
@@ -388,14 +367,13 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
         });
 
         if (!data || !data.EMail) {
-            console.error('Error getting data');
-            return null;
+            throw new UnknownError();
         }
         return data.EMail;
 
     } catch(error) {
-        console.error('Error getting survey step', error);
-        return null;
+        console.error(error);
+        throw new UnknownError();
     }
 }
 
@@ -405,20 +383,16 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
  */
 export async function getEmails(lastN: number): Promise<EMail[]> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        throw new Error('getEmails: Session is invalid');
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     const surveyStepData = await _getSurveyStepData();
     if (surveyStepData === null) {
-        throw new Error("An error occured.");
+        throw new UnknownError();
     }
 
     const dataSet = await _getDataSet(surveyStepData.surveyStep);
-
-    if(dataSet === null) {
-        throw new Error("dataSet not found.");
-    }
 
     try {
         const data = await prisma.data.findMany({
@@ -438,22 +412,21 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
             take: lastN,
         });
         if (!data) {
-            throw new Error("Data is undefined.");
+            throw new UnknownError();
         }
         return data.map(item => item.EMail).filter(item => item !== null);
 
     } catch(error) {
         console.error(error);
-        throw new Error("An error occured.");
+        throw new UnknownError();
     }
 }
 
 export async function isInitialQuestions(): Promise<boolean> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('isInitialQuestions: Session is invalid');
-        return false;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
     return sessionData.surveyState === "InitialQuestions";
 }
 
@@ -462,10 +435,10 @@ export async function isInitialQuestions(): Promise<boolean> {
  */
 export async function getSurveyStep(): Promise<number|null> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getSurveyStep: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
+
     const surveyStepData = await _getSurveyStepData();
     if (surveyStepData === null) {
         return 0;
@@ -512,39 +485,42 @@ export async function addMaintenance(maintenance: AddMaintenanceType) {
  */
 async function addData(type: DataType, payload: unknown) {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('addData: Session is invalid');
-        return;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
+
     const surveyStepData = await _getSurveyStepData();
     if (!surveyStepData) {
-        throw new Error("SurveyStepData is null.");
+        throw new UnknownError();
     }
 
     const groundTruthData = await getGroundTruthData(surveyStepData.surveyStep, surveyStepData.dataIndex);
-    if (!groundTruthData) {
-        throw new Error("GroundTruthData is null.");
-    }
-    await prisma.participationData.create({
-        data: {
-            Participation: {
-                connect: { id: sessionData.userId }
-            },
-            groundTruth: {
-                connect: {id: groundTruthData.id}
-            },
-            surveyStep: surveyStepData.surveyStep,
-            userData: {
-                create: {
-                    category: DataCategory.UserAdded,
-                    type: type,
-                    [type]: {
-                        create: payload
+
+    try {
+        await prisma.participationData.create({
+            data: {
+                Participation: {
+                    connect: {id: sessionData.userId}
+                },
+                groundTruth: {
+                    connect: {id: groundTruthData.id}
+                },
+                surveyStep: surveyStepData.surveyStep,
+                userData: {
+                    create: {
+                        category: DataCategory.UserAdded,
+                        type: type,
+                        [type]: {
+                            create: payload
+                        }
                     }
                 }
-            }
-        },
-    });
+            },
+        });
+    } catch(error) {
+        console.error(error);
+        throw new UnknownError();
+    }
 }
 
 export async function getBookings(): Promise<Booking[]> {
@@ -561,47 +537,47 @@ export async function getMaintenances(): Promise<Maintenance[]> {
 
 async function getData(type: DataType) {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('getData: Session is invalid');
-        return null;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
-    const userAddedData = await prisma.participationData.findMany({
-        where: {
-            Participation: {
-                id: sessionData.userId
+    try {
+        const userAddedData = await prisma.participationData.findMany({
+            where: {
+                Participation: {
+                    id: sessionData.userId
+                },
+                userData: {
+                    type: type
+                }
             },
-            userData: {
-                type: type
-            }
-        },
-        select: {
-            userData: {
-                select: {
-                    [type]: true,
+            select: {
+                userData: {
+                    select: {
+                        [type]: true,
+                    }
+                }
+            },
+            orderBy: {
+                userData: {
+                    timestamp: 'desc'
                 }
             }
-        },
-        orderBy: {
-            userData: {
-                timestamp: 'desc'
-            }
-        }
-    });
-    return userAddedData.map(data => data.userData[type]).filter(item => item !== null);
+        });
+        return userAddedData.map(data => data.userData[type]).filter(item => item !== null);
+    } catch(error) {
+        console.error(error);
+        throw new UnknownError();
+    }
 }
 
 export async function setPromptHistory(promptHistory: string){
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('setPromptHistory: Session is invalid');
-        return;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     const aiSupport = await getAISupportForCurrentSurveyStep()
-    if(aiSupport === null){
-        throw new Error('Failed getting ai support.');
-    }
 
     let promptHistoryKey;
 
@@ -613,8 +589,7 @@ export async function setPromptHistory(promptHistory: string){
         return;
     }
 
-
-        try {
+    try {
         await prisma.participation.update({
             where: {
                 id: sessionData.userId,
@@ -624,8 +599,9 @@ export async function setPromptHistory(promptHistory: string){
             },
         });
 
-    } catch {
-        console.error("Failed to set prompt history")
+    } catch(error) {
+        console.error(error)
+        throw new UnknownError();
     }
 }
 
@@ -633,10 +609,10 @@ type AddInitialQuestionsType = Omit<Prisma.InitialQuestionsCreateInput, "Partici
 
 export async function addInitialQuestions(data: AddInitialQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('addInitialQuestions: Session is invalid');
-        return false;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
+
     try {
         await prisma.initialQuestions.create({
             data: {
@@ -646,8 +622,8 @@ export async function addInitialQuestions(data: AddInitialQuestionsType) : Promi
                 ...data
             },
         });
-    } catch {
-        console.error("Failed to add initial questions")
+    } catch(error) {
+        console.error(error)
         return false;
     }
     return true;
@@ -657,10 +633,10 @@ type AddNoAgentQuestionsType = Omit<Prisma.NoAgentQuestionsCreateInput, "Partici
 
 export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('addNoAgentQuestions: Session is invalid');
-        return false;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
+
     try {
         await prisma.noAgentQuestions.create({
             data: {
@@ -670,8 +646,8 @@ export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promi
                 ...data
             },
         });
-    } catch {
-        console.error("Failed to add no agent questions")
+    } catch(error) {
+        console.error(error)
         return false;
     }
     return true;
@@ -681,16 +657,11 @@ type AddAgentQuestionsType = Omit<Prisma.AgentQuestionsCreateInput, "type" | "Pa
 
 export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<boolean> {
     const sessionData = await getSession();
-    if (!sessionData) {
-        console.error('addAgentQuestions: Session is invalid');
-        return false;
-    }
+	if(!sessionData) {
+		throw new InvalidSessionError();
+	}
 
     const aiSupport = await getAISupportForCurrentSurveyStep();
-    if(aiSupport === null) {
-        console.error("AI support not found");
-        return false;
-    }
 
     const type = aiSupport === AISupport.AGENT ? AgentQuestionsType.AGENT : AgentQuestionsType.PROACTIVE_AGENT;
     const payload: Omit<Prisma.AgentQuestionsCreateInput, "Participation"> = {...data, type: type};
@@ -703,8 +674,8 @@ export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<b
                 ...payload
             },
         });
-    } catch {
-        console.error("Failed to add agent questions")
+    } catch(error) {
+        console.error(error)
         return false;
     }
     return true;

@@ -61,8 +61,8 @@ export async function getSession(): Promise<SessionDataWithUserID | null> {
         }
         const payload = await _verifyJWTToken(session);
         return payload as unknown as SessionDataWithUserID ?? null;
-    } catch {
-        console.error('Invalid token');
+    } catch(error) {
+        console.error(error);
         return null;
     }
 }
