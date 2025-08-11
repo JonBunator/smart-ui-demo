@@ -41,7 +41,7 @@ export default function StartPage() {
                         <ul>
                             <li><Typography variant="body1">Die Umfrage dauert ungefähr 30min</Typography></li>
                             <li><Typography variant="body1">Während einem Teil der Umfrage müssen Sie mit einer Softwareanwendung interagiern (~18min)</Typography></li>
-                            <li><Typography variant="body1">Die Umfrage kann nur auf einem Laptop oder Desktop-PC mit Tastatur+Maus und nicht auf einem mobilen Gerät durchgeführt werden</Typography></li>
+                            <li><Typography variant="body1">Die Umfrage kann nur auf einem Laptop oder Desktop-PC mit Tastatur + Maus und nicht auf einem mobilen Gerät durchgeführt werden</Typography></li>
                             <li><Typography variant="body1">Die Umfrage ist nur auf Deutsch verfügbar</Typography></li>
                             <li><Typography variant="body1">Mit der Teilnahme stimmen Sie zu, dass die Erhobenen Daten für Forschungszwecke verwendet werden</Typography></li>
                         </ul>
@@ -64,15 +64,19 @@ export default function StartPage() {
                             </div>
                         </Grid>
                         <Grid size={{ xs: 12, md: 4 }} className="contacts">
-                            <Typography className="heading" variant="h6">Kontaktdaten</Typography>
-                            <Typography variant="body1">
-                                XITASO GmbH IT & Software Solutions<br/>
-                                Austraße 35<br/>
-                                D-86153 Augsburg<br/>
-                                Jonas Bühler <br/>
-                                <ExternalLink href="mailto:jonas.buehler@xitaso.com" link="jonas.buehler@xitaso.com"/><br/>
-                                Alternativ:&nbsp;<ExternalLink href="mailto:jonas.buehler@uni-a.de" link="jonas.buehler@uni-a.de"/>
-                            </Typography>
+                            <div className="contact-row">
+                                <Typography className="heading" variant="h6">Kontaktdaten</Typography>
+                                <Typography variant="body1">
+                                    Jonas Bühler <br/>
+                                    <ExternalLink href="mailto:jonas.buehler@uni-a.de" link="jonas.buehler@uni-a.de"/>
+                                </Typography>
+                            </div>
+                            <div className="contact-row">
+                                <Typography className="heading" variant="h6">Datenschutzerklärung</Typography>
+                                <Typography variant="body1">
+                                    <ExternalLink href="" link="Link"/>
+                                </Typography>
+                            </div>
                         </Grid>
                     </Grid>
                 </Grid>
