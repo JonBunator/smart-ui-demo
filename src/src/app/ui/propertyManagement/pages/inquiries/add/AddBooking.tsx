@@ -236,7 +236,7 @@ export default function AddBooking() {
                     />
                 </Grid>
                 <Grid size={{ xs: 12 }}>
-                    <TextField
+                    <SmartTextField
                         variant="filled"
                         label="Land"
                         name="country"

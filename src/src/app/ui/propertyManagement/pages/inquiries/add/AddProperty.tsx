@@ -38,6 +38,7 @@ const emptyFormData = {
     area: "",
     pricePerNight: "",
     additionalInfo: {
+        kitchen: false,
         wifi: false,
         pool: false,
         airConditioning: false,
@@ -340,6 +341,17 @@ export default function AddProperty() {
                 <Grid size={{ xs: 12 }}>
                     <SmartGroup smartSemantic="amenities">
                         <FormGroup row>
+                            <FormControlLabel
+                                control={
+                                    <SmartCheckbox
+                                        checked={formData.additionalInfo.kitchen}
+                                        onChange={handleAdditionalInfoChange}
+                                        id="kitchen"
+                                        name="kitchen"
+                                    />
+                                }
+                                label="Küche"
+                            />
                             <FormControlLabel
                                 control={
                                     <SmartCheckbox

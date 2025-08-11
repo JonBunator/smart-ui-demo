@@ -9,7 +9,7 @@
         "author": "Ali Wiegelmann",
         "authorEmail": "Ali.Wiegelmann52@yahoo.com",
         "subject": "Buchung Nordseeparadies",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne vom 1. - 8. November mit meiner Frau und unseren zwei Kindern das Ferienhaus 'Nordseeparadies' buchen. Hier sind die benötigten Informationen:\n\n\nTelefonnummer: +490320177758\nAdresse: Theodor-Storm-Str. 64c, 67826 Bremerhaven, Deutschland\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nAli Wiegelmann"
+        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne vom 1. - 8. November mit meiner Frau und unseren zwei Kindern das Ferienhaus Nordseeparadies buchen. Hier sind die benötigten Informationen:\n\n\nTelefonnummer: +490320177758\nAdresse: Theodor-Storm-Str. 64c, 67826 Bremerhaven, Deutschland\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nAli Wiegelmann"
       }
     },
     "Booking": {
@@ -23,8 +23,8 @@
         "city": "Bremerhaven",
         "postalCode": "67826",
         "country": "Deutschland",
-        "bookingStart": "2025-11-01T20:38:13.516Z",
-        "bookingEnd": "2025-11-08T20:38:13.516Z",
+        "bookingStart": "2025-11-01T00:00:00.000Z",
+        "bookingEnd": "2025-11-08T00:00:00.000Z",
         "numAdults": 2,
         "numChildren": 2,
         "property": "Nordseeparadies"
@@ -41,7 +41,7 @@
         "author": "Earthbnb",
         "authorEmail": "noreply@earthbnb.com",
         "subject": "Buchungsanfrage von Earthbnb für Alpenblick Chalet",
-        "content": "Dies ist eine automatisiert generierte Buchungsanfrage von Earthbnb.com\n\nImmobilie: 'Alpenblick Chalet'\nName: Silja Schroder\nEmail: Silja_Schroder93@hotmail.com\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Koblenz, Deutschland\nBuchungszeitraum: 03.10.2025 bis 17.10.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2"
+        "content": "Dies ist eine automatisiert generierte Buchungsanfrage von Earthbnb.com\n\nImmobilie: Alpenblick Chalet\nName: Silja Schroder\nEmail: Silja_Schroder93@hotmail.com\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Koblenz, Deutschland\nBuchungszeitraum: 03.10.2025 bis 17.10.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2"
       }
     },
     "Booking": {
@@ -55,8 +55,8 @@
         "city": "Koblenz",
         "postalCode": "12279",
         "country": "Deutschland",
-        "bookingStart": "2025-10-03T14:20:18.219Z",
-        "bookingEnd": "2025-10-17T14:20:18.219Z",
+        "bookingStart": "2025-10-03T00:00:00.000Z",
+        "bookingEnd": "2025-10-17T00:00:00.000Z",
         "numAdults": 3,
         "numChildren": 2,
         "property": "Alpenblick Chalet"
@@ -68,6 +68,38 @@
     "type": "Booking",
     "order": 6,
     "dataSet": 0,
+    "EMail": {
+      "create": {
+        "author": "Patrice Kempe",
+        "authorEmail": "Patrice_Kempe7@gmail.com",
+        "subject": "Buchungsanfrage Villa Fiesta del Sol",
+        "content": "Sehr geehrtes Leafy Lodges Team,\n\nich möchte für einen Klienten Ihre Villa Fiesta del Sol mieten. Geplant ist eine Aufenthalt vom 5. Juni 2026 bis zum 19. Juni 2026 mit sieben Erwachsenen.\n\nBitte lassen Sie mich wissen, ob die Villa in diesem Zeitraum verfügbar ist und welche weiteren Informationen Sie von mir benötigen, um die Buchung abzuschließen.\n\nHier sind meine Kontaktdaten:\n- Telefon: +491227920916\n- E-Mail: Patrice_Kempe7@gmail.com\n- Adresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\n\nBeste Grüße,\n\nPatrice Kempe"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Patrice",
+        "surname": "Kempe",
+        "phoneNumber": "+491227920916",
+        "eMail": "Patrice_Kempe7@gmail.com",
+        "street": "Hafenstr.",
+        "houseNumber": "658",
+        "city": "Bad Josef",
+        "postalCode": "72913",
+        "country": "Deutschland",
+        "bookingStart": "2026-06-05T00:00:00.000Z",
+        "bookingEnd": "2026-06-19T00:00:00.000Z",
+        "numAdults": 7,
+        "numChildren": 0,
+        "property": "Villa Fiesta del Sol"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 0,
+    "dataSet": 1,
     "EMail": {
       "create": {
         "author": "Mohamed Barylla",
@@ -87,43 +119,11 @@
         "city": "Flensburg",
         "postalCode": "81958",
         "country": "Deutschland",
-        "bookingStart": "2025-10-14T01:48:24.307Z",
-        "bookingEnd": "2025-10-16T01:48:24.307Z",
+        "bookingStart": "2025-10-14T00:00:00.000Z",
+        "bookingEnd": "2025-10-16T00:00:00.000Z",
         "numAdults": 1,
         "numChildren": 0,
         "property": "Urban Workspace Zürich"
-      }
-    }
-  },
-  {
-    "category": "GroundTruth",
-    "type": "Booking",
-    "order": 0,
-    "dataSet": 1,
-    "EMail": {
-      "create": {
-        "author": "Patrice Kempe",
-        "authorEmail": "Patrice_Kempe7@gmail.com",
-        "subject": "Buchungsanfrage Patrice Kempe",
-        "content": "Hallo Leafy Lodges Team,\n\nich hoffe, ich interessiere mich für die Buchung Ihrer Villa Fiesta del Sol. Wir planen einen Aufenthalt vom 5. Juni 2026 bis zum 19. Juni 2026 und sind eine Gruppe von sechs Erwachsenen.\n\nBitte lassen Sie mich wissen, ob die Villa in diesem Zeitraum verfügbar ist und welche weiteren Informationen Sie von mir benötigen, um die Buchung abzuschließen.\n\nHier sind meine Kontaktdaten:\n- Telefon: +491227920916\n- E-Mail: Patrice_Kempe7@gmail.com\n- Adresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\n\nBeste Grüße,\n\nPatrice Kempe"
-      }
-    },
-    "Booking": {
-      "create": {
-        "name": "Patrice",
-        "surname": "Kempe",
-        "phoneNumber": "+491227920916",
-        "eMail": "Patrice_Kempe7@gmail.com",
-        "street": "Hafenstr.",
-        "houseNumber": "658",
-        "city": "Bad Josef",
-        "postalCode": "72913",
-        "country": "Deutschland",
-        "bookingStart": "2026-06-05T13:19:35.441Z",
-        "bookingEnd": "2026-06-19T13:19:35.441Z",
-        "numAdults": 6,
-        "numChildren": 0,
-        "property": "Villa Fiesta del Sol"
       }
     }
   },
@@ -136,8 +136,8 @@
       "create": {
         "author": "Radovan Daňko",
         "authorEmail": "Radovan.Danko@zoznam.sk",
-        "subject": "Buchungsanfrage für Radovan Daňko",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Waldblick' anfragen. Hier sind meine Details:\n\nName: Kira Bartels\nTelefonnummer: +4981600153822\nAdresse: Gregor-Mendel-Str. 9, 21015 West Leifstadt, Deutschland\nBuchungszeitraum: 16.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 2\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nKira Bartels"
+        "subject": "Buchungsanfrage im Oktober Radovan Daňko",
+        "content": "Sehr geehrtes Team von Leafy Lodges,\n\nmein Name ist Radovan Daňko, und ich möchte mich mit einer Anfrage zu einer Buchung an Sie wenden. Für den Zeitraum vom 8.05.26 - 10.05.26 plane ich einen kurzen Aufenthalt in der Waldnuss. Ich komme alleine, aber mehr Platz hat das Baumhaus wahrscheinlich sowieso nicht :D\n\nAls Anschrift können Sie bitte folgende Daten vermerken: Gregor-Mendel-Str. 9, 21015 West Leifstadt, Deutschland. Sie erreichen mich telefonisch unter +49 8160 0153822.\n\nFalls der genannte Zeitraum noch verfügbar ist, würde ich mich sehr über eine Bestätigung freuen.\n\nMit freundlichen Grüßen\nRadovan Daňko"
       }
     },
     "Booking": {
@@ -151,11 +151,11 @@
         "city": "West Leifstadt",
         "postalCode": "21015",
         "country": "Deutschland",
-        "bookingStart": "2025-10-16T02:10:01.936Z",
-        "bookingEnd": "2025-10-27T03:10:01.936Z",
-        "numAdults": 4,
-        "numChildren": 2,
-        "property": "Waldblick"
+        "bookingStart": "2026-05-08T00:00:00.000Z",
+        "bookingEnd": "2026-05-10T00:00:00.000Z",
+        "numAdults": 1,
+        "numChildren": 0,
+        "property": "Waldnuss"
       }
     }
   },
@@ -168,8 +168,8 @@
       "create": {
         "author": "Burak Broening",
         "authorEmail": "Burak.Broening19@gmail.com",
-        "subject": "Buchungsanfrage für Burak Broening",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Stadtvilla' anfragen. Hier sind meine Details:\n\nName: Burak Broening\nTelefonnummer: +490291004898\nAdresse: Gutenbergstr. 44, 54200 Gießen, Deutschland\nBuchungszeitraum: 20.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 3\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nBurak Broening"
+        "subject": "Buchung Amsterdam Hausboot Broening",
+        "content": "Hallo,\n\nich möchte mich nach der Verfügbarkeit Ihres Hausboots im kommenden Sommer erkundigen. Geplant ist ein Aufenthalt vom 6.07 - 20.07 2026. Wir reisen zu zweit und haben noch ein zweijähriges Kind.\n\nUnsere Kontaktdaten lauten wie folgt:\nBurak Broening\nGutenbergstr. 44\n54200 Gießen, Deutschland\nTelefon: +49 0291 004898\nE-Mail: Burak.Broening19@gmail.com\n\nKönnten Sie mir bitte mitteilen, ob das Objekt in diesem Zeitraum frei ist? Über eine kurze Rückmeldung würde ich mich sehr freuen.\n\nMit freundlichen Grüßen\nBurak Broening"
       }
     },
     "Booking": {
@@ -183,11 +183,11 @@
         "city": "Gießen",
         "postalCode": "54200",
         "country": "Deutschland",
-        "bookingStart": "2025-10-20T17:10:27.135Z",
-        "bookingEnd": "2025-10-27T18:10:27.135Z",
-        "numAdults": 5,
-        "numChildren": 3,
-        "property": "Stadtvilla"
+        "bookingStart": "2026-07-06T00:00:00.000Z",
+        "bookingEnd": "2026-07-20T00:00:00.000Z",
+        "numAdults": 2,
+        "numChildren": 1,
+        "property": "Amsterdam Hausboot"
       }
     }
   },
@@ -200,8 +200,8 @@
       "create": {
         "author": "Mina Jungton",
         "authorEmail": "Mina_Jungton@hotmail.com",
-        "subject": "Buchungsanfrage für Mina Jungton",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Landhaus' anfragen. Hier sind meine Details:\n\nName: Mina Jungton\nTelefonnummer: +49780353778376\nAdresse: Vincent-van-Gogh-Str. 3, 51812 Alt Luisland, Deutschland\nBuchungszeitraum: 31.10.2025 bis 09.11.2025\nAnzahl Erwachsene: 4\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMina Jungton"
+        "subject": "Familienwochenende im Alpenblick Chalet",
+        "content": "Liebes Leafy-Lodges-Team,\n\nwir planen mit einer befreundeten Familie einen Kurzurlaub in den Bergen. Besonders ins Auge gefallen ist uns Ihr Alpenblick Chalet. Wir würden dieses gerne vom 12. bis 14. Dezember buchen.\n\nWir wären insgesamt zwei Familien (je zwei Erwachsene) mit je einem Kind. Meine Adresse lautet:\nVincent-van-Gogh-Str. 3\n51812 Alt Luisland, Deutschland\nTelefon: +49 7803 53778376\n\nBitte teilen Sie mir mit, ob das Chalet in diesem Zeitraum verfügbar ist.\n\nHerzliche Grüße\nMina Jungton"
       }
     },
     "Booking": {
@@ -215,11 +215,11 @@
         "city": "Alt Luisland",
         "postalCode": "51812",
         "country": "Deutschland",
-        "bookingStart": "2025-10-31T03:04:18.475Z",
-        "bookingEnd": "2025-11-09T03:04:18.475Z",
+        "bookingStart": "2025-12-12T00:00:00.000Z",
+        "bookingEnd": "2025-12-14T00:00:00.000Z",
         "numAdults": 4,
-        "numChildren": 0,
-        "property": "Landhaus"
+        "numChildren": 2,
+        "property": "Alpenblick Chalet"
       }
     }
   },
@@ -232,29 +232,29 @@
       "create": {
         "author": "Mailin Heinemann",
         "authorEmail": "Mailin.Heinemann@yahoo.com",
-        "subject": "Buchungsanfrage für Mailin Heinemann",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Strandresort' anfragen. Hier sind meine Details:\n\nName: Mailin Heinemann\nTelefonnummer: +491688295385\nAdresse: Diepenthaler Str. 7, 09663 Bad Adriano, Deutschland\nBuchungszeitraum: 25.09.2025 bis 30.09.2025\nAnzahl Erwachsene: 1\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nMailin Heinemann"
+        "subject": "Sommeraufenthalt in der Waldzauber Holzhütte 2026",
+        "content": "Guten Tag liebes Leafy-Lodges-Team,\n\ninteressiere mich für einen Aufenthalt in Ihrer Waldzauber Holzhütte. Unser gewünschter Reisezeitraum ist vom 26. Juni bis 10. Juli nächstes Jahr. Wir wären zu zweit, ohne Kinder.\n\nMeine Kontaktdaten:\nDiepenthaler Str. 7\n09663 Bad Adriano, Deutschland\nTelefon: +49 1688 295385\n\nVielen Dank schon mal!\n\nFreundliche Grüße\nMailin Heinemann"
       }
     },
     "Booking": {
-      "create": {
-        "name": "Mailin",
-        "surname": "Heinemann",
-        "phoneNumber": "+491688295385",
-        "eMail": "Mailin.Heinemann@yahoo.com",
-        "street": "Diepenthaler Str.",
-        "houseNumber": "7",
-        "city": "Bad Adriano",
-        "postalCode": "09663",
-        "country": "Deutschland",
-        "bookingStart": "2025-09-25T06:03:10.370Z",
-        "bookingEnd": "2025-09-30T06:03:10.370Z",
-        "numAdults": 1,
-        "numChildren": 0,
-        "property": "Strandresort"
+        "create": {
+          "name": "Mailin",
+          "surname": "Heinemann",
+          "phoneNumber": "+491688295385",
+          "eMail": "Mailin.Heinemann@yahoo.com",
+          "street": "Diepenthaler Str.",
+          "houseNumber": "7",
+          "city": "Bad Adriano",
+          "postalCode": "09663",
+          "country": "Deutschland",
+          "bookingStart": "2026-06-26T00:00:00.000Z",
+          "bookingEnd": "2026-07-10T00:00:00.000Z",
+          "numAdults": 2,
+          "numChildren": 0,
+          "property": "Waldzauber Holzhütte"
+        }
       }
-    }
-  },
+    },
   {
     "category": "GroundTruth",
     "type": "Booking",
@@ -264,8 +264,8 @@
       "create": {
         "author": "Dorian Vogelgsang",
         "authorEmail": "Dorian.Vogelgsang@yahoo.com",
-        "subject": "Buchungsanfrage für Dorian Vogelgsang",
-        "content": "Sehr geehrtes Buchungsteam,\n\nIch möchte gerne eine Buchung für die Immobilie 'Bergchalet' anfragen. Hier sind meine Details:\n\nName: Dorian Vogelgsang\nTelefonnummer: +49656026536268\nAdresse: Am Gesundheitspark 791, 13544 Neu Piusburg, Deutschland\nBuchungszeitraum: 16.10.2025 bis 27.10.2025\nAnzahl Erwachsene: 5\nAnzahl Kinder: 0\n\nIch freue mich auf Ihre Rückmeldung.\n\nMit freundlichen Grüßen,\nDorian Vogelgsang"
+        "subject": "Gruppenbuchung für Villamartín",
+        "content": "Sehr geehrte Damen und Herren,\n\nich würde gerne für meine Freunde und mich Ihre Villa Villamartín anmieten. Unser geplanter Aufenthalt wäre vom 7. bis 28. August 2026. Wir sind insgesamt sechs Erwachsene und würden uns über eine großzügige Unterkunft sehr freuen.\n\nMeine Anschrift:\nAm Gesundheitspark 791\n13544 Neu Piusburg, Deutschland\nTelefon: +49 6560 26536268\n\nBitte lassen Sie mich wissen, ob die Villa zu diesem Zeitraum frei ist.\n\nMit besten Grüßen\nDorian Vogelgsang"
       }
     },
     "Booking": {
@@ -279,11 +279,11 @@
         "city": "Neu Piusburg",
         "postalCode": "13544",
         "country": "Deutschland",
-        "bookingStart": "2025-10-16T05:28:47.484Z",
-        "bookingEnd": "2025-10-27T06:28:47.484Z",
-        "numAdults": 5,
+        "bookingStart": "2026-08-07T00:00:00.000Z",
+        "bookingEnd": "2026-08-21T00:00:00.000Z",
+        "numAdults": 6,
         "numChildren": 0,
-        "property": "Bergchalet"
+        "property": "Villamartín"
       }
     }
   }

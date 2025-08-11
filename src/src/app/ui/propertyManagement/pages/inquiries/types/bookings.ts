@@ -19,6 +19,12 @@ export type BookingsData = {
     dateRange: DateRange;
 }
 
+function _offsetDaysFromToday(days: number) {
+    const today = new Date();
+    today.setDate(today.getDate() + days);
+    return today;
+}
+
 export const fakeData: BookingsData[] = [
     {
         id: "fakeData1",
@@ -48,32 +54,149 @@ export const fakeData: BookingsData[] = [
     },
     {
         id: "fakeData3",
+        name: "Ricardo Marl",
+        email: "Ricardo.Marl38@yahoo.com",
+        property: propertyOptions[6].label,
+        numAdults: 2,
+        numChildren: 1,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-5),
+            to: _offsetDaysFromToday(2)
+        }
+    },
+    {
+        id: "fakeData4",
+        name: "Lennard Haschke",
+        email: "Lennard.Haschke@hotmail.com",
+        property: propertyOptions[7].label,
+        numAdults: 1,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-3),
+            to: _offsetDaysFromToday(2)
+        }
+    },
+    {
+        id: "fakeData5",
+        name: "Natalia Saile",
+        email: "Natalia.Saile13@yahoo.com",
+        property: propertyOptions[4].label,
+        numAdults: 3,
+        numChildren: 2,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-1),
+            to: _offsetDaysFromToday(13)
+        }
+    },
+    {
+        id: "fakeData6",
+        name: "Lisa Ganzmann",
+        email: "Lisa.Ganzmann@yahoo.com",
+        property: propertyOptions[0].label,
+        numAdults: 1,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-2),
+            to: _offsetDaysFromToday(3)
+        }
+    },
+    {
+        id: "fakeData7",
+        name: "Jakob Rose",
+        email: "Jakob.Rose50@yahoo.com",
+        property: propertyOptions[5].label,
+        numAdults: 5,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-13),
+            to: _offsetDaysFromToday(1)
+        }
+    },
+    {
+        id: "fakeData8",
+        name: "Mario Borrmann",
+        email: "Mario_Borrmann@hotmail.com",
+        property: propertyOptions[3].label,
+        numAdults: 4,
+        numChildren: 2,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-4),
+            to: _offsetDaysFromToday(10)
+        }
+    },
+    {
+        id: "fakeData9",
+        name: "Naemi Schlitzer",
+        email: "Naemi.Schlitzer@hotmail.com",
+        property: propertyOptions[2].label,
+        numAdults: 2,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-9),
+            to: _offsetDaysFromToday(4)
+        }
+    },
+    {
+        id: "fakeData10",
+        name: "Talea Lohse",
+        email: "Talea.Lohse@gmail.com",
+        property: propertyOptions[8].label,
+        numAdults: 6,
+        numChildren: 0,
+        status: BookingStatus.CONFIRMED,
+        dateRange: {
+            from: _offsetDaysFromToday(-4),
+            to: _offsetDaysFromToday(17)
+        }
+    },
+    {
+        id: "fakeData11",
         name: "Lyn Jaros",
         email: "LynJaros69@gmail.com",
         property: propertyOptions[1].label,
         numAdults: 2,
         numChildren: 0,
-        status: BookingStatus.CONFIRMED,
+        status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 9, 3),
-            to: new Date(2025, 9, 10)
+            from: new Date(2025, 7, 3),
+            to: new Date(2025, 7, 10)
         }
     },
     {
-        id: "fakeData4",
+        id: "fakeData12",
+        name: "Amalric Rousseau",
+        email: "Amalric.Rousseau75@yahoo.fr",
+        property: propertyOptions[4].label,
+        numAdults: 2,
+        numChildren: 2,
+        status: BookingStatus.COMPLETED,
+        dateRange: {
+            from: _offsetDaysFromToday(-12),
+            to: _offsetDaysFromToday(-2)
+        }
+    },
+    {
+        id: "fakeData13",
         name: "Khalid Al-Mansour",
         email: "al-manasour@gmail.com",
         property: propertyOptions[3].label,
         numAdults: 2,
         numChildren: 1,
-        status: BookingStatus.CONFIRMED,
+        status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 7, 22),
-            to: new Date(2025, 7, 24)
+            from: new Date(2025, 6, 22),
+            to: new Date(2025, 6, 24)
         }
     },
     {
-        id: "fakeData5",
+        id: "fakeData14",
         name: "Rija Stašćik",
         email: "Rija_Stascik@hrnet.hr",
         property: propertyOptions[0].label,
@@ -81,90 +204,25 @@ export const fakeData: BookingsData[] = [
         numChildren: 0,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 7, 19),
-            to: new Date(2025, 7, 26)
+            from: new Date(2025, 5, 19),
+            to: new Date(2025, 5, 26)
         }
     },
     {
-        id: "fakeData6",
+        id: "fakeData15",
         name: "Jean-Louis Mercier",
         email: "contact@jean-louis-mercier.com",
-        property: propertyOptions[3].label,
+        property: propertyOptions[8].label,
         numAdults: 6,
         numChildren: 0,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 7, 4),
-            to: new Date(2025, 7, 11)
+            from: new Date(2025, 6, 4),
+            to: new Date(2025, 6, 11)
         }
     },
     {
-        id: "fakeData7",
-        name: "Florentine Hohl",
-        email: "floraaa0@posteo.com",
-        property: "Ferienoase",
-        numAdults: 2,
-        numChildren: 3,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 7, 4),
-            to: new Date(2025, 7, 18)
-        }
-    },
-    {
-        id: "fakeData8",
-        name: "Omar Tonat",
-        email: "omarowich897@gmail.com",
-        property: propertyOptions[2].label,
-        numAdults: 2,
-        numChildren: 1,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 6, 23),
-            to: new Date(2025, 6, 29)
-        }
-    },
-    {
-        id: "fakeData9",
-        name: "Amalric Rousseau",
-        email: "Amalric.Rousseau75@yahoo.fr",
-        property: propertyOptions[2].label,
-        numAdults: 2,
-        numChildren: 1,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 6, 30),
-            to: new Date(2025, 7, 5)
-        }
-    },
-    {
-        id: "fakeData10",
-        name: "Lucas de Vries",
-        email: "Lucas.deVries@gmail.com",
-        property: propertyOptions[2].label,
-        numAdults: 2,
-        numChildren: 1,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 7, 6),
-            to: new Date(2025, 7, 11)
-        }
-    },
-    {
-        id: "fakeData11",
-        name: "Kata Stuparić",
-        email: "Kata.Stuparic@hrnet.hr",
-        property: propertyOptions[2].label,
-        numAdults: 2,
-        numChildren: 1,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 7, 12),
-            to: new Date(2025, 7, 17)
-        }
-    },
-    {
-        id: "fakeData12",
+        id: "fakeData16",
         name: "فائز الرصاع",
         email: "fay190z.alrsae@hotmail.com",
         property: propertyOptions[2].label,
@@ -172,34 +230,21 @@ export const fakeData: BookingsData[] = [
         numChildren: 1,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 7, 18),
-            to: new Date(2025, 7, 23)
+            from: new Date(2025, 6, 4),
+            to: new Date(2025, 6, 18)
         }
     },
     {
-        id: "fakeData13",
-        name: "María Elena Pichardo Figueroa",
-        email: "pichardo-figueroa@gmail.com",
-        property: propertyOptions[2].label,
+        id: "fakeData17",
+        name: "Florentine Hohl",
+        email: "floraaa0@posteo.com",
+        property: propertyOptions[6].label,
         numAdults: 2,
-        numChildren: 1,
+        numChildren: 2,
         status: BookingStatus.COMPLETED,
         dateRange: {
-            from: new Date(2025, 7, 24),
-            to: new Date(2025, 7, 29)
+            from: new Date(2025, 6, 18),
+            to: new Date(2025, 6, 23)
         }
     },
-    {
-        id: "fakeData14",
-        name: "Vanda Mamojková",
-        email: "Vanda_Mamojkova@zoznam.sk",
-        property: propertyOptions[2].label,
-        numAdults: 2,
-        numChildren: 1,
-        status: BookingStatus.COMPLETED,
-        dateRange: {
-            from: new Date(2025, 7, 30),
-            to: new Date(2025, 8, 4)
-        }
-    }
 ]

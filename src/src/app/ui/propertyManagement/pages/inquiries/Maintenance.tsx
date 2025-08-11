@@ -72,7 +72,12 @@ const columns: GridColDef[] = [
                 {params.value}
             </span>
         )},
-    { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120 },
+    { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120,
+        renderCell: (params) => (
+            <span className="ellipsis">
+                {params.value}
+            </span>
+        ),},
     { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 100,
         renderCell: (params) => (
             <span className="ellipsis">

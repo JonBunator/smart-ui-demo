@@ -33,6 +33,7 @@ import BedIcon from '@mui/icons-material/Bed';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import BathtubIcon from '@mui/icons-material/Bathtub';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {getProperties} from "@/lib/db/database";
 import LoadingPropertyCards from "@/app/ui/propertyManagement/pages/inquiries/LoadingPropertyCards";
@@ -94,6 +95,8 @@ export default function Properties() {
 
     const getAdditionalInfoProps = (type: AdditionalInfoType) => {
         switch (type) {
+            case AdditionalInfoType.KITCHEN:
+                return { icon: <LocalDiningIcon />, label: "Küche" };
             case AdditionalInfoType.WIFI:
                 return { icon: <WifiIcon />, label: "WLAN" };
             case AdditionalInfoType.POOL:
