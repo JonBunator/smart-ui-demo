@@ -2,30 +2,53 @@
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SendIcon from '@mui/icons-material/Send';
-import {useSmartAgent} from "smart-ui"
-import {useState} from "react";
+import {ChatMessageCreator, useSmartAgent} from "smart-ui"
+import {useEffect, useState} from "react";
 import {Button, TextField, Paper, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
+import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
+
 
 export default function Agent() {
     const [value, setValue] = useState("");
+    const [showYesNoButton, setShowYesNoButton] = useState(false);
     const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading, loadingText} = useSmartAgent();
+    const {error} = useSnackbar();
+
 
     async function send() {
         const sendValue = value;
         setValue("");
+        await sendMessage(sendValue);
+    }
+
+    async function sendMessage(message: string) {
         try {
-            await sendPrompt(sendValue);
-        }catch(e) {
-            console.error(e);
+            await sendPrompt(message);
+        } catch {
+            error();
         }
     }
+
+    useEffect(() => {
+        const lastMessage = chatHistory[chatHistory.length - 1];
+        if(lastMessage !== undefined && lastMessage.message.role === ChatMessageCreator.AGENT && lastMessage.message.content !== undefined) {
+            const content = JSON.parse(lastMessage.message.content as string).output;
+            setShowYesNoButton(content.yesNoButtons);
+        } else {
+            setShowYesNoButton(false);
+        }
+    }, [chatHistory]);
 
     return (
         <Paper className="agent">
             <ChatHistory history={chatHistory} loading={loading} loadingText={loadingText}/>
+            {showYesNoButton && (<div className="yes-no-buttons">
+                <Button size="small" onClick={async () => await sendMessage("Nein")} variant="outlined">Nein</Button>
+                <Button size="small" onClick={async () => await sendMessage("Ja")} variant="outlined">Ja</Button>
+            </div>)}
             {approvalRequired && (<div className="approval-buttons">
                 <Button size="small" startIcon={<ClearIcon/>} onClick={async () => await handleChangeApproval(false)} color="error" variant="contained">Ablehnen</Button>
                 <Button size="small" startIcon={<DoneIcon/>} onClick={async () => await handleChangeApproval(true)} color="success" variant="contained">Annehmen</Button>

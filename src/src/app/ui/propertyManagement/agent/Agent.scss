@@ -3,6 +3,13 @@
     flex-direction: column;
     gap: 8px;
 
+
+    .yes-no-buttons {
+      display: flex;
+      gap: 4px;
+      margin: 0 8px 2px 8px;
+      justify-content: flex-end;
+    }
     .approval-buttons {
         display: flex;
         margin: 0 8px 2px 8px;
