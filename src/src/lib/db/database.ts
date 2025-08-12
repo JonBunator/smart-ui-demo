@@ -17,7 +17,7 @@ import {
     NUM_DATA_INDICES,
     NUM_DATA_PER_SURVEY_STEP,
     NUM_SURVEY_STEPS,
-    NUM_SURVEY_TYPES
+    NUM_SURVEY_TYPES, SURVEY_TYPES_WITH_MULTI_AGENT_STEPS
 } from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
@@ -153,6 +153,32 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
         throw new UnknownError();
     }
 }
+
+export async function multipleAgentStepsAllowed(): Promise<boolean | null> {
+    const sessionData = await getSession();
+    if(!sessionData) {
+        return null;
+    }
+
+    try {
+        const participation = await prisma.participation.findUnique({
+            where: {
+                id: sessionData.userId,
+            },
+        });
+
+        if(!participation) {
+            throw new UnknownError();
+        }
+
+        return SURVEY_TYPES_WITH_MULTI_AGENT_STEPS.includes(participation.surveyType);
+
+    } catch(error) {
+        console.error(error);
+        throw new UnknownError();
+    }
+}
+
 
 /**
  * Sets the current state of the survey state machine.

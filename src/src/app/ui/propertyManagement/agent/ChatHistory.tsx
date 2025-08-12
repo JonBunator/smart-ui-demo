@@ -53,6 +53,29 @@ export default function ChatHistory(props: ChatHistoryProps) {
                     <div key={index} className={`chat-history-element ${item.message.role === ChatMessageCreator.AGENT ? "agent-message" : "user-message"}`}>
                         {item.message.role === ChatMessageCreator.AGENT && (<Avatar className="ai-avatar"><BotFilled /></Avatar>)}
                         <div  className="chat-history-message">
+                            {(() => {
+                                let step = undefined;
+                                let numSteps = undefined;
+                                if (item.message.role === ChatMessageCreator.AGENT) {
+                                    const parsedContent = JSON.parse(item.message.content as string);
+                                    step = parsedContent.step;
+                                    numSteps = parsedContent.numSteps;
+                                }
+                                if(step === undefined || numSteps === undefined) {
+                                    return;
+                                }
+
+                                return (
+                                    <div className="top-row">
+                                        <div className="step-counter">
+                                            <Typography>
+                                                {step} von {numSteps}
+                                            </Typography>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+
                             <div className="message">
                                 <Markdown>
                                     {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}

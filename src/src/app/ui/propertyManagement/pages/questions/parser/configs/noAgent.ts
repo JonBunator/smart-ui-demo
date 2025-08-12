@@ -78,6 +78,16 @@ export const noAgent: QuestionaireType =
                 ]
             },
             {
+                type: "multiple-choice-grid",
+                name: "selfAwareness",
+                description: "Selbstwahrnehmung bei der Aufgabenbearbeitung",
+                xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Stimme eher nicht zu ", "Neutral", "Stimme eher zu", "Stimme zu", "Stimme völlig zu"],
+                yAxisLabels: [
+                    "Ich fühlte mich fähig während der Bearbeitung der Aufgaben",
+                    "Ich hatte das Gefühl, dass ich gut bei der Bearbeitung der Aufgaben war",
+                ]
+            },
+            {
                 type: "text",
                 name: "optionalRemarks",
                 label: "Zusätzliche Anmerkungen",

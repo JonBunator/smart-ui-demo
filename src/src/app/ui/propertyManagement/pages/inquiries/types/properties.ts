@@ -3,7 +3,7 @@ export enum PropertyType {
     HOUSE = "house",
     VILLA = "villa",
     CABIN = "cabin",
-    HOUSE_BOAT = "house-boat"
+    HOUSE_BOAT = "houseBoat"
 }
 
 export const propertyTypes = [
@@ -30,6 +30,7 @@ export interface PropertyData {
 }
 
 export const countryOptions = [
+    { label: "Costa Rica", value: "Costa Rica" },
     { label: "Deutschland", value: "Deutschland" },
     { label: "Italien", value: "Italien" },
     { label: "Niederlande", value: "Niederlande" },

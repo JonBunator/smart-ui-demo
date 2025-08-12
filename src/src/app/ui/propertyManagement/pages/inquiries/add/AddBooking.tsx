@@ -1,12 +1,13 @@
 "use client"
 import React, {useState, ChangeEvent, useMemo} from "react";
-import { Grid, Typography, Button, Box } from "@mui/material";
+import { Grid, Typography,  Box } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
+import SmartButton from "@/app/ui/components/SmartButton";
 import TextField from '@mui/material/TextField';
 import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
 import { addBooking } from "@/lib/db/database";
-import {useSmartAgent} from "smart-ui";
+import {SmartGroup, useSmartAgent} from "smart-ui";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
@@ -111,11 +112,13 @@ export default function AddBooking() {
 
     return (
         <Grid container spacing={4}>
+            <SmartGroup smartSemantic="add booking form">
             <Grid size={{ xs: 12 }}>
                 <AddInquiryHeader title="Buchungen" titleContent="Neue Buchung hinzufügen"/>
             </Grid>
             {/* Personal Information Section */}
             <Grid container spacing={2}>
+                <SmartGroup smartSemantic="personal information">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1" gutterBottom>
                         Persönliche Informationen
@@ -173,10 +176,12 @@ export default function AddBooking() {
                         helperText={errors.eMail ? "E-Mail ist erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
 
             {/* Address Information Section */}
             <Grid container spacing={2}>
+                <SmartGroup smartSemantic="adress information">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">
                         Addressinformationen
@@ -248,10 +253,12 @@ export default function AddBooking() {
                         helperText={errors.country ? "Land ist erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
 
             {/* Booking Details Section */}
             <Grid container spacing={2}>
+                <SmartGroup smartSemantic="booking details">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">
                         Buchungsinformationen
@@ -334,12 +341,14 @@ export default function AddBooking() {
                         helperText={errors.numChildren ? "Anzahl Kinder ist erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
             <Grid size={{ xs: 12 }}>
                 <Box display="flex" justifyContent="flex-end">
-                    <Button variant="contained" onClick={handleSubmit}>Hinzufügen</Button>
+                    <SmartButton variant="contained" onClick={handleSubmit}>Hinzufügen</SmartButton>
                 </Box>
             </Grid>
+            </SmartGroup>
         </Grid>
     );
 }

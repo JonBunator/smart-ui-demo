@@ -162,6 +162,7 @@ CREATE TABLE "public"."NoAgentQuestions" (
     "intuitiveUse" INTEGER[],
     "visualAesthetics" INTEGER[],
     "clarity" INTEGER[],
+    "selfAwareness" INTEGER[],
     "optionalRemarks" TEXT,
 
     CONSTRAINT "NoAgentQuestions_pkey" PRIMARY KEY ("id")

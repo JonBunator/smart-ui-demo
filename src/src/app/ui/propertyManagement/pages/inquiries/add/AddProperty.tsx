@@ -8,12 +8,12 @@ import {
     FormControl,
     FormLabel,
     TextField,
-    Button,
     Box, FormHelperText,
 } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
 import SmartCheckbox from "@/app/ui/components/SmartCheckbox";
+import SmartButton from "@/app/ui/components/SmartButton";
 import SmartRadioGroup from "@/app/ui/components/radio/SmartRadioGroup";
 import SmartRadio from "@/app/ui/components/radio/SmartRadio";
 import {SmartGroup, useSmartAgent} from "smart-ui";
@@ -143,13 +143,15 @@ export default function AddProperty() {
 
     return (
         <Grid container spacing={4}>
+            <SmartGroup smartSemantic="add property form">
             <Grid size={{ xs: 12 }}>
                 <AddInquiryHeader title="Immobilien" titleContent="Neue Immobilie hinzufügen" />
             </Grid>
             {/* Property Information Section */}
             <Grid container spacing={2} size={{ xs: 12 }}>
+                <SmartGroup smartSemantic="description">
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="subtitle1">Immobilien Informationen</Typography>
+                    <Typography variant="subtitle1">Beschreibung</Typography>
                 </Grid>
                 <Grid size={{ xs: 12 }}>
                     <SmartTextField
@@ -179,9 +181,11 @@ export default function AddProperty() {
                         helperText={errors.description ? "Beschreibung ist erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
             {/* Address Information Section */}
             <Grid container spacing={2}>
+                <SmartGroup smartSemantic="address information">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Adressinformationen</Typography>
                 </Grid>
@@ -257,10 +261,12 @@ export default function AddProperty() {
                         )}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
 
             {/* Property Details Section */}
             <Grid container spacing={2}>
+                <SmartGroup smartSemantic="other details">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Immobilien Details</Typography>
                 </Grid>
@@ -410,14 +416,16 @@ export default function AddProperty() {
                         </FormGroup>
                     </SmartGroup>
                 </Grid>
+                </SmartGroup>
             </Grid>
             <Grid size={{ xs: 12 }}>
                 <Box display="flex" justifyContent="flex-end">
-                    <Button variant="contained" onClick={handleSubmit}>
+                    <SmartButton variant="contained" onClick={handleSubmit}>
                         Hinzufügen
-                    </Button>
+                    </SmartButton>
                 </Box>
             </Grid>
+            </SmartGroup>
         </Grid>
     );
 }

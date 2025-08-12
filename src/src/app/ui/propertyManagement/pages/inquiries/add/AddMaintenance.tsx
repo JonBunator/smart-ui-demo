@@ -20,6 +20,7 @@ import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/Survey
 import {categoryOptions, urgencyOptions } from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
 import {propertyOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
+import {SmartGroup} from "smart-ui";
 
 const emptyFormData = {
     name: "",
@@ -100,13 +101,15 @@ export default function AddMaintenance() {
 
     return (
         <Grid container spacing={4}>
+            <SmartGroup smartSemantic="add maintenance form">
             <Grid size={{ xs: 12 }}>
                 <AddInquiryHeader title="Instandhaltungen" titleContent="Neue Instandhaltung hinzufügen"/>
             </Grid>
             {/* Contact Information */}
-            <Grid container spacing={2} size={{ xs: 12 }}>
+                <Grid container spacing={2} size={{ xs: 12 }}>
+                <SmartGroup smartSemantic="contact information">
                 <Grid size={{ xs: 12 }}>
-                    <Typography variant="subtitle1">Kontaktinformationen</Typography>
+                <Typography variant="subtitle1">Kontaktinformationen</Typography>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
                     <SmartTextField
@@ -148,10 +151,12 @@ export default function AddMaintenance() {
                         helperText={errors.eMail ? "E-Mail ist erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
 
             {/* Details */}
             <Grid container spacing={2} size={{ xs: 12 }} columnSpacing={4}>
+                <SmartGroup smartSemantic="details">
                 <Grid size={{ xs: 12 }}>
                     <Typography variant="subtitle1">Details</Typography>
                 </Grid>
@@ -241,12 +246,14 @@ export default function AddMaintenance() {
                         helperText={errors.location ? "Ortsspezifische Angaben sind erforderlich" : ""}
                     />
                 </Grid>
+                </SmartGroup>
             </Grid>
             <Grid size={{ xs: 12 }}>
                 <Box display="flex" justifyContent="flex-end">
                     <SmartButton smartSemantic="adds new maintenance" variant="contained" onClick={handleSubmit}>Hinzufügen</SmartButton>
                 </Box>
             </Grid>
+            </SmartGroup>
         </Grid>
     );
 }

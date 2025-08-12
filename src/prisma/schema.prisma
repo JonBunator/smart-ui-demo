@@ -192,6 +192,7 @@ model NoAgentQuestions {
   intuitiveUse     Int[]
   visualAesthetics Int[]
   clarity          Int[]
+  selfAwareness    Int[]
   optionalRemarks  String?
 }
 
