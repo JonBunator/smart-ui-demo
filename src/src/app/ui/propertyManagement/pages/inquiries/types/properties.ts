@@ -32,6 +32,8 @@ export interface PropertyData {
 export const countryOptions = [
     { label: "Costa Rica", value: "Costa Rica" },
     { label: "Deutschland", value: "Deutschland" },
+    { label: "Frankreich", value: "Frankreich" },
+    { label: "Indonesien", value: "Indonesien" },
     { label: "Italien", value: "Italien" },
     { label: "Niederlande", value: "Niederlande" },
     { label: "Österreich", value: "Österreich" },
