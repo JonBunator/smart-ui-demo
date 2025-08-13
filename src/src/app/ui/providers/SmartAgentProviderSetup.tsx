@@ -56,7 +56,6 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
             (values) => {
                 const aiSupport = values[0];
                 const allowMultipleSteps = values[1];
-                console.log("adsfa", allowMultipleSteps)
                 if(aiSupport === AISupport.NONE) {
                     return;
                 }
@@ -69,21 +68,13 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
         )
     }
 
-
-    useEffect(() => {
-        console.log(customSystemPrompt)
-    }, [customSystemPrompt]);
-
-    useEffect(() => {
-        console.log("allow", allowMultipleSteps)
-    }, [allowMultipleSteps]);
-
     return (
             <SmartAgentProvider callAgent={callAgentEndpoint}
                                 customSystemPrompt={customSystemPrompt}
                                 currentPagePath={currentPagePath}
                                 pageDescriptions={pageDescriptions}
                                 allowMultipleSteps={allowMultipleSteps}
+                                defaultChatHistoryMemory={8}
             >
                     {children}
             </SmartAgentProvider>

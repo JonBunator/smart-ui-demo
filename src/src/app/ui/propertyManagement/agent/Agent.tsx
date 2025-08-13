@@ -4,8 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SendIcon from '@mui/icons-material/Send';
 import {ChatMessageCreator, useSmartAgent} from "smart-ui"
 import {useEffect, useState} from "react";
-import {Button, TextField, Paper, IconButton} from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import {Button, TextField, Paper} from "@mui/material";
 import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
 import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
@@ -61,11 +60,6 @@ export default function Agent() {
                 <div className="field-buttons">
                     <Button loading={loading} loadingPosition="start" size="small" disabled={value.trim() === ''} className="send-button ai-agent" startIcon={<SendIcon/>} variant="contained" onClick={send}>{loading ? "Sendet.." : "Senden"}</Button>
                 </div>
-            </div>
-            <div className="bottom-buttons">
-                <IconButton onClick={() => deleteChatHistory()}>
-                    <DeleteIcon/>
-                </IconButton>
             </div>
         </Paper>
     );

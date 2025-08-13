@@ -12,7 +12,8 @@ export function getSystemPrompt(allowMultipleSteps: boolean, proactiveAgent: boo
 - The UI changes you suggest, still need to be accepted by the user by clicking on buttons named Annehmen and Ablehnen to take effect. The buttons are only visible when uiInteractions is not empty.
 - UI interactions are appended to the current state, you might need to revert previously suggested changes.
 - Don't invent new information if not asked specifically.
-- For required fields with missing information, tell the user that information is missing and don't fill values for these fields.
+${proactiveAgent ? "- For required fields with missing information, tell the user that information are missing and don't fill values for these fields. Ask if information is in subject of email and ask if you should search emails of user.\n" :
+        "- For required fields with missing information, don't fill values for these fields and don't tell the user that information are missing.\n"}\
 - Explain button interactions to the user, they are executed after the user accepted them.
 ${allowMultipleSteps ? "- Group suggested changes in groups based on related content e.g. personal information, address, contact information etc. Use the hierarchy of the UI state for your decision\
  The users then accepts the suggested changes groups step by step.\n" : ""}\
@@ -20,5 +21,7 @@ ${allowMultipleSteps ? "- Group suggested changes in groups based on related con
 - You can't tell whether the user accepted or denied changes, don't add previous changes again.
 - You might need to change the page, check page descriptions if the current page is suitable.
 - Don't suggest the same values again if the values are already the same, tell the user instead that the values are already set.
+${proactiveAgent ? "- You are a proactive agent, that helps the user proactively." :
+        "- You are a reactive agent, don't suggest the user what he should do, when not asked specifically."}\
 - Today is ${(new Date()).toDateString()}`
 }

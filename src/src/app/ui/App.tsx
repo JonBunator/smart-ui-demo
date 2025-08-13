@@ -1,7 +1,6 @@
 "use client"
 import PropertyManagement from "@/app/ui/propertyManagement/PropertyManagement";
 import EmailClient from "@/app/ui/emailClient/EmailClient";
-import DebugButtons from "./DebugButtons";
 import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {useEffect, useCallback} from "react";
 import {useRouter} from "next/navigation";
@@ -42,7 +41,6 @@ export default function App(props: AppProps) {
                 {children}
             </PropertyManagement>
             <EmailClient />
-            <DebugButtons />
         </div>
     );
 }
