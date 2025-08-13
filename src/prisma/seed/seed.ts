@@ -27,20 +27,20 @@ export async function main() {
         await prisma.surveyGroup.create({ data: sd });
     }
 
-    const bookingsData: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/bookings.json") as Prisma.DataCreateInput[];
-    for (const bd of bookingsData) {
-        await prisma.data.create({ data: bd });
+    const dataSet0: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/dataset0.json") as Prisma.DataCreateInput[];
+    for (const d of dataSet0) {
+        await prisma.data.create({ data: d });
     }
 
-    const propertiesData: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/properties.json") as Prisma.DataCreateInput[];
-    for (const pd of propertiesData) {
-        await prisma.data.create({ data: pd });
+    const dataSet1: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/dataset1.json") as Prisma.DataCreateInput[];
+    for (const d of dataSet1) {
+        await prisma.data.create({ data: d });
     }
 
-    const maintenanceData: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/maintenance.json") as Prisma.DataCreateInput[];
-    for (const md of maintenanceData) {
-        await prisma.data.create({ data: md });
+    const dataSet2: Prisma.DataCreateInput[] = readJSONFile("prisma/seed/dataset2.json") as Prisma.DataCreateInput[];
+    for (const d of dataSet2) {
+        await prisma.data.create({ data: d });
     }
 }
 
-main();
+main().then();

@@ -1,0 +1,267 @@
+[
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 0,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Chris Rosbach",
+        "authorEmail": "Chris.Rosbach56@hotmail.com",
+        "subject": "Schäden am Dach im Waldhaus",
+        "content": "Guten Tag Leafy Lodges,\n\nich bin gerade mit dem Fahrrad an einer Ihrer Immobilien vorbeigefahren. Auf dem Schild stand \"Walzauber Holzhütte\" mit diesen Kontaktdaten. Scheinbar hat ein Baum bei dem Sturm gestern leicht das Dach gestreift. Es gibt einige undichte Stellen, die bei Regen zu Problemen führen könnten. Weil es ja heute nochmal regnen soll, hab ich lieber mal bescheid gegeben.\n\nMit freundlichen Grüßen,\nChris"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Chris",
+        "surname": "Rosbach",
+        "eMail": "Chris.Rosbach56@hotmail.com",
+        "property": "Waldzauber Holzhütte",
+        "category": "structural",
+        "urgency": "high",
+        "description": "Undichte Stellen am Dach.",
+        "location": "Dach"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 1,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Prachtvolles Schloss in Frankreich ins Portfolio aufnehmen",
+        "content": "Hallo,\n\nkannst du bitte das Château de la Sérénité hinzufügen?\nBeschreibung: Ein prachtvolles Schloss aus dem 17. Jahrhundert in Frankreich, das mit einem privaten Pool ausgestattet ist und kürzlich renoviert wurde. Diese exquisite Unterkunft vereint historischen Charme mit modernem Luxus.\nAdresse: Rue de Charonne 1, 59800 Langoiran, Frankreich.\nEs verfügt über 8 Betten, 4 Badezimmer, eine Fläche von 500 m² und kostet 800 € pro Nacht. Außerdem hat es eine Küche, WLAN, separate Parkplätze und Haustiere sind willkommen.\n\nHerzlichen Dank,\nKira"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Château de la Sérénité",
+        "description": "Ein prachtvolles Schloss aus dem 17. Jahrhundert in Frankreich, das mit einem privaten Pool ausgestattet ist und kürzlich renoviert wurde. Diese exquisite Unterkunft vereint historischen Charme mit modernem Luxus.",
+        "street": "Rue de Charonne",
+        "houseNumber": "1",
+        "city": "Langoiran",
+        "postalCode": "59800",
+        "country": "Frankreich",
+        "type": "villa",
+        "numBeds": 8,
+        "numBathrooms": 4,
+        "area": 500,
+        "pricePerNight": 800,
+        "additionalInfo": ["kitchen", "wifi", "parking", "pool", "petFriendly"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 2,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Mohamed Barylla",
+        "authorEmail": "Mohamed.Barylla89@gmail.com",
+        "subject": "Urban Workspace Zürich Besuch",
+        "content": "Sehr geehrte Damen und Herren,\n\nich bin vom 14.10 bis 16.10 geschäftlich in Zürich und würde gerne dort in Ihrer Wohnung übernachten. Sie können mich unter der Nummer +4988290513187 erreichen. Meine Adresse lautet Domblick 8, 81958 Flensburg, Deutschland.\n\nVielen Dank,\nMohamed Barylla"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mohamed",
+        "surname": "Barylla",
+        "phoneNumber": "+4988290513187",
+        "eMail": "Mohamed.Barylla89@gmail.com",
+        "street": "Domblick",
+        "houseNumber": "8",
+        "city": "Flensburg",
+        "postalCode": "81958",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-14T00:00:00.000Z",
+        "bookingEnd": "2025-10-16T00:00:00.000Z",
+        "numAdults": 1,
+        "numChildren": 0,
+        "property": "Urban Workspace Zürich"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 3,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Neues Hausboot Seeglück",
+        "content": "Hallo,\nich möchte dich bitten, das folgende Hausboot in unser Angebot aufzunehmen. \nName: Seeglück\nAdresse: Allensteiner Str. 2, 55923 Heiligenhafen, Schweiz\nBeschreibung: Ein charmantes Hausboot an einem malerischen Schweizer See, das ein unvergleichliches Erlebnis auf dem Wasser bietet. Die Unterkunft ermöglicht eine ruhige Auszeit mit atemberaubendem Blick auf die Alpen und ist perfekt für Naturliebhaber.\nDas Hausboot verfügt über 3 Betten, ein Badezimmer, eine Küche, WLAN und einen Parkplatz. Die Fläche beträgt insgesamt 40m² und der Preis pro Nacht liegt bei 245€.\n\nLiebe Grüße\n\nKira"
+      }
+    },
+    "Property": {
+      "create": {
+        "name": "Seeglück",
+        "description": "Ein charmantes Hausboot an einem malerischen Schweizer See, das ein unvergleichliches Erlebnis auf dem Wasser bietet. Die Unterkunft ermöglicht eine ruhige Auszeit mit atemberaubendem Blick auf die Alpen und ist perfekt für Naturliebhaber.",
+        "street": "Allensteiner Str.",
+        "houseNumber": "2",
+        "city": "Heiligenhafen",
+        "postalCode": "55923",
+        "country": "Schweiz",
+        "type": "houseBoat",
+        "numBeds": 3,
+        "numBathrooms": 1,
+        "area": 40,
+        "pricePerNight": 245,
+        "additionalInfo": ["kitchen", "wifi", "parking"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 4,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Talea Lohse",
+        "authorEmail": "Talea.Lohse@gmail.com",
+        "subject": "Anfrage für Reinigung des Pools",
+        "content": "Sehr geehrtes Team von Leafy Lodges,\n\nwir haben gestern eine Pool-Party in der Villamartín gefeiert, die leider etwas ausgeufert ist. Uns ist leider ein kleines Missgeschick passiert, das uns sehr leid tut. Einer unserer Freunde hat sich in den Pool übergeben... Wir kommen natürlich für den Schaden auf, würden gerne aber eine Reinigung anfordern. Wäre das möglich?\n\nVielen Dank im Voraus.\n\nMit besten Grüßen,\nTalea Lohse"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Talea",
+        "surname": "Lohse",
+        "eMail": "Talea.Lohse@gmail.com",
+        "property": "Villamartín",
+        "category": "cleaning",
+        "urgency": "medium",
+        "description": "Reinigung des Pools erforderlich",
+        "location": "Pool"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 5,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Patrice Kempe",
+        "authorEmail": "Patrice_Kempe7@gmail.com",
+        "subject": "Buchungsanfrage Villa Fiesta del Sol",
+        "content": "Sehr geehrtes Leafy Lodges Team,\n\nich möchte für einen Klienten Ihre Villa Fiesta del Sol mieten. Geplant ist eine Aufenthalt vom 5. Juni 2026 bis zum 19. Juni 2026 mit sieben Erwachsenen.\nBitte lassen Sie mich wissen, ob die Villa in diesem Zeitraum verfügbar ist und welche weiteren Informationen Sie von mir benötigen, um die Buchung abzuschließen.\nHier sind meine Kontaktdaten:\n- Telefon: +491227920916\n- E-Mail: Patrice_Kempe7@gmail.com\n- Adresse: Hafenstr. 658, 72913 Bad Josef, Deutschland\n\nBeste Grüße,\n\nPatrice Kempe"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Patrice",
+        "surname": "Kempe",
+        "phoneNumber": "+491227920916",
+        "eMail": "Patrice_Kempe7@gmail.com",
+        "street": "Hafenstr.",
+        "houseNumber": "658",
+        "city": "Bad Josef",
+        "postalCode": "72913",
+        "country": "Deutschland",
+        "bookingStart": "2026-06-05T00:00:00.000Z",
+        "bookingEnd": "2026-06-19T00:00:00.000Z",
+        "numAdults": 7,
+        "numChildren": 0,
+        "property": "Villa Fiesta del Sol"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 6,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Lisa Ganzmann",
+        "authorEmail": "Lisa.Ganzmann@yahoo.com",
+        "subject": "Reparatur der Klimaanlage erforderlich",
+        "content": "Liebes Leafy-Lodges-Team,\n\nich habe festgestellt, dass die Klimaanlage im Workspace in Zürich im Wohnzimmer nicht richtig funktioniert. Sie kühlt nicht mehr effektiv und benötigt eine dringende Wartung.\nBitte kümmern Sie sich so schnell wie möglich darum. Ich habe gerade viele Online-Meetings und halte es bei den Temperaturen kaum noch aus.\n\nDanke und Grüße,\nLisa Ganzmann"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Lisa",
+        "surname": "Ganzmann",
+        "eMail": "Lisa.Ganzmann@yahoo.com",
+        "property": "Urban Workspace Zürich",
+        "category": "hvac",
+        "urgency": "high",
+        "description": "Klimaanlage kühlt nicht effektiv.",
+        "location": "Wohnzimmer"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 7,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Mina Jungton",
+        "authorEmail": "Mina_Jungton@hotmail.com",
+        "subject": "Familienwochenende im Alpenblick Chalet",
+        "content": "Liebes Leafy-Lodges-Team,\n\nwir planen mit einer befreundeten Familie einen Kurzurlaub in den Bergen. Besonders ins Auge gefallen ist uns Ihr Alpenblick Chalet. Wir würden dieses gerne vom 12. bis 14. Dezember buchen.\nWir wären insgesamt zwei Familien (je zwei Erwachsene) mit je einem Kind. Meine Adresse lautet:\nVincent-van-Gogh-Str. 3\n51812 Alt Luisland, Deutschland\nTelefon: +49 7803 53778376\n\nBitte teilen Sie mir mit, ob das Chalet in diesem Zeitraum verfügbar ist.\n\nHerzliche Grüße\nMina Jungton"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mina",
+        "surname": "Jungton",
+        "phoneNumber": "+49780353778376",
+        "eMail": "Mina_Jungton@hotmail.com",
+        "street": "Vincent-van-Gogh-Str.",
+        "houseNumber": "3",
+        "city": "Alt Luisland",
+        "postalCode": "51812",
+        "country": "Deutschland",
+        "bookingStart": "2025-12-12T00:00:00.000Z",
+        "bookingEnd": "2025-12-14T00:00:00.000Z",
+        "numAdults": 4,
+        "numChildren": 2,
+        "property": "Alpenblick Chalet"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 8,
+    "dataSet": 1,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Geräumige Wohnung im Herzen von Amsterdam",
+        "content": "Hallo,\n\nbitte erfasse folgende Unterkunft mit dem Namen \"Kunstquartier Amsterdam\"",",:\n\nDiese geräumige Wohnung im Herzen von Amsterdam bietet Platz für bis zu vier Personen und ist ideal für Städtereisende. Mit ihrer zentralen Lage, nur fünf Gehminuten vom berühmten Rijksmuseum entfernt, ermöglicht sie einfachen Zugang zu den kulturellen und historischen Sehenswürdigkeiten der Stadt.\nAdresse: Laan van Malkenschoten 40, 1057 DL Amsterdam, Niederlande.\nFür 240 € pro Nacht bietet die 87 m² große Unterkunft vier Betten und ein Badezimmer sowie eine Küche, WLAN und die Möglichkeit, Haustiere mitzubringen.\n\nDanke dir,\nKira"        }
+    },
+    "Property": {
+      "create": {
+        "name": "Kunstquartier Amsterdam",
+        "description": "Diese geräumige Wohnung im Herzen von Amsterdam bietet Platz für bis zu vier Personen und ist ideal für Städtereisende. Mit ihrer zentralen Lage, nur fünf Gehminuten vom berühmten Rijksmuseum entfernt, ermöglicht sie einfachen Zugang zu den kulturellen und historischen Sehenswürdigkeiten der Stadt.",
+        "street": "Laan van Malkenschoten",
+        "houseNumber": "40",
+        "city": "Amsterdam",
+        "postalCode": "1057 DL",
+        "country": "Niederlande",
+        "type": "apartment",
+        "numBeds": 4,
+        "numBathrooms": 1,
+        "area": 87,
+        "pricePerNight": 240,
+        "additionalInfo": ["kitchen", "wifi", "petFriendly"]
+      }
+    }
+  }
+]

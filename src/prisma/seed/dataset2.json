@@ -1,0 +1,267 @@
+[
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 0,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Penthouse mit Meeresblick in Italien",
+        "content": "Hallo,\n\nich hoffe, es geht dir gut. Ich möchte dir eine neue Unterkunft vorstellen, die wir in unser Portfolio aufnehmen. Es handelt sich um das 'Meerespanorama Penthouse'.\nAdresse: Via Ruggiero 55c, 20125 Santa Margherita Ligure, Italien.\nBeschreibung: Diese luxuriöse Penthouse Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.\nDie Wohnung verfügt über 3 Schlafzimmer, 2 Badezimmer und eine Fläche von 110m². Der Preis pro Nacht beträgt 300€. Zusätzliche Annehmlichkeiten sind eine voll ausgestattete Küche, WLAN und eine Klimaanlage.\n\nLiebe Grüße,\n\nKira"
+      }
+    },
+    "Property": {
+      "create": {
+        "name": "Meerespanorama Penthouse",
+        "description": "Diese luxuriöse Penthouse Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.",
+        "street": "Via Ruggiero",
+        "houseNumber": "55c",
+        "city": "Santa Margherita Ligure",
+        "postalCode": "20125",
+        "country": "Italien",
+        "type": "apartment",
+        "numBeds": 3,
+        "numBathrooms": 2,
+        "area": 110,
+        "pricePerNight": 300,
+        "additionalInfo": ["kitchen", "wifi", "airConditioning"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 1,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Earthbnb",
+        "authorEmail": "noreply@earthbnb.com",
+        "subject": "Buchungsanfrage von Earthbnb für Alpenblick Chalet",
+        "content": "Dies ist eine automatisiert generierte Buchungsanfrage von Earthbnb.com\nImmobilie: Alpenblick Chalet\nName: Silja Schroder\nEmail: Silja_Schroder93@hotmail.com\nTelefonnummer: +49102823903101\nAdresse: Oststr. 11, 12279 Koblenz, Deutschland\nBuchungszeitraum: 03.10.2025 bis 17.10.2025\nAnzahl Erwachsene: 3\nAnzahl Kinder: 2"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Silja",
+        "surname": "Schroder",
+        "phoneNumber": "+49102823903101",
+        "eMail": "Silja_Schroder93@hotmail.com",
+        "street": "Oststr.",
+        "houseNumber": "11",
+        "city": "Koblenz",
+        "postalCode": "12279",
+        "country": "Deutschland",
+        "bookingStart": "2025-10-03T00:00:00.000Z",
+        "bookingEnd": "2025-10-17T00:00:00.000Z",
+        "numAdults": 3,
+        "numChildren": 2,
+        "property": "Alpenblick Chalet"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 2,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Naemi Schlitzer",
+        "authorEmail": "Naemi.Schlitzer@hotmail.com",
+        "subject": "HAUSBOOT SINKT!!",
+        "content": "Hallo,\n\n ich hoffe, Sie können mir schnell helfen! Unser Hausboot hat ein ernstes Problem!! Im Badezimmer ist ein Loch entstanden, durch das Wasser eindringt und ich befürchte, dass das Boot bald sinken könnte! Uns geht es aber gut und wir sind in Sicherheit.\n\nBesorgte Grüße\nNaemi Schlitzer"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Naemi",
+        "surname": "Schlitzer",
+        "eMail": "Naemi.Schlitzer@hotmail.com",
+        "property": "Amsterdam Hausboot",
+        "category": "structural",
+        "urgency": "high",
+        "description": "Hausboot hat Leck und sinkt",
+        "location": "Badezimmer"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 3,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Dorian Vogelgsang",
+        "authorEmail": "Dorian.Vogelgsang@yahoo.com",
+        "subject": "Gruppenbuchung für Villamartín",
+        "content": "Sehr geehrte Damen und Herren,\n\nich würde gerne für meine Freunde und mich Ihre Villa Villamartín anmieten. Unser geplanter Aufenthalt wäre vom 7. bis 28. August 2026. Wir sind insgesamt sechs Erwachsene und würden uns über eine großzügige Unterkunft sehr freuen.\nMeine Anschrift:\nAm Gesundheitspark 791\n13544 Neu Piusburg, Deutschland\nTelefon: +49 6560 26536268\n\nBitte lassen Sie mich wissen, ob die Villa zu diesem Zeitraum frei ist.\n\nMit besten Grüßen\nDorian Vogelgsang"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Dorian",
+        "surname": "Vogelgsang",
+        "phoneNumber": "+49656026536268",
+        "eMail": "Dorian.Vogelgsang@yahoo.com",
+        "street": "Am Gesundheitspark",
+        "houseNumber": "791",
+        "city": "Neu Piusburg",
+        "postalCode": "13544",
+        "country": "Deutschland",
+        "bookingStart": "2026-08-07T00:00:00.000Z",
+        "bookingEnd": "2026-08-21T00:00:00.000Z",
+        "numAdults": 6,
+        "numChildren": 0,
+        "property": "Villamartín"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 4,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Hütte auf Bali hinzufügen",
+        "content": "Hallo,\n\nbitte füge unsere neue Unterkunft in Bali in das System ein. Sie trägt den Namen Strandtraum. Füge folgende Beschreibung hinzu: Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisenede, die Erholung suchen.\nAdresse: Jl. Tgk Daud Beureueh 23, 60212 Jehembang, Bali.\nPreis pro Nacht: 60€. Fläche: 30 m². Die Unterkunft hat 2 Betten, 1 Badezimmer und ist mit WLAN ausgestattet.\n\nDanke dir und liebe Grüße,\nKira"      }
+    },
+    "Property": {
+      "create": {
+        "name": "Strandtraum",
+        "description": "Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisenede, die Erholung suchen.",
+        "street": " Jl. Tgk Daud Beureueh",
+        "houseNumber": "23",
+        "city": "Jehembang",
+        "postalCode": "60212",
+        "country": "Bali",
+        "type": "cabin",
+        "numBeds": 2,
+        "numBathrooms": 1,
+        "area": 30,
+        "pricePerNight": 60,
+        "additionalInfo": ["wifi"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 5,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Natalia Saile",
+        "authorEmail": "Natalia.Saile13@yahoo.com",
+        "subject": "Anfrage zur Gartenpflege",
+        "content": "Sehr geehrtes Wartungsteam,\n\nich möchte eine Anfrage zur Pflege des Gartens hinter dem Haus im Nordseeparadies stellen. Der Rasen benötigt dringend einen Schnitt und einige Sträucher sollten zurückgeschnitten werden. Es wäre schön, wenn sich bis morgen jemand darum kümmert. Wir würden gerne morgen grillen.\n\nVielen Dank im Voraus.\n\nMit freundlichen Grüßen,\nNatalia Saile"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Natalia",
+        "surname": "Saile",
+        "eMail": "Natalia.Saile13@yahoo.com",
+        "property": "Nordseeparadies",
+        "category": "garden",
+        "urgency": "medium",
+        "description": "Rasenmähen und Sträucher schneiden.",
+        "location": "Hinter dem Haus"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Property",
+    "order": 6,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Kira Bartels",
+        "authorEmail": "kira.bartels@leafylodges.de",
+        "subject": "Strandhaus in Spanien ins System einpflegen",
+        "content": "Hallo,\n\nbitte nimm das Strandhaus Sol auf.\nBeschreibung: Diese charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen. Das Haus liegt in der Ronda Fiscal 38 in 46500 Sagunt, Spanien, und bietet auf 190 m² fünf Betten, ein Badezimmer, eine Küche, einen Pool, WLAN sowie Klimaanlage – für 240 € pro Nacht.\n\nLiebe Grüße,\nKira"        }
+    },
+    "Property": {
+      "create": {
+        "name": "Strandhaus Sol",
+        "description": "Diese charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen.",
+        "street": "Ronda Fiscal",
+        "houseNumber": "38",
+        "city": "Sagunt",
+        "postalCode": "46500",
+        "country": "Spanien",
+        "type": "house",
+        "numBeds": 5,
+        "numBathrooms": 1,
+        "area": 190,
+        "pricePerNight": 240,
+        "additionalInfo": ["kitchen", "pool", "wifi", "airConditioning"]
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Maintenance",
+    "order": 7,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Lennard Haschke",
+        "authorEmail": "Lennard.Haschke@hotmail.com",
+        "subject": "Ameisenbefall",
+        "content": "Guten Tag,\n\nich hoffe, es geht Ihnen gut. Ich bin Lennard Haschke und gerade in einem Ihrer Ferienhäuser \"Kleine Waldnuss\". Leider habe ich bemerkt, dass einige Ameisen über das Fenster in den Hauptraum eindringen. Es ist aber nicht dringend! Das gehört ja schließlich zu dem Erlebnis in so einem Baumhaus dazu, oder? :D Ich wollte nur mal bescheid sagen.\n\nMit besten Grüßen,\nLennard Haschke"
+      }
+    },
+    "Maintenance": {
+      "create": {
+        "name": "Lennard",
+        "surname": "Haschke",
+        "eMail": "Lennard.Haschke@hotmail.com",
+        "property": "Kleine Waldnuss",
+        "category": "pestControl",
+        "urgency": "low",
+        "description": "Ameisenbefall",
+        "location": "Hauptraum"
+      }
+    }
+  },
+  {
+    "category": "GroundTruth",
+    "type": "Booking",
+    "order": 8,
+    "dataSet": 2,
+    "EMail": {
+      "create": {
+        "author": "Mailin Heinemann",
+        "authorEmail": "Mailin.Heinemann@yahoo.com",
+        "subject": "Sommeraufenthalt in der Waldzauber Holzhütte 2026",
+        "content": "Guten Tag liebes Leafy-Lodges-Team,\n\ninteressiere mich für einen Aufenthalt in Ihrer Waldzauber Holzhütte. Unser gewünschter Reisezeitraum ist vom 26. Juni bis 10. Juli nächstes Jahr. Wir wären zu zweit, ohne Kinder.\nMeine Kontaktdaten lauten:\nDiepenthaler Str. 7\n09663 Bad Adriano, Deutschland\nTelefon: +49 1688 295385\n\nVielen Dank schon mal!\n\nFreundliche Grüße\nMailin Heinemann"
+      }
+    },
+    "Booking": {
+      "create": {
+        "name": "Mailin",
+        "surname": "Heinemann",
+        "phoneNumber": "+491688295385",
+        "eMail": "Mailin.Heinemann@yahoo.com",
+        "street": "Diepenthaler Str.",
+        "houseNumber": "7",
+        "city": "Bad Adriano",
+        "postalCode": "09663",
+        "country": "Deutschland",
+        "bookingStart": "2026-06-26T00:00:00.000Z",
+        "bookingEnd": "2026-07-10T00:00:00.000Z",
+        "numAdults": 2,
+        "numChildren": 0,
+        "property": "Waldzauber Holzhütte"
+      }
+    }
+  }
+]

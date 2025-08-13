@@ -13,6 +13,7 @@ export default function NoAgentDescription() {
             auf der jeweiligen E-Mail dem System hinzuzufügen.
             Dafür haben Sie <b>5min</b> Zeit. Versuchen Sie so viele E-Mails wie möglich dem
             System hinzuzufügen. Achten Sie darauf, dass Sie dabei möglichst keine Fehler machen.
+            Sie müssen <b>nicht</b> auf die E-Mails antworten. Dies wird vom System übernommen.
         </Typography>
     );
 }

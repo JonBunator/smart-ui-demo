@@ -22,6 +22,7 @@ export const categoryOptions = [
     { label: "Elektrik", value: "electrical" },
     { label: "HVAC (Heizung, Lüftung, Klima)", value: "hvac" },
     { label: "Gebäude", value: "structural" },
+    { label: "Reinigung", value: "cleaning" },
     { label: "Garten", value: "garden" },
     { label: "Möbel", value: "furniture" },
     { label: "Schädlingsbekämpfung", value: "pestControl" }
