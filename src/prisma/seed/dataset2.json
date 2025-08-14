@@ -9,13 +9,13 @@
         "author": "Kira Bartels",
         "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Penthouse mit Meeresblick in Italien",
-        "content": "Hallo,\n\nich hoffe, es geht dir gut. Ich möchte dir eine neue Unterkunft vorstellen, die wir in unser Portfolio aufnehmen. Es handelt sich um das 'Meerespanorama Penthouse'.\nAdresse: Via Ruggiero 55c, 20125 Santa Margherita Ligure, Italien.\nBeschreibung: Diese luxuriöse Penthouse Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.\nDie Wohnung verfügt über 3 Schlafzimmer, 2 Badezimmer und eine Fläche von 110m². Der Preis pro Nacht beträgt 300€. Zusätzliche Annehmlichkeiten sind eine voll ausgestattete Küche, WLAN und eine Klimaanlage.\n\nLiebe Grüße,\n\nKira"
+        "content": "Hallo,\n\nich hoffe, es geht dir gut. Ich möchte dir eine neue Unterkunft vorstellen, die wir in unser Portfolio aufnehmen. Es handelt sich um das 'Meerespanorama Penthouse'.\nAdresse: Via Ruggiero 55c, 20125 Santa Margherita Ligure, Italien.\nBeschreibung: Diese luxuriöse Penthouse-Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.\nDie Wohnung verfügt über 3 Schlafzimmer, 2 Badezimmer und eine Fläche von 110m². Der Preis pro Nacht beträgt 300€. Zusätzliche Annehmlichkeiten sind eine voll ausgestattete Küche, WLAN und eine Klimaanlage.\n\nLiebe Grüße,\n\nKira"
       }
     },
     "Property": {
       "create": {
         "name": "Meerespanorama Penthouse",
-        "description": "Diese luxuriöse Penthouse Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.",
+        "description": "Diese luxuriöse Penthouse-Wohnung in Italien bietet eine atemberaubende Terrasse mit einem 180-Grad-Blick auf das Meer und die umliegenden Hügel.",
         "street": "Via Ruggiero",
         "houseNumber": "55c",
         "city": "Santa Margherita Ligure",
@@ -130,12 +130,12 @@
         "author": "Kira Bartels",
         "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Hütte auf Bali hinzufügen",
-        "content": "Hallo,\n\nbitte füge unsere neue Unterkunft in Bali in das System ein. Sie trägt den Namen Strandtraum. Füge folgende Beschreibung hinzu: Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisenede, die Erholung suchen.\nAdresse: Jl. Tgk Daud Beureueh 23, 60212 Jehembang, Bali.\nPreis pro Nacht: 60€. Fläche: 30 m². Die Unterkunft hat 2 Betten, 1 Badezimmer und ist mit WLAN ausgestattet.\n\nDanke dir und liebe Grüße,\nKira"      }
+        "content": "Hallo,\n\nbitte füge unsere neue Unterkunft auf Bali in das System ein. Sie trägt den Namen Strandtraum. Füge folgende Beschreibung hinzu: Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisende, die Erholung suchen.\nAdresse: Jl. Tgk Daud Beureueh 23, 60212 Jehembang, Bali.\nPreis pro Nacht: 60€. Fläche: 30 m². Die Unterkunft hat 2 Betten, 1 Badezimmer und ist mit WLAN ausgestattet.\n\nDanke dir und liebe Grüße,\nKira"      }
     },
     "Property": {
       "create": {
         "name": "Strandtraum",
-        "description": "Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisenede, die Erholung suchen.",
+        "description": "Diese idyllische Hütte auf Bali, direkt am Strand im Wasser gelegen, bietet ein einzigartiges Erlebnis für Reisende, die Erholung suchen.",
         "street": " Jl. Tgk Daud Beureueh",
         "houseNumber": "23",
         "city": "Jehembang",
@@ -160,7 +160,7 @@
         "author": "Natalia Saile",
         "authorEmail": "Natalia.Saile13@yahoo.com",
         "subject": "Anfrage zur Gartenpflege",
-        "content": "Sehr geehrtes Wartungsteam,\n\nich möchte eine Anfrage zur Pflege des Gartens hinter dem Haus im Nordseeparadies stellen. Der Rasen benötigt dringend einen Schnitt und einige Sträucher sollten zurückgeschnitten werden. Es wäre schön, wenn sich bis morgen jemand darum kümmert. Wir würden gerne morgen grillen.\n\nVielen Dank im Voraus.\n\nMit freundlichen Grüßen,\nNatalia Saile"
+        "content": "Sehr geehrtes Wartungsteam,\n\nich möchte eine Anfrage zur Pflege des Gartens hinter dem Haus im Nordseeparadies stellen. Der Rasen benötigt dringend einen Schnitt und einige Sträucher sollten zurückgeschnitten werden. Es wäre schön, wenn sich bis morgen jemand darum kümmert. Wir würden gerne morgen grillen.\n\nVielen Dank im Voraus.\n\nMit freundlichen Grüßen\nNatalia Saile"
       }
     },
     "Maintenance": {
@@ -186,12 +186,12 @@
         "author": "Kira Bartels",
         "authorEmail": "kira.bartels@leafylodges.de",
         "subject": "Strandhaus in Spanien ins System einpflegen",
-        "content": "Hallo,\n\nbitte nimm das Strandhaus Sol auf.\nBeschreibung: Diese charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen. Das Haus liegt in der Ronda Fiscal 38 in 46500 Sagunt, Spanien, und bietet auf 190 m² fünf Betten, ein Badezimmer, eine Küche, einen Pool, WLAN sowie Klimaanlage – für 240 € pro Nacht.\n\nLiebe Grüße,\nKira"        }
+        "content": "Hallo,\n\nbitte nimm das Strandhaus Sol auf.\nBeschreibung: Dieses charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen. Das Haus liegt in der Ronda Fiscal 38 in 46500 Sagunt, Spanien und bietet auf 190 m² fünf Betten, ein Badezimmer, eine Küche, einen Pool, WLAN sowie Klimaanlage – für 240 € pro Nacht.\n\nLiebe Grüße,\nKira"        }
     },
     "Property": {
       "create": {
         "name": "Strandhaus Sol",
-        "description": "Diese charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen.",
+        "description": "Dieses charmante Ferienhaus in Spanien liegt nur unmittelbar vom Strand entfernt und bietet Zugang zu einem gemeinschaftlichen Pool. Perfekt für Urlauber, die eine entspannte Atmosphäre mit mediterranem Flair suchen.",
         "street": "Ronda Fiscal",
         "houseNumber": "38",
         "city": "Sagunt",
@@ -216,7 +216,7 @@
         "author": "Lennard Haschke",
         "authorEmail": "Lennard.Haschke@hotmail.com",
         "subject": "Ameisenbefall",
-        "content": "Guten Tag,\n\nich hoffe, es geht Ihnen gut. Ich bin Lennard Haschke und gerade in einem Ihrer Ferienhäuser \"Kleine Waldnuss\". Leider habe ich bemerkt, dass einige Ameisen über das Fenster in den Hauptraum eindringen. Es ist aber nicht dringend! Das gehört ja schließlich zu dem Erlebnis in so einem Baumhaus dazu, oder? :D Ich wollte nur mal bescheid sagen.\n\nMit besten Grüßen,\nLennard Haschke"
+        "content": "Guten Tag,\n\nich hoffe, es geht Ihnen gut. Ich bin Lennard Haschke und gerade in einem Ihrer Ferienhäuser \"Kleine Waldnuss\". Leider habe ich bemerkt, dass einige Ameisen über das Fenster in den Hauptraum eindringen. Es ist aber nicht dringend! Das gehört ja schließlich zu dem Erlebnis in so einem Baumhaus dazu, oder? :D Ich wollte nur mal Bescheid sagen.\n\nViele Grüßen\nLennard Haschke"
       }
     },
     "Maintenance": {

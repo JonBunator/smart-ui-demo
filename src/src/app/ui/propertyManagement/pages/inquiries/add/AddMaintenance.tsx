@@ -236,7 +236,7 @@ export default function AddMaintenance() {
                 <Grid size={{ xs: 12, sm: 12 }}>
                     <SmartTextField
                         variant="filled"
-                        label="Ortsspezifische Angaben (z.B. Küche, Badezimmer)"
+                        label="Ortsspezifische Angaben (z. B. Küche, Badezimmer)"
                         fullWidth
                         required
                         name="location"

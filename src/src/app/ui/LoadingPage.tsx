@@ -1,7 +1,7 @@
 import { CircularProgress, Typography } from "@mui/material";
 import "./LoadingPage.scss"
 
-export default function DebugButtons() {
+export default function LoadingPage() {
 
     return (
         <div className="loading-page">

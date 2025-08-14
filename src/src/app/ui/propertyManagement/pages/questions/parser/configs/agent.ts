@@ -128,7 +128,7 @@ export const agent: QuestionaireType =
         {
           type: "multiple-choice-grid",
           name: "agentAssessment",
-          description: "Fragen zu KI-Agenten Einschätzungen",
+          description: "Fragen zu KI-Agenten-Einschätzungen",
           xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Stimme eher nicht zu ", "Neutral", "Stimme eher zu", "Stimme zu", "Stimme völlig zu"],
           "yAxisLabels": [
             "Ich glaube, es könnte negative Konsequenzen geben, wenn ich den KI-Agenten benutze",

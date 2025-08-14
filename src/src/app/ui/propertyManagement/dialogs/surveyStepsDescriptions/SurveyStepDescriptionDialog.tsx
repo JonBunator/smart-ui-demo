@@ -8,17 +8,17 @@ import {useEffect, useState} from "react";
 
 const surveyStepsContent = [
     {
-        title: "Anwendung ohne KI-Agenten Unterstützung",
+        title: "Anwendung ohne KI-Agenten-Unterstützung",
         content: <NoAgentDescription/>,
         maxWidth: "sm"
     },
     {
-        title: "Anwendung mit KI-Agenten Unterstützung (Variante 1)",
+        title: "Anwendung mit KI-Agenten-Unterstützung (Variante 1)",
         content: <SecondStepDescription/>,
         maxWidth: "lg"
     },
     {
-        title: "Anwendung mit KI-Agenten Unterstützung (Variante 2)",
+        title: "Anwendung mit KI-Agenten-Unterstützung (Variante 2)",
         content: <ThirdStepDescription/>,
         maxWidth: "lg"
     },
