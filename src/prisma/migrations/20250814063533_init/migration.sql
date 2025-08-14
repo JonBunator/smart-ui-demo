@@ -229,10 +229,10 @@ ALTER TABLE "public"."EMail" ADD CONSTRAINT "EMail_dataId_fkey" FOREIGN KEY ("da
 ALTER TABLE "public"."Participation" ADD CONSTRAINT "Participation_surveyGroupId_fkey" FOREIGN KEY ("surveyGroupId") REFERENCES "public"."SurveyGroup"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_participationId_fkey" FOREIGN KEY ("participationId") REFERENCES "public"."Participation"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."ParticipationData" ADD CONSTRAINT "ParticipationData_groundTruthId_fkey" FOREIGN KEY ("groundTruthId") REFERENCES "public"."Data"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

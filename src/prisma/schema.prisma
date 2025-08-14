@@ -161,9 +161,9 @@ model ParticipationData {
   timestamp       DateTime      @default(now())
   surveyStep      Int
   participationId String
-  Participation   Participation @relation(fields: [participationId], references: [id])
+  Participation   Participation @relation(fields: [participationId], references: [id], onDelete: Cascade)
   dataId          Int
-  userData        Data          @relation("UserDataToParticipationData", fields: [dataId], references: [id])
+  userData        Data          @relation("UserDataToParticipationData", fields: [dataId], references: [id], onDelete: Cascade)
   groundTruthId   Int
   groundTruth     Data          @relation("GroundTruthToParticipationData", fields: [groundTruthId], references: [id])
 }
