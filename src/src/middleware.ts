@@ -1,4 +1,4 @@
-import {NextRequest, NextResponse} from 'next/server'
+import {NextRequest, NextResponse, userAgent} from 'next/server'
 import {getSession} from '@/lib/security/session'
 
 const protectedRoutes = ['/survey', '/questions', '/completed']
@@ -7,6 +7,15 @@ export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
     const isProtectedRoute = path !== '/' && protectedRoutes.some(route => path.startsWith(route));
     const sessionData = await getSession();
+    const { device } = userAgent(req)
+
+    if(device.type === "mobile" && path !== '/mobile') {
+        return NextResponse.redirect(new URL('/mobile', req.nextUrl));
+    }
+
+    if(device.type !== "mobile" && path === '/mobile') {
+        return NextResponse.redirect(new URL('/', req.nextUrl));
+    }
 
     // Redirect to / if the user is not authenticated
     if (isProtectedRoute && !sessionData) {
