@@ -7,11 +7,11 @@ export type SurveyFlowMachineContext = {
     dataIndex: number;
     numDataPerSurveyStep: number;
     timeout: number | null;
-    showHelpDialog: boolean;
+    pausedTime: number | null;
 };
 
 export type SurveyFlowMachineState = "InitialQuestions" | "Finished" | {
-    SurveyStep: "NotStarted" | "Running" | "NoMoreData" | "Questions"
+    SurveyStep: "NotStarted" | "Running" | "Paused" | "NoMoreData" | "Questions"
 }
 
 export type SurveyFlowMachineEvents =
@@ -58,7 +58,7 @@ const surveyFlowMachine = setup({
         dataIndex: 0,
         numDataPerSurveyStep: input.numDataPerSurveyStep,
         timeout: null,
-        showHelpDialog: false,
+        pausedTime: null,
     }),
     states: {
         InitialQuestions: {
@@ -81,18 +81,10 @@ const surveyFlowMachine = setup({
                     },
                     entry: [assign({
                         timeout: ({context}) => {
-                            return (new Date()).valueOf() + context.surveyStepDuration * 1000;
-                            }
-                        }),
-                        emit(({context}) => {
-                            return {
-                                type: "sendEmail",
-                                surveyStep: context.surveyStep,
-                                dataIndex: context.dataIndex,
-                            };
+                            return context.timeout ?? (new Date()).valueOf() + context.surveyStepDuration * 1000;
+                            },
                         }),
                     ],
-                    exit: [assign({showHelpDialog: false})],
                     invoke: {
                         id: "timerInterval",
                         src: "timerInterval",
@@ -100,13 +92,9 @@ const surveyFlowMachine = setup({
                     },
                     on: {
                         openHelpDialog: {
-                            actions: [ assign({showHelpDialog: true})]
-                        },
-                        closeHelpDialog: {
-                            actions: [ assign({showHelpDialog: false})]
+                            target: "Paused",
                         },
                         timerOut: {
-                            internal: true,
                             target: "Questions",
                         },
                         addData: {
@@ -135,6 +123,32 @@ const surveyFlowMachine = setup({
                         }
                     },
                 },
+                Paused: {
+                    entry: [
+                        assign({
+                            pausedTime: () => {
+                                return (new Date()).valueOf();
+                            }
+                        }),
+                    ],
+                    exit: [assign({
+                        timeout: ({context}) => {
+                            const now = (new Date()).valueOf();
+                            if(context.pausedTime !== null && context.timeout !== null) {
+                                const pausedDuration = now - context.pausedTime;
+                                return context.timeout + pausedDuration;
+                            }
+                            return now + context.surveyStepDuration * 1000;
+                        },
+                        pausedTime: null
+                    }),
+                    ],
+                    on: {
+                        closeHelpDialog: {
+                            target: "Running",
+                        }
+                    }
+                },
                 NoMoreData: {
                     on: {
                         completeNoMoreData: {
@@ -143,6 +157,10 @@ const surveyFlowMachine = setup({
                     }
                 },
                 Questions: {
+                    entry: [assign({
+                        timeout: null
+                    }),
+                    ],
                     on: {
                         completeQuestions: [
                             {

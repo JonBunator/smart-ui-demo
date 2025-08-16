@@ -17,13 +17,13 @@ const surveyStepsContent = [
         title: "Anwendung mit KI-Agenten-Unterstützung (Variante 1)",
         content: <SecondStepDescription/>,
         maxWidth: "lg",
-        minWaitSeconds: 60
+        minWaitSeconds: 5
     },
     {
         title: "Anwendung mit KI-Agenten-Unterstützung (Variante 2)",
         content: <ThirdStepDescription/>,
         maxWidth: "lg",
-        minWaitSeconds: 60
+        minWaitSeconds: 5
     },
 ]
 
@@ -32,17 +32,19 @@ export default function SurveyStepDescriptionDialog() {
     const [approvalTitle, setApprovalTitle] = useState("Studie Starten");
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const surveyStep = snapshot?.context.surveyStep ?? 0;
+    const paused = snapshot?.matches({SurveyStep: "Paused"}) ?? false;
+
 
     useEffect(() => {
-        if(snapshot?.context.showHelpDialog) {
+        if(paused) {
             setApprovalTitle("Fortfahren");
             setButtonDisabled(false);
         }
-    }, [snapshot?.context.showHelpDialog]);
+    }, [paused, snapshot]);
 
     useEffect(() => {
         if(snapshot?.matches({SurveyStep: "NotStarted"})) {
-            setApprovalTitle("Starten");
+            setApprovalTitle("Studie Starten");
             setTimeout(() => setButtonDisabled(false), surveyStepsContent[surveyStep].minWaitSeconds * 1000);
         }
     }, [snapshot, surveyStep]);
@@ -60,8 +62,8 @@ export default function SurveyStepDescriptionDialog() {
     }
 
     return (
-        <ApprovalDialog open={(snapshot?.matches({SurveyStep: "NotStarted"}) || snapshot?.context.showHelpDialog) ?? false}
-                        closable={snapshot?.context.showHelpDialog ?? false}
+        <ApprovalDialog open={(snapshot?.matches({SurveyStep: "NotStarted"}) || paused) ?? false}
+                        closable={paused ?? false}
                         maxWidth={surveyStepsContent[surveyStep].maxWidth as "sm" | "md"}
                         onApprove={approve}
                         onClose={closeDialog}

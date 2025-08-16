@@ -11,7 +11,7 @@ export default function QuestionsNavigation() {
         const unsubscribe = subscribe((snapshot) => {
             if(snapshot.matches("Finished")) {
                 router.push("/completed");
-            } else if(snapshot.matches("NotStarted") || snapshot.matches({SurveyStep: "NotStarted"})) {
+            } else if(snapshot.matches({SurveyStep: "NotStarted"})) {
                 router.push("/survey/bookings")
             }
         })
