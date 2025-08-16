@@ -3,12 +3,12 @@ import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/pars
 export const agent: QuestionaireType =
     {
       title: "Umfrage zu Bearbeitung mit KI-Agenten",
-      description: "Die Zeit ist abgelaufen!Bitte beantworten Sie die folgenden Fragen basierend auf Ihrer eben erfolgten Interaktion mit der Verwaltungssoftware für Ferienhäuser innerhalb des 5-minütigen Zeitfensters. In diesen Fragen bezieht sich **Produkt** auf die genannte Anwendung. Beachten Sie, dass sich die Fragen **nicht** auf die gesamte Umfrage beziehen.",
+      description: "Die Zeit ist abgelaufen! Bitte beantworten Sie die folgenden Fragen basierend auf Ihrer eben erfolgten Interaktion mit der Verwaltungssoftware für Ferienhäuser innerhalb des 5-minütigen Zeitfensters. In diesen Fragen bezieht sich **Produkt** auf die genannte Anwendung. Beachten Sie, dass sich die Fragen **nicht** auf die gesamte Umfrage beziehen.",
       elements: [
         {
           type: "ueq+",
           name: "efficiency",
-          description: "**Effizienz**: Für das Erreichen meiner Ziele empfinde ich das Produkt als...",
+          description: "**Effizienz**: Für das Erreichen meiner Ziele empfinde ich das Produkt als... *(aus Sicht eines Mitarbeiters der Ferienhausvermietung)*",
           scaleSize: 7,
           labels: [
             ["langsam", "schnell"],
@@ -20,7 +20,7 @@ export const agent: QuestionaireType =
         {
           type: "ueq+",
           name: "perspicuity",
-          description: "**Durchschaubarkeit**: Die Bedienung des Produkts empfinde ich als...",
+          description: "**Durchschaubarkeit**: Die Bedienung des Produkts empfinde ich als... *(aus Sicht eines Mitarbeiters der Ferienhausvermietung)*",
           scaleSize: 7,
           labels: [
             ["unverständlich", "verständlich"],
@@ -32,7 +32,7 @@ export const agent: QuestionaireType =
         {
           type: "ueq+",
           name: "dependability",
-          description: "**Steuerbarkeit**: Die Reaktion des Produkts auf meine Eingaben und Befehle empfinde ich als...",
+          description: "**Steuerbarkeit**: Die Reaktion des Produkts auf meine Eingaben und Befehle empfinde ich als... *(aus Sicht eines Mitarbeiters der Ferienhausvermietung)*",
           scaleSize: 7,
           labels: [
             ["unberechenbar", "vorhersagbar"],
@@ -44,7 +44,7 @@ export const agent: QuestionaireType =
         {
           type: "ueq+",
           name: "intuitiveUse",
-          description: "**Intuitive Bedienung**: Die Bedienung des Produkts wirkt auf mich...",
+          description: "**Intuitive Bedienung**: Die Bedienung des Produkts wirkt auf mich... *(aus Sicht eines Mitarbeiters der Ferienhausvermietung)*",
           scaleSize: 7,
           labels: [
             ["mühevoll", "mühelos"],
@@ -59,6 +59,7 @@ export const agent: QuestionaireType =
           description: "Selbstwahrnehmung bei der Aufgabenbearbeitung",
           xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Stimme eher nicht zu ", "Neutral", "Stimme eher zu", "Stimme zu", "Stimme völlig zu"],
           yAxisLabels: [
+            "Ich war überfordert bei der Bearbeitung der Aufgaben",
             "Ich fühlte mich fähig während der Bearbeitung der Aufgaben",
             "Ich hatte das Gefühl, dass ich gut bei der Bearbeitung der Aufgaben war",
           ]
