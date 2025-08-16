@@ -1,0 +1,10 @@
+.no-agent-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

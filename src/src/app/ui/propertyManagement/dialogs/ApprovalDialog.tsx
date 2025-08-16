@@ -29,6 +29,10 @@ interface ApprovalDialogProps extends Omit<DialogProps, 'title' | 'content'> {
      */
     closable?: boolean
     /**
+     * When true, approval button is disabled.
+     */
+    buttonDisabled?: boolean
+    /**
      * Title of the dialog.
      */
     title?: React.ReactNode
@@ -39,7 +43,7 @@ interface ApprovalDialogProps extends Omit<DialogProps, 'title' | 'content'> {
 }
 
 export default function ApprovalDialog(props: ApprovalDialogProps) {
-    const { open, onApprove, onClose, closable = true, approvalTitle, title, content, ...dialogProps } = props;
+    const { open, onApprove, onClose, closable = true, buttonDisabled = false, approvalTitle, title, content, ...dialogProps } = props;
 
     return (
         <Dialog open={open} onClose={closable ? onClose : undefined} {...dialogProps}>
@@ -48,7 +52,7 @@ export default function ApprovalDialog(props: ApprovalDialogProps) {
                 {content}
             </DialogContent>
             <DialogActions>
-                <Button onClick={onApprove} variant="contained">{approvalTitle ?? "Starten"}</Button>
+                <Button onClick={onApprove} disabled={buttonDisabled} variant="contained">{approvalTitle ?? "Starten"}</Button>
             </DialogActions>
         </Dialog>
     );

@@ -8,10 +8,6 @@ import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
 interface SurveyManagerContextType {
     /**
-     * Starts the survey.
-     */
-    startSurvey: () => void
-    /**
      * Starts the next survey step.
      */
     startSurveyStep: () => void
@@ -121,7 +117,6 @@ export default function SurveyManagerProvider({children}: { children: React.Reac
     }, [sendEvent]);
     
     const value = useMemo(() => ({
-        startSurvey: () => sendEvent({type: "startSurvey"}),
         startSurveyStep: () => sendEvent({type: "startSurveyStep"}),
         addData: () => sendEvent({type: "addData"}),
         completeQuestions: () => sendEvent({type: "completeQuestions"}),

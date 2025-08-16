@@ -3,7 +3,7 @@ import {QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/pars
 export const noAgent: QuestionaireType =
     {
         title: "Umfrage zu Bearbeitung ohne KI-Agenten",
-        description: "Bitte beantworten Sie die folgenden Fragen basierend auf Ihrer eben erfolgten Interaktion mit der Verwaltungssoftware für Ferienhäuser innerhalb des 5-minütigen Zeitfensters. In diesen Fragen bezieht sich **Produkt** auf die genannte Anwendung. Beachten Sie, dass sich die Fragen **nicht** auf die gesamte Umfrage beziehen.",
+        description: "Die Zeit ist abgelaufen!\nBitte beantworten Sie die folgenden Fragen basierend auf Ihrer eben erfolgten Interaktion mit der Verwaltungssoftware für Ferienhäuser innerhalb des 5-minütigen Zeitfensters. In diesen Fragen bezieht sich **Produkt** auf die genannte Anwendung. Beachten Sie, dass sich die Fragen **nicht** auf die gesamte Umfrage beziehen.",
         elements: [
             {
                 type: "ueq+",

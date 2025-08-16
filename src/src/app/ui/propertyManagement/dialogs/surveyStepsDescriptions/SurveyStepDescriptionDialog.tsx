@@ -10,36 +10,42 @@ const surveyStepsContent = [
     {
         title: "Anwendung ohne KI-Agenten-Unterstützung",
         content: <NoAgentDescription/>,
-        maxWidth: "sm"
+        maxWidth: "lg",
+        minWaitSeconds: 5
     },
     {
         title: "Anwendung mit KI-Agenten-Unterstützung (Variante 1)",
         content: <SecondStepDescription/>,
-        maxWidth: "lg"
+        maxWidth: "lg",
+        minWaitSeconds: 60
     },
     {
         title: "Anwendung mit KI-Agenten-Unterstützung (Variante 2)",
         content: <ThirdStepDescription/>,
-        maxWidth: "lg"
+        maxWidth: "lg",
+        minWaitSeconds: 60
     },
 ]
 
 export default function SurveyStepDescriptionDialog() {
     const { snapshot, startSurveyStep, showHelpDialog } = useSurveyManager();
-    const [approvalTitle, setApprovalTitle] = useState("Starten");
+    const [approvalTitle, setApprovalTitle] = useState("Studie Starten");
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const surveyStep = snapshot?.context.surveyStep ?? 0;
 
     useEffect(() => {
         if(snapshot?.context.showHelpDialog) {
             setApprovalTitle("Fortfahren");
+            setButtonDisabled(false);
         }
     }, [snapshot?.context.showHelpDialog]);
 
     useEffect(() => {
         if(snapshot?.matches({SurveyStep: "NotStarted"})) {
             setApprovalTitle("Starten");
+            setTimeout(() => setButtonDisabled(false), surveyStepsContent[surveyStep].minWaitSeconds * 1000);
         }
-    }, [snapshot]);
+    }, [snapshot, surveyStep]);
 
     function closeDialog() {
         showHelpDialog(false);
@@ -59,6 +65,7 @@ export default function SurveyStepDescriptionDialog() {
                         maxWidth={surveyStepsContent[surveyStep].maxWidth as "sm" | "md"}
                         onApprove={approve}
                         onClose={closeDialog}
+                        buttonDisabled={buttonDisabled}
                         title={surveyStepsContent[surveyStep].title}
                         content={surveyStepsContent[surveyStep].content}
                         approvalTitle={approvalTitle}
