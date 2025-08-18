@@ -62,21 +62,21 @@ export const initial: QuestionaireType =
             {
                 type: "multiple-choice-grid",
                 name: "machineTrust",
-                description: "Im Folgenden geht es um Ihr **Vertrauen** in technische Systeme. Mit **technischen Systemen** sind sowohl Software-Anwendungen und KI-Agenten als auch komplette digitale Geräte (z. B. Handy, Computer, Fernseher) gemeint.",
+                description: "Im Folgenden geht es um Ihr **Vertrauen** in KI-Systeme. Unter **KI-Systemen** versteht man Software- und Hardwaresysteme, die Künstliche Intelligenz nutzen, um gewisse Ziele zu erreichen. (z. B. ChatGPT)",
                 xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Neutral", "Stimme zu", "Stimme völlig zu"],
                 yAxisLabels: [
-                    "Ich vertraue normalerweise technischen Systemen, bis es einen Grund gibt, dies nicht zu tun",
-                    "Im Großen und Ganzen misstraue ich technischen Systemen",
-                    "Im Allgemeinen würde ich mich auf ein technisches System verlassen, um mir zu helfen",
-                    "Meine Neigung, technischen Systemen zu vertrauen, ist hoch",
-                    "Es fällt mir leicht, technischen Systemen zu vertrauen, dass sie ihre Arbeit erledigen",
-                    "Ich neige dazu, einem technischen System zu vertrauen, selbst wenn ich wenig Wissen darüber habe",
+                    "Ich vertraue normalerweise einem KI-System, bis es einen Grund gibt, dies nicht zu tun",
+                    "Im Großen und Ganzen misstraue ich KI-Systemen",
+                    "Im Allgemeinen würde ich mich auf ein KI-System verlassen, um mir zu helfen",
+                    "Meine Neigung, KI-Systemen zu vertrauen, ist hoch",
+                    "Es fällt mir leicht, KI-Systemen zu vertrauen, dass sie ihre Arbeit erledigen",
+                    "Ich neige dazu, einem KI-System zu vertrauen, selbst wenn ich wenig Wissen darüber habe",
                 ]
             },
             {
                 type: "multiple-choice-grid",
                 name: "technologicalAffinity",
-                description: "Im Folgenden geht es um Ihre **Interaktion** mit technischen Systemen. Mit **technischen Systemen** sind sowohl Software-Anwendungen und KI-Agenten als auch komplette digitale Geräte (z. B. Handy, Computer, Fernseher) gemeint.",
+                description: "Im Folgenden geht es um Ihre **Interaktion** mit technischen Systemen. Mit **technischen Systemen** sind sowohl Software-Anwendungen und KI-Systeme als auch komplette digitale Geräte (z. B. Handy, Computer, Fernseher) gemeint.",
                 xAxisLabels: ["Stimmt gar nicht", "Stimmt weitgehend nicht", "Stimmt eher nicht", "Stimmt eher", "Stimmt weitgehend", "Stimmt völlig"],
                 yAxisLabels: [
                     "Ich beschäftige mich gern genauer mit technischen Systemen",
