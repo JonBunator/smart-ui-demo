@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  align-items: center;
-  .gif {
+  .video-container {
     width: 100%;
-    height: auto;
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,15 +1,23 @@
 import { Typography } from "@mui/material";
-import "./NoAgentDescription.scss"
+import "./SurveyStepDescription.scss"
+import React from "react";
 
 export default function NoAgentDescription() {
 
     return (
-        <div className="no-agent-description">
+        <div className="survey-step-description">
             <Typography>
-                Bitte sehen Sie sich das folgende Video aufmerksam an, idealerweise im Vollbildmodus. Beachten Sie, dass das Video auch Ton enthält.            </Typography>
+                Bitte sehen Sie sich das folgende Video aufmerksam an, idealerweise im Vollbildmodus. Beachten Sie, dass das Video auch Audio bzw. Untertitel enthält.
+            </Typography>
             <div className="video-container">
                 <video width="960" height="540" controls preload="none">
                     <source src="/videos/general-explanation.mp4" type="video/mp4" />
+                    <track
+                        src="/videos/general-explanation.vtt"
+                        kind="subtitles"
+                        srcLang="de"
+                        label="Deutsch"
+                    />
                 </video>
             </div>
             <Typography>

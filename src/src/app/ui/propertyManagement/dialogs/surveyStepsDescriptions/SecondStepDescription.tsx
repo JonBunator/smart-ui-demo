@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Image from "next/image";
 import React from "react";
 import './SurveyStepDescription.scss'
 
@@ -8,15 +7,19 @@ export default function SecondStepDescription() {
     return (
         <div className="survey-step-description">
             <Typography>
-                Durch ein neues Update wurde dem System ein intelligenter KI-Agent hinzugefügt, der den Mitarbeitern bei ihren
-                Aufgaben helfen soll. Interaktionen mit dem Agenten sind in der Benutzeroberfläche mit <b>magenta-blauen</b> Farben dargestellt.
+                Bitte sehen Sie sich das folgende Video aufmerksam an, idealerweise im Vollbildmodus. Beachten Sie, dass das Video auch Audio bzw. Untertitel enthält.
             </Typography>
-            <Image className="gif" src="/image/ai-agent.gif" width={1150} height={398} alt="user interface with ai agent" unoptimized placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHBAMAAAD65XALAAAAGFBMVEUSEhI3OjkfICEZGho+PzwzNTQmKSkvMTH51JgIAAAAR0lEQVQI12NITEtSUklWUjJgZigNLSsNKRNTNlJmEBEUFE8vKlNgYAAzjY2VDMBMEXcgxWAMZLqIuIKYigYMIqGh4SCmmgEADecLOCovv5cAAAAASUVORK5CYII="/>
-            <Typography>
-                Durch den <b>Ausfüllen</b>-Knopf lassen sich beispielsweise Formulare mit Textinhalten aus der Zwischenablage befüllen.
-                Dies ist auch über das Einfügen des Textes in das Chat-Fenster des KI-Agenten möglich. Damit lassen sich z. B. die Daten
-                aus E-Mails über Copy-Paste (Kopieren und Einfügen) automatisch in das Formular überführen.
-            </Typography>
+            <div className="video-container">
+                <video width="960" height="474" controls preload="none">
+                    <source src="/videos/ai-explanation.mp4" type="video/mp4" />
+                    <track
+                        src="/videos/ai-explanation.vtt"
+                        kind="subtitles"
+                        srcLang="de"
+                        label="Deutsch"
+                    />
+                </video>
+            </div>
             <Typography>
                 <br/>
                 Sie bekommen wieder E-Mails der folgenden Typen:<br/>
