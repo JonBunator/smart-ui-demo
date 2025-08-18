@@ -216,6 +216,7 @@ model AgentQuestions {
   helpfulness        Int
   interpretation     Int
   processing         Int
+  acceptance         Int
   monitoringRole     Int
   decisionMakerRole  Int
   activeRole         Int

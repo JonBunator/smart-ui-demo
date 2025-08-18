@@ -183,6 +183,7 @@ CREATE TABLE "public"."AgentQuestions" (
     "helpfulness" INTEGER NOT NULL,
     "interpretation" INTEGER NOT NULL,
     "processing" INTEGER NOT NULL,
+    "acceptance" INTEGER NOT NULL,
     "monitoringRole" INTEGER NOT NULL,
     "decisionMakerRole" INTEGER NOT NULL,
     "activeRole" INTEGER NOT NULL,

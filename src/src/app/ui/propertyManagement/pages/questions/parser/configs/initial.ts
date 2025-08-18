@@ -62,7 +62,7 @@ export const initial: QuestionaireType =
             {
                 type: "multiple-choice-grid",
                 name: "machineTrust",
-                description: "Im Folgenden geht es um Ihr **Vertrauen** in KI-Systeme. Unter **KI-Systemen** versteht man Software- und Hardwaresysteme, die Künstliche Intelligenz nutzen, um gewisse Ziele zu erreichen. (z. B. ChatGPT)",
+                description: "Im Folgenden geht es um Ihr **Vertrauen** in KI-Systeme. Unter **KI-Systemen** versteht man Software- und Hardwaresysteme, die Künstliche Intelligenz nutzen, um gewisse Ziele zu erreichen (z. B. ChatGPT).",
                 xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Neutral", "Stimme zu", "Stimme völlig zu"],
                 yAxisLabels: [
                     "Ich vertraue normalerweise einem KI-System, bis es einen Grund gibt, dies nicht zu tun",

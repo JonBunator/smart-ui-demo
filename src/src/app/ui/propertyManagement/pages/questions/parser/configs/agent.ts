@@ -101,9 +101,16 @@ export const agent: QuestionaireType =
         {
           type: "slider",
           name: "processing",
-          description: "Wie haben Sie die Antworten des KI-Agenten normalerweise verarbeitet? Passen Sie den Schieberegler entsprechend von 0-100 an.",
-          startLabel: "Sehr schnell",
-          endLabel: "Sehr langsam"
+          description: "Wie schnell haben Sie die Antworten des KI-Agenten normalerweise verarbeitet? Passen Sie den Schieberegler entsprechend von 0-100 an.",
+          startLabel: "Sehr langsam",
+          endLabel: "Sehr schnell"
+        },
+        {
+          type: "slider",
+          name: "acceptance",
+          description: "Wie oft haben Sie Vorschläge für Änderungen in der Benutzeroberfläche durch den KI-Agenten einfach akzeptiert, ohne sie zu überprüfen? Passen Sie den Schieberegler entsprechend von 0-100 an.",
+          startLabel: "Nie",
+          endLabel: "Immer"
         },
         {
           type: "slider",
@@ -134,6 +141,7 @@ export const agent: QuestionaireType =
           "yAxisLabels": [
             "Ich glaube, es könnte negative Konsequenzen geben, wenn ich den KI-Agenten benutze",
             "Ich fühle, ich muss vorsichtig sein, wenn ich den KI-Agenten benutze",
+            "Wählen Sie bitte \"Stimme völlig zu\" aus",
             "Es ist riskant, mit dem KI-Agenten zu interagieren",
             "Ich glaube, dass der KI-Agent in meinem besten Interesse handelt",
             "Ich glaube, dass der KI-Agent sein Bestes tun wird, um mir zu helfen, wenn ich Hilfe brauche",
