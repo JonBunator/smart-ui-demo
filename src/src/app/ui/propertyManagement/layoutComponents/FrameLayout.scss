@@ -10,6 +10,8 @@
     flex-direction: column;
     gap: 16px;
     z-index: 2;
+    box-shadow: none;
+
     @media (max-width: 1200px) {
       width: 100%;
       border-radius: 0;

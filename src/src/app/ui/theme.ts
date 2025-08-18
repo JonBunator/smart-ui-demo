@@ -60,16 +60,16 @@ export const theme = createTheme({
     shape: {
         borderRadius: 8,
     },
-    spacing: 4,
     components: {
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    boxShadow: 'none',
-                },
-            },
-        },
+        MuiAutocomplete: {
+          defaultProps: {
+              slotProps: {
+                  paper: {elevation: 5}
+              }
+          }
+      }
     },
+    spacing: 4,
 },
     deDE,
     deDEDatagrid);

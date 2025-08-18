@@ -3,8 +3,9 @@
     flex-direction: column;
     gap: 8px;
     max-height: calc(100% - 16px);
+    box-shadow: none;
 
-    .yes-no-buttons {
+  .yes-no-buttons {
       display: flex;
       gap: 4px;
       margin: 0 8px 2px 8px;
