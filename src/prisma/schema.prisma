@@ -13,20 +13,15 @@ datasource db {
 
 /**
  * Survey type
- * 0: No Agent -> Agent -> Proactive Agent (With complete fill)
- * 1: No Agent -> Proactive Agent -> Agent (With section fill)
- * 2: No Agent -> Agent -> Proactive Agent (With section fill)
- * 3: No Agent -> Proactive Agent -> Agent (With complete fill)
+ * 0: No Agent -> Agent
+ * 1: No Agent -> Proactive Agent
  */
 
 /**
- * dataSetOrder can be 0 - 5, specifies the order the datasets are assigned
- * 0: A -> B -> C
- * 1: A -> C -> B
- * 2: B -> C -> A
- * 3: B -> A -> C
- * 4: C -> A -> B
- * 5: C -> B -> A
+ * dataSetOrder can be 0 - 2, specifies the order the datasets are assigned
+ * 0: A -> B
+ * 1: B -> C
+ * 2: C -> A
  */
 model Survey {
   id               Int @id @default(autoincrement())
@@ -139,21 +134,20 @@ model EMail {
 }
 
 model Participation {
-  id                          String              @id @default(uuid())
-  timestamp                   DateTime            @default(now())
-  state                       String?
-  surveyState                 String?
-  completionTimestamp         DateTime?
-  surveyType                  Int
-  dataSetOrder                Int
-  promptHistoryAgent          String?
-  promptHistoryProactiveAgent String?
-  surveyGroupId               Int
-  SurveyGroup                 SurveyGroup         @relation(fields: [surveyGroupId], references: [id], onDelete: Cascade)
-  ParticipationData           ParticipationData[]
-  initialQuestions            InitialQuestions?
-  noAgentQuestions            NoAgentQuestions?
-  agentQuestions              AgentQuestions[]
+  id                  String              @id @default(uuid())
+  timestamp           DateTime            @default(now())
+  state               String?
+  surveyState         String?
+  completionTimestamp DateTime?
+  surveyType          Int
+  dataSetOrder        Int
+  promptHistory       String?
+  surveyGroupId       Int
+  SurveyGroup         SurveyGroup         @relation(fields: [surveyGroupId], references: [id], onDelete: Cascade)
+  ParticipationData   ParticipationData[]
+  initialQuestions    InitialQuestions?
+  noAgentQuestions    NoAgentQuestions?
+  agentQuestions      AgentQuestions?
 }
 
 model ParticipationData {
@@ -203,7 +197,7 @@ enum AgentQuestionsType {
 
 model AgentQuestions {
   id                 Int                @id @default(autoincrement())
-  participationId    String
+  participationId    String             @unique
   Participation      Participation      @relation(fields: [participationId], references: [id], onDelete: Cascade)
   type               AgentQuestionsType
   efficiency         Int[]

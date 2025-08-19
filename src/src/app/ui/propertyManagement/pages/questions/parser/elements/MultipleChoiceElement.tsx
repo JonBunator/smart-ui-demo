@@ -2,7 +2,7 @@
 import {
     ElementPropsType, MultipleChoiceElementType,
 } from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {Autocomplete, TextField, FormControl, FormHelperText} from "@mui/material";
+import {Autocomplete, TextField} from "@mui/material";
 import React, {useCallback, useEffect, useState} from "react";
 import { useQuestionsParser } from "../QuestionsParser";
 import "./MultipleChoiceElement.scss"

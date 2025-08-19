@@ -118,8 +118,7 @@ CREATE TABLE "public"."Participation" (
     "completionTimestamp" TIMESTAMP(3),
     "surveyType" INTEGER NOT NULL,
     "dataSetOrder" INTEGER NOT NULL,
-    "promptHistoryAgent" TEXT,
-    "promptHistoryProactiveAgent" TEXT,
+    "promptHistory" TEXT,
     "surveyGroupId" INTEGER NOT NULL,
 
     CONSTRAINT "Participation_pkey" PRIMARY KEY ("id")
@@ -213,6 +212,9 @@ CREATE UNIQUE INDEX "InitialQuestions_participationId_key" ON "public"."InitialQ
 
 -- CreateIndex
 CREATE UNIQUE INDEX "NoAgentQuestions_participationId_key" ON "public"."NoAgentQuestions"("participationId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "AgentQuestions_participationId_key" ON "public"."AgentQuestions"("participationId");
 
 -- AddForeignKey
 ALTER TABLE "public"."Booking" ADD CONSTRAINT "Booking_dataId_fkey" FOREIGN KEY ("dataId") REFERENCES "public"."Data"("id") ON DELETE CASCADE ON UPDATE CASCADE;
