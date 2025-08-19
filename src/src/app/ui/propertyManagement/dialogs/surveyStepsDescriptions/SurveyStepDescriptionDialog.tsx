@@ -30,6 +30,7 @@ const surveyStepsContent = [
 export default function SurveyStepDescriptionDialog() {
     const { snapshot, startSurveyStep, showHelpDialog } = useSurveyManager();
     const [approvalTitle, setApprovalTitle] = useState("Studie Starten");
+    const [remainingTimeText, setRemainingTimeText] = useState<string | undefined>(undefined);
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const surveyStep = snapshot?.context.surveyStep ?? 0;
     const paused = snapshot?.matches({SurveyStep: "Paused"}) ?? false;
@@ -39,13 +40,24 @@ export default function SurveyStepDescriptionDialog() {
         if(paused) {
             setApprovalTitle("Fortfahren");
             setButtonDisabled(false);
+            setRemainingTimeText(undefined);
         }
     }, [paused, snapshot]);
 
     useEffect(() => {
         if(snapshot?.matches({SurveyStep: "NotStarted"})) {
             setApprovalTitle("Studie Starten");
-            setTimeout(() => setButtonDisabled(false), surveyStepsContent[surveyStep].minWaitSeconds * 1000);
+            let countdown = surveyStepsContent[surveyStep].minWaitSeconds;
+            const interval = setInterval(() => {
+                countdown -= 1;
+                setRemainingTimeText(`Kann in ${countdown} Sekunden gestartet werden...`);
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    setButtonDisabled(false);
+                    setRemainingTimeText(undefined);
+                }
+            }, 1000);
+            return () => clearInterval(interval);
         }
     }, [snapshot, surveyStep]);
 
@@ -71,6 +83,7 @@ export default function SurveyStepDescriptionDialog() {
                         title={surveyStepsContent[surveyStep].title}
                         content={surveyStepsContent[surveyStep].content}
                         approvalTitle={approvalTitle}
+                        approvalButtonSideText={remainingTimeText}
         />
     );
 }
