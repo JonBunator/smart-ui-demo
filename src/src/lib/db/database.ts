@@ -154,32 +154,6 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
     }
 }
 
-export async function multipleAgentStepsAllowed(): Promise<boolean | null> {
-    const sessionData = await getSession();
-    if(!sessionData) {
-        return null;
-    }
-
-    try {
-        const participation = await prisma.participation.findUnique({
-            where: {
-                id: sessionData.userId,
-            },
-        });
-
-        if(!participation) {
-            throw new UnknownError();
-        }
-
-        return SURVEY_TYPES_WITH_MULTI_AGENT_STEPS.includes(participation.surveyType);
-
-    } catch(error) {
-        console.error(error);
-        throw new UnknownError();
-    }
-}
-
-
 /**
  * Sets the current state of the survey state machine.
  * @param state Stringified JSON state.

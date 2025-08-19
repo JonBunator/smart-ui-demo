@@ -37,7 +37,6 @@ const pageDescriptions = [
 
 export default function SmartAgentProviderSetup({children}: {children: ReactNode}) {
     const [customSystemPrompt, setCustomSystemPrompt] = useState("");
-    const [allowMultipleSteps, setAllowMultipleSteps] = useState<boolean>(false);
     const currentPagePath = usePathname();
     const { subscribe } = useSurveyManager();
 
@@ -52,20 +51,12 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
     }, [subscribe]);
 
     function updateSmartAgentProps() {
-        Promise.all([getAISupportForCurrentSurveyStep(), multipleAgentStepsAllowed()]).then(
-            (values) => {
-                const aiSupport = values[0];
-                const allowMultipleSteps = values[1];
-                if(aiSupport === AISupport.NONE) {
-                    return;
-                }
-                if(aiSupport !== null && allowMultipleSteps !== null) {
-                    const systemPrompt = getSystemPrompt(allowMultipleSteps, aiSupport === AISupport.PROACTIVE_AGENT);
-                    setCustomSystemPrompt(systemPrompt);
-                    setAllowMultipleSteps(allowMultipleSteps);
-                }
+        getAISupportForCurrentSurveyStep().then((aiSupport) => {
+            if(aiSupport !== null) {
+                const systemPrompt = getSystemPrompt(aiSupport === AISupport.PROACTIVE_AGENT);
+                setCustomSystemPrompt(systemPrompt);
             }
-        )
+        })
     }
 
     return (
@@ -73,7 +64,7 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
                                 customSystemPrompt={customSystemPrompt}
                                 currentPagePath={currentPagePath}
                                 pageDescriptions={pageDescriptions}
-                                allowMultipleSteps={allowMultipleSteps}
+                                allowMultipleSteps={false}
                                 defaultChatHistoryMemory={8}
             >
                     {children}
