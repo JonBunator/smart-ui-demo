@@ -17,7 +17,7 @@ import {
     NUM_DATA_INDICES,
     NUM_DATA_PER_SURVEY_STEP,
     NUM_SURVEY_STEPS,
-    NUM_SURVEY_TYPES,
+    NUM_SURVEY_TYPES, SURVEY_TYPES_WITH_MULTI_AGENT_STEPS
 } from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
@@ -589,13 +589,29 @@ export async function setPromptHistory(promptHistory: string){
 		return;
 	}
 
+    const aiSupport = await getAISupportForCurrentSurveyStep()
+
+    if(aiSupport === null) {
+        throw new UnknownError();
+    }
+
+    let promptHistoryKey;
+
+    if (aiSupport === AISupport.AGENT) {
+        promptHistoryKey = "promptHistoryAgent";
+    } else if(aiSupport === AISupport.PROACTIVE_AGENT) {
+        promptHistoryKey = "promptHistoryProactiveAgent";
+    } else {
+        return;
+    }
+
     try {
         await prisma.participation.update({
             where: {
                 id: sessionData.userId,
             },
             data: {
-                promptHistory: promptHistory,
+                [promptHistoryKey]: promptHistory,
             },
         });
 

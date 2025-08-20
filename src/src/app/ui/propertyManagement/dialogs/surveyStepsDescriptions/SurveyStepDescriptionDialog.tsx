@@ -3,6 +3,7 @@ import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/Surv
 import ApprovalDialog from "@/app/ui/propertyManagement/dialogs/ApprovalDialog";
 import NoAgentDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/NoAgentDescription";
 import SecondStepDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/SecondStepDescription";
+import ThirdStepDescription from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/ThirdStepDescription";
 import {useEffect, useState} from "react";
 
 const surveyStepsContent = [
@@ -13,11 +14,17 @@ const surveyStepsContent = [
         minWaitSeconds: 5
     },
     {
-        title: "Anwendung mit KI-Agenten-Unterstützung",
+        title: "Anwendung mit KI-Agenten-Unterstützung (Variante 1)",
         content: <SecondStepDescription/>,
         maxWidth: "lg",
         minWaitSeconds: 5
-    }
+    },
+    {
+        title: "Anwendung mit KI-Agenten-Unterstützung (Variante 2)",
+        content: <ThirdStepDescription/>,
+        maxWidth: "lg",
+        minWaitSeconds: 5
+    },
 ]
 
 export default function SurveyStepDescriptionDialog() {

@@ -12,8 +12,8 @@ import QuestionsParser from "@/app/ui/propertyManagement/pages/questions/parser/
 import FrameLayout from "@/app/ui/propertyManagement/layoutComponents/FrameLayout";
 import "./Questions.scss"
 
-const questionaires = [initial, noAgent, agent]
-const addDataFunctions = [addInitialQuestions, addNoAgentQuestions, addAgentQuestions]
+const questionaires = [initial, noAgent, agent, agent]
+const addDataFunctions = [addInitialQuestions, addNoAgentQuestions, addAgentQuestions, addAgentQuestions]
 
 export default async function Questions() {
     const initialQuestions = await isInitialQuestions();
@@ -25,7 +25,7 @@ export default async function Questions() {
 
     return (
         <FrameLayout>
-            {questionaireIndex !== null && <QuestionsParser addData={addDataFunctions[questionaireIndex] as  (data: unknown) => Promise<boolean>} questionaire={questionaires[questionaireIndex]}/>}
+            {questionaireIndex !== null && <QuestionsParser addData={addDataFunctions[questionaireIndex]} questionaire={questionaires[questionaireIndex]}/>}
             {questionaireIndex !== null && <QuestionsNavigation />}
         </FrameLayout>
     );
