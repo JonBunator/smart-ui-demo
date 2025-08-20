@@ -4,7 +4,7 @@ import {callAgentEndpoint} from "@/lib/openAI/openAI";
 import {ReactNode, useEffect, useState} from "react";
 import {AISupport} from "@/lib/types"
 import {usePathname} from "next/navigation";
-import {getAISupportForCurrentSurveyStep, multipleAgentStepsAllowed} from "@/lib/db/database";
+import {getAISupportForCurrentSurveyStep} from "@/lib/db/database";
 import {getSystemPrompt} from "@/lib/utils";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 

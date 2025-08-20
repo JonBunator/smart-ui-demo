@@ -9,8 +9,12 @@ import './Agent.scss'
 import ChatHistory from "@/app/ui/propertyManagement/agent/ChatHistory";
 import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
 
+interface AgentProps {
+    agentResponseWithMotivation: boolean;
+}
 
-export default function Agent() {
+export default function Agent(props: AgentProps) {
+    const {agentResponseWithMotivation} = props;
     const [value, setValue] = useState("");
     const [showYesNoButton, setShowYesNoButton] = useState(false);
     const {sendPrompt, approvalRequired, handleChangeApproval, chatHistory, deleteChatHistory, loading, loadingText} = useSmartAgent();
@@ -43,7 +47,7 @@ export default function Agent() {
 
     return (
         <Paper className="agent">
-            <ChatHistory history={chatHistory} loading={loading} loadingText={loadingText}/>
+            <ChatHistory agentResponseWithMotivation={agentResponseWithMotivation} history={chatHistory} loading={loading} loadingText={loadingText}/>
             {showYesNoButton && (<div className="yes-no-buttons">
                 <Button size="small" onClick={async () => await sendMessage("Nein")} variant="outlined">Nein</Button>
                 <Button size="small" onClick={async () => await sendMessage("Ja")} variant="outlined">Ja</Button>

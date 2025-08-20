@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
 import Typography from "@mui/material/Typography";
+import { Divider } from "@mui/material";
 
 function AgentMessage({children}: {children: ReactNode}) {
     return (
@@ -20,13 +21,14 @@ function AgentMessage({children}: {children: ReactNode}) {
 }
 
 export interface ChatHistoryProps {
+    agentResponseWithMotivation: boolean;
     history: ChatMessage[];
     loading: boolean;
     loadingText?: string;
 }
 
 export default function ChatHistory(props: ChatHistoryProps) {
-    const {history, loading, loadingText} = props;
+    const {agentResponseWithMotivation, history, loading, loadingText} = props;
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -40,6 +42,15 @@ export default function ChatHistory(props: ChatHistoryProps) {
             return "Eine Änderung vorgeschlagen";
         }
         return `${numUIInteractions} Änderungen vorgeschlagen`;
+    }
+
+    function getMotivation(item: ChatMessage) {
+        const content = JSON.parse(item.message.content as string).output.motivation;
+
+        if (!content.startsWith("Motivation:")) {
+            return `**Motivation:** ${content}`
+        }
+        return content;
     }
 
     return (
@@ -77,9 +88,21 @@ export default function ChatHistory(props: ChatHistoryProps) {
                             })()}
 
                             <div className="message">
-                                <Markdown>
-                                    {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}
-                                </Markdown>
+                                <div>
+                                    <Markdown>
+                                        {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}
+                                    </Markdown>
+                                </div>
+                                {agentResponseWithMotivation && item.message.role === ChatMessageCreator.AGENT &&
+                                    <>
+                                        <Divider/>
+                                        <div>
+                                            <Markdown>
+                                                {getMotivation(item)}
+                                            </Markdown>
+                                        </div>
+                                    </>
+                                }
                             </div>
                             {(() => {
                                 let uiInteractionsLength = 0;

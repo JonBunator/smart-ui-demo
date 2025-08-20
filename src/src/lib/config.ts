@@ -17,7 +17,7 @@ export const AI_SUPPORT_ORDER = [
     [AISupport.NONE, AISupport.AGENT, AISupport.PROACTIVE_AGENT],
     [AISupport.NONE, AISupport.PROACTIVE_AGENT, AISupport.AGENT]]
 
-export const SURVEY_TYPES_WITH_MULTI_AGENT_STEPS = [1, 2];
+export const SURVEY_TYPES_WITH_AGENT_RESPONSE_MOTIVATION = [1, 2];
 
 export const DATASET_ORDER = [
     [0, 1, 2],

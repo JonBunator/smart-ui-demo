@@ -35,9 +35,9 @@ const optionalAgentInput = {
 export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentResponse> {
     const sessionData = await getSession();
     if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "InitialQuestions" || sessionData.surveyState["SurveyStep"] !== "Running") {
-        return {agentOutput: [{uiInteractions: [], naturalLanguageInteraction: "An error occurred", yesNoButtons: false}], messages: []};
+        return {agentOutput: [{uiInteractions: [], naturalLanguageInteraction: "An error occurred", yesNoButtons: false, motivation: ""}], messages: []};
     }
     const result = await callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
-    console.log(result)
+    console.log(JSON.stringify(result))
     return result;
 }
