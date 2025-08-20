@@ -34,7 +34,8 @@ const surveyFlowMachine = setup({
     },
     actors: {
         timerInterval: fromCallback(({input, sendBack}: {
-            input: { timeout: number | null }, sendBack: (event: AnyEventObject) => void}) => {
+            input: { timeout: number | null }, sendBack: (event: AnyEventObject) => void
+        }) => {
             const interval = setInterval(() => {
                 const now = new Date();
                 const timeDifference = input.timeout
@@ -82,8 +83,8 @@ const surveyFlowMachine = setup({
                     entry: [assign({
                         timeout: ({context}) => {
                             return context.timeout ?? (new Date()).valueOf() + context.surveyStepDuration * 1000;
-                            },
-                        }),
+                        },
+                    }),
                     ],
                     invoke: {
                         id: "timerInterval",
@@ -100,7 +101,7 @@ const surveyFlowMachine = setup({
                         addData: {
                             actions: [
                                 assign({
-                                    dataIndex: ({ context }) => context.dataIndex + 1,
+                                    dataIndex: ({context}) => context.dataIndex + 1,
                                 }),
                                 enqueueActions(({context, enqueue}) => {
                                     if (context.dataIndex < context.numDataPerSurveyStep) {
@@ -134,7 +135,7 @@ const surveyFlowMachine = setup({
                     exit: [assign({
                         timeout: ({context}) => {
                             const now = (new Date()).valueOf();
-                            if(context.pausedTime !== null && context.timeout !== null) {
+                            if (context.pausedTime !== null && context.timeout !== null) {
                                 const pausedDuration = now - context.pausedTime;
                                 return context.timeout + pausedDuration;
                             }

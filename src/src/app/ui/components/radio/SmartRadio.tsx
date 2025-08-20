@@ -1,7 +1,7 @@
-import {RadioProps, Radio} from "@mui/material";
-import React, {useCallback, useEffect, useRef} from "react";
-import {SmartComponent, ValueType, SmartComponentElementProps} from "smart-ui";
-import { useSmartRadioGroup } from "./SmartRadioGroup";
+import {Radio, RadioProps} from "@mui/material";
+import React, {useCallback, useRef} from "react";
+import {SmartComponent, SmartComponentElementProps, ValueType} from "smart-ui";
+import {useSmartRadioGroup} from "./SmartRadioGroup";
 import "./SmartRadio.scss"
 
 export type SmartRadioProps = RadioProps & SmartComponentElementProps;
@@ -13,9 +13,9 @@ export default function SmartRadio(props: SmartRadioProps) {
     const {onValueChange, onResetRadios, radioGroupValue} = useSmartRadioGroup();
 
     const updateValue = useCallback(async (newValue: ValueType) => {
-        if(newValue) {
+        if (newValue) {
             onValueChange(value);
-            if(inputRef.current) {
+            if (inputRef.current) {
                 inputRef.current.click();
             }
         }
@@ -23,22 +23,23 @@ export default function SmartRadio(props: SmartRadioProps) {
     }, [onValueChange, value]);
 
     const handleApprove = useCallback(async (accept: boolean) => {
-        if(!accept) {
+        if (!accept) {
             onResetRadios();
         }
     }, [onResetRadios]);
 
     return (
-        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? radioGroupValue === value} smartOnChange={updateValue} onApprove={handleApprove}>
-                <Radio
-                    className={`${className} smart-component`}
-                    id={id}
-                    slotProps={{
-                        input:{ref:inputRef}
-                    }}
-                    value={value}
-                    checked={checked}
-                    {...otherProps}/>
+        <SmartComponent type="radio" id={id} semantic={smartSemantic} value={checked ?? radioGroupValue === value}
+                        smartOnChange={updateValue} onApprove={handleApprove}>
+            <Radio
+                className={`${className} smart-component`}
+                id={id}
+                slotProps={{
+                    input: {ref: inputRef}
+                }}
+                value={value}
+                checked={checked}
+                {...otherProps}/>
         </SmartComponent>
     );
 }

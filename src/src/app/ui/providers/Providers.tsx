@@ -7,7 +7,7 @@ import SurveyManagerProvider from "@/app/ui/propertyManagement/surveyManager/Sur
 import SnackbarProvider from "@/app/ui/providers/SnackbarProvider";
 import SmartAgentProviderSetup from "@/app/ui/providers/SmartAgentProviderSetup";
 
-export default function Providers({children}: {children: ReactNode}) {
+export default function Providers({children}: { children: ReactNode }) {
     return (
         <FluentUIProvider>
             <MUIProvider>
@@ -15,7 +15,7 @@ export default function Providers({children}: {children: ReactNode}) {
                     <SurveyManagerProvider>
                         <SmartComponentManager>
                             <SmartAgentProviderSetup>
-                                    {children}
+                                {children}
                             </SmartAgentProviderSetup>
                         </SmartComponentManager>
                     </SurveyManagerProvider>

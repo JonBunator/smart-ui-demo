@@ -1,28 +1,30 @@
 .dark .no-email-selection {
-    .image-light {
-        display: none;
-    }
-    .image-dark {
-        display: flex;
-    }
+  .image-light {
+    display: none;
+  }
+
+  .image-dark {
+    display: flex;
+  }
 }
 
 .no-email-selection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 
-    .image-dark {
-        display: none;
-    }
-    .text-main {
-        color: var(--colorNeutralForeground2);
-    }
+  .image-dark {
+    display: none;
+  }
 
-    .text-underline {
-        color: var(--colorNeutralForeground3);
-        text-align: center;
-    }
+  .text-main {
+    color: var(--colorNeutralForeground2);
+  }
+
+  .text-underline {
+    color: var(--colorNeutralForeground3);
+    text-align: center;
+  }
 }

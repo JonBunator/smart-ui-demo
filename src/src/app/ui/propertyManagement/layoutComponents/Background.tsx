@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type {ReactNode} from 'react'
 import './Background.scss'
 
 interface BackgroundProps {
@@ -6,7 +6,7 @@ interface BackgroundProps {
 }
 
 export default function Background(props: BackgroundProps) {
-    const { children } = props
+    const {children} = props
     return (
         <div className="background">
             <div className="background-grid">

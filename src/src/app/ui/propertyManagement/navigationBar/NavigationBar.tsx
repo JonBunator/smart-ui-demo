@@ -9,15 +9,20 @@ import {usePathname, useRouter} from "next/navigation";
 import "./NavigationBar.scss";
 import Timer from "./Timer";
 import SmartButton from '@/app/ui/components/SmartButton';
-import { SmartGroup } from 'smart-ui';
+import {SmartGroup} from 'smart-ui';
 import HelpDialogButton from './HelpDialogButton';
 import Image from "next/image";
 import React from "react";
 
 const links = [
-    { name: 'Buchungen', href: '/survey/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon },
-    { name: 'Immobilien', href: '/survey/properties', icon: HolidayVillageOutlinedIcon, selectedIcon: HolidayVillageIcon },
-    { name: 'Instandhaltungen', href: '/survey/maintenance', icon: HandymanOutlinedIcon, selectedIcon: HandymanIcon },
+    {name: 'Buchungen', href: '/survey/bookings', icon: CalendarMonthOutlinedIcon, selectedIcon: CalendarMonthIcon},
+    {
+        name: 'Immobilien',
+        href: '/survey/properties',
+        icon: HolidayVillageOutlinedIcon,
+        selectedIcon: HolidayVillageIcon
+    },
+    {name: 'Instandhaltungen', href: '/survey/maintenance', icon: HandymanOutlinedIcon, selectedIcon: HandymanIcon},
 ];
 
 export default function NavLinks() {
@@ -26,7 +31,7 @@ export default function NavLinks() {
 
     function isPathSelected(href: string): boolean {
         const parentPath = pathname.substring(0, pathname.lastIndexOf('/'));
-        if(href === "/survey") {
+        if (href === "/survey") {
             return pathname === href;
         }
         return (pathname === href || parentPath === href);
@@ -39,7 +44,7 @@ export default function NavLinks() {
     return (
         <div className="navigation-bar">
             <div className="left-side">
-                <Image src="/image/logo.svg" width={50} height={50} alt="" />
+                <Image src="/image/logo.svg" width={50} height={50} alt=""/>
                 <div className="nav-items">
                     <SmartGroup smartSemantic="nav links">
                         {links.map((link) => {
@@ -49,7 +54,8 @@ export default function NavLinks() {
                             return (
                                 <SmartButton
                                     className={`${isSelected ? "nav-element-selected" : ""}`}
-                                    startIcon={isSelected ? <SelectedIcon className="nav-icon" /> : <LinkIcon className="nav-icon" />}
+                                    startIcon={isSelected ? <SelectedIcon className="nav-icon"/> :
+                                        <LinkIcon className="nav-icon"/>}
                                     key={link.name}
                                     smartSemantic={`Navigates to the ${link.name} page`}
                                     variant={isSelected ? "contained" : "text"}

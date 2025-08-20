@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Roboto } from 'next/font/google';
+import type {Metadata} from "next";
+import {Roboto} from 'next/font/google';
 import Providers from "@/app/ui/providers/Providers";
 import {InitColorSchemeScript} from "@mui/material";
 import "./globals.scss";
 
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
+    weight: ['300', '400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-roboto',
 });
 
 export const metadata: Metadata = {
@@ -17,18 +17,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" className={roboto.variable} suppressHydrationWarning>
-      <body>
-        <InitColorSchemeScript />
-          <Providers>
+    return (
+        <html lang="en" className={roboto.variable} suppressHydrationWarning>
+        <body>
+        <InitColorSchemeScript/>
+        <Providers>
             {children}
-          </Providers>
-      </body>
-    </html>
-  );
+        </Providers>
+        </body>
+        </html>
+    );
 }

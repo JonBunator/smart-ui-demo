@@ -1,63 +1,70 @@
 .dark .top-bar {
-    background: var(--colorNeutralBackground4);
+  background: var(--colorNeutralBackground4);
+  color: var(--colorNeutralForeground3);
+
+  .title {
+    color: var(--colorBrandForeground1);
+  }
+
+  .fui-Button {
     color: var(--colorNeutralForeground3);
-    .title {
-        color: var(--colorBrandForeground1);
-    }
 
-    .fui-Button {
+    &:hover {
+      background: var(--colorNeutralBackground4Hover);
+
+      .fui-Button__icon {
         color: var(--colorNeutralForeground3);
-        &:hover {
-            background: var(--colorNeutralBackground4Hover);
-            .fui-Button__icon {
-                color: var(--colorNeutralForeground3);
-            }
-        }
-
+      }
     }
+
+  }
 }
 
 .top-bar {
-    height: 48px;
-    gap: 8px;
+  height: 48px;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--colorBrandBackground);
+  color: var(--colorNeutralStrokeOnBrand);
+
+  .left-part {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background: var(--colorBrandBackground);
+
+    .title {
+      font-weight: 600;
+      margin-left: 8px;
+      font-size: 16px;
+    }
+  }
+
+
+  .fui-Button {
+    width: 48px;
+    height: 48px;
+    max-width: unset;
+    border-radius: 0;
     color: var(--colorNeutralStrokeOnBrand);
 
-    .left-part {
-        display: flex;
-        align-items: center;
-        .title {
-            font-weight: 600;
-            margin-left: 8px;
-            font-size: 16px;
-        }
-    }
+    &:hover {
+      background: var(--colorBrandBackgroundHover);
 
-
-    .fui-Button {
-        width: 48px;
-        height: 48px;
-        max-width: unset;
-        border-radius: 0;
+      .fui-Button__icon {
         color: var(--colorNeutralStrokeOnBrand);
-        &:hover {
-            background: var(--colorBrandBackgroundHover);
-            .fui-Button__icon {
-                color: var(--colorNeutralStrokeOnBrand);
-            }
-        }
-
-    }
-    .fui-SearchBox {
-        max-width: 350px;
-        flex: 1;
+      }
     }
 
-    .fui-Avatar {
-        margin: 8px;
-    }
+  }
+
+  .fui-SearchBox {
+    max-width: 350px;
+    flex: 1;
+  }
+
+  .fui-Avatar {
+    margin: 8px;
+  }
 }

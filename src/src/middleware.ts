@@ -7,13 +7,13 @@ export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
     const isProtectedRoute = path !== '/' && protectedRoutes.some(route => path.startsWith(route));
     const sessionData = await getSession();
-    const { device } = userAgent(req)
+    const {device} = userAgent(req)
 
-    if(device.type === "mobile" && path !== '/mobile') {
+    if (device.type === "mobile" && path !== '/mobile') {
         return NextResponse.redirect(new URL('/mobile', req.nextUrl));
     }
 
-    if(device.type !== "mobile" && path === '/mobile') {
+    if (device.type !== "mobile" && path === '/mobile') {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
 
@@ -22,15 +22,15 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
 
-    if(sessionData) {
+    if (sessionData) {
         const surveyState = sessionData.surveyState;
         if (surveyState === "Finished") {
             return redirectWhenAuthenticated("/completed");
-        } else if(surveyState === "InitialQuestions") {
+        } else if (surveyState === "InitialQuestions") {
             return redirectWhenAuthenticated("/questions");
-        } else if((surveyState["SurveyStep"] === "Running" || surveyState["SurveyStep"] === "NotStarted" || surveyState["SurveyStep"] === "NoMoreData")) {
+        } else if ((surveyState["SurveyStep"] === "Running" || surveyState["SurveyStep"] === "NotStarted" || surveyState["SurveyStep"] === "NoMoreData")) {
             return redirectWhenAuthenticated("/survey");
-        } else if(surveyState["SurveyStep"] === "Questions") {
+        } else if (surveyState["SurveyStep"] === "Questions") {
             return redirectWhenAuthenticated("/questions");
         }
     }
@@ -38,13 +38,12 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.next();
 
     function redirectWhenAuthenticated(redirectPath: string) {
-        if(!path.startsWith(redirectPath)) {
+        if (!path.startsWith(redirectPath)) {
             return NextResponse.redirect(new URL(redirectPath, req.nextUrl));
         }
         return NextResponse.next();
     }
 }
-
 
 
 // Routes Middleware should not run on

@@ -1,75 +1,74 @@
 'use client';
-import { createTheme } from '@mui/material/styles';
-import { deDE as deDEDatagrid } from '@mui/x-data-grid/locales';
-import { deDE } from '@mui/material/locale';
-import type {} from '@mui/x-data-grid/themeAugmentation';
+import {createTheme} from '@mui/material/styles';
+import {deDE as deDEDatagrid} from '@mui/x-data-grid/locales';
+import {deDE} from '@mui/material/locale';
 
 export const theme = createTheme({
-    typography: {
-        fontFamily: 'var(--font-roboto)',
-    },
-    cssVariables: true,
-    colorSchemes: {
-        dark: {
-            palette: {
-                mode: 'dark',
-                primary: {
-                    main: '#c6ecd0',
-                    contrastText: '#4a6c56',
-                },
-                success: {
-                    main: '#c6ecd0',
-                    contrastText: '#4a6c56',
-                },
-                warning: {
-                    main: '#fde181',
-                },
-                background: {
-                    default: '#0d0f0d',
-                    paper: '#1e201e',
-                },
-                DataGrid: {
-                    bg: "transparent",
-                    headerBg: '#333533',
-                }
-            },
+        typography: {
+            fontFamily: 'var(--font-roboto)',
         },
-        light: {
-            palette: {
-                mode: 'light',
-                primary: {
-                    main: '#7a9481',
+        cssVariables: true,
+        colorSchemes: {
+            dark: {
+                palette: {
+                    mode: 'dark',
+                    primary: {
+                        main: '#c6ecd0',
+                        contrastText: '#4a6c56',
+                    },
+                    success: {
+                        main: '#c6ecd0',
+                        contrastText: '#4a6c56',
+                    },
+                    warning: {
+                        main: '#fde181',
+                    },
+                    background: {
+                        default: '#0d0f0d',
+                        paper: '#1e201e',
+                    },
+                    DataGrid: {
+                        bg: "transparent",
+                        headerBg: '#333533',
+                    }
                 },
-                success: {
-                    main: '#7a9481',
-                },
-                warning: {
-                    main: '#fde181',
-                },
-                background: {
-                    default: '#e3e3df',
-                    paper: '#eeeeea',
-                },
-                DataGrid: {
-                    bg: "transparent",
-                    headerBg: '#f4f4f0',
-                }
             },
-        }
+            light: {
+                palette: {
+                    mode: 'light',
+                    primary: {
+                        main: '#7a9481',
+                    },
+                    success: {
+                        main: '#7a9481',
+                    },
+                    warning: {
+                        main: '#fde181',
+                    },
+                    background: {
+                        default: '#e3e3df',
+                        paper: '#eeeeea',
+                    },
+                    DataGrid: {
+                        bg: "transparent",
+                        headerBg: '#f4f4f0',
+                    }
+                },
+            }
+        },
+        shape: {
+            borderRadius: 8,
+        },
+        components: {
+            MuiAutocomplete: {
+                defaultProps: {
+                    slotProps: {
+                        paper: {elevation: 5}
+                    }
+                }
+            }
+        },
+        spacing: 4,
     },
-    shape: {
-        borderRadius: 8,
-    },
-    components: {
-        MuiAutocomplete: {
-          defaultProps: {
-              slotProps: {
-                  paper: {elevation: 5}
-              }
-          }
-      }
-    },
-    spacing: 4,
-},
     deDE,
     deDEDatagrid);

@@ -1,5 +1,5 @@
 import {RadioGroup, RadioGroupProps} from "@mui/material";
-import React, {createContext, useCallback, useContext, useEffect, useMemo, useRef} from "react";
+import React, {createContext, useCallback, useContext, useMemo, useRef} from "react";
 import {SmartComponent, SmartComponentElementProps} from "smart-ui";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -26,10 +26,10 @@ export default function SmartRadioGroup(props: SmartRadioProps) {
     const changedValue = useRef(undefined);
 
     const handleReset = useCallback(() => {
-        if(onResetRadios === undefined) {
+        if (onResetRadios === undefined) {
             console.warn("Radio can't be unchecked by AI agent because onUnchecked callback is not set.")
         } else {
-            if(value === changedValue.current) {
+            if (value === changedValue.current) {
                 onResetRadios(previousValue.current);
             }
         }

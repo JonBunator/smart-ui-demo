@@ -1,9 +1,10 @@
 .properties-container .properties-card .description-skeleton {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    .MuiSkeleton-root {
-        height: 10px;
-        width: 100%;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .MuiSkeleton-root {
+    height: 10px;
+    width: 100%;
+  }
 }

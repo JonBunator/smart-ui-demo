@@ -1,12 +1,13 @@
 import {InputBaseComponentProps, TextField, TextFieldProps} from "@mui/material";
 import React, {ElementType, forwardRef} from "react";
-import {SmartInput, SmartTextarea, SmartComponentElementProps} from "smart-ui";
+import {SmartComponentElementProps, SmartInput, SmartTextarea} from "smart-ui";
 
 export type SmartTextFieldProps = TextFieldProps & SmartComponentElementProps;
 
 const MuiSmartInput = forwardRef<HTMLInputElement, SmartTextFieldProps>(
     (props, ref) => {
         return (
+            // @ts-expect-error TODO fix library type mismatch
             <SmartInput ref={ref} {...props} />
         )
     },
@@ -15,6 +16,7 @@ const MuiSmartInput = forwardRef<HTMLInputElement, SmartTextFieldProps>(
 const MuiSmartTextarea = forwardRef<HTMLTextAreaElement, SmartTextFieldProps>(
     (props, ref) => {
         return (
+            // @ts-expect-error TODO fix library type mismatch
             <SmartTextarea ref={ref} {...props} />
         )
     },

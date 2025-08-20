@@ -1,46 +1,47 @@
 .navigation-bar {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--top-bar-bg);
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .left-side {
     display: flex;
-    height: 56px;
+    gap: 24px;
     align-items: center;
-    justify-content: space-between;
-    background: var(--top-bar-bg);
-    padding-left: 16px;
-    padding-right: 16px;
 
-    .left-side {
+    .nav-items {
       display: flex;
-      gap: 24px;
-      align-items: center;
+      gap: 16px;
 
-      .nav-items {
-        display: flex;
-        gap: 16px;
-
-        .MuiButtonBase-root {
-          text-transform: none;
-          border-radius: 16px;
-          padding: 6px 16px;
-          font-size: 14px;
-          color: var(--primary-container-color);
+      .MuiButtonBase-root {
+        text-transform: none;
+        border-radius: 16px;
+        padding: 6px 16px;
+        font-size: 14px;
+        color: var(--primary-container-color);
 
 
-          &.nav-element-selected {
-            background: var(--primary-container-bg);
+        &.nav-element-selected {
+          background: var(--primary-container-bg);
 
-            &:hover {
-              background: var(--primary-container-hover);
-            }
+          &:hover {
+            background: var(--primary-container-hover);
           }
+        }
 
-          .nav-icon.MuiSvgIcon-root {
-            font-size: 24px;
-          }
+        .nav-icon.MuiSvgIcon-root {
+          font-size: 24px;
         }
       }
     }
-    .survey-information {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
+  }
+
+  .survey-information {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
 }

@@ -1,11 +1,8 @@
 "use client"
-import {
-    ElementPropsType,
-    TextElementType
-} from "@/app/ui/propertyManagement/pages/questions/parser/types";
+import {ElementPropsType, TextElementType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import {TextField} from "@mui/material";
 import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
-import { useQuestionsParser } from "../QuestionsParser";
+import {useQuestionsParser} from "../QuestionsParser";
 
 interface TextElementProps<T> extends ElementPropsType<T> {
     element: TextElementType
@@ -25,7 +22,7 @@ export default function TextElement<T>(props: TextElementProps<T>) {
     }
 
     const validate = useCallback(() => {
-        if(element.notRequired) {
+        if (element.notRequired) {
             return false;
         }
         const error = value === "";

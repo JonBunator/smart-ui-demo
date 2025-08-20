@@ -1,15 +1,12 @@
-import {
-    Card,
-    Avatar,
-    Text,
-    Toolbar, ToolbarButton, ToolbarDivider, Button
-} from "@fluentui/react-components";
+import {Avatar, Button, Card, Text, Toolbar, ToolbarButton, ToolbarDivider} from "@fluentui/react-components";
 import './EmailPreview.scss'
 import {
-    ArrowForwardRegular, ArrowReplyAllRegular, ArrowReplyRegular,
-    WeatherSunnyRegular,
-    MoreHorizontalRegular,
+    ArrowForwardRegular,
+    ArrowReplyAllRegular,
+    ArrowReplyRegular,
     EmojiRegular,
+    MoreHorizontalRegular,
+    WeatherSunnyRegular,
 } from "@fluentui/react-icons";
 import NoEmailSelection from "@/app/ui/emailClient/middleContent/mainContent/noDataDisplays/NoEmailSelection";
 import {toLocaleTimeNoSeconds} from "@/app/ui/emailClient/utils/utils";
@@ -41,12 +38,17 @@ export default function EmailPreview(props: EmailPreviewProps) {
                                         <Text className="author-email">&lt;{email.authorEmail}&gt;</Text>
                                     </div>
                                     <Toolbar>
-                                        <ToolbarButton className="hide-1" icon={<WeatherSunnyRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarButton className="hide-1" icon={<EmojiRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarButton className="hide-2" icon={<ArrowReplyRegular className="purple-icon"/>}></ToolbarButton>
-                                        <ToolbarButton className="hide-2" icon={<ArrowReplyAllRegular className="purple-icon"/>}></ToolbarButton>
-                                        <ToolbarButton className="hide-2" icon={<ArrowForwardRegular className="blue-icon"/>}></ToolbarButton>
-                                        <ToolbarDivider className="hide-2" />
+                                        <ToolbarButton className="hide-1" icon={<WeatherSunnyRegular
+                                            className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-1"
+                                                       icon={<EmojiRegular className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowReplyRegular
+                                            className="purple-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowReplyAllRegular
+                                            className="purple-icon"/>}></ToolbarButton>
+                                        <ToolbarButton className="hide-2" icon={<ArrowForwardRegular
+                                            className="blue-icon"/>}></ToolbarButton>
+                                        <ToolbarDivider className="hide-2"/>
                                         <ToolbarButton icon={<MoreHorizontalRegular/>}></ToolbarButton>
                                     </Toolbar>
                                 </div>
@@ -69,9 +71,9 @@ export default function EmailPreview(props: EmailPreviewProps) {
                 </div>)
                 :
                 (noEmails ?
-                    <></>
-                    :
-                    <NoEmailSelection />
+                        <></>
+                        :
+                        <NoEmailSelection/>
                 )
             }
         </div>

@@ -1,10 +1,10 @@
 .email-client {
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid var(--mui-palette-divider);
-    max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--mui-palette-divider);
+  max-height: 100vh;
 
-    *:not(.email-list-item):not(.email-list-item *) {
-        cursor: default !important;
-    }
+  *:not(.email-list-item):not(.email-list-item *) {
+    cursor: default !important;
+  }
 }

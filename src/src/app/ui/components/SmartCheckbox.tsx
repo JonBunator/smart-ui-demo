@@ -1,6 +1,6 @@
-import {CheckboxProps, Checkbox} from "@mui/material";
+import {Checkbox, CheckboxProps} from "@mui/material";
 import React, {useCallback, useRef} from "react";
-import {SmartComponent, ValueType, SmartComponentElementProps} from "smart-ui";
+import {SmartComponent, SmartComponentElementProps, ValueType} from "smart-ui";
 
 export type SmartCheckboxProps = CheckboxProps & SmartComponentElementProps;
 
@@ -10,7 +10,7 @@ export default function SmartCheckbox(props: SmartCheckboxProps) {
 
     const updateValue = useCallback(async (newValue: ValueType) => {
         if (inputRef.current) {
-            if(checked !== newValue) {
+            if (checked !== newValue) {
                 inputRef.current.click();
                 return true;
             }
@@ -24,7 +24,7 @@ export default function SmartCheckbox(props: SmartCheckboxProps) {
                 id={id}
                 className={`${className} smart-component`}
                 slotProps={{
-                    input:{ref:inputRef}
+                    input: {ref: inputRef}
                 }}
                 checked={checked}
                 {...otherProps}/>

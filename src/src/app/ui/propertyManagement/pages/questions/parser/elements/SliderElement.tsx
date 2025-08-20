@@ -1,9 +1,6 @@
 "use client"
-import {
-    ElementPropsType,
-    SliderElementType
-} from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {Slider, Typography, FormControl, FormHelperText} from "@mui/material";
+import {ElementPropsType, SliderElementType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
+import {FormControl, FormHelperText, Slider, Typography} from "@mui/material";
 import "./SliderElement.scss"
 import React, {useCallback, useEffect, useState} from "react";
 import {useQuestionsParser} from "@/app/ui/propertyManagement/pages/questions/parser/QuestionsParser";
@@ -39,10 +36,13 @@ export default function SliderElement<T>(props: SliderElementProps<T>) {
         <FormControl required error={error} className="slider-element">
             <div className="slider-row">
                 <Typography variant="body1">{element.startLabel}</Typography>
-                <Slider onChangeCommitted={(_event, value) => handleChange(value)} defaultValue={50} valueLabelDisplay="auto" />
+                <Slider onChangeCommitted={(_event, value) => handleChange(value)} defaultValue={50}
+                        valueLabelDisplay="auto"/>
                 <Typography variant="body1">{element.endLabel}</Typography>
             </div>
-            {error && <FormHelperText>Bitte passen Sie den Schieberegler entsprechend an. Wenn Sie den Wert 50 auswählen möchten, bewegen Sie den Regler zunächst kurz und stellen ihn dann wieder auf 50 zurück.</FormHelperText>}
+            {error && <FormHelperText>Bitte passen Sie den Schieberegler entsprechend an. Wenn Sie den Wert 50 auswählen
+                möchten, bewegen Sie den Regler zunächst kurz und stellen ihn dann wieder auf 50
+                zurück.</FormHelperText>}
         </FormControl>
     );
 }

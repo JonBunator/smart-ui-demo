@@ -1,6 +1,6 @@
 import {Button, ButtonProps} from "@mui/material";
 import React, {useState} from "react";
-import { useSmartAgent } from "smart-ui";
+import {useSmartAgent} from "smart-ui";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function SmartPasteButton(props: ButtonProps) {
@@ -8,7 +8,7 @@ export default function SmartPasteButton(props: ButtonProps) {
     const [isLoading, setIsLoading] = useState(false);
     const {sendEvent} = useSmartAgent();
 
-    async function handleClick(event:  React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    async function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         onClick?.(event);
         setIsLoading(true);
         let clipboardText = '';
@@ -19,16 +19,17 @@ export default function SmartPasteButton(props: ButtonProps) {
             setIsLoading(false);
             return;
         }
-        if(clipboardText.trim() !== ''){
+        if (clipboardText.trim() !== '') {
             await sendEvent("The following text was pasted from the clipboard. If the query makes no sense, ask the user whether they have inadvertently pasted the wrong text.\n" + clipboardText, 1, "Intelligentes Ausfüllen wird verarbeitet");
         }
         setIsLoading(false);
     }
+
     return (
         <Button {...otherProps}
-            className={`${className} smart-paste-button`}
-            variant={variant ?? "contained"}
-            startIcon={startIcon ?? <AutoAwesomeIcon/>}
-            onClick={handleClick} loading={loading ?? isLoading}/>
+                className={`${className} smart-paste-button`}
+                variant={variant ?? "contained"}
+                startIcon={startIcon ?? <AutoAwesomeIcon/>}
+                onClick={handleClick} loading={loading ?? isLoading}/>
     );
 }

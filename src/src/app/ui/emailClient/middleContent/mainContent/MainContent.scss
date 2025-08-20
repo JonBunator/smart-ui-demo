@@ -1,29 +1,29 @@
 .main-content {
-    display: grid;
-    flex-grow: 1;
-    gap: 8px;
-    grid-template-areas:
+  display: grid;
+  flex-grow: 1;
+  gap: 8px;
+  grid-template-areas:
     "tabs tabs tabs"
     "toolbar toolbar toolbar"
     "email-list email-preview email-preview";
-    grid-template-columns: auto auto 1fr;
-    grid-template-rows: auto auto 1fr;
-    background: var(--colorNeutralBackground3);
-    height: 100%;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  background: var(--colorNeutralBackground3);
+  height: 100%;
 
-    .main-content-tabs {
-        grid-area: tabs;
-    }
+  .main-content-tabs {
+    grid-area: tabs;
+  }
 
-    .toolbar {
-        grid-area: toolbar;
-    }
+  .toolbar {
+    grid-area: toolbar;
+  }
 
-    .email-list {
-        grid-area: email-list;
-    }
+  .email-list {
+    grid-area: email-list;
+  }
 
-    .email-preview {
-        grid-area: email-preview;
-    }
+  .email-preview {
+    grid-area: email-preview;
+  }
 }

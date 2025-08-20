@@ -35,15 +35,15 @@ const pageDescriptions = [
     }
 ]
 
-export default function SmartAgentProviderSetup({children}: {children: ReactNode}) {
+export default function SmartAgentProviderSetup({children}: { children: ReactNode }) {
     const [customSystemPrompt, setCustomSystemPrompt] = useState("");
     const currentPagePath = usePathname();
-    const { subscribe } = useSurveyManager();
+    const {subscribe} = useSurveyManager();
 
     useEffect(() => {
         updateSmartAgentProps();
         const unsubscribe = subscribe((snapshot) => {
-            if(snapshot.matches({SurveyStep: "NotStarted"})) {
+            if (snapshot.matches({SurveyStep: "NotStarted"})) {
                 updateSmartAgentProps();
             }
         })
@@ -52,7 +52,7 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
 
     function updateSmartAgentProps() {
         getAISupportForCurrentSurveyStep().then((aiSupport) => {
-            if(aiSupport !== null) {
+            if (aiSupport !== null) {
                 const systemPrompt = getSystemPrompt(aiSupport === AISupport.PROACTIVE_AGENT);
                 setCustomSystemPrompt(systemPrompt);
             }
@@ -60,15 +60,15 @@ export default function SmartAgentProviderSetup({children}: {children: ReactNode
     }
 
     return (
-            <SmartAgentProvider callAgent={callAgentEndpoint}
-                                customSystemPrompt={customSystemPrompt}
-                                currentPagePath={currentPagePath}
-                                pageDescriptions={pageDescriptions}
-                                allowMultipleSteps={false}
-                                defaultChatHistoryMemory={8}
-            >
-                    {children}
-            </SmartAgentProvider>
+        <SmartAgentProvider callAgent={callAgentEndpoint}
+                            customSystemPrompt={customSystemPrompt}
+                            currentPagePath={currentPagePath}
+                            pageDescriptions={pageDescriptions}
+                            allowMultipleSteps={false}
+                            defaultChatHistoryMemory={8}
+        >
+            {children}
+        </SmartAgentProvider>
 
     );
 }

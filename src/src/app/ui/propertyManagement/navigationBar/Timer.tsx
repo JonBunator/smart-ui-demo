@@ -1,11 +1,11 @@
 "use client"
-import {Stack, Typography } from "@mui/material";
-import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
+import {Stack, Typography} from "@mui/material";
+import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import {useEffect, useState} from "react";
 
 export default function Timer() {
-    const { stateMachine } = useSurveyManager();
+    const {stateMachine} = useSurveyManager();
     const [timer, setTimer] = useState("5:00");
 
     useEffect(() => {

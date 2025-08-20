@@ -22,33 +22,42 @@ export default function Content() {
     const [gender, setGender] = useState("");
     const [sport, setSport] = useState(false)
     const [reading, setReading] = useState(false)
-    const [animal, setAnimal] = useState<Animal|null>(null);
+    const [animal, setAnimal] = useState<Animal | null>(null);
     const [toggleState, setToggleState] = useState(false);
 
-  return (
-    <div>
-        <SmartTextField fullWidth label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-        <SmartRadioGroup row value={gender} onChange={(e) => setGender(e.target.value)} onResetRadios={setGender}>
-            <FormControlLabel className="gender-male-label" value="male" control={<SmartRadio id="gender-male" />} label="Male" />
-            <FormControlLabel className="gender-female-label" value="female" control={<SmartRadio id="gender-female" />} label="Female" />
-            <FormControlLabel className="gender-other-label" value="other" control={<SmartRadio id="gender-other" />} label="Other" />
-        </SmartRadioGroup>
-        <FormControlLabel className="interests-sports-label" control={<SmartCheckbox id="interests-sports" checked={sport} onChange={(e) => setSport(e.target.checked)} />} label="Sports"/>
-        <FormControlLabel className="interests-reading-label" control={<SmartCheckbox id="interests-reading" checked={reading} onChange={(e) => setReading(e.target.checked)} />} label="Reading"/>
-        <SmartAutocomplete
-            id="favourite-animal"
-            className="favourite-animal"
-            fullWidth
-            options={favouriteAnimals}
-            value={animal}
-            onChange={(_event: React.SyntheticEvent, newValue) => {
-                setAnimal(newValue)
-            }}
-            renderInput={(params) => <TextField {...params} label="Favourite animal" />}
-        />
-        <SmartButton variant="contained" id="toggle-button" onClick={() => setToggleState(!toggleState)}>Toggle state</SmartButton>
-        <div id="toggle-state">{toggleState ? "On" : "Off"}</div>
-        <Agent/>
-    </div>
-  )
+    return (
+        <div>
+            <SmartTextField fullWidth label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)}/>
+            <SmartRadioGroup row value={gender} onChange={(e) => setGender(e.target.value)} onResetRadios={setGender}>
+                <FormControlLabel className="gender-male-label" value="male" control={<SmartRadio id="gender-male"/>}
+                                  label="Male"/>
+                <FormControlLabel className="gender-female-label" value="female"
+                                  control={<SmartRadio id="gender-female"/>} label="Female"/>
+                <FormControlLabel className="gender-other-label" value="other" control={<SmartRadio id="gender-other"/>}
+                                  label="Other"/>
+            </SmartRadioGroup>
+            <FormControlLabel className="interests-sports-label"
+                              control={<SmartCheckbox id="interests-sports" checked={sport}
+                                                      onChange={(e) => setSport(e.target.checked)}/>} label="Sports"/>
+            <FormControlLabel className="interests-reading-label"
+                              control={<SmartCheckbox id="interests-reading" checked={reading}
+                                                      onChange={(e) => setReading(e.target.checked)}/>}
+                              label="Reading"/>
+            <SmartAutocomplete
+                id="favourite-animal"
+                className="favourite-animal"
+                fullWidth
+                options={favouriteAnimals}
+                value={animal}
+                onChange={(_event: React.SyntheticEvent, newValue) => {
+                    setAnimal(newValue)
+                }}
+                renderInput={(params) => <TextField {...params} label="Favourite animal"/>}
+            />
+            <SmartButton variant="contained" id="toggle-button" onClick={() => setToggleState(!toggleState)}>Toggle
+                state</SmartButton>
+            <div id="toggle-state">{toggleState ? "On" : "Off"}</div>
+            <Agent/>
+        </div>
+    )
 }

@@ -1,18 +1,22 @@
 "use client"
 import React, {useEffect, useState} from "react";
-import { useRouter } from "next/navigation";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import {useRouter} from "next/navigation";
+import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import SmartButton from "@/app/ui/components/SmartButton";
 import {Chip, NoSsr, Typography} from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import "./Maintenance.scss"
 import DataGridToolbar from "@/app/ui/propertyManagement/pages/inquiries/components/DataGridToolbar";
-import {categoryOptions, MaintenanceData, Urgency} from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
+import {
+    categoryOptions,
+    fakeData,
+    MaintenanceData,
+    Urgency
+} from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {getMaintenances} from "@/lib/db/database";
-import {fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/maintenance";
-import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 const columns: GridColDef[] = [
     {
@@ -21,7 +25,7 @@ const columns: GridColDef[] = [
         flex: 1,
         minWidth: 70,
         renderCell: (params) => {
-            if(params.value) {
+            if (params.value) {
                 return <CheckCircleIcon color="success"/>
             }
             return <CancelIcon color="error"/>
@@ -63,27 +67,33 @@ const columns: GridColDef[] = [
                 default:
                     color = 'default';
             }
-            return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
+            return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')}/>;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
+    {
+        field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}
             </span>
-        )},
-    { field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120,
+        )
+    },
+    {
+        field: 'category', headerName: 'Kategorie', flex: 1, minWidth: 120,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}
             </span>
-        ),},
-    { field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 100,
+        ),
+    },
+    {
+        field: 'description', headerName: 'Beschreibung', flex: 3, minWidth: 100,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}
             </span>
-        ),},
+        ),
+    },
 ];
 
 export default function Maintenance() {
@@ -107,7 +117,7 @@ export default function Maintenance() {
 
             setRows([...addedMaintenances, ...fakeData]);
             setLoading(false);
-            })
+        })
             .catch(() => error());
     }, [error]);
 
@@ -115,18 +125,24 @@ export default function Maintenance() {
         router.push("/survey/maintenance/add");
     }
 
-    const AddButton = (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form" variant="contained" onClick={navigateToAddPage} smartHref="/survey/maintenance/add">Hinzufügen</SmartButton>);
+    const AddButton = (
+        <SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add new maintenance request' form"
+                     variant="contained" onClick={navigateToAddPage}
+                     smartHref="/survey/maintenance/add">Hinzufügen</SmartButton>);
 
     return (
         <div className="maintenance">
             <NoSsr>
-                <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[10, 25, 100]} disableRowSelectionOnClick showToolbar
-                          slots={{ toolbar: DataGridToolbar }}
-                          slotProps={{ toolbar: { title: "Instandhaltungen", buttonContent: AddButton},
+                <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[10, 25, 100]}
+                          disableRowSelectionOnClick showToolbar
+                          slots={{toolbar: DataGridToolbar}}
+                          slotProps={{
+                              toolbar: {title: "Instandhaltungen", buttonContent: AddButton},
                               loadingOverlay: {
                                   variant: 'linear-progress',
                                   noRowsVariant: 'circular-progress',
-                          }}}
+                              }
+                          }}
                           loading={loading}
                           initialState={{
                               pagination: {

@@ -1,6 +1,7 @@
 import {Paper} from "@mui/material";
 import NavigationBar from "@/app/ui/propertyManagement/navigationBar/NavigationBar";
-import SurveyStepDescriptionDialog from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/SurveyStepDescriptionDialog";
+import SurveyStepDescriptionDialog
+    from "@/app/ui/propertyManagement/dialogs/surveyStepsDescriptions/SurveyStepDescriptionDialog";
 import "./PropertyManagement.scss"
 import NoMoreDataDialog from "@/app/ui/propertyManagement/dialogs/NoMoreDataDialog";
 

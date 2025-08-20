@@ -1,14 +1,15 @@
 "use client"
-import React, {useState, ChangeEvent, useCallback, useMemo} from "react";
+import React, {ChangeEvent, useCallback, useMemo, useState} from "react";
 import {
-    Grid,
-    Typography,
+    Box,
+    FormControl,
     FormControlLabel,
     FormGroup,
-    FormControl,
+    FormHelperText,
     FormLabel,
+    Grid,
     TextField,
-    Box, FormHelperText,
+    Typography,
 } from "@mui/material";
 import SmartTextField from "@/app/ui/components/SmartTextField";
 import SmartAutocomplete from "@/app/ui/components/SmartAutocomplete";
@@ -20,8 +21,11 @@ import {SmartGroup, useSmartAgent} from "smart-ui";
 import AddInquiryHeader from "@/app/ui/propertyManagement/pages/inquiries/components/AddInquiryHeader";
 import {addProperty} from "@/lib/db/database";
 import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-import {AdditionalInfoType, propertyTypes} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
-import {countryOptions} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
+import {
+    AdditionalInfoType,
+    countryOptions,
+    propertyTypes
+} from "@/app/ui/propertyManagement/pages/inquiries/types/properties";
 import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 const emptyFormData = {
@@ -144,287 +148,289 @@ export default function AddProperty() {
     return (
         <Grid container spacing={4}>
             <SmartGroup smartSemantic="add property form">
-            <Grid size={{ xs: 12 }}>
-                <AddInquiryHeader title="Immobilien" titleContent="Neue Immobilie hinzufügen" />
-            </Grid>
-            {/* Property Information Section */}
-            <Grid container spacing={2} size={{ xs: 12 }}>
-                <SmartGroup smartSemantic="description">
-                <Grid size={{ xs: 12 }}>
-                    <Typography variant="subtitle1">Beschreibung</Typography>
+                <Grid size={{xs: 12}}>
+                    <AddInquiryHeader title="Immobilien" titleContent="Neue Immobilie hinzufügen"/>
                 </Grid>
-                <Grid size={{ xs: 12 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Titel der Immobilie"
-                        fullWidth
-                        required
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        error={errors.name}
-                        helperText={errors.name ? "Titel ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Beschreibung"
-                        fullWidth
-                        multiline
-                        rows={3}
-                        required
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        error={errors.description}
-                        helperText={errors.description ? "Beschreibung ist erforderlich" : ""}
-                    />
-                </Grid>
-                </SmartGroup>
-            </Grid>
-            {/* Address Information Section */}
-            <Grid container spacing={2}>
-                <SmartGroup smartSemantic="address information">
-                <Grid size={{ xs: 12 }}>
-                    <Typography variant="subtitle1">Adressinformationen</Typography>
-                </Grid>
-                <Grid size={{ xs: 12, md: 8 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Straße"
-                        fullWidth
-                        required
-                        name="street"
-                        value={formData.street}
-                        onChange={handleChange}
-                        error={errors.street}
-                        helperText={errors.street ? "Straße ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Hausnummer"
-                        fullWidth
-                        required
-                        name="houseNumber"
-                        value={formData.houseNumber}
-                        onChange={handleChange}
-                        error={errors.houseNumber}
-                        helperText={errors.houseNumber ? "Hausnummer ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 8 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Stadt"
-                        fullWidth
-                        required
-                        name="city"
-                        value={formData.city}
-                        onChange={handleChange}
-                        error={errors.city}
-                        helperText={errors.city ? "Stadt ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Postleitzahl"
-                        fullWidth
-                        type="number"
-                        required
-                        name="postalCode"
-                        value={formData.postalCode}
-                        onChange={handleChange}
-                        error={errors.postalCode}
-                        helperText={errors.postalCode ? "Postleitzahl ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                    <SmartAutocomplete
-                        options={countryOptions}
-                        smartSemantic="Land"
-                        value={useMemo(() => countryOptions.find((option) => option.value === formData.country) || null, [formData.country])}
-                        onChange={(_event, value) => handleValueChange(value?.value ?? "", "country")}
-                        renderInput={(params) => (
-                            <TextField
+                {/* Property Information Section */}
+                <Grid container spacing={2} size={{xs: 12}}>
+                    <SmartGroup smartSemantic="description">
+                        <Grid size={{xs: 12}}>
+                            <Typography variant="subtitle1">Beschreibung</Typography>
+                        </Grid>
+                        <Grid size={{xs: 12}}>
+                            <SmartTextField
                                 variant="filled"
-                                {...params}
-                                label="Land"
+                                label="Titel der Immobilie"
                                 fullWidth
                                 required
-                                error={errors.country}
-                                helperText={errors.country ? "Land ist erforderlich" : ""}
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                error={errors.name}
+                                helperText={errors.name ? "Titel ist erforderlich" : ""}
                             />
-                        )}
-                    />
-                </Grid>
-                </SmartGroup>
-            </Grid>
-
-            {/* Property Details Section */}
-            <Grid container spacing={2}>
-                <SmartGroup smartSemantic="other details">
-                <Grid size={{ xs: 12 }}>
-                    <Typography variant="subtitle1">Immobilien Details</Typography>
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                    <FormControl component="fieldset" fullWidth required error={errors.type}>
-                        <FormLabel component="legend">Immobilienart</FormLabel>
-                        <SmartRadioGroup
-                            row
-                            value={formData.type}
-                            smartSemantic="property type"
-                            onChange={handleChange}
-                            onResetRadios={resetRadios}
-                            name="type"
-                        >
-                            {propertyTypes.map((property) => (
-                                <FormControlLabel key={property.value} value={property.value} control={<SmartRadio id={property.value} />} label={property.label} />
-                            ))}
-                        </SmartRadioGroup>
-                        {errors.type && <FormHelperText>Immobilienart ist erforderlich</FormHelperText>}
-                    </FormControl>
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Anzahl Betten"
-                        fullWidth
-                        type="number"
-                        required
-                        name="numBeds"
-                        value={formData.numBeds}
-                        onChange={handleChange}
-                        error={errors.numBeds}
-                        helperText={errors.numBeds ? "Anzahl Betten ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Anzahl Badezimmer"
-                        fullWidth
-                        type="number"
-                        required
-                        name="numBathrooms"
-                        value={formData.numBathrooms}
-                        onChange={handleChange}
-                        error={errors.numBathrooms}
-                        helperText={errors.numBathrooms ? "Anzahl Badezimmer ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Fläche (m²)"
-                        fullWidth
-                        type="number"
-                        required
-                        name="area"
-                        value={formData.area}
-                        onChange={handleChange}
-                        error={errors.area}
-                        helperText={errors.area ? "Fläche ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                    <SmartTextField
-                        variant="filled"
-                        label="Preis pro Nacht (€)"
-                        fullWidth
-                        type="number"
-                        required
-                        name="pricePerNight"
-                        value={formData.pricePerNight}
-                        onChange={handleChange}
-                        error={errors.pricePerNight}
-                        helperText={errors.pricePerNight ? "Preis pro Nacht ist erforderlich" : ""}
-                    />
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                    <SmartGroup smartSemantic="amenities">
-                        <FormGroup row>
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        checked={formData.additionalInfo.kitchen}
-                                        onChange={handleAdditionalInfoChange}
-                                        id="kitchen"
-                                        name="kitchen"
-                                    />
-                                }
-                                label="Küche"
+                        </Grid>
+                        <Grid size={{xs: 12}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Beschreibung"
+                                fullWidth
+                                multiline
+                                rows={3}
+                                required
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                error={errors.description}
+                                helperText={errors.description ? "Beschreibung ist erforderlich" : ""}
                             />
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        checked={formData.additionalInfo.wifi}
-                                        onChange={handleAdditionalInfoChange}
-                                        id="wifi"
-                                        name="wifi"
-                                    />
-                                }
-                                label="WLAN"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        checked={formData.additionalInfo.pool}
-                                        onChange={handleAdditionalInfoChange}
-                                        id="pool"
-                                        name="pool"
-                                    />
-                                }
-                                label="Pool"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        checked={formData.additionalInfo.airConditioning}
-                                        onChange={handleAdditionalInfoChange}
-                                        id="air-conditioning"
-                                        name="airConditioning"
-                                    />
-                                }
-                                label="Klimaanlage"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        id="parking"
-                                        checked={formData.additionalInfo.parking}
-                                        onChange={handleAdditionalInfoChange}
-                                        name="parking"
-                                    />
-                                }
-                                label="Parkplatz"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <SmartCheckbox
-                                        checked={formData.additionalInfo.petFriendly}
-                                        onChange={handleAdditionalInfoChange}
-                                        id="pet-friendly"
-                                        name="petFriendly"
-                                    />
-                                }
-                                label="Haustierfreundlich"
-                            />
-                        </FormGroup>
+                        </Grid>
                     </SmartGroup>
                 </Grid>
-                </SmartGroup>
-            </Grid>
-            <Grid size={{ xs: 12 }}>
-                <Box display="flex" justifyContent="flex-end">
-                    <SmartButton variant="contained" onClick={handleSubmit}>
-                        Hinzufügen
-                    </SmartButton>
-                </Box>
-            </Grid>
+                {/* Address Information Section */}
+                <Grid container spacing={2}>
+                    <SmartGroup smartSemantic="address information">
+                        <Grid size={{xs: 12}}>
+                            <Typography variant="subtitle1">Adressinformationen</Typography>
+                        </Grid>
+                        <Grid size={{xs: 12, md: 8}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Straße"
+                                fullWidth
+                                required
+                                name="street"
+                                value={formData.street}
+                                onChange={handleChange}
+                                error={errors.street}
+                                helperText={errors.street ? "Straße ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 4}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Hausnummer"
+                                fullWidth
+                                required
+                                name="houseNumber"
+                                value={formData.houseNumber}
+                                onChange={handleChange}
+                                error={errors.houseNumber}
+                                helperText={errors.houseNumber ? "Hausnummer ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 8}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Stadt"
+                                fullWidth
+                                required
+                                name="city"
+                                value={formData.city}
+                                onChange={handleChange}
+                                error={errors.city}
+                                helperText={errors.city ? "Stadt ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 4}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Postleitzahl"
+                                fullWidth
+                                type="number"
+                                required
+                                name="postalCode"
+                                value={formData.postalCode}
+                                onChange={handleChange}
+                                error={errors.postalCode}
+                                helperText={errors.postalCode ? "Postleitzahl ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12}}>
+                            <SmartAutocomplete
+                                options={countryOptions}
+                                smartSemantic="Land"
+                                value={useMemo(() => countryOptions.find((option) => option.value === formData.country) || null, [formData.country])}
+                                onChange={(_event, value) => handleValueChange(value?.value ?? "", "country")}
+                                renderInput={(params) => (
+                                    <TextField
+                                        variant="filled"
+                                        {...params}
+                                        label="Land"
+                                        fullWidth
+                                        required
+                                        error={errors.country}
+                                        helperText={errors.country ? "Land ist erforderlich" : ""}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                    </SmartGroup>
+                </Grid>
+
+                {/* Property Details Section */}
+                <Grid container spacing={2}>
+                    <SmartGroup smartSemantic="other details">
+                        <Grid size={{xs: 12}}>
+                            <Typography variant="subtitle1">Immobilien Details</Typography>
+                        </Grid>
+                        <Grid size={{xs: 12}}>
+                            <FormControl component="fieldset" fullWidth required error={errors.type}>
+                                <FormLabel component="legend">Immobilienart</FormLabel>
+                                <SmartRadioGroup
+                                    row
+                                    value={formData.type}
+                                    smartSemantic="property type"
+                                    onChange={handleChange}
+                                    onResetRadios={resetRadios}
+                                    name="type"
+                                >
+                                    {propertyTypes.map((property) => (
+                                        <FormControlLabel key={property.value} value={property.value}
+                                                          control={<SmartRadio id={property.value}/>}
+                                                          label={property.label}/>
+                                    ))}
+                                </SmartRadioGroup>
+                                {errors.type && <FormHelperText>Immobilienart ist erforderlich</FormHelperText>}
+                            </FormControl>
+                        </Grid>
+                        <Grid size={{xs: 12, md: 6}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Anzahl Betten"
+                                fullWidth
+                                type="number"
+                                required
+                                name="numBeds"
+                                value={formData.numBeds}
+                                onChange={handleChange}
+                                error={errors.numBeds}
+                                helperText={errors.numBeds ? "Anzahl Betten ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 6}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Anzahl Badezimmer"
+                                fullWidth
+                                type="number"
+                                required
+                                name="numBathrooms"
+                                value={formData.numBathrooms}
+                                onChange={handleChange}
+                                error={errors.numBathrooms}
+                                helperText={errors.numBathrooms ? "Anzahl Badezimmer ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 6}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Fläche (m²)"
+                                fullWidth
+                                type="number"
+                                required
+                                name="area"
+                                value={formData.area}
+                                onChange={handleChange}
+                                error={errors.area}
+                                helperText={errors.area ? "Fläche ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12, md: 6}}>
+                            <SmartTextField
+                                variant="filled"
+                                label="Preis pro Nacht (€)"
+                                fullWidth
+                                type="number"
+                                required
+                                name="pricePerNight"
+                                value={formData.pricePerNight}
+                                onChange={handleChange}
+                                error={errors.pricePerNight}
+                                helperText={errors.pricePerNight ? "Preis pro Nacht ist erforderlich" : ""}
+                            />
+                        </Grid>
+                        <Grid size={{xs: 12}}>
+                            <SmartGroup smartSemantic="amenities">
+                                <FormGroup row>
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                checked={formData.additionalInfo.kitchen}
+                                                onChange={handleAdditionalInfoChange}
+                                                id="kitchen"
+                                                name="kitchen"
+                                            />
+                                        }
+                                        label="Küche"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                checked={formData.additionalInfo.wifi}
+                                                onChange={handleAdditionalInfoChange}
+                                                id="wifi"
+                                                name="wifi"
+                                            />
+                                        }
+                                        label="WLAN"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                checked={formData.additionalInfo.pool}
+                                                onChange={handleAdditionalInfoChange}
+                                                id="pool"
+                                                name="pool"
+                                            />
+                                        }
+                                        label="Pool"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                checked={formData.additionalInfo.airConditioning}
+                                                onChange={handleAdditionalInfoChange}
+                                                id="air-conditioning"
+                                                name="airConditioning"
+                                            />
+                                        }
+                                        label="Klimaanlage"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                id="parking"
+                                                checked={formData.additionalInfo.parking}
+                                                onChange={handleAdditionalInfoChange}
+                                                name="parking"
+                                            />
+                                        }
+                                        label="Parkplatz"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <SmartCheckbox
+                                                checked={formData.additionalInfo.petFriendly}
+                                                onChange={handleAdditionalInfoChange}
+                                                id="pet-friendly"
+                                                name="petFriendly"
+                                            />
+                                        }
+                                        label="Haustierfreundlich"
+                                    />
+                                </FormGroup>
+                            </SmartGroup>
+                        </Grid>
+                    </SmartGroup>
+                </Grid>
+                <Grid size={{xs: 12}}>
+                    <Box display="flex" justifyContent="flex-end">
+                        <SmartButton variant="contained" onClick={handleSubmit}>
+                            Hinzufügen
+                        </SmartButton>
+                    </Box>
+                </Grid>
             </SmartGroup>
         </Grid>
     );

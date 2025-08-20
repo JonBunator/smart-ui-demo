@@ -1,15 +1,5 @@
-import {
-    Toolbar,
-    Card,
-    TabList, Tab, ToolbarButton,
-    Text,
-} from "@fluentui/react-components";
-import {
-    ArchiveRegular,
-    ArrowSortRegular,
-    FilterRegular,
-    ChevronDownRegular
-} from "@fluentui/react-icons";
+import {Card, Tab, TabList, Text, Toolbar, ToolbarButton,} from "@fluentui/react-components";
+import {ArchiveRegular, ArrowSortRegular, ChevronDownRegular, FilterRegular} from "@fluentui/react-icons";
 import EmailListItem from "@/app/ui/emailClient/middleContent/mainContent/emailList/EmailListItem";
 import './EmailList.scss'
 import NoEmails from "../noDataDisplays/NoEmails";
@@ -20,6 +10,7 @@ export interface EmailListItemProps {
     selectedEmail?: EmailItem;
     onSelectedEmailChange: (selectedEmail: EmailItem) => void;
 }
+
 export default function EmailList(props: EmailListItemProps) {
     const {emails, selectedEmail, onSelectedEmailChange} = props;
     return (
@@ -31,8 +22,8 @@ export default function EmailList(props: EmailListItemProps) {
                         <Tab value="tab2">Sonstige</Tab>
                     </TabList>
                     <ToolbarButton icon={<ArchiveRegular/>}></ToolbarButton>
-                    <ToolbarButton className="hide" icon={<FilterRegular />}></ToolbarButton>
-                    <ToolbarButton className="hide" icon={<ArrowSortRegular />}></ToolbarButton>
+                    <ToolbarButton className="hide" icon={<FilterRegular/>}></ToolbarButton>
+                    <ToolbarButton className="hide" icon={<ArrowSortRegular/>}></ToolbarButton>
                 </Toolbar>
 
 
@@ -44,7 +35,8 @@ export default function EmailList(props: EmailListItemProps) {
                         <Text>Heute</Text>
                     </div>
                     {emails.map((email) => (
-                        <EmailListItem key={email.id} email={email} selected={selectedEmail === email} onClick={() => onSelectedEmailChange(email)}/>
+                        <EmailListItem key={email.id} email={email} selected={selectedEmail === email}
+                                       onClick={() => onSelectedEmailChange(email)}/>
                     ))}
                 </div>
                 :

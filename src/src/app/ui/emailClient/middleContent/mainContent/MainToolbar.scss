@@ -1,51 +1,52 @@
 .toolbar.fui-Card {
-    padding: 0;
-    margin: 0 8px;
-    .fui-Toolbar {
-        padding: 4px;
+  padding: 0;
+  margin: 0 8px;
 
-        @media (max-width: 1450px) {
-            .hide-1 {
-                display: none;
-            }
-        }
-        @media (max-width: 1830px) {
-            .hide-2 {
-                display: none;
-            }
-        }
+  .fui-Toolbar {
+    padding: 4px;
 
-        .send-email {
-            margin-right: 4px;
-        }
-
-        .archive-icon {
-            color: var(--colorPaletteForestBorderActive);
-        }
-
-        .shield-icon {
-            color: var(--colorPaletteCranberryBorderActive);
-        }
-
-        .reply-icon {
-            color: var(--colorPaletteGrapeBorderActive);
-        }
-
-        .delete-icon, .broom-icon {
-            color: var(--colorNeutralForeground3);
-        }
-
-        .folder-icon, .forward-icon {
-            color: var(--colorPaletteBlueBorderActive);
-        }
-
-        .flash-icon {
-            color: var(--colorPaletteGoldBorderActive);
-        }
-
-        .fui-Divider {
-            max-height: unset;
-            height: 32px;
-        }
+    @media (max-width: 1450px) {
+      .hide-1 {
+        display: none;
+      }
     }
+    @media (max-width: 1830px) {
+      .hide-2 {
+        display: none;
+      }
+    }
+
+    .send-email {
+      margin-right: 4px;
+    }
+
+    .archive-icon {
+      color: var(--colorPaletteForestBorderActive);
+    }
+
+    .shield-icon {
+      color: var(--colorPaletteCranberryBorderActive);
+    }
+
+    .reply-icon {
+      color: var(--colorPaletteGrapeBorderActive);
+    }
+
+    .delete-icon, .broom-icon {
+      color: var(--colorNeutralForeground3);
+    }
+
+    .folder-icon, .forward-icon {
+      color: var(--colorPaletteBlueBorderActive);
+    }
+
+    .flash-icon {
+      color: var(--colorPaletteGoldBorderActive);
+    }
+
+    .fui-Divider {
+      max-height: unset;
+      height: 32px;
+    }
+  }
 }

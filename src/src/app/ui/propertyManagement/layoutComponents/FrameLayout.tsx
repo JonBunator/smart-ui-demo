@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper } from "@mui/material";
+import {Paper} from "@mui/material";
 import "./FrameLayout.scss"
 import Background from "@/app/ui/propertyManagement/layoutComponents/Background";
 

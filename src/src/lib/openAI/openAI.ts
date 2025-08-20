@@ -5,6 +5,7 @@ import {getSession} from "@/lib/security/session";
 import {z} from 'zod';
 import {zodResponsesFunction} from "openai/helpers/zod";
 import {getEmails} from "../db/database";
+import {ChatCompletionFunctionTool} from "openai/resources/chat/completions/completions";
 
 const endpoint = process.env.OPENAI_ENDPOINT;
 const apiKey = process.env.OPENAI_API_KEY;
@@ -27,15 +28,22 @@ const getEmailFunctionOptions = {
 const optionalAgentInput = {
     tools: [{
         tool:
-            {type: "function", "function": zodResponsesFunction(getEmailFunctionOptions)},
-        function: async (args: {lastN: number}) => await getEmails(args.lastN)
+            {type: "function", "function": zodResponsesFunction(getEmailFunctionOptions)} as ChatCompletionFunctionTool,
+        function: async (args: { lastN: number }) => await getEmails(args.lastN)
     }]
 }
 
 export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentResponse> {
     const sessionData = await getSession();
     if (!sessionData || sessionData.surveyState === "Finished" || sessionData.surveyState === "InitialQuestions" || sessionData.surveyState["SurveyStep"] !== "Running") {
-        return {agentOutput: [{uiInteractions: [], naturalLanguageInteraction: "An error occurred", yesNoButtons: false, motivation: ""}], messages: []};
+        return {
+            agentOutput: [{
+                uiInteractions: [],
+                naturalLanguageInteraction: "An error occurred",
+                yesNoButtons: false,
+                motivation: ""
+            }], messages: []
+        };
     }
     const result = await callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
     console.log(JSON.stringify(result))

@@ -1,4 +1,4 @@
-import { CircularProgress, Typography } from "@mui/material";
+import {CircularProgress, Typography} from "@mui/material";
 import "./LoadingPage.scss"
 
 export default function LoadingPage() {

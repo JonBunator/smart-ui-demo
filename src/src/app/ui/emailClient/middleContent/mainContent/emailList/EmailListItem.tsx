@@ -1,8 +1,5 @@
 "use client"
-import {
-    Text,
-    Avatar,
-} from "@fluentui/react-components";
+import {Avatar, Text,} from "@fluentui/react-components";
 
 import './EmailListItem.scss'
 import {useState} from "react";
@@ -25,7 +22,8 @@ export default function EmailListItem(props: EmailListItemProps) {
     }
 
     return (
-        <div className={`email-list-item${unread ? " unread" : ""}${selected ? " selected" : ""}`} onClick={handleClick}>
+        <div className={`email-list-item${unread ? " unread" : ""}${selected ? " selected" : ""}`}
+             onClick={handleClick}>
             <Avatar color="colorful" size={32} name={email.author}/>
             <div>
                 <Text>{email.author}</Text>

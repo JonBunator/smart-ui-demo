@@ -1,8 +1,8 @@
 "use client"
 import PropertyManagement from "@/app/ui/propertyManagement/PropertyManagement";
 import EmailClient from "@/app/ui/emailClient/EmailClient";
-import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
-import {useEffect, useCallback} from "react";
+import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
+import {useCallback, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import "./App.scss";
 import {useSmartAgent} from "smart-ui";
@@ -18,16 +18,16 @@ export default function App(props: AppProps) {
     const {subscribe} = useSurveyManager();
     const {deleteChatHistory, chatHistory} = useSmartAgent();
     const router = useRouter();
-    
+
     const updatePromptHistory = useCallback(() => {
         const history = JSON.stringify(chatHistory);
         setPromptHistory(history).then().catch();
         deleteChatHistory();
     }, [chatHistory, deleteChatHistory]);
-    
+
     useEffect(() => {
         const unsubscribe = subscribe((snapshot) => {
-            if(snapshot.matches({SurveyStep: "Questions"})) {
+            if (snapshot.matches({SurveyStep: "Questions"})) {
                 updatePromptHistory();
                 router.push('/questions')
             }
@@ -40,7 +40,7 @@ export default function App(props: AppProps) {
             <PropertyManagement agent={agent}>
                 {children}
             </PropertyManagement>
-            <EmailClient />
+            <EmailClient/>
         </div>
     );
 }

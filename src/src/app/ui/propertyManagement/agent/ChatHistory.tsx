@@ -1,19 +1,19 @@
-import { BotFilled } from "@fluentui/react-icons";
+import {BotFilled} from "@fluentui/react-icons";
 import {ChatMessage, ChatMessageCreator} from "smart-ui";
 import "./ChatHistory.scss"
 import Avatar from "@mui/material/Avatar";
 import Markdown from 'react-markdown'
 import {ReactNode, useEffect, useRef} from "react";
 import Typography from "@mui/material/Typography";
-import { Divider } from "@mui/material";
+import {Divider} from "@mui/material";
 
-function AgentMessage({children}: {children: ReactNode}) {
+function AgentMessage({children}: { children: ReactNode }) {
     return (
         <div className="chat-history-element agent-message">
-            <Avatar className="ai-avatar"><BotFilled /></Avatar>
+            <Avatar className="ai-avatar"><BotFilled/></Avatar>
             <div className="chat-history-message">
                 <div className="message-no-time">
-                {children}
+                    {children}
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ export default function ChatHistory(props: ChatHistoryProps) {
     }, [history]);
 
     function getUIInteractionsInfo(numUIInteractions: number) {
-        if(numUIInteractions === 1) {
+        if (numUIInteractions === 1) {
             return "Eine Änderung vorgeschlagen";
         }
         return `${numUIInteractions} Änderungen vorgeschlagen`;
@@ -61,9 +61,11 @@ export default function ChatHistory(props: ChatHistoryProps) {
             {history
                 .filter((item) => ((item.message.role === ChatMessageCreator.AGENT && item.message.content !== undefined) || item.message.role === ChatMessageCreator.USER))
                 .map((item, index) => (
-                    <div key={index} className={`chat-history-element ${item.message.role === ChatMessageCreator.AGENT ? "agent-message" : "user-message"}`}>
-                        {item.message.role === ChatMessageCreator.AGENT && (<Avatar className="ai-avatar"><BotFilled /></Avatar>)}
-                        <div  className="chat-history-message">
+                    <div key={index}
+                         className={`chat-history-element ${item.message.role === ChatMessageCreator.AGENT ? "agent-message" : "user-message"}`}>
+                        {item.message.role === ChatMessageCreator.AGENT && (
+                            <Avatar className="ai-avatar"><BotFilled/></Avatar>)}
+                        <div className="chat-history-message">
                             {(() => {
                                 let step = undefined;
                                 let numSteps = undefined;
@@ -72,7 +74,7 @@ export default function ChatHistory(props: ChatHistoryProps) {
                                     step = parsedContent.step;
                                     numSteps = parsedContent.numSteps;
                                 }
-                                if(step === undefined || numSteps === undefined) {
+                                if (step === undefined || numSteps === undefined) {
                                     return;
                                 }
 
@@ -115,7 +117,8 @@ export default function ChatHistory(props: ChatHistoryProps) {
                                 }
 
                                 return (
-                                    <div className={`bottom-row ${isAgentWithInteractions ? "ui-interactions-available" : ""}`}>
+                                    <div
+                                        className={`bottom-row ${isAgentWithInteractions ? "ui-interactions-available" : ""}`}>
                                         {item.sentTime !== "" && (
                                             <Typography className="time">
                                                 {(new Date(item.sentTime)).toLocaleTimeString().split(":").slice(0, 2).join(":")}

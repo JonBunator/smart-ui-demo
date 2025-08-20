@@ -43,7 +43,7 @@ export async function setSession(sessionDataWithUserID: SessionDataWithUserID) {
 
 export async function updateSession(sessionData: SessionData) {
     const session = await getSession();
-    if(!session) {
+    if (!session) {
         throw new Error("Session is invalid");
     }
 
@@ -61,7 +61,7 @@ export async function getSession(): Promise<SessionDataWithUserID | null> {
         }
         const payload = await _verifyJWTToken(session);
         return payload as unknown as SessionDataWithUserID ?? null;
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         return null;
     }

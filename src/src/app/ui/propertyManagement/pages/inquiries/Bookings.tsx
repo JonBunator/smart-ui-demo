@@ -1,6 +1,6 @@
 "use client"
 import React, {useEffect, useState} from "react";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 import {DataGrid, GridColDef, GridRowSelectionModel} from '@mui/x-data-grid';
 import SmartButton from "@/app/ui/components/SmartButton";
 import {Chip, NoSsr, Typography} from '@mui/material';
@@ -9,12 +9,12 @@ import BoyIcon from '@mui/icons-material/Boy';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {DateRange, DayPicker} from "react-day-picker";
 import "react-day-picker/style.css";
-import { de } from "react-day-picker/locale";
+import {de} from "react-day-picker/locale";
 import "./Bookings.scss"
 import DataGridToolbar from "./components/DataGridToolbar";
 import {BookingsData, BookingStatus, fakeData} from "@/app/ui/propertyManagement/pages/inquiries/types/bookings";
 import {getBookings} from "@/lib/db/database";
-import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 const columns: GridColDef[] = [
     {
@@ -57,16 +57,19 @@ const columns: GridColDef[] = [
                 default:
                     color = 'default';
             }
-            return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')} />;
+            return <Chip label={label} size="small" color={color as ('success' | 'warning' | 'error' | 'default')}/>;
         },
     },
-    { field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
+    {
+        field: 'property', headerName: 'Immobilie', flex: 2, minWidth: 150,
         renderCell: (params) => (
             <span className="ellipsis">
                 {params.value}
             </span>
-        )},
-    { field: 'dateRange', headerName: 'Buchungszeitraum', flex: 2, minWidth: 180,
+        )
+    },
+    {
+        field: 'dateRange', headerName: 'Buchungszeitraum', flex: 2, minWidth: 180,
         valueGetter: (value: DateRange) => {
             return `${value.from?.toLocaleDateString()} - ${value.to?.toLocaleDateString()}`;
         },
@@ -76,7 +79,8 @@ const columns: GridColDef[] = [
             </span>
         )
     },
-    { field: 'numVisitors', headerName: 'Gästeanzahl', flex: 1, minWidth: 110,
+    {
+        field: 'numVisitors', headerName: 'Gästeanzahl', flex: 1, minWidth: 110,
         valueGetter: (value, row) => {
             return row.numAdults + row.numChildren;
         },
@@ -91,12 +95,16 @@ const columns: GridColDef[] = [
                     <span>{params.row.numChildren}x</span>
                 </div>}
             </div>
-        ),},
+        ),
+    },
 ];
 
 export default function Bookings() {
     const router = useRouter();
-    const [rowSelectionModel, setRowSelectionModel] = useState<GridRowSelectionModel>({ type: 'include', ids: new Set() });
+    const [rowSelectionModel, setRowSelectionModel] = useState<GridRowSelectionModel>({
+        type: 'include',
+        ids: new Set()
+    });
     const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
     const [month, setMonth] = useState<Date | undefined>(undefined);
     const [rows, setRows] = useState<BookingsData[]>([]);
@@ -120,8 +128,8 @@ export default function Bookings() {
                     }
                 }));
 
-            setRows([...addedBookings, ...fakeData]);
-            setLoading(false);
+                setRows([...addedBookings, ...fakeData]);
+                setLoading(false);
             })
             .catch(() => error());
     }, [error]);
@@ -132,13 +140,14 @@ export default function Bookings() {
 
     const AddButton =
         (<SmartButton startIcon={<AddCircleIcon/>} smartSemantic="navigates to the 'add booking request' form"
-                            variant="contained" onClick={navigateToAddPage} smartHref="/survey/bookings/add">Hinzufügen</SmartButton>
+                      variant="contained" onClick={navigateToAddPage}
+                      smartHref="/survey/bookings/add">Hinzufügen</SmartButton>
         );
 
     function updateSelected(model: GridRowSelectionModel) {
         setRowSelectionModel(model);
         const selected = rows.filter(row => model.ids.has(row.id));
-        if(selected.length > 0) {
+        if (selected.length > 0) {
             setDateRange(selected[0].dateRange);
             setMonth(selected[0].dateRange?.from);
         } else {
@@ -150,13 +159,16 @@ export default function Bookings() {
     return (
         <div className="bookings">
             <NoSsr>
-                <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[5, 25, 100]} checkboxSelection disableMultipleRowSelection showToolbar
-                          slots={{ toolbar: DataGridToolbar }}
-                          slotProps={{ toolbar: { title: "Buchungen", buttonContent: AddButton},
-                                  loadingOverlay: {
+                <DataGrid rowHeight={60} rows={rows} columns={columns} pageSizeOptions={[5, 25, 100]} checkboxSelection
+                          disableMultipleRowSelection showToolbar
+                          slots={{toolbar: DataGridToolbar}}
+                          slotProps={{
+                              toolbar: {title: "Buchungen", buttonContent: AddButton},
+                              loadingOverlay: {
                                   variant: 'linear-progress',
                                   noRowsVariant: 'circular-progress',
-                          }}}
+                              }
+                          }}
                           onRowSelectionModelChange={(newRowSelectionModel) => {
                               updateSelected(newRowSelectionModel);
                           }}
@@ -181,7 +193,8 @@ export default function Bookings() {
                 month={month}
                 onMonthChange={setMonth}
                 selected={dateRange}
-                onSelect={() => {}}
+                onSelect={() => {
+                }}
             />
         </div>
     );

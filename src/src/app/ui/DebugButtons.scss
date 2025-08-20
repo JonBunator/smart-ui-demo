@@ -1,10 +1,11 @@
 .debug-buttons {
-    display: flex;
-    opacity: 0;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    &:hover {
-        opacity: 1;
-    }
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+
+  &:hover {
+    opacity: 1;
+  }
 }

@@ -11,10 +11,10 @@ import {getAISupportForCurrentSurveyStep, getAllEMails, getEMail} from "@/lib/db
 import {AISupport} from "@/lib/types"
 import {EMail} from "@prisma";
 import {useSmartAgent} from "smart-ui";
-import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 export default function MainContent() {
-    const [selectedEmail, setSelectedEmail] = useState<EmailItem|undefined>(undefined);
+    const [selectedEmail, setSelectedEmail] = useState<EmailItem | undefined>(undefined);
     const [emails, setEmails] = useState<EmailItem[]>([]);
     const {stateMachine} = useSurveyManager();
     const {sendEvent} = useSmartAgent();
@@ -36,16 +36,17 @@ export default function MainContent() {
             .then(emails => {
                 setEmails(
                     emails?.map(email => createEmailItem(email)) ?? []
-                )})
+                )
+            })
             .catch(() => error());
 
     }, [error]);
-    
+
     useEffect(() => {
         updateEmails();
     }, [updateEmails]);
 
-    const sendEmailEvent = useCallback(async (email: EMail)=> {
+    const sendEmailEvent = useCallback(async (email: EMail) => {
         try {
             const aiSupport = await getAISupportForCurrentSurveyStep();
             if (aiSupport !== AISupport.PROACTIVE_AGENT) {
@@ -69,7 +70,7 @@ export default function MainContent() {
         const subscription = stateMachine?.on('sendEmail', (event) => {
             getEMail(event.surveyStep, event.dataIndex)
                 .then(email => {
-                    if(email !== null) {
+                    if (email !== null) {
                         setEmails((prevState) => {
                             const emailExists = prevState.some(existingEmail => existingEmail.id === email.id);
                             sendEmailEvent(email).then();
@@ -89,7 +90,8 @@ export default function MainContent() {
         <div className="main-content">
             <MainContentTabs/>
             <MainToolbar/>
-            <EmailList emails={emails} selectedEmail={selectedEmail} onSelectedEmailChange={(value) => setSelectedEmail(value)}/>
+            <EmailList emails={emails} selectedEmail={selectedEmail}
+                       onSelectedEmailChange={(value) => setSelectedEmail(value)}/>
             <EmailPreview noEmails={emails.length === 0} email={selectedEmail}/>
         </div>
     );

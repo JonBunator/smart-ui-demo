@@ -1,48 +1,51 @@
 .agent {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-height: calc(100% - 16px);
-    box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100% - 16px);
+  box-shadow: none;
 
   .yes-no-buttons {
+    display: flex;
+    gap: 4px;
+    margin: 0 8px 2px 8px;
+    justify-content: flex-end;
+  }
+
+  .approval-buttons {
+    display: flex;
+    margin: 0 8px 2px 8px;
+    justify-content: space-between;
+  }
+
+  .prompt-field {
+    position: relative;
+    margin-top: 6px;
+
+    .prompt-textfield .MuiInputBase-root {
+      padding-bottom: 52px;
+
+      textarea {
+        max-height: 300px;
+        overflow: auto !important;
+      }
+    }
+
+    .field-buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
-      gap: 4px;
-      margin: 0 8px 2px 8px;
       justify-content: flex-end;
+      gap: 8px;
+      margin: 0 8px 8px;
     }
-    .approval-buttons {
-        display: flex;
-        margin: 0 8px 2px 8px;
-        justify-content: space-between;
-    }
+  }
 
-    .prompt-field {
-        position: relative;
-        margin-top: 6px;
-        .prompt-textfield .MuiInputBase-root {
-            padding-bottom: 52px;
-
-            textarea {
-                max-height: 300px;
-                overflow: auto !important;
-            }
-        }
-
-        .field-buttons {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin: 0 8px 8px;
-        }
-    }
-    .bottom-buttons {
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-    }
+  .bottom-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
 }

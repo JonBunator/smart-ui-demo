@@ -9,13 +9,15 @@ export default function Agent() {
 
     return (
         <div>
-            <textarea id="prompt" style={{ height: "400px", width: "100%", lineHeight: "12px" }} value={value} onChange={(event) => setValue(event.target.value)} />
+            <textarea id="prompt" style={{height: "400px", width: "100%", lineHeight: "12px"}} value={value}
+                      onChange={(event) => setValue(event.target.value)}/>
             <button id="send" onClick={() => sendPrompt(value)}>Send</button>
             {approvalRequired && <div>
                 <button id="deny" onClick={async () => await handleChangeApproval(false)}>Deny</button>
                 <button id="approve" onClick={async () => await handleChangeApproval(true)}>Approve</button>
             </div>}
-            <button id="print-structure" onClick={() => console.log(JSON.stringify(getHierarchy()))}>Print structure</button>
+            <button id="print-structure" onClick={() => console.log(JSON.stringify(getHierarchy()))}>Print structure
+            </button>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import {SmartComponentManager, SmartAgentProvider} from "smart-ui";
+import {SmartAgentProvider, SmartComponentManager} from "smart-ui";
 import Content from "./Content.tsx";
 import {callAgentEndpoint} from "../openAIMock.ts";
 

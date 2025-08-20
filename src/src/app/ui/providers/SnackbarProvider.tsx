@@ -1,6 +1,6 @@
-import type { SlideProps } from '@mui/material'
-import { Alert, AlertTitle, Slide, Snackbar } from '@mui/material'
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import type {SlideProps} from '@mui/material'
+import {Alert, AlertTitle, Slide, Snackbar} from '@mui/material'
+import React, {createContext, useCallback, useContext, useMemo, useState} from 'react'
 
 interface SnackbarContextType {
     success: (title: string, message?: string) => void
@@ -15,10 +15,16 @@ interface SnackbarProviderProps {
 }
 
 function SlideTransition(props: SlideProps) {
-    return <Slide {...props} direction="up" />
+    return <Slide {...props} direction="up"/>
 }
-export default function SnackbarProvider({ children }: SnackbarProviderProps) {
-    const [snackbar, setSnackbar] = useState<{ title: string, message: string, severity: 'success' | 'error' | 'info', open: boolean }>({
+
+export default function SnackbarProvider({children}: SnackbarProviderProps) {
+    const [snackbar, setSnackbar] = useState<{
+        title: string,
+        message: string,
+        severity: 'success' | 'error' | 'info',
+        open: boolean
+    }>({
         title: '',
         message: '',
         severity: 'success',
@@ -26,19 +32,24 @@ export default function SnackbarProvider({ children }: SnackbarProviderProps) {
     })
 
     const handleClose = useCallback(() => {
-        setSnackbar(prev => ({ ...prev, open: false }))
+        setSnackbar(prev => ({...prev, open: false}))
     }, [])
 
     const success = useCallback((title: string, message?: string) => {
-        setSnackbar({ title, message: message ?? '', severity: 'success', open: true })
+        setSnackbar({title, message: message ?? '', severity: 'success', open: true})
     }, [])
 
     const error = useCallback((title?: string, message?: string) => {
-        setSnackbar({ title: title ?? 'Fehler', message: message ?? 'Ein unbekannter Fehler ist aufgetreten', severity: 'error', open: true })
+        setSnackbar({
+            title: title ?? 'Fehler',
+            message: message ?? 'Ein unbekannter Fehler ist aufgetreten',
+            severity: 'error',
+            open: true
+        })
     }, [])
 
     const clear = useCallback(() => {
-        setSnackbar(prev => ({ ...prev, open: false }))
+        setSnackbar(prev => ({...prev, open: false}))
     }, [])
 
     const value = useMemo(
@@ -53,8 +64,9 @@ export default function SnackbarProvider({ children }: SnackbarProviderProps) {
     return (
         <SnackbarContext.Provider value={value}>
             {children}
-            <Snackbar open={snackbar.open} autoHideDuration={5000} slots={{transition: SlideTransition}} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-                <Alert onClose={handleClose} severity={snackbar.severity} variant="filled" sx={{ width: '400px' }}>
+            <Snackbar open={snackbar.open} autoHideDuration={5000} slots={{transition: SlideTransition}}
+                      onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}>
+                <Alert onClose={handleClose} severity={snackbar.severity} variant="filled" sx={{width: '400px'}}>
                     {snackbar.message !== '' && <AlertTitle>{snackbar.title}</AlertTitle>}
                     {snackbar.message === '' ? snackbar.title : snackbar.message}
                 </Alert>

@@ -9,6 +9,7 @@ export default function SmartButton(props: SmartButtonProps) {
     return (
         <Button
             {...otherProps}
+            // @ts-expect-error TODO fix library type mismatch
             component={SmartButtonBase}/>
     );
 }

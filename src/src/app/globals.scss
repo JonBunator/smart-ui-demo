@@ -21,6 +21,7 @@
     --top-bar-bg: #1a1c1a;
     --card-container-bg: #333533;
   }
+
   .light {
     --ai-agent-color-1: rgba(224, 64, 251, 0.3);
     --ai-agent-color-1-hover: rgba(224, 64, 251, 0.45);
@@ -36,9 +37,11 @@
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: rgba(155, 155, 155, 0.5);
   border-radius: 20px;
@@ -56,19 +59,23 @@ canvas {
         border-top-left-radius: 100%;
         border-bottom-left-radius: 100%;
       }
+
       &:last-child {
         border-top-right-radius: 100%;
         border-bottom-right-radius: 100%;
       }
     }
   }
+
   .rdp-day {
     &:not(.rdp-selected):hover {
       border-radius: 100%;
     }
+
     &:hover {
       background: var(--primary-container-hover);
     }
+
     &.rdp-selected {
       font-size: unset;
       font-weight: unset;
@@ -88,6 +95,7 @@ canvas {
   .rdp-today .rdp-day_button {
     border-radius: 100%;
     border: 2px solid var(--primary-container-bg);
+
     &:hover {
       border: none;
     }
@@ -118,23 +126,22 @@ html, body, .fui-FluentProvider {
 .ai-agent.MuiButtonBase-root, .smart-paste-button.MuiButtonBase-root {
   background: linear-gradient(90deg, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%);
   color: var(--colorNeutralForeground2);
+
   &:hover {
     background: linear-gradient(90deg, var(--ai-agent-color-1-hover) 0%, var(--ai-agent-color-2-hover) 100%);
   }
 }
 
 @mixin smart-changes-basic($borderWidth: 3px, $margin: null) {
-  background:
-          linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
-          linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
-          linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
+  background: linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
+  linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
+  linear-gradient(to top right, var(--ai-agent-color-1) 0%, var(--ai-agent-color-2) 100%) border-box;
   border: $borderWidth solid transparent;
   margin: if($margin == null, -$borderWidth, $margin);
   &:hover {
-    background:
-            linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
-            linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
-            linear-gradient(to top right, var(--ai-agent-color-1-hover) 0%, var(--ai-agent-color-2-hover) 100%) border-box;
+    background: linear-gradient(var(--smart-changes-element-background-color), var(--smart-changes-element-background-color)) padding-box,
+    linear-gradient(var(--paper-container-bg), var(--paper-container-bg)) padding-box,
+    linear-gradient(to top right, var(--ai-agent-color-1-hover) 0%, var(--ai-agent-color-2-hover) 100%) border-box;
 
   }
 }
@@ -143,17 +150,21 @@ html, body, .fui-FluentProvider {
 .navigation-bar .nav-items .MuiButtonBase-root {
   &.smart-changes {
     --smart-changes-element-background-color: var(--top-bar-bg);
+
     &:hover {
       --smart-changes-element-background-color: var(--variant-textBg);
     }
+
     @include smart-changes-basic(6px);
   }
 
   &.nav-element-selected.smart-changes {
     --smart-changes-element-background-color: var(--primary-container-bg);
+
     &:hover {
       --smart-changes-element-background-color: var(--primary-container-hover);
     }
+
     @include smart-changes-basic(6px);
   }
 }
@@ -161,6 +172,7 @@ html, body, .fui-FluentProvider {
 // Textfield
 input.MuiInputBase-input.smart-changes {
   --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+
   &:hover {
     --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
   }
@@ -175,14 +187,17 @@ input.MuiInputBase-input.smart-changes {
 }
 
 // Autocomplete
-.MuiAutocomplete-root.smart-changes  {
+.MuiAutocomplete-root.smart-changes {
   --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+
   &:hover {
     --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
   }
+
   .MuiInputBase-root {
     background: transparent;
   }
+
   @include smart-changes-basic();
   border-radius: 12px 12px 0 0;
 
@@ -191,9 +206,11 @@ input.MuiInputBase-input.smart-changes {
 // Textarea
 .MuiInputBase-root:has(textarea.smart-changes) {
   --smart-changes-element-background-color: var(--mui-palette-FilledInput-bg);
+
   &:hover {
     --smart-changes-element-background-color: var(--mui-palette-FilledInput-hoverBg);
   }
+
   @include smart-changes-basic(3px, -3px 0 -3px 0);
 }
 
@@ -201,19 +218,24 @@ input.MuiInputBase-input.smart-changes {
 .MuiRadio-root, .MuiCheckbox-root {
   &.smart-changes {
     --smart-changes-element-background-color: transparent;
+
     &:hover {
       --smart-changes-element-background-color: rgba(var(--mui-palette-primary-mainChannel) / var(--mui-palette-action-hoverOpacity))
     }
+
     @include smart-changes-basic();
   }
 }
+
 // Contained buttons
 .MuiButton-containedPrimary {
   &.smart-changes {
     --smart-changes-element-background-color: var(--variant-containedBg);
+
     &:hover {
       --smart-changes-element-background-color: var(--mui-palette-primary-dark);
     }
+
     @include smart-changes-basic(6px);
   }
 }

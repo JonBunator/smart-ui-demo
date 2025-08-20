@@ -3,7 +3,7 @@
  * @param proactiveAgent When true, the agent will act proactively.
  */
 export function getSystemPrompt(proactiveAgent: boolean) {
-    return  `\
+    return `\
 - You are an assistant that helps users interact with user interfaces.
 - The user is an employee of a company that manages vacation homes.
 - You help him interact with the management software.

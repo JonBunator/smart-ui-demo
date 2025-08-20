@@ -1,10 +1,8 @@
 "use client"
-import {
-    ElementPropsType, UEQPlusElementType,
-} from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {Radio, FormControl, TableBody, Table, TableRow, TableCell, FormHelperText} from "@mui/material";
+import {ElementPropsType, UEQPlusElementType,} from "@/app/ui/propertyManagement/pages/questions/parser/types";
+import {FormControl, FormHelperText, Radio, Table, TableBody, TableCell, TableRow} from "@mui/material";
 import React, {useCallback, useEffect, useState} from "react";
-import { useQuestionsParser } from "../QuestionsParser";
+import {useQuestionsParser} from "../QuestionsParser";
 import "./UEQPlusElement.scss"
 
 interface UEQPlusElementProps<T> extends ElementPropsType<T> {
@@ -20,7 +18,7 @@ export default function UEQPlusElement<T>(props: UEQPlusElementProps<T>) {
     const value = values[name] ?? Array(element.labels.length).fill(null);
 
     const handleChange = (checked: boolean, column: number, row: number) => {
-        if(checked) {
+        if (checked) {
             value[row] = column;
         }
         onValuesChange({...values, [name]: value});
@@ -39,7 +37,7 @@ export default function UEQPlusElement<T>(props: UEQPlusElementProps<T>) {
     }, [subscribe, validate]);
 
     function isChecked(column: number, row: number) {
-        return value[row] === null ? false: value[row] === column;
+        return value[row] === null ? false : value[row] === column;
     }
 
     return (
@@ -51,9 +49,10 @@ export default function UEQPlusElement<T>(props: UEQPlusElementProps<T>) {
                             <TableCell component="th" scope="row">
                                 {labelTuple[0]}
                             </TableCell>
-                            {Array.from({ length: element.scaleSize }, (_, column) => (
+                            {Array.from({length: element.scaleSize}, (_, column) => (
                                 <TableCell key={column} align="center">
-                                    <Radio checked={isChecked(column, row)} onChange={(_event, checked) => handleChange(checked, column, row)} />
+                                    <Radio checked={isChecked(column, row)}
+                                           onChange={(_event, checked) => handleChange(checked, column, row)}/>
                                 </TableCell>
                             ))}
                             <TableCell component="th" scope="row">

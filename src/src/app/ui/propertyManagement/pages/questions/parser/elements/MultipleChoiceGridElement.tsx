@@ -1,10 +1,11 @@
 "use client"
 import {
-    ElementPropsType, MultipleChoiceGridElementType,
+    ElementPropsType,
+    MultipleChoiceGridElementType,
 } from "@/app/ui/propertyManagement/pages/questions/parser/types";
-import {Radio, FormControl, TableBody, Table, TableRow, TableHead, TableCell, FormHelperText} from "@mui/material";
+import {FormControl, FormHelperText, Radio, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
 import React, {useCallback, useEffect, useState} from "react";
-import { useQuestionsParser } from "../QuestionsParser";
+import {useQuestionsParser} from "../QuestionsParser";
 
 interface MultipleChoiceGridElementProps<T> extends ElementPropsType<T> {
     element: MultipleChoiceGridElementType;
@@ -19,7 +20,7 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
     const value = values[name] ?? Array(element.yAxisLabels.length).fill(null);
 
     const handleChange = (checked: boolean, column: number, row: number) => {
-        if(checked) {
+        if (checked) {
             value[row] = column;
         }
         onValuesChange({...values, [name]: value});
@@ -38,7 +39,7 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
     }, [subscribe, validate]);
 
     function isChecked(column: number, row: number) {
-        return value[row] === null ? false: value[row] === column;
+        return value[row] === null ? false : value[row] === column;
     }
 
     const headerRow = (
@@ -62,12 +63,13 @@ export default function MultipleChoiceGridElement<T>(props: MultipleChoiceGridEl
                         <React.Fragment key={row}>
                             {row % 6 === 0 && row !== 0 && headerRow}
                             <TableRow>
-                                <TableCell component="th" scope="row" sx={{ maxWidth: 300 }}>
+                                <TableCell component="th" scope="row" sx={{maxWidth: 300}}>
                                     {label}
                                 </TableCell>
-                                {Array.from({ length: element.xAxisLabels.length }, (_, column) => (
+                                {Array.from({length: element.xAxisLabels.length}, (_, column) => (
                                     <TableCell key={column} align="center">
-                                        <Radio checked={isChecked(column, row)} onChange={(_event, checked) => handleChange(checked, column, row)} />
+                                        <Radio checked={isChecked(column, row)}
+                                               onChange={(_event, checked) => handleChange(checked, column, row)}/>
                                     </TableCell>
                                 ))}
                             </TableRow>

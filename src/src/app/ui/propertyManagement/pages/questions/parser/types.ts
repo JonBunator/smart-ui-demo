@@ -39,7 +39,12 @@ export interface SliderElementType {
     endLabel: string;
 }
 
-export type ElementType = TextElementType | MultipleChoiceGridElementType | MultipleChoiceElementType | UEQPlusElementType | SliderElementType;
+export type ElementType =
+    TextElementType
+    | MultipleChoiceGridElementType
+    | MultipleChoiceElementType
+    | UEQPlusElementType
+    | SliderElementType;
 
 export interface QuestionaireType {
     title: string;

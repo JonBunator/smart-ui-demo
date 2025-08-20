@@ -1,15 +1,15 @@
 "use server"
 
 import {
+    AgentQuestionsType,
     Booking,
     Data,
     DataCategory,
     DataType,
     EMail,
     Maintenance,
-    AgentQuestionsType,
-    Property,
-    type Prisma
+    type Prisma,
+    Property
 } from "@prisma";
 import {
     AI_SUPPORT_ORDER,
@@ -17,7 +17,8 @@ import {
     NUM_DATA_INDICES,
     NUM_DATA_PER_SURVEY_STEP,
     NUM_SURVEY_STEPS,
-    NUM_SURVEY_TYPES, SURVEY_TYPES_WITH_AGENT_RESPONSE_MOTIVATION
+    NUM_SURVEY_TYPES,
+    SURVEY_TYPES_WITH_AGENT_RESPONSE_MOTIVATION
 } from "../config";
 import prisma from "./prisma";
 import {getSession, setSession, updateSession} from "@/lib/security/session";
@@ -41,7 +42,7 @@ export async function isInviteCodeValid(inviteCode: string): Promise<boolean> {
         return !(!surveyGroup || !surveyGroup.active);
 
 
-    } catch(error) {
+    } catch (error) {
         console.error('Error finding survey', error);
         return false;
     }
@@ -91,7 +92,7 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
         await setSession({userId: newParticipation.id, surveyState: "InitialQuestions"})
         return true;
 
-    } catch(error) {
+    } catch (error) {
         console.error('Error finding survey', error);
         return false;
     }
@@ -99,9 +100,9 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
 
 export async function getSurveyCompletedMessage(): Promise<string> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return "";
-	}
+    if (!sessionData) {
+        return "";
+    }
 
     try {
         const surveyGroup = await prisma.surveyGroup.findFirst({
@@ -114,7 +115,7 @@ export async function getSurveyCompletedMessage(): Promise<string> {
             },
         });
         return surveyGroup?.surveyCompletedMessage ?? "";
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -122,16 +123,16 @@ export async function getSurveyCompletedMessage(): Promise<string> {
 
 export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | null> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return null;
-	}
+    if (!sessionData) {
+        return null;
+    }
 
     const surveyStep = await getSurveyStep();
-    if(surveyStep === null) {
+    if (surveyStep === null) {
         throw new UnknownError();
     }
 
-    if(surveyStep >= NUM_SURVEY_STEPS) {
+    if (surveyStep >= NUM_SURVEY_STEPS) {
         throw new UnknownError();
     }
 
@@ -142,13 +143,13 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
             },
         });
 
-        if(!participation) {
+        if (!participation) {
             throw new UnknownError();
         }
 
         return AI_SUPPORT_ORDER[participation.surveyType][surveyStep];
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -156,7 +157,7 @@ export async function getAISupportForCurrentSurveyStep(): Promise<AISupport | nu
 
 export async function isAgentResponseWithMotivation(): Promise<boolean | null> {
     const sessionData = await getSession();
-    if(!sessionData) {
+    if (!sessionData) {
         return null;
     }
 
@@ -167,13 +168,13 @@ export async function isAgentResponseWithMotivation(): Promise<boolean | null> {
             },
         });
 
-        if(!participation) {
+        if (!participation) {
             throw new UnknownError();
         }
 
         return SURVEY_TYPES_WITH_AGENT_RESPONSE_MOTIVATION.includes(participation.surveyType);
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -186,9 +187,9 @@ export async function isAgentResponseWithMotivation(): Promise<boolean | null> {
  */
 export async function setParticipationState(state: string) {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return;
-	}
+    if (!sessionData) {
+        return;
+    }
 
     try {
         const stateObject: SnapshotFrom<typeof surveyFlowMachine> = JSON.parse(state);
@@ -219,7 +220,7 @@ export async function setParticipationState(state: string) {
         });
 
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -231,9 +232,9 @@ export async function setParticipationState(state: string) {
 export async function getParticipationState(): Promise<SnapshotFrom<typeof surveyFlowMachine> | null> {
     const sessionData = await getSession();
     //Don't throw error since participation state should be callable when session is still invalid
-	if(!sessionData) {
-		return null;
-	}
+    if (!sessionData) {
+        return null;
+    }
 
     try {
         const participation = await prisma.participation.findUnique({
@@ -247,7 +248,7 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
         }
         return participation.state ? JSON.parse(participation.state) : null;
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -258,18 +259,18 @@ export async function getParticipationState(): Promise<SnapshotFrom<typeof surve
  */
 export async function getAllEMails(): Promise<EMail[]> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return [];
-	}
+    if (!sessionData) {
+        return [];
+    }
 
     const surveyStepData = await _getSurveyStepData();
-    if(surveyStepData === null) {
+    if (surveyStepData === null) {
         return [];
     }
     const surveyStep = surveyStepData.surveyStep;
     const dataIndex = Math.min(NUM_DATA_PER_SURVEY_STEP - 1, surveyStepData.dataIndex);
 
-    if(surveyStep >= NUM_SURVEY_STEPS) {
+    if (surveyStep >= NUM_SURVEY_STEPS) {
         throw new Error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`)
     }
 
@@ -297,7 +298,7 @@ export async function getAllEMails(): Promise<EMail[]> {
         }
         return data.map(d => d.EMail).filter(email => email !== null);
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
 
@@ -306,11 +307,11 @@ export async function getAllEMails(): Promise<EMail[]> {
 
 async function _getGroundTruthData(surveyStep: number, dataIndex: number): Promise<Data | null> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return null;
-	}
+    if (!sessionData) {
+        return null;
+    }
 
-    if(surveyStep >= NUM_SURVEY_STEPS) {
+    if (surveyStep >= NUM_SURVEY_STEPS) {
         console.error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`);
         throw new UnknownError();
     }
@@ -333,45 +334,46 @@ async function _getGroundTruthData(surveyStep: number, dataIndex: number): Promi
         }
         return data;
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
 }
- async function _getDataSet(surveyStep: number): Promise<number | null> {
-     const sessionData = await getSession();
-	if(!sessionData) {
-		return null;
-	}
 
-     try {
-         const participation = await prisma.participation.findUnique({
-             where: {
-                 id: sessionData.userId,
-             },
-         });
+async function _getDataSet(surveyStep: number): Promise<number | null> {
+    const sessionData = await getSession();
+    if (!sessionData) {
+        return null;
+    }
 
-         if (!participation) {
-             throw new UnknownError();
-         }
-         return DATASET_ORDER[participation.dataSetOrder][surveyStep];
+    try {
+        const participation = await prisma.participation.findUnique({
+            where: {
+                id: sessionData.userId,
+            },
+        });
 
-     } catch(error) {
-         console.error(error);
-         throw new UnknownError();
-     }
- }
+        if (!participation) {
+            throw new UnknownError();
+        }
+        return DATASET_ORDER[participation.dataSetOrder][surveyStep];
+
+    } catch (error) {
+        console.error(error);
+        throw new UnknownError();
+    }
+}
 
 /**
  * Returns emails for survey steps where the sequence is less than or equal to the dataIndex.
  */
 export async function getEMail(surveyStep: number, dataIndex: number): Promise<EMail | null> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return null;
-	}
+    if (!sessionData) {
+        return null;
+    }
 
-    if(surveyStep >= NUM_SURVEY_STEPS) {
+    if (surveyStep >= NUM_SURVEY_STEPS) {
         console.error(`surveyStep must be smaller than ${NUM_SURVEY_STEPS}.`);
         throw new UnknownError();
     }
@@ -380,7 +382,7 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
 
     const dataSet = await _getDataSet(surveyStep);
 
-    if(dataSet === null) {
+    if (dataSet === null) {
         throw new UnknownError();
     }
 
@@ -401,7 +403,7 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
         }
         return data.EMail;
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -413,9 +415,9 @@ export async function getEMail(surveyStep: number, dataIndex: number): Promise<E
  */
 export async function getEmails(lastN: number): Promise<EMail[]> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return [];
-	}
+    if (!sessionData) {
+        return [];
+    }
 
     const surveyStepData = await _getSurveyStepData();
     if (surveyStepData === null) {
@@ -424,7 +426,7 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
 
     const dataSet = await _getDataSet(surveyStepData.surveyStep);
 
-    if(dataSet === null) {
+    if (dataSet === null) {
         throw new UnknownError();
     }
 
@@ -450,7 +452,7 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
         }
         return data.map(item => item.EMail).filter(item => item !== null);
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -458,9 +460,9 @@ export async function getEmails(lastN: number): Promise<EMail[]> {
 
 export async function isInitialQuestions(): Promise<boolean> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return false;
-	}
+    if (!sessionData) {
+        return false;
+    }
     return sessionData.surveyState === "InitialQuestions";
 }
 
@@ -469,9 +471,9 @@ export async function isInitialQuestions(): Promise<boolean> {
  */
 export async function getSurveyStep(): Promise<number> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return 0;
-	}
+    if (!sessionData) {
+        return 0;
+    }
 
     const surveyStepData = await _getSurveyStepData();
     if (surveyStepData === null) {
@@ -487,7 +489,7 @@ interface SurveyStepData {
 
 export async function _getSurveyStepData(): Promise<SurveyStepData | null> {
     const surveyState = await getParticipationState();
-    if(surveyState === null) {
+    if (surveyState === null) {
         return null;
     }
 
@@ -519,9 +521,9 @@ export async function addMaintenance(maintenance: AddMaintenanceType) {
  */
 async function _addData(type: DataType, payload: unknown) {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return;
-	}
+    if (!sessionData) {
+        return;
+    }
 
     const surveyStepData = await _getSurveyStepData();
     if (!surveyStepData) {
@@ -530,7 +532,7 @@ async function _addData(type: DataType, payload: unknown) {
 
     const groundTruthData = await _getGroundTruthData(surveyStepData.surveyStep, surveyStepData.dataIndex);
 
-    if(groundTruthData === null) {
+    if (groundTruthData === null) {
         throw new UnknownError();
     }
 
@@ -555,7 +557,7 @@ async function _addData(type: DataType, payload: unknown) {
                 }
             },
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
@@ -575,9 +577,9 @@ export async function getMaintenances(): Promise<Maintenance[]> {
 
 async function _getData(type: DataType) {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return [];
-	}
+    if (!sessionData) {
+        return [];
+    }
 
     try {
         const userAddedData = await prisma.participationData.findMany({
@@ -603,21 +605,21 @@ async function _getData(type: DataType) {
             }
         });
         return userAddedData.map(data => data.userData[type]).filter(item => item !== null);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         throw new UnknownError();
     }
 }
 
-export async function setPromptHistory(promptHistory: string){
+export async function setPromptHistory(promptHistory: string) {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return;
-	}
+    if (!sessionData) {
+        return;
+    }
 
     const aiSupport = await getAISupportForCurrentSurveyStep()
 
-    if(aiSupport === null) {
+    if (aiSupport === null) {
         throw new UnknownError();
     }
 
@@ -625,7 +627,7 @@ export async function setPromptHistory(promptHistory: string){
 
     if (aiSupport === AISupport.AGENT) {
         promptHistoryKey = "promptHistoryAgent";
-    } else if(aiSupport === AISupport.PROACTIVE_AGENT) {
+    } else if (aiSupport === AISupport.PROACTIVE_AGENT) {
         promptHistoryKey = "promptHistoryProactiveAgent";
     } else {
         return;
@@ -641,7 +643,7 @@ export async function setPromptHistory(promptHistory: string){
             },
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         throw new UnknownError();
     }
@@ -649,11 +651,11 @@ export async function setPromptHistory(promptHistory: string){
 
 type AddInitialQuestionsType = Omit<Prisma.InitialQuestionsCreateInput, "Participation">
 
-export async function addInitialQuestions(data: AddInitialQuestionsType) : Promise<boolean> {
+export async function addInitialQuestions(data: AddInitialQuestionsType): Promise<boolean> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return false;
-	}
+    if (!sessionData) {
+        return false;
+    }
 
     try {
         await prisma.initialQuestions.create({
@@ -664,7 +666,7 @@ export async function addInitialQuestions(data: AddInitialQuestionsType) : Promi
                 ...data
             },
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         return false;
     }
@@ -673,11 +675,11 @@ export async function addInitialQuestions(data: AddInitialQuestionsType) : Promi
 
 type AddNoAgentQuestionsType = Omit<Prisma.NoAgentQuestionsCreateInput, "Participation">
 
-export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promise<boolean> {
+export async function addNoAgentQuestions(data: AddNoAgentQuestionsType): Promise<boolean> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return false;
-	}
+    if (!sessionData) {
+        return false;
+    }
 
     try {
         await prisma.noAgentQuestions.create({
@@ -688,7 +690,7 @@ export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promi
                 ...data
             },
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         return false;
     }
@@ -697,15 +699,15 @@ export async function addNoAgentQuestions(data: AddNoAgentQuestionsType) : Promi
 
 type AddAgentQuestionsType = Omit<Prisma.AgentQuestionsCreateInput, "type" | "Participation">
 
-export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<boolean> {
+export async function addAgentQuestions(data: AddAgentQuestionsType): Promise<boolean> {
     const sessionData = await getSession();
-	if(!sessionData) {
-		return false;
-	}
+    if (!sessionData) {
+        return false;
+    }
 
     const aiSupport = await getAISupportForCurrentSurveyStep();
 
-    if(aiSupport === null) {
+    if (aiSupport === null) {
         throw new UnknownError();
     }
 
@@ -720,7 +722,7 @@ export async function addAgentQuestions(data: AddAgentQuestionsType) : Promise<b
                 ...payload
             },
         });
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         return false;
     }

@@ -1,18 +1,16 @@
 "use client"
 import React from "react";
+import {TextField, Typography} from "@mui/material";
 import {
-    Typography,
-    TextField
-} from "@mui/material";
-import {
-    Toolbar,
-    ToolbarButton,
     ColumnsPanelTrigger,
     FilterPanelTrigger,
     QuickFilter,
-    QuickFilterControl,
     QuickFilterClear,
-    QuickFilterTrigger, ToolbarPropsOverrides,
+    QuickFilterControl,
+    QuickFilterTrigger,
+    Toolbar,
+    ToolbarButton, ToolbarButtonProps,
+    ToolbarPropsOverrides,
 } from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
 import Badge from '@mui/material/Badge';
@@ -47,17 +45,17 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
             </Typography>
 
             <Tooltip title="Spalten">
-                <ColumnsPanelTrigger render={<ToolbarButton />}>
-                    <ViewColumnIcon fontSize="small" />
+                <ColumnsPanelTrigger render={<ToolbarButton/>}>
+                    <ViewColumnIcon fontSize="small"/>
                 </ColumnsPanelTrigger>
             </Tooltip>
 
             <Tooltip title="Filter">
                 <FilterPanelTrigger
-                    render={(props, state) => (
+                    render={(props: ToolbarButtonProps, state) => (
                         <ToolbarButton {...props} color="default">
                             <Badge badgeContent={state.filterCount} color="primary" variant="dot">
-                                <FilterListIcon fontSize="small" />
+                                <FilterListIcon fontSize="small"/>
                             </Badge>
                         </ToolbarButton>
                     )}
@@ -66,7 +64,7 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
 
             <QuickFilter className="quick-filter">
                 <QuickFilterTrigger
-                    render={(triggerProps, state) => (
+                    render={(triggerProps: ToolbarButtonProps, state) => (
                         <Tooltip title="Suchen" enterDelay={0}>
                             <ToolbarButton
                                 {...triggerProps}
@@ -80,10 +78,10 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
                     )}
                 />
                 <QuickFilterControl
-                    render={({ ref, ...controlProps }, state) => (
+                    render={({ref, ...controlProps}, state) => (
                         <TextField
                             {...controlProps}
-                            className={`textfield ${state.expanded ? "expanded": ""}`}
+                            className={`textfield ${state.expanded ? "expanded" : ""}`}
                             inputRef={ref}
                             aria-label="Suchen"
                             placeholder="Suchen..."
@@ -92,7 +90,7 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
                                 input: {
                                     startAdornment: (
                                         <InputAdornment position="start">
-                                            <SearchIcon fontSize="small" />
+                                            <SearchIcon fontSize="small"/>
                                         </InputAdornment>
                                     ),
                                     endAdornment: state.value ? (
@@ -101,9 +99,9 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
                                                 edge="end"
                                                 size="small"
                                                 aria-label="Suche löschen"
-                                                material={{ sx: { marginRight: -0.75 } }}
+                                                material={{sx: {marginRight: -0.75}}}
                                             >
-                                                <CancelIcon fontSize="small" />
+                                                <CancelIcon fontSize="small"/>
                                             </QuickFilterClear>
                                         </InputAdornment>
                                     ) : null,
@@ -115,7 +113,7 @@ export default function DataGridToolbar(props: ToolbarPropsOverrides) {
                     )}
                 />
             </QuickFilter>
-            <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 0.5 }} />
+            <Divider orientation="vertical" variant="middle" flexItem sx={{mx: 0.5}}/>
             <div className="button-content">
                 {buttonContent}
             </div>

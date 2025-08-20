@@ -1,11 +1,11 @@
 "use client"
 import React from 'react';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog, {DialogProps} from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import {Typography} from '@mui/material';
 import "./ApprovalDialog.scss"
 
 interface ApprovalDialogProps extends Omit<DialogProps, 'title' | 'content'> {
@@ -48,7 +48,18 @@ interface ApprovalDialogProps extends Omit<DialogProps, 'title' | 'content'> {
 }
 
 export default function ApprovalDialog(props: ApprovalDialogProps) {
-    const { open, onApprove, onClose, closable = true, buttonDisabled = false, approvalTitle, approvalButtonSideText, title, content, ...dialogProps } = props;
+    const {
+        open,
+        onApprove,
+        onClose,
+        closable = true,
+        buttonDisabled = false,
+        approvalTitle,
+        approvalButtonSideText,
+        title,
+        content,
+        ...dialogProps
+    } = props;
 
     return (
         <Dialog className="approval-dialog" open={open} onClose={closable ? onClose : undefined} {...dialogProps}>
@@ -57,8 +68,10 @@ export default function ApprovalDialog(props: ApprovalDialogProps) {
                 {content}
             </DialogContent>
             <DialogActions className="dialog-actions">
-                {approvalButtonSideText !== undefined && <Typography color="textSecondary">{approvalButtonSideText}</Typography>}
-                <Button onClick={onApprove} disabled={buttonDisabled} variant="contained">{approvalTitle ?? "Starten"}</Button>
+                {approvalButtonSideText !== undefined &&
+                    <Typography color="textSecondary">{approvalButtonSideText}</Typography>}
+                <Button onClick={onApprove} disabled={buttonDisabled}
+                        variant="contained">{approvalTitle ?? "Starten"}</Button>
             </DialogActions>
         </Dialog>
     );

@@ -1,65 +1,68 @@
 .dark .email-list-item {
-    &.selected, &.selected:hover {
-        background: var(--colorBrandStroke2Pressed);
-    }
+  &.selected, &.selected:hover {
+    background: var(--colorBrandStroke2Pressed);
+  }
 }
 
 .email-list-item {
-    display: flex;
-    gap: 8px;
-    border-bottom: 1px solid var(--colorNeutralStroke2);
-    cursor: pointer;
-    background: var(--colorNeutralBackground1);
-    padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--colorNeutralStroke2);
+  cursor: pointer;
+  background: var(--colorNeutralBackground1);
+  padding: 12px 20px;
+  @media (max-width: 1800px) {
+    padding: 12px 12px;
+  }
+
+  &.unread {
+    border-left: 4px solid var(--colorNeutralForeground2BrandSelected);
+    padding-left: 16px;
     @media (max-width: 1800px) {
-        padding: 12px 12px;
-    }
-
-    &.unread {
-        border-left: 4px solid var(--colorNeutralForeground2BrandSelected);
-        padding-left: 16px;
-        @media (max-width: 1800px) {
-          padding-left: 8px;
-        }
-        .second-line {
-            color: var(--colorNeutralForeground2BrandSelected);
-        }
-    }
-    &.selected, &.selected:hover {
-        background: var(--colorBrandBackground2);
-        &:hover {
-            cursor: default;
-        }
-    }
-
-    &:hover {
-        background: var(--colorNeutralBackground3);
+      padding-left: 8px;
     }
 
     .second-line {
-        display: flex;
-        justify-content: space-between;
-        gap: 6px;
-        width: 200px;
-        font-size: 12px;
+      color: var(--colorNeutralForeground2BrandSelected);
     }
+  }
 
-    .third-line {
-        display: flex;
-        color: var(--colorNeutralForeground3);
-        width: 200px;
+  &.selected, &.selected:hover {
+    background: var(--colorBrandBackground2);
+
+    &:hover {
+      cursor: default;
     }
+  }
 
-    @media (max-width: 1900px) {
-        .second-line, .third-line {
-            width: 150px;
-        }
+  &:hover {
+    background: var(--colorNeutralBackground3);
+  }
+
+  .second-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    width: 200px;
+    font-size: 12px;
+  }
+
+  .third-line {
+    display: flex;
+    color: var(--colorNeutralForeground3);
+    width: 200px;
+  }
+
+  @media (max-width: 1900px) {
+    .second-line, .third-line {
+      width: 150px;
     }
+  }
 
-    .ellipsis-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+  .ellipsis-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    }
+  }
 }

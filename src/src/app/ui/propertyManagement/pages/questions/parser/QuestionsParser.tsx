@@ -1,5 +1,5 @@
 "use client"
-import { useSurveyManager } from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
+import {useSurveyManager} from "@/app/ui/propertyManagement/surveyManager/SurveyManagerProvider";
 import {ElementType, QuestionaireType} from "@/app/ui/propertyManagement/pages/questions/parser/types";
 import TextElement from "@/app/ui/propertyManagement/pages/questions/parser/elements/TextElement";
 import {Button, Typography} from "@mui/material";
@@ -10,7 +10,7 @@ import UEQPlusElement from "@/app/ui/propertyManagement/pages/questions/parser/e
 import MultipleChoiceGridElement
     from "@/app/ui/propertyManagement/pages/questions/parser/elements/MultipleChoiceGridElement";
 import Markdown from "react-markdown";
-import { useSnackbar } from "@/app/ui/providers/SnackbarProvider";
+import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 interface QuestionsParserProps<T> {
     addData: (data: T) => Promise<boolean>
@@ -32,7 +32,7 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
     const [formData, setFormData] = useState<T>({} as unknown as T);
     const errorRef = useRef<Element | null>(null);
     const validationListeners = useRef<Set<() => boolean>>(new Set());
-    const { completeQuestions } = useSurveyManager();
+    const {completeQuestions} = useSurveyManager();
     const {error} = useSnackbar();
 
     async function submit() {
@@ -55,19 +55,19 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
     }
 
     function scrollToError() {
-            const errorElement = document.querySelector('.Mui-error');
-            if (errorElement) {
-                errorRef.current = errorElement;
-                errorElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'nearest'
-                });
-            } else {
-                setTimeout(() => {
-                    scrollToError();
-                }, 200);
-            }
+        const errorElement = document.querySelector('.Mui-error');
+        if (errorElement) {
+            errorRef.current = errorElement;
+            errorElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest'
+            });
+        } else {
+            setTimeout(() => {
+                scrollToError();
+            }, 200);
+        }
     }
 
     const subscribe = useCallback((listener: () => boolean) => {
@@ -99,31 +99,36 @@ export default function QuestionsParser<T>(props: QuestionsParserProps<T>) {
                     {questionaire.elements.map((element, index) => {
                         return (
                             <div className="question" key={element.name}>
-                                    <div className="typography-body">
-                                        <Typography variant="body1">{`${index + 1}. `}</Typography>
-                                        <Markdown>
+                                <div className="typography-body">
+                                    <Typography variant="body1">{`${index + 1}. `}</Typography>
+                                    <Markdown>
                                         {`${element.description}${getRequiredStar(element)}`}
-                                        </Markdown>
-                                    </div>
+                                    </Markdown>
+                                </div>
                                 <div className="question-input">
                                     {(() => {
                                         switch (element.type) {
                                             case "text":
-                                                return <TextElement element={element} values={formData} onValuesChange={setFormData} />
+                                                return <TextElement element={element} values={formData}
+                                                                    onValuesChange={setFormData}/>
                                             case "multiple-choice-grid":
-                                                return <MultipleChoiceGridElement element={element} values={formData} onValuesChange={setFormData} />
+                                                return <MultipleChoiceGridElement element={element} values={formData}
+                                                                                  onValuesChange={setFormData}/>
                                             case "multiple-choice":
-                                                return <MultipleChoiceElement element={element} values={formData} onValuesChange={setFormData} />
+                                                return <MultipleChoiceElement element={element} values={formData}
+                                                                              onValuesChange={setFormData}/>
                                             case "ueq+":
-                                                return <UEQPlusElement element={element} values={formData} onValuesChange={setFormData} />
+                                                return <UEQPlusElement element={element} values={formData}
+                                                                       onValuesChange={setFormData}/>
                                             case "slider":
-                                                return <SliderElement element={element} values={formData} onValuesChange={setFormData} />
+                                                return <SliderElement element={element} values={formData}
+                                                                      onValuesChange={setFormData}/>
                                             default:
                                                 return null;
                                         }
                                     })()}
                                 </div>
-                        </div>
+                            </div>
                         );
                     })}
                 </div>

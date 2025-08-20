@@ -1,9 +1,10 @@
 import QuestionsNavigation from "./QuestionsNavigation";
 import {
-    getSurveyStep,
-    isInitialQuestions,
+    addAgentQuestions,
     addInitialQuestions,
-    addNoAgentQuestions, addAgentQuestions
+    addNoAgentQuestions,
+    getSurveyStep,
+    isInitialQuestions
 } from "@/lib/db/database";
 import {initial} from "@/app/ui/propertyManagement/pages/questions/parser/configs/initial";
 import {noAgent} from "@/app/ui/propertyManagement/pages/questions/parser/configs/noAgent";
@@ -19,14 +20,15 @@ export default async function Questions() {
     const initialQuestions = await isInitialQuestions();
     const surveyStep = await getSurveyStep();
     let questionaireIndex = null;
-    if(surveyStep !== null) {
+    if (surveyStep !== null) {
         questionaireIndex = surveyStep + (initialQuestions ? 0 : 1);
     }
 
     return (
         <FrameLayout>
-            {questionaireIndex !== null && <QuestionsParser addData={addDataFunctions[questionaireIndex]} questionaire={questionaires[questionaireIndex]}/>}
-            {questionaireIndex !== null && <QuestionsNavigation />}
+            {questionaireIndex !== null && <QuestionsParser addData={addDataFunctions[questionaireIndex]}
+                                                            questionaire={questionaires[questionaireIndex]}/>}
+            {questionaireIndex !== null && <QuestionsNavigation/>}
         </FrameLayout>
     );
 }
