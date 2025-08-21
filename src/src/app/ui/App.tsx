@@ -20,15 +20,20 @@ export default function App(props: AppProps) {
     const router = useRouter();
 
     const updatePromptHistory = useCallback(() => {
-        const history = JSON.stringify(chatHistory);
-        setPromptHistory(history).then().catch();
-        deleteChatHistory();
-    }, [chatHistory, deleteChatHistory]);
+        if(chatHistory.length !== 0) {
+            const history = JSON.stringify(chatHistory);
+            setPromptHistory(history).then().catch();
+        }
+    }, [chatHistory]);
 
+    useEffect(() => {
+        updatePromptHistory();
+    }, [chatHistory, updatePromptHistory]);
+    
     useEffect(() => {
         const unsubscribe = subscribe((snapshot) => {
             if (snapshot.matches({SurveyStep: "Questions"})) {
-                updatePromptHistory();
+                deleteChatHistory();
                 router.push('/questions')
             }
         })

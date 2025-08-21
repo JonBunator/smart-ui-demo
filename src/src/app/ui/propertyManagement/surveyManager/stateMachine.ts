@@ -84,7 +84,16 @@ const surveyFlowMachine = setup({
                         timeout: ({context}) => {
                             return context.timeout ?? (new Date()).valueOf() + context.surveyStepDuration * 1000;
                         },
-                    }),
+                     }),
+                        enqueueActions(({context, enqueue}) => {
+                            if (context.pausedTime === null) {
+                                enqueue.emit({
+                                    type: "sendEmail",
+                                    surveyStep: context.surveyStep,
+                                    dataIndex: context.dataIndex,
+                                });
+                            }
+                        }),
                     ],
                     invoke: {
                         id: "timerInterval",
@@ -141,7 +150,6 @@ const surveyFlowMachine = setup({
                             }
                             return now + context.surveyStepDuration * 1000;
                         },
-                        pausedTime: null
                     }),
                     ],
                     on: {

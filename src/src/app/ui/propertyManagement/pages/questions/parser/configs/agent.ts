@@ -71,6 +71,7 @@ export const agent: QuestionaireType =
                 xAxisLabels: ["Stimme überhaupt nicht zu", "Stimme nicht zu", "Stimme eher nicht zu ", "Neutral", "Stimme eher zu", "Stimme zu", "Stimme völlig zu"],
                 yAxisLabels: [
                     "Der KI-Agent erklärt sein Verhalten",
+                    "Ich habe die Erklärungen des KI-Agenten gelesen",
                     "Ich habe die Erklärungen des KI-Agenten verstanden",
                     "Ich habe die Erklärungen des KI-Agenten rechtzeitig und effizient erhalten",
                     "Die Erklärungen des KI-Agenten sind plausibel",

@@ -34,7 +34,7 @@ export default function StartPage() {
                             zu steigern, indem der Agent direkt mit der Benutzeroberfläche interagieren
                             kann.</Typography>
                         <ul>
-                            <li><Typography variant="body1">Die Umfrage dauert ungefähr 30min.</Typography></li>
+                            <li><Typography variant="body1">Die Umfrage dauert ungefähr 35min.</Typography></li>
                             <li><Typography variant="body1">Während eines Teils der Umfrage müssen Sie mit einer
                                 Softwareanwendung interagieren (~18min).</Typography></li>
                             <li><Typography variant="body1">Die Umfrage kann nur auf einem Laptop oder Desktop-PC mit
