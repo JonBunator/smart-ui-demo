@@ -1,27 +1,15 @@
 "use client"
-import React, {useEffect, useState} from "react";
-import {useParams, useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import {Button, Divider, Grid, Typography} from "@mui/material";
-import {isInviteCodeValid, startNewSurvey} from "@/lib/db/database";
-import FrameLayoutTextImage from "@/app/ui/propertyManagement/layoutComponents/FrameLayoutTextImage";
+import {startNewSurvey} from "@/lib/db/database";
 import FrameLayout from "@/app/ui/propertyManagement/layoutComponents/FrameLayout";
-import LoadingPage from "@/app/ui/LoadingPage";
 import ExternalLink from "@/app/ui/propertyManagement/layoutComponents/ExternalLink";
 import Image from 'next/image'
+import InviteCodeInvalidPage from "@/app/ui/propertyManagement/pages/InviteCodeInvalidPage";
 import "./StartPage.scss"
-import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
 export default function StartPage() {
-    const params = useParams<{ inviteCode: string }>()
-    const [inviteCodeValid, setInviteCodeValid] = useState<boolean | undefined>(undefined);
     const router = useRouter();
-    const {error} = useSnackbar();
-
-    useEffect(() => {
-        isInviteCodeValid(params.inviteCode)
-            .then(valid => setInviteCodeValid(valid))
-            .catch(() => error());
-    }, [error, params.inviteCode]);
 
     async function startSurvey() {
         const successful = await startNewSurvey(params.inviteCode);
@@ -29,8 +17,8 @@ export default function StartPage() {
         router.push('/questions')
     }
 
-    if (inviteCodeValid) {
-        return (
+    return (
+        <InviteCodeInvalidPage>
             <FrameLayout>
                 <Grid className="start-page">
                     <div className="main-section">
@@ -40,7 +28,7 @@ export default function StartPage() {
                             Softwareanwendung bedienen. Dabei soll
                             evaluiert werden, inwiefern ein KI-Agent bei der Bearbeitung von Aufgaben hilfreich sein
                             kann, um die Nutzererfahrung und Produktivität
-                            zu steigern. </Typography>
+                            zu steigern, indem der Agent direkt mit der Benutzeroberfläche interagieren kann.</Typography>
                         <ul>
                             <li><Typography variant="body1">Die Umfrage dauert ungefähr 30min.</Typography></li>
                             <li><Typography variant="body1">Während eines Teils der Umfrage müssen Sie mit einer
@@ -49,10 +37,10 @@ export default function StartPage() {
                                 Tastatur und nicht auf einem mobilen Gerät durchgeführt werden.</Typography></li>
                             <li><Typography variant="body1">Die Umfrage ist nur auf Deutsch verfügbar.</Typography></li>
                             <li><Typography variant="body1">Mit der Teilnahme stimmen Sie zu, dass die erhobenen Daten
-                                für Forschungszwecke verwendet werden.</Typography></li>
+                                für Forschungszwecke verwendet werden (Siehe <ExternalLink appendhref href="/privacy-policy" link="Datenschutzerklärung"/>).</Typography></li>
                         </ul>
                     </div>
-                    <Button disabled={!inviteCodeValid} onClick={startSurvey} variant="contained">Umfrage
+                    <Button onClick={startSurvey} variant="contained">Umfrage
                         starten</Button>
                     <Grid container spacing={6} className="bottom-section">
                         <Grid size={12} className="partners">
@@ -86,22 +74,13 @@ export default function StartPage() {
                             <div className="contact-row">
                                 <Typography className="heading" variant="h6">Datenschutzerklärung</Typography>
                                 <Typography variant="body1">
-                                    <ExternalLink href="" link="Link"/>
+                                    <ExternalLink appendhref href="/privacy-policy" link="Link"/>
                                 </Typography>
                             </div>
                         </Grid>
                     </Grid>
                 </Grid>
             </FrameLayout>
-        );
-    }
-
-    if (inviteCodeValid === false) {
-        return (
-            <FrameLayoutTextImage text="Der Einladungs-Code ist ungültig oder die Umfrage wurde bereits geschlossen!"
-                                  imagePath="/image/cat-invitecode.png"
-                                  blurUrl="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAP1BMVEVHR0c8PDxNTU1SUlJCQkJbW1stLS1iYmIRERE3NzcmJiZWVlaGhoYYGBh3d3dwcHAeHh5oaGgHBweUlJSlpaWGz12KAAAA+klEQVQY0y2QSZbgMAhDxWAwnp3U/c9apLrt3X8SEmCeWlvhBjEolQK1wB8UMfoHHdr+Q0UoR0JwKglzPvXEZ4sgmCmZorZZp/m7idIcRtQIteszm67ha1OQUcyKU1Bns3HX7dZgYc+DEy2h7LK8M3CsJZwzZ5I2zrbuW4LnA1P7grZSppc1OuxB91aP3asuii57UTtY99R5uOTnIn282RVjsTDhHQwRlPen5F7DSdaSNQQsUtZKB0ZGQDi695LPUy/p6wpu1W8pUnrqs+5YnUiPvO6Cb2wmYq9USn/H/ToJK7xj7yvd7xjOoFAQpeNuz+18bBENyyOR0C9oiwtlqMPFjgAAAABJRU5ErkJggg=="/>);
-    }
-
-    return (<LoadingPage/>);
+        </InviteCodeInvalidPage>
+    );
 }
