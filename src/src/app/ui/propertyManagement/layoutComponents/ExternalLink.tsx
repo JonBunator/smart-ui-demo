@@ -19,6 +19,7 @@ export default function ExternalLink(props: ExternalLinkProps) {
     const newHref = `${appendhref ? pathname : ""}${href}`;
 
     return (
-        <Link className="external-link" color="inherit" rel="noopener noreferrer" target="_blank" href={newHref}>{link}<LaunchIcon/></Link>
+        <Link className="external-link" color="inherit" rel="noopener noreferrer" target="_blank"
+              href={newHref}>{link}<LaunchIcon/></Link>
     );
 }

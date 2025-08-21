@@ -1,27 +1,33 @@
 "use client"
-import React, {useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import {useParams} from 'next/navigation'
 import {isInviteCodeValid} from "@/lib/db/database";
 import FrameLayoutTextImage from "@/app/ui/propertyManagement/layoutComponents/FrameLayoutTextImage";
 import LoadingPage from "@/app/ui/LoadingPage";
 import {useSnackbar} from "@/app/ui/providers/SnackbarProvider";
 
-export default function InviteCodeInvalidPage({children}: {children: React.ReactNode}) {
+interface InviteCodeInvalidPageProps {
+    inviteCodeValid?: boolean;
+    children: ReactNode;
+}
+
+export default function InviteCodeInvalidPage(props: InviteCodeInvalidPageProps) {
+    const {inviteCodeValid, children} = props;
     const params = useParams<{ inviteCode: string }>()
-    const [inviteCodeValid, setInviteCodeValid] = useState<boolean | undefined>(undefined);
+    const [codeValid, setCodeValid] = useState<boolean | undefined>(undefined);
     const {error} = useSnackbar();
 
     useEffect(() => {
         isInviteCodeValid(params.inviteCode)
-            .then(valid => setInviteCodeValid(valid))
+            .then(valid => setCodeValid(valid))
             .catch(() => error());
     }, [error, params.inviteCode]);
 
-    if (inviteCodeValid) {
+    if (codeValid || inviteCodeValid === true) {
         return <>{children}</>
     }
 
-    if (inviteCodeValid === false) {
+    if (codeValid === false || inviteCodeValid === false) {
         return (
             <FrameLayoutTextImage text="Der Einladungs-Code ist ungültig oder die Umfrage wurde bereits geschlossen!"
                                   imagePath="/image/cat-invitecode.png"

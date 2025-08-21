@@ -1,5 +1,5 @@
 "use client"
-import {useRouter} from 'next/navigation'
+import {useParams, useRouter} from 'next/navigation'
 import {Button, Divider, Grid, Typography} from "@mui/material";
 import {startNewSurvey} from "@/lib/db/database";
 import FrameLayout from "@/app/ui/propertyManagement/layoutComponents/FrameLayout";
@@ -7,9 +7,12 @@ import ExternalLink from "@/app/ui/propertyManagement/layoutComponents/ExternalL
 import Image from 'next/image'
 import InviteCodeInvalidPage from "@/app/ui/propertyManagement/pages/InviteCodeInvalidPage";
 import "./StartPage.scss"
+import {useState} from "react";
 
 export default function StartPage() {
     const router = useRouter();
+    const [inviteCodeValid, setInviteCodeValid] = useState<boolean | undefined>(undefined);
+    const params = useParams<{ inviteCode: string }>()
 
     async function startSurvey() {
         const successful = await startNewSurvey(params.inviteCode);
@@ -18,7 +21,7 @@ export default function StartPage() {
     }
 
     return (
-        <InviteCodeInvalidPage>
+        <InviteCodeInvalidPage inviteCodeValid={inviteCodeValid}>
             <FrameLayout>
                 <Grid className="start-page">
                     <div className="main-section">
@@ -28,7 +31,8 @@ export default function StartPage() {
                             Softwareanwendung bedienen. Dabei soll
                             evaluiert werden, inwiefern ein KI-Agent bei der Bearbeitung von Aufgaben hilfreich sein
                             kann, um die Nutzererfahrung und Produktivität
-                            zu steigern, indem der Agent direkt mit der Benutzeroberfläche interagieren kann.</Typography>
+                            zu steigern, indem der Agent direkt mit der Benutzeroberfläche interagieren
+                            kann.</Typography>
                         <ul>
                             <li><Typography variant="body1">Die Umfrage dauert ungefähr 30min.</Typography></li>
                             <li><Typography variant="body1">Während eines Teils der Umfrage müssen Sie mit einer
@@ -37,7 +41,10 @@ export default function StartPage() {
                                 Tastatur und nicht auf einem mobilen Gerät durchgeführt werden.</Typography></li>
                             <li><Typography variant="body1">Die Umfrage ist nur auf Deutsch verfügbar.</Typography></li>
                             <li><Typography variant="body1">Mit der Teilnahme stimmen Sie zu, dass die erhobenen Daten
-                                für Forschungszwecke verwendet werden (Siehe <ExternalLink appendhref href="/privacy-policy" link="Datenschutzerklärung"/>).</Typography></li>
+                                für Forschungszwecke verwendet werden (Siehe <ExternalLink appendhref
+                                                                                           href="/privacy-policy"
+                                                                                           link="Datenschutzerklärung"/>).</Typography>
+                            </li>
                         </ul>
                     </div>
                     <Button onClick={startSurvey} variant="contained">Umfrage

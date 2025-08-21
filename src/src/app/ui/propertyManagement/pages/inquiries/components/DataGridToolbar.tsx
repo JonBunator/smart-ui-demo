@@ -9,7 +9,8 @@ import {
     QuickFilterControl,
     QuickFilterTrigger,
     Toolbar,
-    ToolbarButton, ToolbarButtonProps,
+    ToolbarButton,
+    ToolbarButtonProps,
     ToolbarPropsOverrides,
 } from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
