@@ -7,7 +7,7 @@ export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
     const isProtectedRoute = path !== '/' && protectedRoutes.some(route => path.startsWith(route));
     const sessionData = await getSession();
-    const {device} = userAgent(req)
+    const {device} = userAgent(req);
 
     if (device.type === "mobile" && path !== '/mobile') {
         return NextResponse.redirect(new URL('/mobile', req.nextUrl));
@@ -48,5 +48,5 @@ export default async function middleware(req: NextRequest) {
 
 // Routes Middleware should not run on
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.svg$|.*\\.png$|.*\\.gif$|.*\\.vtt|.*\\.mp4).*)'],
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.svg$|.*\\.png$|.*\\.vtt$|.*\\.mp3$|.*\\.mp4).*)'],
 }
