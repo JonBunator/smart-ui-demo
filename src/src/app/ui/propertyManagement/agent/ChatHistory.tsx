@@ -90,22 +90,21 @@ export default function ChatHistory(props: ChatHistoryProps) {
                             })()}
 
                             <div className="message">
-                                {agentResponseWithMotivation && item.message.role === ChatMessageCreator.AGENT &&
-                                    <>
-                                        <div>
-                                            <Markdown>
-                                                {getMotivation(item)}
-                                            </Markdown>
-                                        </div>
-                                        <Divider/>
-                                    </>
-                                }
                                 <div>
                                     <Markdown>
                                         {item.message.role === ChatMessageCreator.AGENT ? JSON.parse(item.message.content as string).output.naturalLanguageInteraction : item.message.content}
                                     </Markdown>
                                 </div>
-
+                                {agentResponseWithMotivation && item.message.role === ChatMessageCreator.AGENT &&
+                                    <>
+                                        <Divider/>
+                                        <div>
+                                            <Markdown>
+                                                {getMotivation(item)}
+                                            </Markdown>
+                                        </div>
+                                    </>
+                                }
                             </div>
                             {(() => {
                                 let uiInteractionsLength = 0;

@@ -15,9 +15,9 @@ export default function Timer() {
         const subscription = stateMachine?.on('clockTick', (event) => {
             const formattedTime = new Date(event.timeDifference * 1000).toISOString().substring(14, 19);
             setTimer(formattedTime);
-            if(event.timeDifference === 61) {
+            if(event.timeDifference === 62) {
                 playOneMinuteSound();
-            } else if(event.timeDifference === 11) {
+            } else if(event.timeDifference === 12) {
                 playTenSecondsSound();
             }
         });
