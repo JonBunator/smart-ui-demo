@@ -45,7 +45,5 @@ export async function callAgentEndpoint(agentInput: AgentInput): Promise<AgentRe
             }], messages: []
         };
     }
-    const result = await callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
-    console.log(JSON.stringify(result))
-    return result;
+    return await callAgent(azureOpenAIClient, agentInput, optionalAgentInput);
 }
