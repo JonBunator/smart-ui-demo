@@ -36,7 +36,7 @@ export default function StartPage() {
                         <ul>
                             <li><Typography variant="body1">Die Umfrage dauert ungefähr 35min.</Typography></li>
                             <li><Typography variant="body1">Während eines Teils der Umfrage müssen Sie mit einer
-                                Softwareanwendung interagieren (~18min).</Typography></li>
+                                Softwareanwendung interagieren (~20min).</Typography></li>
                             <li><Typography variant="body1">Die Umfrage kann nur auf einem Laptop oder Desktop-PC mit
                                 Tastatur und nicht auf einem mobilen Gerät durchgeführt werden.</Typography></li>
                             <li><Typography variant="body1">Die Umfrage ist nur auf Deutsch verfügbar.</Typography></li>

@@ -11,13 +11,13 @@ const surveyStepsContent = [
         title: "Anwendung ohne KI-Agenten-Unterstützung",
         content: <NoAgentDescription/>,
         maxWidth: "lg",
-        minWaitSeconds: 110
+        minWaitSeconds: 120
     },
     {
         title: "Anwendung mit KI-Agenten-Unterstützung",
         content: <SecondStepDescription/>,
         maxWidth: "lg",
-        minWaitSeconds: 50
+        minWaitSeconds: 100
     },
     {
         title: "Anwendung mit KI-Agenten-Unterstützung",
