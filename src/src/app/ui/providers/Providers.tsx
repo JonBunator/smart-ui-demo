@@ -1,5 +1,4 @@
 "use client"
-import {SmartComponentManager} from "smart-ui";
 import {ReactNode} from "react";
 import FluentUIProvider from "./FluentUIProvider";
 import MUIProvider from "@/app/ui/providers/MUIProvider";
@@ -13,11 +12,9 @@ export default function Providers({children}: { children: ReactNode }) {
             <MUIProvider>
                 <SnackbarProvider>
                     <SurveyManagerProvider>
-                        <SmartComponentManager>
-                            <SmartAgentProviderSetup>
-                                {children}
-                            </SmartAgentProviderSetup>
-                        </SmartComponentManager>
+                        <SmartAgentProviderSetup>
+                            {children}
+                        </SmartAgentProviderSetup>
                     </SurveyManagerProvider>
                 </SnackbarProvider>
             </MUIProvider>

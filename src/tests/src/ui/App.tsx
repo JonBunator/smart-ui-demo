@@ -1,14 +1,12 @@
-import {SmartAgentProvider, SmartComponentManager} from "smart-ui";
 import Content from "./Content.tsx";
 import {callAgentEndpoint} from "../openAIMock.ts";
+import {SmartAgentProvider} from "smart-ui";
 
 export default function App() {
 
     return (
-        <SmartComponentManager>
-            <SmartAgentProvider callAgent={callAgentEndpoint} currentPagePath="/">
-                <Content/>
-            </SmartAgentProvider>
-        </SmartComponentManager>
+        <SmartAgentProvider callAgent={callAgentEndpoint} currentPagePath="/">
+            <Content/>
+        </SmartAgentProvider>
     )
 }
