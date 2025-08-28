@@ -78,17 +78,6 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
             },
         });
 
-        const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
-        const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
-        await prisma.survey.update({
-            where: {
-                id: survey.id,
-            },
-            data: {
-                nextSurveyType: nextSurveyType,
-                nextDataSetOrder: nextDataSetOrder,
-            },
-        });
         await setSession({userId: newParticipation.id, surveyState: "InitialQuestions"})
         return true;
 
@@ -203,20 +192,36 @@ export async function setParticipationState(state: string) {
             completionTimestamp?: Date;
         };
 
-        let updateData: UpdateData = {
+        let participationUpdateData: UpdateData = {
             state: state,
             surveyState: JSON.stringify(surveyState),
         };
 
         if (surveyState === "Finished") {
-            updateData = {...updateData, completionTimestamp: new Date()}
+            participationUpdateData = {...participationUpdateData, completionTimestamp: new Date()}
+
+            const survey = await prisma.survey.findFirst();
+
+            if (survey !== null) {
+              const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
+              const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
+              await prisma.survey.update({
+                where: {
+                  id: survey.id,
+                },
+                data: {
+                  nextSurveyType: nextSurveyType,
+                  nextDataSetOrder: nextDataSetOrder,
+                },
+              });
+            }
         }
 
         await prisma.participation.update({
             where: {
                 id: sessionData.userId,
             },
-            data: updateData,
+            data: participationUpdateData,
         });
 
 
