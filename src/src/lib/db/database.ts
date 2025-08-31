@@ -9,7 +9,8 @@ import {
     EMail,
     Maintenance,
     type Prisma,
-    Property
+    Property,
+    Survey
 } from "@prisma";
 import {
     AI_SUPPORT_ORDER,
@@ -64,9 +65,9 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
             return false;
         }
 
-        const survey = await prisma.survey.findFirst();
+        const survey = await _getNextSurvey();
 
-        if (!survey) {
+        if (survey === null) {
             return false;
         }
 
@@ -77,7 +78,6 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
                 dataSetOrder: survey.nextDataSetOrder,
             },
         });
-
         await setSession({userId: newParticipation.id, surveyState: "InitialQuestions"})
         return true;
 
@@ -85,6 +85,43 @@ export async function startNewSurvey(inviteCode: string): Promise<boolean> {
         console.error('Error finding survey', error);
         return false;
     }
+}
+
+
+async function _getNextSurvey(): Promise<Survey | null> {
+    const surveys = await prisma.survey.findMany({
+        orderBy: {
+            id: 'asc',
+        },
+        take: 2,
+    });
+    if (surveys === null || surveys.length === 0) {
+        return null;
+    }
+    // Return first survey and increase, when no fillers there
+    if (surveys.length === 1) {
+        const survey = surveys[0];
+        const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
+        const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
+        await prisma.survey.update({
+            where: {
+                id: survey.id,
+            },
+            data: {
+                nextSurveyType: nextSurveyType,
+                nextDataSetOrder: nextDataSetOrder,
+            },
+        });
+        return survey;
+    }
+    // Return filler and delete otherwise
+    const survey = surveys[1];
+    await prisma.survey.delete({
+        where: {
+            id: survey.id,
+        },
+    });
+    return survey;
 }
 
 export async function getSurveyCompletedMessage(): Promise<string> {
@@ -192,36 +229,20 @@ export async function setParticipationState(state: string) {
             completionTimestamp?: Date;
         };
 
-        let participationUpdateData: UpdateData = {
+        let updateData: UpdateData = {
             state: state,
             surveyState: JSON.stringify(surveyState),
         };
 
         if (surveyState === "Finished") {
-            participationUpdateData = {...participationUpdateData, completionTimestamp: new Date()}
-
-            const survey = await prisma.survey.findFirst();
-
-            if (survey !== null) {
-              const nextSurveyType = (survey.nextSurveyType + 1) % NUM_SURVEY_TYPES;
-              const nextDataSetOrder = (survey.nextDataSetOrder + 1) % NUM_DATA_INDICES;
-              await prisma.survey.update({
-                where: {
-                  id: survey.id,
-                },
-                data: {
-                  nextSurveyType: nextSurveyType,
-                  nextDataSetOrder: nextDataSetOrder,
-                },
-              });
-            }
+            updateData = {...updateData, completionTimestamp: new Date()}
         }
 
         await prisma.participation.update({
             where: {
                 id: sessionData.userId,
             },
-            data: participationUpdateData,
+            data: updateData,
         });
 
 
