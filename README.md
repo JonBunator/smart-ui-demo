@@ -1,5 +1,10 @@
 # Survey application for master's thesis of Jonas Bühler
 
+Clone this repo with:
+```
+git clone --recurse-submodules https://gitlab.xitaso.com/jonas.buehler/smart-ui-demo
+```
+
 <img src="/doc-images/application-screenshot-bookings.png"/>
 <img src="/doc-images/application-screenshot-properties.png"/>
 
