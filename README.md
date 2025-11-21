@@ -1,7 +1,7 @@
 # Survey application for master's thesis of Jonas Bühler
 
 <img src="/doc-images/application-screenshot-bookings.png"/>
-<img src="/doc-images/application-screenshot-properties.png.png"/>
+<img src="/doc-images/application-screenshot-properties.png"/>
 
 ## Production environment
 Create `.env` in root
